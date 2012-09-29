@@ -1,0 +1,33 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<div class="span6">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a
+            href="/blog/index/show/id/<?php echo $this->blog['blog_id']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->blog['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->blog['create_date']; ?></abbr>
+        </p>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+           <?php
+                  if (!empty ($authNamespace->userData['username'])): ?>
+                      <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
+            <?php endif ?>
+
+        </div>
+    </div>
+</div>
+
+
+                <?php echo $this->commentsForm; ?>
+
+

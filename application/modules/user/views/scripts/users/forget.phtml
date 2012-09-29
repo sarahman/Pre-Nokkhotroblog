@@ -1,0 +1,50 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headScript() ?>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container-fluid" style="margin: 0 auto">
+
+    <div class="span10 offset6" style="margin-top:50px">
+
+        <div class="hero-unit" style="background-color:#F5F5DA">
+
+            <form action="" method="POST">
+                <fieldset>
+                    <legend>Forget Password</legend>
+
+                    <div class="clearfix">
+                        <label for="email">Email Address</label>
+
+                        <div class="input">
+                            <input type="text" class="span4" id="email" name="email" />
+                        </div>
+                    </div><!-- /clearfix -->
+
+                    <div style="padding: 10px 0 0 150px">
+                        <button type="submit" class="btn primary">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- #content -->
+
+</body>
+</html>

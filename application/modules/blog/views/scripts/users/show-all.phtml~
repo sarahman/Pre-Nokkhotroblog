@@ -1,0 +1,62 @@
+
+<div class="row-fluid">
+ <div class="span8">
+<br>
+<div class="well1">
+<?php foreach ($this->selectedBlogs as $selectedBlog): ?>
+<p class="author">
+                            Posted in  <?php echo $selectedBlog['username'];?>&nbsp;<!--<img src="/<?php echo $this->$selectedBlog['profile_picture']; ?>"  width="20px" height="20px"/>-->::&nbsp;Posted By
+                            <cite><?php echo $selectedBlog['category_name'] ?></cite> ::
+                            <abbr class="published">Published &nbsp;<?php echo $selectedBlog['create_date']; ?></abbr>
+                        </p>
+<?php $excerpt = new Speed_Utility_TextHelper(); ?>
+ <?php echo $excerpt->word_limiter($selectedBlog['description'], 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">Read More</a>
+
+
+<hr style="border:dashed #11eeee; border-width:1px 0 0; height:2px; width:100%;">
+                            
+                           
+                           <!-- <?php
+
+                            if (empty ($authNamespace->userData['user_id'])): ?>
+
+                                <a href="/user/auth/login">Comment </a>
+
+                                <?php else: ?>
+
+                                <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">Comment
+                                    here</a>
+                                <?php endif ?>-->
+
+				<hr/>
+ <?php endforeach; ?>
+
+</div>
+<!--/right contain -->
+    </div>
+<div class="span4">
+<br>
+&nbsp;&nbsp;<h9> আমার যত লিংক </h9> &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ </a>
+<hr/>
+&nbsp;&nbsp;<h9> Selected Bloger </h9>  &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+<a >&nbsp;&nbsp;</a>
+  </div> 
+
+
+
+
+<!--/end right contain -->
+</div>

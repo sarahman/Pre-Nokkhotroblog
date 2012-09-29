@@ -1,0 +1,41 @@
+
+<?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
+<?php if(!empty($this->display)) {?>
+
+<div class="span12">
+
+    <div id="article-<?php echo $this->display['comment_id']; ?>">
+ 	  <h3><?php echo $this->display['comments']; ?></h3>
+        
+
+     
+
+
+        <div class='meta'>
+            <h4 class='page-header'>Comments: 
+        </h4>
+
+                <?php echo $this->display['comments']; ?>
+
+            
+            <?php
+                  if (!empty ($authNamespace->adminData['username'])): ?>
+                      <p>
+                       <a href="/admin/comments/publish/id/<?php echo $this->display['comment_id'] ?>" <?php echo ($this->display['is_published'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->display['is_published'] == 0) ? "Publish": "Unpublish" ?></a>
+                       
+
+                       <a href="/admin/comments/edit/id/<?php echo  $this->display['comment_id'] ?>" class="btn edit">Edit</a>
+                       <a href="/admin/comments/delete/id/<?php echo $this->display['comment_id'] ?>" class="btn btn-danger">Delete</a>
+                      </p>
+            <?php endif ?>
+
+        </div>
+    </div>
+</div>
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+

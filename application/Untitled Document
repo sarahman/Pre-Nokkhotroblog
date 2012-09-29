@@ -1,0 +1,20 @@
+public function addFavoriteAction()
+    {
+        $this->validateUser();      
+        $favoriteId = $this->_request->getParam('id');
+        $data = array();        
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $data['user_id']= $authNamespace->userData['user_id'];
+        $data['favorite_blog_id']= $favoriteId;
+         $favoriteModel = new Blog_Model_FavoriteBlog();     
+        $status = $favoriteModel->save($data);
+        if (empty($status)) {
+            $this->redirectForSuccess("/blog/users/index", "Click for favorite");             
+        } else {
+            $this->redirectForFailure("/blog/users/index", "Something went wrong");           
+        }
+         
+
+        $this->view->Favorite = $favoriteId;  
+
+    }

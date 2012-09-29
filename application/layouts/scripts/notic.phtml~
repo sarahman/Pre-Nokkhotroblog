@@ -1,0 +1,31 @@
+<?php foreach ($this->noriceBlogs AS $noriceBlogs): ?>
+             <div id="article-<?php echo $noriceBlogs['notice_id']; ?>">
+         <table class="table table-bordered table-striped">
+            <thead>
+             <tr>
+             
+               <th style="width: 150px;">Notic Titel : <?php echo $noriceBlogs['title']; ?></th>
+              
+             </tr>
+            </thead>
+            <tbody>
+             <tr>
+               <td>
+                   Create Date : <?php echo $noriceBlogs['create_date'] ;?> <br>
+                   Last Update : <?php echo $noriceBlogs['update_date']; ?>
+                 </td>
+               
+             </tr>
+             <tr>
+               <td>
+                                 
+                     <?php  $excerpt = new Speed_Utility_TextHelper(); ?>
+                     <?php echo $excerpt->word_limiter($noriceBlogs['description']); ?>
+                 </td>
+               
+             </tr>
+</tbody>
+            
+          </table>
+</div>
+ <?php endforeach ?>

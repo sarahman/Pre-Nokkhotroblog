@@ -1,0 +1,194 @@
+<?php
+$authNamespace = new Zend_Session_Namespace('userInformation');
+echo $this->doctype() ?>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headScript() ?>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+
+<body class="userprofile">
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Dhaka Time : <?php echo date('F jS,D H:ia');?></a>
+
+            <div class="btn-group pull-right">
+
+<!--                <div class="span6"><a href="#">Messege / Invitation / Notification</a></div>-->
+                <div class="span4"><?php
+  if (empty ($authNamespace->userData['username'])): ?>
+            <a  href="/signup">Sign up</a>
+            ||
+            <a  href="/auth/login">Login</a>
+
+<?php else: ?>
+
+  Welcome to <a href="/me"><?php echo $authNamespace->userData['username'] ?></a> | <a href="/auth/logout">Logout</a>
+<?php endif ?></div>
+
+
+            </div>
+            <div class="nav-collapse">
+
+
+                <input type="text" data-provide="typeahead">
+
+
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="subnav ">
+        <?php echo $this->render('navigation.phtml') ?>
+    </div>
+</div>
+
+<div class="container">
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            <img src="/img/bootstrap-mdo-sfmoma-02.jpg" alt="" width="940px" height="100px">
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+
+                
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+
+        <div class="row-fluid">
+            <!--/Left contain -->
+            <div class="span3">
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th style="width: 150px; height:400px;">
+
+                                   
+
+                                </th>
+
+                            </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+ 
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <!--/end Left contain -->
+
+            <!--/center contain -->
+            <div class="span9">
+
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+
+                        <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
+                        <div style="margin-bottom: 18px">
+                            <?php echo $flashMessenger ?>
+                        </div>
+                        <?php endif; ?>
+
+                        <div>
+                            <?php echo $this->layout()->content ?>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <!--/end center contain -->
+
+
+        </div>
+
+        <hr>
+
+        <footer>
+            <p>Terms and condition :: Discleamer :: FAQ :: Privacy Policy :: About us : Contact Us : Feedback
+            </p>
+        </footer>
+
+    </div>
+    <!--/.fluid-container-->
+</div>
+
+
+
+    <div class="subnav bottombar">
+    <?php echo $this->render('navigation_buttom.phtml') ?>
+      </div>
+
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    CKEDITOR.replace('description',
+        {
+            filebrowserBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Files',
+            filebrowserImageBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+
+
+</script>

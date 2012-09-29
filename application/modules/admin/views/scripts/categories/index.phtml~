@@ -1,0 +1,79 @@
+
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/blogs/index">All Blogs</a></li>
+        <li><a href="/admin/categories">Category</a></li>
+        
+    </ul>
+</div>
+
+<div class="row">
+
+    <div class="row content-header">
+        <h1>Blogs category</h1>
+
+    </div>
+  
+        
+
+    </div>
+    <table class="table table-striped table-bordered">
+
+        <thead>
+            <tr>
+		
+                <th class="span1">Srl</th>
+                
+               <th class="span6">category name</th>
+                <th class="span3">Action <a href="/admin/categories/add" class="btn btn-success">new category</a></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php if (!empty($this->getAll)) : ?>
+
+            <tr><td class="report-no-data" colspan="5">No blog has been found.</td></tr>
+
+            <?php else: $count = 0; foreach($this->display AS $display) : ?>
+
+            <tr>
+                <td class="centered"><?php echo ++$count ?></td>
+                
+		<td><?php echo $display['category_name'] ?></td>
+                <td class="span1"><a href ="/admin/categories/edit/id/<?php echo $display['blog_category_id'] ?>" class="btn btn-success">Edit</a></td>
+		<td class="span1"><a href ="/admin/categories/delete/id/<?php echo $display['blog_category_id'] ?>" class="btn btn-warning">Delete</a></td>
+              
+               
+               
+            </tr>
+
+            <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+ 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

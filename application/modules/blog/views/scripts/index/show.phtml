@@ -1,0 +1,31 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<?php if(!empty($this->blog)) { ?>
+<div class="span6">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a
+            href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->blog['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->blog['create_date']; ?></abbr>
+        </p>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

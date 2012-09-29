@@ -1,0 +1,70 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<div class="span12">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+        <p class="author">
+                              <?php 
+                
+                if(!empty($this->blog['profile_picture']))
+                {
+		?>
+               <img src="/<?php echo  $this->blog['profile_picture'] ?>" width="40px" height="40px"/>
+ 		   <?php } else { ?>
+
+		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+		<?php
+               }
+ 		?>
+</a>
+                              <a href="/profile/<?php echo $this->blog['username'] ?>">
+
+ <?php 
+                
+                if(!empty($this->blog['display_name']))
+                {
+                echo $this->blog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($this->blog['name']))
+			{
+                    echo $this->blog['name']; 
+                    }
+                    else 
+                    {
+                        echo $this->blog['username'];
+                        
+                        }
+                       }
+                ?>
+</a>::
+                              <a href="/category/<?php echo $this->blog['blog_category_id'] ?>"><?php echo $this->blog['category_name'] ?></a> ::
+                              &nbsp;<?php echo date('F jS Y', strtotime($this->blog['create_date'])); ?>:: &nbsp;
+                              মন্তব্য টি :: <?php echo $this->blog['viewed'] ?> বার পঠিত
+
+                          </p>
+<hr>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+           <?php
+                   if($authNamespace->userData['username'] == $this->userDetail['username']): ?>
+                      <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
+            <?php endif ?>
+
+        </div>
+    </div>
+</div>
+
+
+                <?php echo $this->commentsForm; ?>

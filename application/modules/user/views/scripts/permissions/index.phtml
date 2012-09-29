@@ -1,0 +1,115 @@
+<div class="row">
+    <h1>All Permission</h1>
+
+    <div style="float:right">
+<!--        <a class="btn success" data-controls-modal="role-modal" data-backdrop="static">Add Role</a>-->
+    </div>
+</div>
+
+<div class="row">
+
+    <?php if (empty($this->users)) : ?>
+
+    <h2>No Users Here</h2>
+
+    <?php else : ?>
+
+    <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 10px">
+
+        <thead>
+            <tr>
+                <th width="40%"></th>
+                <?php foreach($this->users As $key => $value) : ?>
+                <th width="20%"><?php echo $value['username'] ; ?></th>
+                <?php endforeach ?>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>User Create</td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value=""/>
+                     </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>User Edit</td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value=""/>
+                     </label>
+                </td>
+            </tr>
+            <tr>
+                <td>User Delete</td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value=""/>
+                     </label>
+                </td>
+            </tr>
+            <tr>
+                <td>User Management</td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value="" checked="checked"/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value=""/>
+                     </label>
+                </td>
+                <td>
+                    <label class="add-on active">
+                        <input type="checkbox" name="" value=""/>
+                     </label>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div >
+        <button type="submit" class="btn primary">Save</button>&nbsp;
+    </div>
+
+    <?php endif ?>
+
+</div>

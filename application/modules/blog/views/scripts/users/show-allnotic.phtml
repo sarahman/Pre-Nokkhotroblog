@@ -1,0 +1,29 @@
+<?php if (empty($this->notice)) : ?>
+No Notice has been found.
+
+
+       <div class="span12" ">
+<?php else:foreach($this->notice AS $notice) : ?>
+        <h2 class='page-header'><a href="/blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>"><?php echo $notice['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            
+            <abbr class="published">Published &nbsp;<?php echo $notice['create_date']; ?></abbr>
+        </p>
+<hr>
+<?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                                                
+                                <p class="lead">
+                                    <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                     <?php echo $excerpt->word_limiter($notice['description'], 30); ?>
+<a class="btn-link" href="/blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
+                                </p>
+<hr>
+
+<?php endforeach; endif ?>
+        </div>
+ 
+
+
+

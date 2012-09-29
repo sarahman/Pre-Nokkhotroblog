@@ -1,0 +1,66 @@
+
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/discussions">All Discussion</a></li>
+        <li><a href="/admin/discussion-comments">Comments</a></li>
+    </ul>
+</div>
+</div>
+<br /><br />
+<?php if (!empty($this->discussioncomment)) { ?>
+
+<div class="content-header">
+            <h4 class='page-header'>Discussions:</h4>
+</div>
+
+<div class="span12">
+
+    <div id="article-<?php echo $this->discussioncomment['discussion_comment_id']; ?>">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <td>Discution ID:</td>
+                <td><?php echo $this->discussioncomment['discussion_id']; ?></td>
+            </tr>
+            <tr>
+                <td>Comment:</td>
+                <td><?php echo $this->discussioncomment['comment']; ?></td>
+            </tr>
+            <tr>
+                <td>Create Date:</td>
+                <td><?php echo $this->discussioncomment['create_date']; ?></td>
+            </tr>
+            <tr>
+                <td>Create By:</td>
+                <td><?php echo $this->discussioncomment['create_by']; ?></td>
+            </tr>
+            <tr>
+                <td>Update Date:</td>
+                <td><?php echo $this->discussioncomment['update_date']; ?></td>
+            </tr>
+            <tr>
+                <td >Update By:</td>
+                <td><?php echo $this->discussioncomment['update_by']; ?></td>
+            </tr>
+            <tr>
+<td>
+</td>
+                <td>
+                <a href="/admin/discussion-comments/publish/id/<?php echo $this->discussioncomment['discussion_comment_id'] ?>" <?php echo ($this->discussioncomment['is_published'] == 0) ? "class='btn btn-warning'" : "class='btn btn-success'"?>><?php echo ($this->discussioncomment['is_published'] == 1) ? "published": "UnPublished" ?></a>
+               
+                <a href="/admin/discussion-comments/delete/id/<?php echo $this->discussioncomment['discussion_comment_id'] ?>" class="btn btn-danger">Delete</a>
+                
+                    <a href="/admin/discussion-comments/index" class="btn edit">Cancel</a>
+                </td>
+	    </tr>
+
+        </table>
+
+        </div>
+    </div>
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

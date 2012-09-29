@@ -1,0 +1,106 @@
+<div class="row-fluid">
+ <div class="span8">
+<h7>My Novels : </h7>
+<hr/>
+   <?php
+            $authNamespace = new Zend_Session_Namespace('userInformation');
+            if (!empty($authNamespace->userData['user_id'])) {
+    ?>
+
+    <div style="float:right;">
+        <a class="btn btn-success" href="/novels/name/new">Write New Novel </a>
+<br><br>
+    </div>
+    <?php } ?>
+
+<div class="tooltip-demo well1">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Serial</th>
+            <th>Novel Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php if (empty($this->novelNames)) : ?>
+
+        <tr>
+            <td class="report-no-data" colspan="5">No novel has been found.</td>
+        </tr>
+            <?php else: $count = 0;
+            foreach ($this->novelNames AS $novel) : ?>
+            <tr>
+                <td ><?php echo ++$count ?></td>
+
+                <td ><a
+                    href="/<?php echo $novel['username'] ?>/my-novel/<?php echo $novel['novel_name_permalink'];?>"><?php echo $novel['novel_name'] ?></a></td>
+
+                <td >
+                <?php $authNamespace = new Zend_Session_Namespace('userInformation');
+                  $userId = $authNamespace->userData['user_id'];
+                  if ($userId == $novel['create_by']) {
+                ?>
+                    <a href="/<?php echo $novel['username'] ?>/edit-novel-name/<?php echo $novel['novel_name_permalink'] ?>">Edit</a> &nbsp;&nbsp;
+                    <a href="/<?php echo $novel['username'] ?>/delete-novel-name/<?php echo $novel['novel_name_permalink'] ?>">Delet</a>
+                <?php } ?>
+                </td>
+            </tr>
+
+                <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+</div>
+
+
+</div>
+<!--/right contain -->
+    
+<div class="span4">
+<br><br>
+
+
+
+&nbsp;&nbsp;<h9> আমার পছন্দের  উপন্যাস </h9> <img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ </a>
+<hr/>
+
+
+
+&nbsp;&nbsp;<h9> আমার যত ফেভারিট</h9>  &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->blogInfo['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->blogInfo['name'] ?></a>
+<hr/>
+
+
+
+
+&nbsp;&nbsp;<h9> উপন্যাস </h9>  &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<?php  
+ foreach ($this->novelNames AS $novel) : ?>
+ <a href="/<?php echo $novel['username'] ?>/my-novel/<?php echo $novel['novel_name_permalink'];?>"><?php echo $novel['novel_name'] ?>
+<hr/>  
+ <?php endforeach ;endif ?>
+
+  </div> 
+
+
+<!--/end right contain -->
+</div>
+
+</div>
+
+

@@ -1,0 +1,66 @@
+<div class="row content-header">
+    <h1>All Users</h1>
+
+    <div class="header-buttons">
+        <a class="btn success" href="/user/users/add">New User</a>
+    </div>
+</div>
+
+<div class="row">
+
+    <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 20px">
+
+        <thead>
+            <tr>
+                <th width="5%">Serial</th>
+                <th width="10%">Username</th>
+                <th width="15%">Email Address</th>
+                <th width="10%">Role</th>
+                <th width="5%">Status</th>
+                <th width="12%">Last Logged In</th>
+                <th width="21%">&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php if (empty($this->users)) : ?>
+
+            <tr><td colspan="7" class="report-no-data">No user has been found.</td></tr>
+
+            <?php else: $count = 0; foreach($this->users AS $user) : ?>
+
+            <tr>
+                <td class="centered"><?php echo ++$count ?></td>
+                <td class="centered"><?php echo $user['username'] ?></td>
+                <td class="centered"><?php echo $user['email_address'] ?></td>
+                <td class="centered"><?php echo $user['role'] ?></td>
+                <td class="centered"><?php echo $user['status'] ?></td>
+                <td class="centered"><?php echo empty($user['last_login']) ? '---' : date('jS M, Y', strtotime($user['last_login'])) ?></td>
+                <td class="centered">
+                    <a class="btn" href="/user/users/profile/id/<?php echo $user['user_id'] ?>">Profile</a>
+                    <a class="btn" href="/user/users/edit/id/<?php echo $user['user_id'] ?>">Edit</a>
+                    <a class="btn danger delete" href="/user/users/delete/id/<?php echo $user['user_id'] ?>">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div id="user-modal" class="modal hide fade"></div>
+
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url: '/user/users/add',
+            type: 'POST',
+            success: function(data){
+                $('#user-modal').html(data);
+            }
+        });
+    });
+</script>

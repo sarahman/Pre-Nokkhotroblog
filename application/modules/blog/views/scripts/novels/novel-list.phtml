@@ -1,0 +1,54 @@
+
+<?php
+$authNamespace = new Zend_Session_Namespace('userInformation');
+$data= $authNamespace->userData['user_id'];
+?>
+
+    <p>
+                    <?php foreach ($this->novels AS $novel): ?>
+                    <div class="span12">
+                        <h2 class='page-header'><a
+                            href="/novel/<?php echo $novel['novel_name_permalink'] ?>/<?php echo $novel['novel_post_permalink']; ?>"><?php echo $novel['title']; ?></a>
+                        </h2>
+
+                        <p class="author">
+                            Posted in <?php echo $novel['novel_name'] ?> :: &nbsp; Posted By
+                            <cite><?php echo $novel['username'];?></cite> ::
+                            <abbr class="published">Published &nbsp;<?php echo $novel['create_date']; ?></abbr>
+                        </p>
+
+
+                        <div class='meta'>
+                            <p>
+                                <?php  $excerpt = new Speed_Utility_TextHelper(); ?>
+                                <?php echo $excerpt->word_limiter($novel['description']); ?>
+                            <hr/>
+                            <a href="/novel/<?php echo $novel['novel_name_permalink']; ?>/<?php echo $novel['novel_post_permalink']; ?>">Read
+                                More</a>
+<!--                            --><?php
+//
+//                            if (empty ($authNamespace->userData['user_id'])): ?>
+<!---->
+<!--                                <a href="/user/auth/login">Comment here</a>-->
+<!---->
+<!--                                --><?php //else: ?>
+<!---->
+<!--                                <a href="/comment/--><?php //echo $novel['username'] ?><!--/--><?php //echo $novel['permalink']; ?><!--">Comment-->
+<!--                                    here</a>-->
+<!--                                --><?php //endif ?>
+
+
+
+                            </p>
+
+
+
+                        </div>
+                    </div>
+                    <?php endforeach ?>
+</p>
+        <br />
+<h4><a href="/novels">Back</a></h4>
+
+
+

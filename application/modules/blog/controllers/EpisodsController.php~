@@ -1,0 +1,206 @@
+<?php
+/**
+ * Episod Controller
+ *
+ * @Group Type   Controller
+ * @package     Blog
+ * @author      Md. Sirajus Salayhin <salayhin@gmail.com>
+ */
+class Blog_EpisodsController extends Speed_Controller_ActionController
+{
+
+    public function indexAction()
+    {   
+        $this->_helper->layout->setLayout('general');
+        $episodnameModel = new Blog_Model_EpisodName();
+        $display = $episodnameModel->getAll();
+        $this->view->display = $display;
+
+
+    }
+    public function myEpisordAction()
+    {   
+        $this->_helper->layout->setLayout('userprofile');
+        $episodnameModel = new Blog_Model_EpisodName();
+        $display = $episodnameModel->getAll();
+        $this->view->display = $display;
+
+
+    }
+    
+    public function addAction()
+    {        
+         $this->validateUser();   
+         $this->_helper->layout->setLayout('userprofile');
+         $userId = $this->_request->getParam('id');
+         $episodeModel = new Blog_Model_EpisodName();                        
+        $options = array(
+            'episode_name' => $episodeModel->getDetailForEpisode($userId),               
+            'isEdit' => false
+        );
+
+        $episodeForm = new Blog_Form_Episode($options); 
+        if ($this->_request->isPost()) {
+            $data = $this->_request->getParams();
+            if ($episodeForm->isValid($data)) {
+                $episodesModel = new Blog_Model_Episod();
+                $result = $episodesModel->save($data);
+                if (empty($result)) {
+                    $this->redirectForFailure('/blog/auth/login', "There was a problem , Please try again.");
+                } else {
+                    $this->redirectForSuccess('/blog/episods/my-episord', "Your Episode is Submited.");
+                }
+
+            } else {
+                $episodeForm->populate($data);
+            }
+        }
+        $this->view->NovelForm = $episodeForm;
+
+
+       
+        
+        
+    }
+    public function editAction()
+    {
+        $this->validateUser();      
+        $this->_helper->layout->setLayout('userprofile');
+        $episodModel = new Blog_Model_Episod();
+        $episodId = $this->_request->getParam('id');
+        $episodModel->getDetail($episodId);
+        $options = array(
+            'isEdit'   => true,
+            'discussion_id' => $episodId
+        );
+        $episodEntry = new Blog_Form_EpisodEntry($options);
+
+
+        if ($this->_request->isPost()) {
+            $data = $this->_request->getParams();
+            if ($episodEntry->isValid($data)) {
+                $result = $episodModel->modify($data, $episodId);
+                if (empty($result)) {
+                    $this->redirectForFailure('/blog/episods/my-episord', 'Problem , Please try again.');
+                } else {
+                    $this->redirectForSuccess('/blog/episods/my-episord', 'Episods has updated successfully.');
+                }
+            } else {
+                $episodEntry->populate($data);
+            }
+        } else {
+
+            if (empty($episodId)) {
+                $this->redirectForFailure('/blog/episods/', 'No Episod found');
+            } else {
+                $episodModel =new Blog_Model_Episod();
+                $episodData = $episodModel->getDetail($episodId);
+                if (empty($episodData)) {
+                    $this->redirectForFailure('/blog/episods/', 'No Episod found.');
+                } else {
+                    $episodEntry->populate($episodData);
+                }
+            }
+        }
+        $this->view->PostEntry = $episodEntry;
+
+    }
+
+
+    public function deleteAction()
+    {
+        $this->validateUser();
+       $this->_helper->layout->setLayout('userprofile');
+         $episodModel = new Blog_Model_Episod();         
+
+        $episodeId = $this->_request->getParam('id');	
+
+        $status = $episodModel->delete($episodeId);	
+
+        if ($status) {
+            $this->redirectForSuccess("/blog/episods/my-episord", "Episod deleted Sucessfully.");			
+        } else {
+            $this->redirectForFailure("/blog/episods/my-episord", "Something went wrong. Please try again");		
+        }
+    }
+
+   
+    
+    public function showAction()
+    {
+     $this->_helper->layout->setLayout('userprofile');
+      $authNamespace = new Zend_Session_Namespace('userInformation');
+      $data= $authNamespace->userData['username'];
+        $episodModel = new Blog_Model_Episod();				
+        $episodeId = $this->_request->getParam('id');			
+
+        $episode = $episodModel->getDetailForEpisode($episodeId);		
+
+       if (empty($episode)) {			
+            $this->redirectForFailure("/blog/episods/my-episord", "Nothing has been found.");		
+        }
+
+        $this->view->episode = $episode;
+	
+    }
+    public function showDetailAction()
+    {
+
+     $this->_helper->layout->setLayout('general');
+      $authNamespace = new Zend_Session_Namespace('userInformation');
+      $data= $authNamespace->userData['username'];
+        $episodModel = new Blog_Model_Episod();				
+        $episodeId = $this->_request->getParam('id');			
+
+        $episode = $episodModel->getDetailForEpisode($episodeId);		
+
+       if (empty($episode)) {			
+            $this->redirectForFailure("/blog/episods/index", "Nothing has been found.");		
+        }
+
+        $this->view->episode = $episode;
+
+		
+    }
+
+
+
+    
+     public function addnameAction()
+    {
+        $this->validateUser();             
+        $this->_helper->layout->setLayout('userprofile');
+        $options=array(
+            'isEdit' => true
+        );
+        $nameEntry = new Blog_Form_EpisodName($options);
+        
+
+        if ($this->_request->isPost()) {
+
+            $data = $this->_request->getParams();
+
+            if ($nameEntry->isValid($data)) {	
+                $episodnameModel = new Blog_Model_EpisodName();		
+
+                $result = $episodnameModel->save($data);		
+                if (empty($result)) {
+                    $this->redirectForFailure('/blog/episods/my-episord','There was a problem , Please try again.');
+                } else {
+
+                    $this->redirectForSuccess('/blog/episods/my-episord','Episod Name inserted sucessfully');
+                }									
+
+            } else {
+                $nameEntry->populate($data);	
+            }
+        }
+
+        $this->view->NameEntry = $nameEntry;	
+
+    }
+
+    
+
+
+}

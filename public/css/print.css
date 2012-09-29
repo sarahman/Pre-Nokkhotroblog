@@ -1,0 +1,47 @@
+div.topbar, div.action-buttons, .footer {
+    display: none;
+}
+
+div.container {
+    margin-top: 30px;
+}
+
+.row h1 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.bordered-table {
+    border: solid #ddd;
+    border-width: 1px 0 0 1px;
+    clear: both;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.bordered-table th, .bordered-table td {
+    border: solid #ddd;
+    border-width: 0 1px 1px 0;
+    padding: 5px;
+}
+
+table .span1{width:20px;}
+table .span2{width:60px;}
+table .span3{width:100px;}
+table .span4{width:140px;}
+table .span5{width:180px;}
+table .span6{width:220px;}
+table .span7{width:260px;}
+table .span8{width:300px;}
+table .span9{width:340px;}
+table .span10{width:380px;}
+table .span11{width:420px;}
+table .span12{width:460px;}
+table .span13{width:500px;}
+table .span14{width:540px;}
+table .span15{width:580px;}
+table .span16{width:620px;}
+
+.centered {
+    text-align: center;
+}

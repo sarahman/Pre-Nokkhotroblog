@@ -1,0 +1,146 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<div class="row-fluid">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a
+            href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+
+
+                          <p class="author">
+                              <a href="/profile/<?php echo $this->blog['username'];?>">
+		<?php 
+                
+                if(!empty( $this->blog['profile_picture']))
+                {
+		?>
+               <img src="/<?php echo  $this->blog['profile_picture'] ?>" width="40px" height="40px"/>
+ 		   <?php } else { ?>
+
+		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+		<?php
+               }
+ 		?>
+</a>
+ <a href="/profile/<?php echo $this->blog['username'] ?>">
+
+                <?php 
+                
+                if(!empty($this->blog['display_name']))
+                {
+                echo $this->blog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($this->blog['name']))
+			{
+                    echo $this->blog['name']; 
+                    }
+                    else 
+                    {
+                        echo $this->blog['username'];
+                        
+                        }
+                       }
+                ?>
+</a> ::
+                              <a href="/category/<?php echo $this->blog['blog_category_id'] ?>"><?php echo $this->blog['category_name'] ?></a> ::
+                              &nbsp;<?php echo date('F jS Y', strtotime($this->blog['create_date'])); ?>:: &nbsp;
+                              মন্তব্য :: টি   <?php echo $this->blog['viewed']; ?> বার পঠিত
+
+                          </p>
+<hr>
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+            <?php
+            if (!empty ($authNamespace->userData['user_id']) AND ($authNamespace->userData['user_id'] == $this->blog['user_id'])): ?>
+                <p><a href="/edit/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink'] ?>">Edit</a><br>
+                </p>
+                <?php endif ?>
+
+
+ <h4>Comments:</h4>         
+<?php if (empty($this->comments)): ?>
+<p><?php echo "মন্তব্য নেই" ?></p>
+ <?php endif; ?>
+
+            <div class="span7">
+                <?php   if (!empty($this->comments)) :
+  
+                foreach ($this->comments as $comment) :
+
+                    ?>
+
+<hr>
+                    <p><?php 
+                
+                if(!empty($comment['profile_picture']))
+                {
+		?>
+               <img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/>
+ 		   <?php } else { ?>
+
+		<img src="/public/../img/images.jpeg" alt="" width="40px" height="40px"/>
+
+		<?php
+               }
+ 		?>
+</a>
+<a href="/profile/<?php echo $comment['username'] ?>">
+
+
+                <?php 
+                
+                if(!empty($comment['display_name']))
+                {
+                echo $comment['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($comment['name']))
+			{
+                    echo $comment['name']; 
+                    }
+                    else 
+                    {
+                        echo $comment['username'];
+                        
+                        }
+                       }
+                ?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?></p>
+
+<hr>
+                    <p><?php echo $comment['comments']?> </p>
+<hr>
+
+                    <?php endforeach;  endif; ?>
+                <?php
+
+                if (empty ($authNamespace->userData['user_id'])): ?>
+
+                    <a href="/user/auth/login">মন্তব্য</a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a><hr>
+
+                    <?php else: ?>
+
+                    <a href="/comment/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>">মন্তব্য
+                        </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a><hr>
+                    <?php endif ?>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

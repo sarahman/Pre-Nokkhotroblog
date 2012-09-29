@@ -1,0 +1,64 @@
+
+<?php if(!empty($this->notice)) { ?>
+<div class="span12">
+       <div class="span12" ">
+        <h2 class='page-header'><a href="#"><?php echo $this->notice['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            
+            <abbr class="published">Published &nbsp;<?php echo $this->notice['create_date']; ?></abbr>
+        </p>
+
+
+        <div class='meta'>
+          <hr>
+<p><?php echo $this->notice['title']; ?> </p> 
+ <hr>
+	<p>
+                <?php echo $this->notice['description']; ?>
+
+            </p>
+
+        </div>
+    </div>
+
+</div>
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+
+
+<h4>Comments:</h4>         
+<?php if (empty($this->comment)): ?>
+<p><?php echo "মন্তব্য নেই" ?></p>
+ <?php endif; ?>
+
+            <div class="span7">
+                <?php   if (!empty($this->comment)) :
+  
+                foreach ($this->comment as $comment) :
+
+                    ?>
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?></p>
+
+<hr>
+
+                    <p><?php echo $comment['comments']?> </p>
+<hr>
+
+                    <?php endforeach;  endif; ?>
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?><br>
+
+                              <?php    if (empty ($authNamespace->userData['user_id'])): ?>
+                                     <a href="/user/auth/login">মন্তব্য </a>
+                                      <?php else: ?>
+
+                                      <a href="/blog/users/add-noticcomment/id/<?php echo $comment['notice_id']; ?>">মন্তব্য</a> &raquo; </span><?php endif ?><br><br>
+
+        

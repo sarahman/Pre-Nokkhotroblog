@@ -1,0 +1,113 @@
+  <div class="row-fluid">
+ <div class="span8">
+<h7>My Episode : </h7>
+<hr/>
+    <?php
+            $authNamespace = new Zend_Session_Namespace('userInformation');
+            if (!empty($authNamespace->userData['user_id'])) {
+    ?>
+    <div style="float:right;">
+        <a class="btn btn-success" href="/blog/episods/addname">Create New Episode</a>
+    </div>
+    <?php } ?>
+   
+
+ 
+<div class="tooltip-demo well1">
+<br>
+<table class="table table-striped table-bordered">
+    <thead>
+            <tr>
+                <th >Serial</th>
+                <th>Episode Title</th>
+                <th></th>
+		
+            </tr>
+     </thead>
+    <tbody>
+
+    <?php if (!empty($this->getAll)) : ?>
+
+    <tr>
+        <td></td>
+        <td class="report-no-data" colspan="5">No episode has been found.</td>
+        <td></td>
+    </tr>
+    
+        <?php else: $count = 0;
+        foreach ($this->display AS $display) : ?>
+
+        <tr>
+            <td ><?php echo ++$count ?></td>
+            <td ><a href="/blog/episods/show/id/<?php echo  $display['episode_id'] ?>"><?php echo $display['episode_name'] ?></a></td>
+            <?php $cdata=$display['create_by'];
+                if($authNamespace->userData['user_id']==$cdata)
+                {
+            ?>
+            <td><a href="/blog/episods/add/id/<?php echo  $display['episode_id'] ?>">Continue Writing</a></td>
+            <?php
+                }
+                
+            ?>
+        </tr>
+
+            <?php endforeach; endif ?>
+
+         
+         </tbody>
+
+</table>
+</div>
+
+
+</div>
+<!--/right contain -->
+    
+<div class="span4">
+<br><br>
+
+
+
+&nbsp;&nbsp;<h9> All Episode </h9> &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+
+ <!--   <?php if (!empty($this->getAll)) : ?>
+     <?php foreach ($this->display AS $display) : ?>
+
+            <?php $cdata=$display['create_by'];
+                if($authNamespace->userData['user_id']==$cdata)
+                {
+            ?>
+             <a href="/blog/episods/show/id/<?php echo  $display['episode_id'] ?>"><?php echo $display['episode_name'] ?></a>
+            
+            <?php
+                }
+                
+            ?>
+        
+<hr/>
+            <?php endforeach; endif ?>
+
+-->
+
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ </a>
+<hr/>
+
+&nbsp;&nbsp;<h9>আমার পছন্দের  Episode </h9><img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<a href="#">&nbsp;&nbsp;গডফাদার-৭৯</a>
+<hr/>
+<a href="#">&nbsp;&nbsp;আমার মুক্তি যুদ্ধ(ছোটদের জন্য) </a>
+<hr/>
+
+ 
+
+
+<!--/end right contain -->
+</div>
+
+</div>
+
+

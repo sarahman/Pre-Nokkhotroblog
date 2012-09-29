@@ -1,0 +1,40 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+
+<div class="row">
+
+
+    <div class="span6">
+        <?php foreach ($this->recentBlogs AS $recentBlogs): ?>
+        <div id="article-<?php echo $recentBlogs['blog_id']; ?>">
+            <h2 class='page-header'><a
+                href="/show/<?php echo $recentBlogs['username'] ?>/<?php echo $recentBlogs['permalink']; ?>"><?php echo $recentBlogs['title']; ?></a>
+            </h2>
+
+            <p class="author">
+                Posted in <?php echo $recentBlogs['category_name'] ?> :: &nbsp; Posted By
+                <cite><?php echo $recentBlogs['username'];?></cite></cite> ::
+                <abbr class="published">Published &nbsp;<?php echo $recentBlogs['create_date']; ?></abbr>
+            </p>
+
+            <div class='meta'>
+                <p>
+                    <?php  $excerpt = new Speed_Utility_TextHelper(); ?>
+                    <?php echo $excerpt->word_limiter($recentBlogs['description']); ?>
+                </p>
+                <hr/>
+                <a href="/show/<?php echo $recentBlogs['username'] ?>/<?php echo $recentBlogs['permalink']; ?>">Read More</a>
+                <?php
+
+                if (empty ($authNamespace->userData['user_id'])): ?>
+                    <a href="/user/auth/login/<?php echo $recentBlogs['blog_id']; ?>">Comment here</a>
+
+                <?php else: ?>
+                    <a href="/user/blogs/comment/id/<?php echo $recentBlogs['blog_id']; ?>">Comment here</a>
+                <?php endif ?>
+
+            </div>
+    </div>
+        <?php endforeach ?>
+    </div>
+
+</div>

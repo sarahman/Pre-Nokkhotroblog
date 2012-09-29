@@ -1,0 +1,12 @@
+<ul class="nav nav-pills">
+      <li><a href="#">
+          <?php $authNamespace = new Zend_Session_Namespace('userInformation');
+                echo $authNamespace->counter ;
+          ?>
+          User Online
+</a></li>
+      <li><a href="#">About us</a></li>
+      <li> </li>
+
+	  <li><a href="#">0 Friend Online</a></li>
+    </ul>

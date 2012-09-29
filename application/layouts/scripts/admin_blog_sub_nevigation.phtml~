@@ -1,0 +1,10 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/blogs/index">All Blogs</a></li>
+        <li><a href="/admin/categories">Category</a></li>
+	    <li><a href="/admin/post-types">Post Types</a></li>
+	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+	    <li><a href="/admin/blog-groups">Blog Groups</a></li>
+    </ul>
+</div>
+<br /><br />

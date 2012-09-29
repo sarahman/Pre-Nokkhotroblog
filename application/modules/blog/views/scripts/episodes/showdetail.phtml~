@@ -1,0 +1,63 @@
+<?php
+$authNamespace = new Zend_Session_Namespace('userInformation');
+$data= $authNamespace->userData['user_id'];
+
+?>
+
+<?php if (!empty($this->episode)) { ?>
+
+<div class="row-fluid content-header">
+            <h4 class='page-header'>Episode</h4>
+</div>
+
+<div class="span12">
+            Episode Titel: <?php echo $this->episode['episode_number']; ?><br>
+            Description: <?php echo $this->episode['description']; ?> 
+
+          
+<hr>
+
+        <table >
+           
+
+
+
+            <?php $cdata=$this->episode['create_by'];
+                if($data==$cdata)
+                {
+            ?>
+            <tr>
+                <td>
+                <a href="/blog/episods/edit/id/<?php echo  $this->episode['blog_id'] ?>" class="btn edit">Edit</a>
+               
+                <a href="/blog/episods/delete/id/<?php echo $this->episode['blog_id'] ?>" class="btn btn-danger">Delete</a>
+                
+                <a href="/blog/episods/continuewriting/id/<?php echo  $this->episode['blog_id'] ?>" class="btn edit">Continue Writing</a>
+                </td>
+               
+            </tr>
+            <?php
+                }
+                
+            ?>
+                  
+            <tr>
+                <td>
+<br>
+                <a href="/blog/episods/index" class="btn edit">Cancel</a>
+             
+                
+                </td>
+            </tr>
+
+        </table>
+
+     
+    </div>
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

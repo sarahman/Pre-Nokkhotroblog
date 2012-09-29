@@ -1,0 +1,35 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<div class="span12">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"></a>
+        </h2>
+
+        <p class="author">
+                              <a href="/profile/<?php echo $this->blog['username'];?>"><img src="/<?php echo $this->blog['profile_picture'] ?>" width="40px" height="40px"/></a>
+                              <a href="/profile/<?php echo $this->blog['username'] ?>"><?php echo $this->blog['username'];?></a>::
+                              <a href="/category/<?php echo $this->blog['blog_category_id'] ?>"><?php echo $this->blog['category_name'] ?></a> ::
+                              &nbsp;<?php echo date('F jS Y', strtotime($this->blog['create_date'])); ?>:: &nbsp;
+                              মন্তব্য টি :: পঠিত বার
+
+                          </p>
+<hr>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+           <?php
+                   if($authNamespace->userData['username'] == $this->userDetail['username']): ?>
+                      <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
+            <?php endif ?>
+
+        </div>
+    </div>
+</div>
+
+
+                <?php echo $this->commentsForm; ?>

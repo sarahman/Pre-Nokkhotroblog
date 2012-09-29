@@ -1,0 +1,67 @@
+
+    <h1 style="float:left">All Roles</h1>
+        
+    <div style="float:right">
+        <a class="btn success" data-controls-modal="role-modal" data-backdrop="static">New Role</a>
+    </div>
+
+    <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 10px">
+
+        <thead>
+            <tr>
+                <th width="10%">Serial</th>
+                <th width="25%">Title</th>
+                <th width="45%">Description</th>
+                <th width="20%">&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td class="centered">1</td>
+                <td>Super Admin</td>
+                <td>Can create admin, user and participant and distribute the role</td>
+                <td class="centered">
+                    <button class="btn">Edit</button>
+                    <button class="btn danger">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="centered">2</td>
+                <td>Admin</td>
+                <td>Can create user and moderate the users access</td>
+                <td class="centered">
+                    <button class="btn">Edit</button>
+                    <button class="btn danger">Delete</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="centered">3</td>
+                <td>User</td>
+                <td> Can access the system for specific tasks</td>
+                <td class="centered">
+                    <button class="btn">Edit</button>
+                    <button class="btn danger">Delete</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div id="role-modal" class="modal hide fade"></div>
+
+    <script type="text/javascript">
+        $(function(){
+            $.ajax({
+                url: '/user/roles/add',
+                type: 'POST',
+                success: function(data){
+                    $('#role-modal').html(data);
+                }
+            });
+        });
+    </script>

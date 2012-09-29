@@ -1,0 +1,46 @@
+<?php if (!empty($this->episode)) { ?>
+
+<div class="row-fluid content-header">
+            
+</div>
+
+<div class="span12">
+<br>
+
+       
+   <a href="/profile/<?php echo $this->episode['username'];?>"><img src="/<?php echo $this->episode['profile_picture'] ?>" width="40px" height="40px"/></a><a href="/profile/<?php echo $this->episode['username'] ?>"><?php echo $this->episode['username'];?></a>::
+                            
+                              &nbsp;<?php echo date('F jS Y', strtotime($this->episode['create_date'])); ?>:: &nbsp;
+                             
+<hr>
+
+<h2><?php echo $this->episode['episode_name']; ?></h2>
+
+
+<div class="well1">
+<h9><div style="margin-left:350px;"><?php echo $this->episode['episode_name']; ?></div></h9>
+<hr>
+
+<br>
+<?php echo $this->episode['episode_number']; ?><hr>
+<div class="well">
+ <?php echo $this->episode['description']; ?></div> 
+
+
+
+</div> 
+
+          
+<hr>
+
+ 
+           <a href="/blog/episodes/index" class="btn edit">Cancel</a>
+
+    </div>
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

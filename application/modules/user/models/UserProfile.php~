@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * User Abstract Model
+ *
+ * @userprofile    Model
+ * @package     User
+ * @author      Syed Abidur Rahman <aabid048@gmail.com>
+ * @copyright   Right Brain Solution Ltd. (http://rightbrainsolution.com)
+ */
+abstract class User_Model_UserProfile extends Speed_Model_Abstract
+{
+    /**
+    * @var Admin_Model_Dao_UserProfile
+    */
+    protected $dao;
+
+    public function __construct($dao = null)
+       {
+           if (empty ($dao)) {
+               $this->dao = new User_Model_Dao_UserProfile();
+
+           } else {
+               $this->dao = $dao;
+       }
+    }
+
+    public function getAll()
+      {
+        return $this->dao->getAll();
+
+      }
+
+    public function getDetailUser($userdetailId)
+    {
+    if (empty ($userdetailId)) {
+            return false;
+        }
+
+        $record = $this->dao->getDetailUser($userdetailId);
+
+        return $record;
+    }
+
+
+
+
+    public function save($data = array())
+    {
+        if (empty($data)) {
+            return false;
+        }
+
+        
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $data['user_id'] = $authNamespace->userData['user_id'];
+        $userId = $this->dao->create($data);
+        return $userId;
+    }
+
+ }

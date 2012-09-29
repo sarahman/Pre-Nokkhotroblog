@@ -1,0 +1,79 @@
+<div class="row-fluid">
+<div class="span8">
+<?php if (!empty (<?php echo $this->userDetail['username']; ?>)):
+
+
+
+
+    <h8><?php echo $this->userDetail['display_name']; ?></h8>
+     
+   <hr>
+   <h7 ><a href="/blog/<?php echo $this->userDetail['username']; ?>"><?php echo $this->userDetail['display_name']; ?>-এর ব্লগ</a></h7>
+<hr>
+	<div class="well2">
+
+        <?php echo $this->userDetail['bio']; ?>
+
+
+    </div>
+<hr>
+<div class="well">
+	<table class="table table-striped table-bordered">
+
+        <tr>
+            <td >Name:</td>
+            <td><?php echo $this->userDetail['name']; ?></td>
+        </tr>
+
+        <tr>
+            <td >date_of_birth:</td>
+            <td><?php echo $this->userDetail['date_of_birth']; ?></td>
+        </tr>
+        <tr>
+            <td >Create Date:</td>
+            <td ><?php echo date('F jS Y', strtotime($this->userDetail['create_date'])); ?></td>
+        </tr>
+        <tr>
+            <td >Last Login:</td>
+            <td ><?php echo date('F jS Y', strtotime($this->userDetail['last_login'])); ?></td>
+        </tr>
+
+
+    </table>
+</div>
+
+<!--/right contain -->
+    </div>
+<div class="span4">
+
+<br>
+
+&nbsp;&nbsp;<h9> আমার যত ফেভারিট </h9> &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+<hr/>
+&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+<hr/>
+
+
+&nbsp;&nbsp;<h9> পছন্দের যত পোস্ট </h9>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+<hr/>
+<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+<hr/>
+
+&nbsp;&nbsp;<h9> সাম্প্রতিক মন্তব্য </h9>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+<hr/>
+<a href="#">&nbsp;&nbsp;<?php echo $this->comments['comments']; ?></a>
+  </div> 
+
+
+
+
+<!--/end right contain -->
+</div>

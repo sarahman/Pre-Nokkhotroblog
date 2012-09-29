@@ -1,0 +1,60 @@
+<div class="row-fluid content-header">
+    <h1>Latest Notices</h1>
+    <div class="header-buttons">
+        <a class="btn btn-success" href="/admin/notice/add">New Notice</a>
+    </div>
+</div>
+
+    <table class="table table-striped table-bordered">
+
+        <thead>
+            <tr>
+
+                <th class="span1">Sl</th>
+               <th class="span6">Title</th>
+	       <th class="span6">Create Date</th>
+	       <th class="span6">Publish Status</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php if (!empty($this->getAll)) : ?>
+
+            <tr><td class="report-no-data" colspan="5">No Notice has been found.</td></tr>
+
+            <?php else: $count = 0; foreach($this->display AS $display) : ?>
+
+            <tr>
+                <td class="centered"><?php echo ++$count ?></td>
+
+		<td><?php echo $display['title'] ?></td>
+		<td><?php echo $display['create_date'] ?></td>
+		<td class="centered"><?php echo ($display['is_valid'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+                <td class="span1"><a href ="/admin/notice/show/id/<?php echo $display['notice_id'] ?>" class="btn btn-success">Show</a></td>
+
+            </tr>
+
+            <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
