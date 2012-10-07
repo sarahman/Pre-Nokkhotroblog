@@ -60,11 +60,12 @@ class Blog_Model_Dao_Blog extends Speed_Model_Dao_Abstract
 	public function getTopBlogger()
     {
 
-        $select = "SELECT username, user_id, create_by,profile_picture, name, display_name, blog_id, COUNT( create_by ) AS no
-FROM  `blogs` 
+        $select = "SELECT username, user_id, create_by, profile_picture, name, display_name, blog_id, COUNT( create_by ) AS no
+FROM  `blogs`
 INNER JOIN  `users` ON blogs.create_by = users.user_id
+WHERE  `status` =  'publish'
 GROUP BY create_by
-ORDER BY no DESC 
+ORDER BY no DESC
 LIMIT 10";
 
         return $this->returnResultAsAnArray($this->getDefaultAdapter()->fetchAll(($select)));
