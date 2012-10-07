@@ -21,7 +21,7 @@ class Blog_BlogGroupsController extends Speed_Controller_ActionController
 
     public function indexAction()
     {
-        $this->validateUser();
+        //$this->validateUser();
         $this->_helper->layout->setLayout('userprofile');
         $groupModel = new Blog_Model_BlogGroup();
         $userModel = new Speed_Model_User();

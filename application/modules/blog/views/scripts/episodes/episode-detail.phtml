@@ -1,0 +1,33 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>    <!--this line is for session, for comment-->
+<div class="row-fluid content-header">
+            <h7>Episode : </h7>
+
+</div>
+<hr/>
+<?php if (empty($this->episode)) : ?>
+<div class="span6">
+    <h3>No episode has been found</h3>
+</div>
+
+<?php   else:  foreach ($this->episode as $episode) :
+
+                    ?>
+
+Episode Number: <?php echo $episode['episode_number']; ?> 
+Posted by: <?php echo $episode['username']; ?>
+<div class="well1">
+<!--
+	    Create by:  <?php //echo $episode['name']; ?><br>
+	    Episode Name: <?php //echo $episode['episode_name']; ?><br>-->
+              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+            Description: <?php echo $excerpt->word_limiter($episode['description'], 50); ?> 
+
+              <?php echo $excerpt->word_limiter($episode['description'], 50); ?> .. <a class="btn-link" href="/blog/episodes/show-episodedetail/id/<?php echo $episode['blog_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
+      
+</div>
+
+
+<?php endforeach;  endif ?>
+
+
+ 

@@ -103,9 +103,9 @@ class Blog_Model_Episod extends Speed_Model_Abstract
         return $record;
     }
     
-    public function getDraft()
+    public function getDraft($userId)
     {
-        return $this->dao->getDraft();
+        return $this->dao->getDraft($userId);
     }
 
     public function setTrashStatus($data, $blogId)
@@ -139,11 +139,42 @@ class Blog_Model_Episod extends Speed_Model_Abstract
 
         return $this->dao->getTrashStatus($blogId);
     }
-    
-    public function getAllTrash()
-	{
-	return $this->dao->getAllTrash();
 
-	}
+
+public function getAllTrash($userId)
+    {
+        return $this->dao->getAllTrash($userId);
+    }
+    
+    public function getEpisode($episodeId)
+    {
+        
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $data['create_by'] = $authNamespace->userData['user_id'];
+        
+        return $this->dao->getEpisodes($episodeId);
+    }
+
+    public function getDetaildraft($episodId)	// draft edit
+    {
+        if (empty ($episodId)) {		
+            return false;
+        }
+
+        $record = $this->dao->getDetaildraft($episodId);	
+
+        return $record;
+    }
+
+    public function getDetailForEpisod($episodeId)            // show detail episode
+    {
+        if (empty ($episodeId)) {		
+            return false;
+        }
+
+        $record = $this->dao->getDetailForEpisod($episodeId);	
+
+        return $record;
+    }
     
 }

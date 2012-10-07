@@ -1,0 +1,51 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>    <!--this line is for session, for comment-->
+<div class="row-fluid content-header">
+            <h7>Episode Detail : </h7>
+
+</div>
+<hr/>
+<?php if (!empty($this->episodedetail)) { ?>
+
+Episode Number: <?php echo $this->episodedetail['episode_number']; ?>  &nbsp;&nbsp;
+Posted by: <?php echo $this->episodedetail['username']; ?>
+<div class="well1">
+    
+<?php echo $this->episodedetail['description']; ?>
+</div>
+<?php } else { ?>
+ 
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+<!--display detail episode-->
+
+<!--display all comment for this episode-->
+<div class="row-fluid content-header">
+<h4>Comments:</h4>
+<?php if (empty($this->comment)) : ?>
+
+<div>
+    <h6>No comment has been found</h6>
+</div>
+    
+        <?php else: $count = 0;
+        foreach ($this->comment AS $comment) : ?>
+
+<?php echo ++$count ?> &nbsp;&nbsp;
+
+      Comment: <?php echo $comment['comment'] ?><br>
+      Posted by: <?php echo $comment['username'] ?><br>
+      
+
+            <?php endforeach; endif ?>
+ <!--display all comment for this episode-->      
+       <?php  if (empty ($authNamespace->userData['user_id'])): ?>
+
+                    <a href="/user/auth/login">মন্তব্য</a><hr>
+
+                    <?php else: ?>
+
+                    <a href="/blog/episodes/add-comment/id/<?php echo $this->episodedetail['blog_id']; ?>">মন্তব্য</a>
+                    <?php endif ?>
+</div>

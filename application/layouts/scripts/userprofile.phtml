@@ -78,7 +78,10 @@ echo $this->doctype() ?>
 </div>
 
 <div class="container">
-
+<?php $flashMessenger = $this->flashMessenger();
+                        if (!empty($flashMessenger)): ?>
+                            <?php echo $flashMessenger ?>
+			<?php endif; ?>
 
 <div class="row-fluid">
     <div class="span12">
@@ -207,8 +210,9 @@ echo $this->doctype() ?>
             <a href="/<?php echo $this->userDetail['username'] ?>/novel-list">উপন্যাস</a>
             <hr/>
             <a href="/blog/<?php echo $this->userDetail['username']; ?>">ব্লগিং</a>
-            <!--<hr/>
-            <a href="/episode-list/<?php echo $this->userDetail['username'] ?>">&nbsp;&nbsp;Episods</a>-->
+            <hr/>
+            <a href="/blog/episodes/my-episord">&nbsp;&nbsp;Episode</a>
+            <!--<a href="/episode-list/<?php echo $this->userDetail['username'] ?>">&nbsp;&nbsp;Episods</a>-->
 	   <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
  	  <hr/>
             <a href="/user/photo/index">আমার যত ছবি</a><hr/>

@@ -22,7 +22,10 @@ class Admin_Model_Blog extends Speed_Model_Abstract
             $this->setDao(new Admin_Model_Dao_Blog());
         }
     }
-
+	public function getAllstickyBlog()
+    {
+        return $this->dao->getAllstickyBlog();
+    }
     public function getAllPostedBlog()
     {
         return $this->dao->getAllPostedBlog();
@@ -77,7 +80,37 @@ class Admin_Model_Blog extends Speed_Model_Abstract
 
         return $this->dao->getPublishStatus($blogId);
     }
+     public function setSkStatus($data, $blogId)
+    {
+        if (empty($data) AND (empty($blogId))) {
+            return false;
+        }
 
+        $data['last_modaretion_date'] = date('Y-m-d H:i:s');
+        $data['permalink'] = $blogId;
+
+        $status = $this->getSkStatus($blogId);
+
+        if ($status['sticky_on_home_page'] == 1) {
+
+            $data['sticky_on_home_page'] = 0;
+        } else {
+            $data['sticky_on_home_page'] = 1;
+        }
+
+        $this->dao->modify($data, $blogId);
+
+        return true;
+    }
+ public function getSkStatus($blogId)
+    {
+        if (empty($blogId)) {
+            return false;
+        }
+
+        return $this->dao->getSkStatus($blogId);
+    }
+    
     public function setPendingStatus($data, $blogId)
     {
         if (empty($data) AND (empty($blogId))) {
@@ -109,7 +142,10 @@ class Admin_Model_Blog extends Speed_Model_Abstract
 
         return $this->dao->getPendingStatus($blogId);
     }
-
+ public function getAllPublishedBlog()
+    {
+        return $this->dao->getAllPublishedBlog();
+    }
 
     public function setSelectStatus($data, $blogId)
     {
@@ -149,7 +185,7 @@ class Admin_Model_Blog extends Speed_Model_Abstract
             return false;
         }
 
-        $sticky = $this->getStickeyPost();
+        $sticky = $this->getStickeyPost($blogId);
 
 
         if (!empty($sticky)) {
@@ -168,10 +204,10 @@ class Admin_Model_Blog extends Speed_Model_Abstract
         return true;
     }
 
-    public function getStickeyPost()
+    public function getStickeyPost($blogId)
     {
 
-        return $this->dao->getStickeyPost();
+        return $this->dao->getStickeyPost($blogId);
     }
 
     public function getRecentPosts()
@@ -182,10 +218,6 @@ class Admin_Model_Blog extends Speed_Model_Abstract
 
 
 
-    public function getSelectedPosts()
-    {
-        return $this->dao->getSelectedPosts();
-    }
 
 
     public function getDetailForAdmin($blogId)
@@ -309,11 +341,11 @@ public function setTrashStatus($data, $blogId)
 
         $status = $this->getTrashStatus($blogId);
 
-        if ($status['status'] == 'delete') {
+        if ($status['status'] == 'admin-trash') {
 
             $data['status'] = 'pending';
         } else {
-            $data['status'] = 'delete';
+            $data['status'] = 'admin-trash';
         }
 
         $this->dao->modify($data, $blogId);
@@ -330,15 +362,96 @@ public function setTrashStatus($data, $blogId)
         return $this->dao->getTrashStatus($blogId);
     }
     
-    public function getAllTrash()
+public function getAllTrash()
     {
-       
-        return $this->dao->getAll();
+  return $this->dao->getAllTrash();
     }
 public function getAllEpisodeTrash()
     {
        
         return $this->dao->getAllEpisodeTrash();
     }
+public function setPublishSticky($data,$stickyId)
+    {
+        if (empty($data) AND (empty($stickyId))) {
+            return false;
+        }
+
+
+        $status = $this->getPublishSticky($stickyId);
+
+        if ($status['sticky_on_home_page'] == 1) {
+
+            $data['sticky_on_home_page'] = 0;
+        } else {
+            $data['sticky_on_home_page'] = 1;
+        }
+
+        $this->dao->modify($data, $stickyId);
+
+        return true;
+    }
+
+    public function getPublishSticky($stickyId)
+    {
+        if (empty($stickyId)) {
+            return false;
+        }
+
+        return $this->dao->getPublishSticky($stickyId);
+    }
+public function getPublishBlog()
+    {
+       
+        return $this->dao->getPublishBlog();
+    }
+
+
+    public function getSelectedPosts()
+    {
+        return $this->dao->getSelectedPosts();
+    }
+    public function getAllHistry()
+    {
+        return $this->dao->getAllHistry();
+    }
+
+    public function getMakeSelectedPosts()
+    {
+        return $this->dao->getMakeSelectedPosts();
+    }
+
+ public function setStickyStatus($data, $blogId)
+    {
+        if (empty($data) AND (empty($blogId))) {
+            return false;
+        }
+
+        $data['last_modaretion_date'] = date('Y-m-d H:i:s');
+        $data['permalink'] = $blogId;
+
+        $status = $this->getStickyStatus($blogId);
+
+        if ($status['sticky_on_home_page'] == 1) {
+
+            $data['sticky_on_home_page'] = 2;
+        } else {
+            $data['sticky_on_home_page'] = 1;
+        }
+
+        $this->dao->modify($data, $blogId);
+
+        return true;
+    }
+ public function getStickyStatus($blogId)
+    {
+        if (empty($blogId)) {
+            return false;
+        }
+
+        return $this->dao->getStickyStatus($blogId);
+    }
+    
+
 
 }

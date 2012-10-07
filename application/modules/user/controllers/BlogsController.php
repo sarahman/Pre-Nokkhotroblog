@@ -273,13 +273,14 @@ class User_BlogsController extends Speed_Controller_ActionController
         $userdetailModel = new Speed_Model_User();
 
         $authNamespace = new Zend_Session_Namespace('userInformation');
-         $userName = $authNamespace->userData['username'];
+        $userName = $authNamespace->userData['username'];
         $userDetail = $userdetailModel->getDetailByUserName($userName);
+        $userId = $authNamespace->userData['user_id'];         //add session to trash
         $this->validateUser();
         $this->_helper->layout->setLayout('userprofile');        
         $blogModel = new Blog_Model_Blog();
  
-        $blogtrash = $blogModel->getBlogtrash();	
+        $blogtrash = $blogModel->getBlogtrash($userId);	
         $this->view->Blogtrash = $blogtrash;
         $this->view->userDetail = $userDetail;
 

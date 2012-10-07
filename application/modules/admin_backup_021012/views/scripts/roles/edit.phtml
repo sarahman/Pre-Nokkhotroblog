@@ -1,0 +1,15 @@
+<!--<div class="subnav">-->
+<!--    <ul class="nav nav-pills">-->
+<!--    <li><a href="/admin/blogs/index">All Blogs</a></li>-->
+<!--    <li><a href="/admin/categories">Category</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+<div class="row">
+    <div class="span8">
+        <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
+        <?php else: ?>
+    <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+        <?php endif; ?>
+        <?php echo $this->RoleEntry; ?>
+    </div>
+</div>

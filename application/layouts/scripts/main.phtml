@@ -112,9 +112,7 @@ echo $this->doctype()
         <div class="container">
 			<?php $flashMessenger = $this->flashMessenger();
                         if (!empty($flashMessenger)): ?>
-                            <div style="margin-bottom: 18px">
                             <?php echo $flashMessenger ?>
-                            </div>
 			<?php endif; ?>
             <div class="row">
                 <div class="span12">
@@ -152,7 +150,37 @@ echo $this->doctype()
                                         <div class="info span6" style="width: 360px; text-align: justify; padding:4px;">
 
                                             <a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-
+						<hr style="margin:0px;" />
+<div class="row">
+<div class="span1">
+<img src="/img/maleIcon.png" class="image-rounded" style="width:40px; height:40px;">
+</div>
+<div>
+<?php 
+                if(!empty($selectedBlog['display_name']))
+                {
+                echo $selectedBlog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($selectedBlog['name']))
+			{
+                    echo $selectedBlog['name']; 
+                    }
+                    else 
+                    {
+                        echo $selectedBlog['username'];
+                        
+                        }
+                       }
+                ?></strong><?php 
+						$CommentsModel = new Blog_Model_BlogComment();
+						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
+					?>
+<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp; <?php echo $date = $bn_date->ShowDate($selectedBlog['create_date']);?> &nbsp;
+</div></div><hr style="margin:0px;"/>
                                             <span class="cat"> 
                                                 <p>
                                               <?php $excerpt = new Speed_Utility_TextHelper(); ?>
@@ -173,7 +201,37 @@ echo $this->doctype()
                                         </div>
                                         <div class="info span6">
 					<a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-
+<hr style="margin:0px;" />
+<div class="row">
+<div class="span1">
+<img src="/img/maleIcon.png" class="image-rounded" style="width:20px; height:20px;">
+</div>
+<div>
+<?php 
+                if(!empty($selectedBlog['display_name']))
+                {
+                echo $selectedBlog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($selectedBlog['name']))
+			{
+                    echo $selectedBlog['name']; 
+                    }
+                    else 
+                    {
+                        echo $selectedBlog['username'];
+                        
+                        }
+                       }
+                ?></strong><?php 
+						$CommentsModel = new Blog_Model_BlogComment();
+						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
+					?>
+<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp; <?php echo $date = $bn_date->ShowDate($selectedBlog['create_date']);?> &nbsp;
+</div></div><hr style="margin:0px;"/>
                                             <span class="cat"> 
                                                 <p>
                                                     <?php $excerpt = new Speed_Utility_TextHelper(); ?>
@@ -212,7 +270,7 @@ echo $this->doctype()
                                                                 <?php echo $excerpt->word_limiter($notice['description'], 30); ?> .. <a class="btn-link" href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
                                 </p>
                             </div>
-                            <div class="prettyprint"> <?php echo date('F jS Y', strtotime($notice['create_date'])); ?> &nbsp; &nbsp; &nbsp;<span class="pull-right"><?php
+                            <div class="prettyprint"> <?php echo $date = $bn_date->ShowDate($notice['create_date']); ?> &nbsp; &nbsp; &nbsp;<span class="pull-right"><?php
 
                                   if (empty ($authNamespace->userData['user_id'])): ?>
                                      <a href="/user/auth/login">মন্তব্য </a>&raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a>
@@ -252,7 +310,7 @@ echo $this->doctype()
 
                             </div>
 			
-                            <div class="prettyprint StickyPostFooter"> <?php echo date('F jS Y', strtotime($stickyPost['create_date'])); ?>&nbsp; &nbsp; &nbsp;<span class="pull-right">
+                            <div class="prettyprint StickyPostFooter"> <?php echo $date = $bn_date->ShowDate($stickyPost['create_date']); ?>&nbsp; &nbsp; &nbsp;<span class="pull-right">
 
                                       <a href="/comment/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">মন্তব্য </a>
  &raquo; <a href="blog/stickys/index">সমস্ত স্টিকি পোস্ট</a> </span></div><?php endforeach ?>
@@ -314,7 +372,8 @@ echo $this->doctype()
                                    <?php foreach ($this->recentComments as $comment): ?>
                                             <tr>
                                                 <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                    <a href="/show/<?php echo $comment['comment_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
+							<?php //print_r($comment);?>
+                                                    <a href="/show/<?php echo $comment['username'] ?>/<?php echo $comment['blog_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
                                                 </td>
 
                                             </tr>

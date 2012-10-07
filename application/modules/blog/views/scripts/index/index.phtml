@@ -62,7 +62,9 @@
 <?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
                               &nbsp;<strong><?php echo $x=$bn_date->IntToBn(sizeof($TotalComments));?></strong>টি মন্তব্য এবং <strong><?php echo $x=$bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার পঠিত<br />
 					
-                             		<span> <i class="icon-time"> </i> <?php echo $date = $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?> প্রকাশিত</span>
+                             		<span> <i class="icon-time"> </i> <?php
+$oDate = new DateTime($selectedBlog['last_modaretion_date']);
+echo $date = $bn_date->ShowDate($oDate->format("Y-m-d H:i:s")); ?> প্রকাশিত</span>
 				</div>
 				</div>
                           </p>

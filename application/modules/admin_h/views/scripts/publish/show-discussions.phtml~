@@ -1,0 +1,115 @@
+ <div class="row-fluid content-header">
+<h2>Moderate </h2>
+
+<br />
+<?php if (!empty($this->discussion)) { ?>
+
+
+    <div id="article-<?php echo $this->discussion['discussion_id']; ?>">
+
+
+        <h2 class='page-header'>
+            <a href="/admin/publish/show-discussions/id/<?php echo $this->discussion['discussion_id'] ?>"><?php echo $this->discussion['title']; ?></a>
+        </h2>
+
+        <p class="author">
+             &nbsp; Posted By <cite><?php echo $this->discussion['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->discussion['create_date']; ?></abbr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Valid Day : &nbsp; <?php echo $this->discussion['valid_day']; ?>
+        </p>
+<hr>
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->discussion['description']; ?>
+ 		
+            </p>
+<hr>
+<p>
+                <a href="/admin/discussions/publish/id/<?php echo $this->discussion['discussion_id'] ?>" <?php echo ($this->discussion['status'] == 'pending') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->discussion['status'] == 'pending') ? "Published": "Unpublished" ?></a>
+               
+                    <a href="/admin/discussions/edit/id/<?php echo  $this->discussion['discussion_id'] ?>" class="btn edit">Edit</a>
+            
+<a class="btn btn-warning" href="/admin/discussions/trash-discussion/id/<?php echo $this->discussion['discussion_id'] ?>">Trash</a>
+            
+                <a href="/admin/discussions/delete/id/<?php echo $this->discussion['discussion_id'] ?>" class="btn danger delete">Delete</a>
+
+                    <a href="/admin/discussions/index" class="btn edit">Cancel</a>
+                </p>
+
+</div>
+
+<h4>Comments : </h4>
+
+<?php if (empty($this->comment)): ?>
+<p><?php echo "মন্তব্য নেই" ?></p>
+ <?php endif; ?>
+
+            
+                <?php   if (!empty($this->comment)) :
+  
+                foreach ($this->comment as $comment) :
+
+                    ?>
+
+
+               <?php if($comment['is_published'] == 1)
+                {
+		?>
+               <div class="well">
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?>
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+<a href="/admin/publish/publish-discussion/id/<?php echo $comment['discussion_comment_id'] ?>"><?php echo ($comment['is_published'] == 1) ? "UnPublish": "Publish" ?></a> <a href="/admin/publish/trash-discussion/id/<?php echo $comment['discussion_comment_id'] ?>"><?php echo ($comment['status'] == 0) ? "Trash": "Restore" ?></a>
+</p>
+
+
+<hr>
+
+                    <p><?php echo $comment['comment']?></p>
+
+
+                 </div>
+ 		   <?php } else { ?>
+
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?>
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <a href="/admin/publish/publish-discussion/id/<?php echo $comment['discussion_comment_id'] ?>"><?php echo ($comment['is_published'] == 1) ? "UnPublish": "Publish" ?></a><a href="/admin/publish/trash-discussion/id/<?php echo $comment['discussion_comment_id'] ?>"><?php echo ($comment['status'] == 0) ? "Trash": "Restore" ?></a>
+</p>
+
+
+<hr>
+
+                    <p><?php echo $comment['comment']?></p>
+		<?php
+               }
+ 		?>
+
+<hr>
+
+                    <?php endforeach;  endif; ?> 
+
+
+
+
+
+
+
+
+
+
+
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+</div>  
+</div>

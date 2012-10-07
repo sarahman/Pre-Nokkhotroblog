@@ -209,13 +209,14 @@ LIMIT 10";
     }
 
     
-    public function getBlogtrash()
+    public function getBlogtrash($userId)
     {
 
         $select = $this->select()
                        ->from($this->_name)
                        ->where("{$this->_name}.status =?", 'trash')
                        ->where("{$this->_name}.post_type =?", 'blog')
+                       ->where("{$this->_name}.create_by =?", $userId)  
                        ->order(array("{$this->_primaryKey} DESC"));
 
         return $this->returnResultAsAnArray($this->fetchAll($select));

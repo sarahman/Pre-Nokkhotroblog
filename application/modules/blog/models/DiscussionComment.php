@@ -39,6 +39,7 @@ class Blog_Model_DiscussionComment extends Speed_Model_Abstract
          
         $data['discussion_id'] =$discussionId;
         $data['create_date'] = date('Y-m-d H:i:s');
+        $data['is_published'] =1;
         $authNamespace = new Zend_Session_Namespace('userInformation');
         $data['create_by'] = $authNamespace->userData['user_id'];
         $postId = $this->dao->create($data);		

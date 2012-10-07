@@ -1,0 +1,222 @@
+ <div class="row-fluid content-header">
+<h2>Notice </h2>
+</div>   
+
+<section id="tabs">
+
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Currently Notice</a></li>
+            <li><a href="#profile" data-toggle="tab">Notice Archieve</a></li>
+	     <li><a href="#notice" data-toggle="tab">Add New Notice</a></li>
+             <li><a href="#panding" data-toggle="tab">Panding Notice</a></li>
+             <li><a href="#trash" data-toggle="tab">Trash Notice</a></li> 
+              
+            
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+      
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->notice)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->notice AS $notice) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+                 <td><a href ="/admin/blognotice/show/id/<?php echo $notice['notice_id'] ?>"><?php echo $notice['title'] ?></a></td>
+            <td><?php echo $notice['description'] ?></td>
+	     <td><?php echo $notice['name'] ?></td>
+            <td><?php echo $notice['create_date'] ?></td>
+
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+            </div>
+
+
+
+            <div class="tab-pane fade" id="profile">
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+      
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->arcrive)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->arcrive AS $arcrive) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+                 <td><a href ="/admin/blognotice/show/id/<?php echo $arcrive['notice_id'] ?>"><?php echo $arcrive['title'] ?></a></td>
+            <td><?php echo $arcrive['description'] ?></td>
+	     <td><?php echo $arcrive['name'] ?></td>
+            <td><?php echo $arcrive['create_date'] ?></td>
+
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+         
+            </div>
+            <div class="tab-pane fade" id="notice">
+
+        <?php echo $this->noticeEntry; ?>
+         
+            </div>
+
+
+           <div class="tab-pane fade" id="panding">
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+      
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->panding)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->panding AS $panding) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+                 <td><a href ="/admin/blognotice/show-panding/id/<?php echo $panding['notice_id'] ?>"><?php echo $panding['title'] ?></a></td>
+            <td><?php echo $panding['description'] ?></td>
+	     <td><?php echo $panding['name'] ?></td>
+            <td><?php echo $panding['create_date'] ?></td>
+
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+         
+            </div>
+
+     <div class="tab-pane fade" id="trash">
+
+  <table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+      
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->trash)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->trash AS $trash) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+                 <td><a href ="/admin/blognotice/show-trash/id/<?php echo $trash['notice_id'] ?>"><?php echo $trash['title'] ?></a></td>
+            <td><?php echo $trash['description'] ?></td>
+	     <td><?php echo $trash['name'] ?></td>
+            <td><?php echo $trash['create_date'] ?></td>
+
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+         
+            </div>
+
+
+
+
+          </div>
+
+    </section>

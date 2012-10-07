@@ -35,12 +35,12 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
 
     protected function setSuccessMessage($message)
     {
-        $this->flashMessenger->addMessage(array('label label-success' => $message));
+        $this->flashMessenger->addMessage(array('alert alert-success' => $message));
     }
 
     protected function setFailureMessage($message)
     {
-        $this->flashMessenger->addMessage(array('label label-important' => $message));
+        $this->flashMessenger->addMessage(array('alert alert-error' => $message));
     }
 
     protected function disableRendering()

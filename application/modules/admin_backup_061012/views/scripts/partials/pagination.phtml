@@ -1,0 +1,25 @@
+
+    <div class="pagination">
+        <ul>
+            <!-- First page link -->
+            <?php echo (empty($this->previous)) ? '' : $this->paginator()->buildLink($this->first, '&laquo;', $this->paginatorOptions); ?>
+
+            <!-- Previous page link -->
+            <?php echo (empty($this->previous)) ? '' : $this->paginator()->buildLink($this->first, '&lt;', $this->paginatorOptions); ?>
+
+            <!-- Numbered page links -->
+            <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <?php echo $this->paginator()->buildLink($page, $page, $this->paginatorOptions); ?>
+                <?php else: ?>
+                <?php echo $this->paginator()->buildLink($page, $page, $this->paginatorOptions, 'active'); ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <!-- Next page link -->
+            <?php echo (empty($this->next)) ? '' : $this->paginator()->buildLink($this->next, '&gt;', $this->paginatorOptions) ?>
+
+            <!-- Last page link -->
+            <?php echo (empty($this->next)) ? '' : $this->paginator()->buildLink($this->next, '&raquo;', $this->paginatorOptions) ?>
+        </ul>
+    </div>

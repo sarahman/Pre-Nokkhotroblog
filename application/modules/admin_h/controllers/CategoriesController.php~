@@ -1,0 +1,203 @@
+<?php
+/**
+ * Category Controller
+ *
+ * @category    Controller
+ * @package     Admin
+ * @author      Md. Sirajus Salayhin <salayhin@gmail.com>
+ */
+class Admin_CategoriesController extends Speed_Controller_ActionController
+{
+  protected $blogModel;
+
+    protected function initialize()
+    {
+        $this->view->navBar = 'admin';
+        $this->_helper->layout->setLayout('admin');
+        $this->validateAdmin();
+    }
+    public function indexAction()
+    {
+	$this->validateAdmin();
+        $categoryDisplayModel = new Admin_Model_BlogCategory();
+        $display=$categoryDisplayModel->getAll();
+      	$this->view->display = $display;
+
+    }
+
+    public function editAction()
+            {
+        
+           $this->validateAdmin();
+           $blogCategoryModel = new Admin_Model_BlogCategory();
+           $categoryId = $this->_request->getParam('id');
+           $blogCategoryModel->getDetail($categoryId);
+           $categoryEntry =  new Admin_Form_CategoryEntry(array(
+                    'isEdit' => true,
+                    'category_name' => $categoryId
+                ));
+          
+       if ($this->_request->isPost()) {
+           $data = $this->_request->getParams();
+            if ($categoryEntry->isValid($data)) {
+           $result = $blogCategoryModel->modify($data, $categoryId);
+       if (empty($result)) {
+           $this->setFailureMessage('Problem , Please try again.');
+           } else {
+           $this->setSuccessMessage('Category has updated successfully.');
+           }
+         } else {
+            $categoryEntry->populate($data);
+             }
+            } else {
+
+       if (empty($categoryId)) {
+             $this->setFailureMessage('Blog has not been found.');
+                 } else {
+             $categoryModel = new Admin_Model_BlogCategory();
+             $categoryData = $categoryModel->getDetail($categoryId);
+        if (empty($categoryData)) {
+             $this->setFailureMessage('Category data has not been found.');
+                } else {
+             $categoryEntry->populate($categoryData);
+                    }
+                }
+            }
+            $this->view->CategoryEntry= $categoryEntry;
+
+       }
+
+
+
+    public function selectAction()
+        {
+            $data = array();
+
+            $this->disableLayout();
+
+            $blogId = $this->_request->getParam('id');
+
+            $authNamespace = new Zend_Session_Namespace('adminInformation');
+            $adminId = $authNamespace->adminData['admin_id'];
+
+            $data['last_modarate_by'] = $adminId;
+
+            $blogModel = new Blog_Model_Blog();
+            $status = $blogModel->setSelectStatus($data,$blogId);
+
+            if($status){
+                $this->redirectForSuccess("/admin/blogs/show/id/{$blogId}","Blog select status updated");
+            }else{
+                $this->redirectForFailure("/admin/blogs/show/id/{$blogId}","Something went wrong");
+            }
+
+        }
+
+    public function stickyAction()
+    {
+            $data = array();
+            $this->disableLayout();
+
+            $blogId = $this->_request->getParam('id');
+
+            $authNamespace = new Zend_Session_Namespace('adminInformation');
+
+            $adminId = $authNamespace->adminData['admin_id'];
+
+            $data['last_modarate_by'] = $adminId;
+
+            $blogModel = new Blog_Model_Blog();
+            $status = $blogModel->setStickyPost($data, $blogId);
+
+            if($status)
+            {
+               $this->redirectForSuccess("/admin/blogs/show/id/{$blogId}","Blog select status updated");
+               }else{
+               $this->redirectForFailure("/admin/blogs/show/id/{$blogId}","Something went wrong");
+            }
+
+    }
+
+    public function showAction()
+    {
+        $this->validateAdmin();
+
+        $blogModel = new Blog_Model_Blog();
+        $blogId = $this->_request->getParam('id');
+
+        $blog = $blogModel->getDetailForAdmin($blogId);
+
+        if(empty($blog)){
+            $this->redirectForFailure("/admin/blogs","Post has been deleted.");
+        }
+
+        $this->view->blog = $blog;
+    }
+
+
+   
+    protected function setPagination(Speed_Model_Abstract $model, $rows, $rowCount, $action = 'index')
+    {
+        $paginator = $model->getPaginator($rows, $rowCount);
+        $this->view->paginator = $paginator;
+
+        $this->view->paginatorOptions = array(
+            'path' => '',
+            'itemLink' => "/admin/blogs/{$action}/page/%d"
+        );
+    }
+
+     	
+    public function deleteAction()
+    {
+        $this->validateAdmin();
+        $categoryDeleteModel = new Admin_Model_BlogCategory();
+
+        $categoryId = $this->_request->getParam('id');
+
+        $status = $categoryDeleteModel->delete($categoryId);
+
+        if($status)
+            {
+               $this->redirectForSuccess("/admin/categories","Category deleted Sucessfully.");
+               }else{
+               $this->redirectForFailure("/admin/categories/delete/id/{$categoryId}","Something went wrong. Please try again");
+            }
+    }
+
+   public function addAction()
+       {
+
+           $this->validateAdmin();
+
+           //$blogCategoryModel = new Admin_Model_BlogCategory();
+           $CategoryEntry = new Admin_Form_CategoryEntry();
+
+           if ($this->_request->isPost()) {
+
+               $data = $this->_request->getParams();
+               $data['category_name'] = stripslashes($this->_request->getParam('category_name'));
+
+
+               if ($CategoryEntry->isValid($data)) {
+
+                   $categoryModel = new Admin_Model_BlogCategory();
+
+                   $result = $categoryModel->save($data);
+                   if (empty($result)) {
+                       $this->setFailureMessage('There was a problem , Please try again.');
+                   } else {
+                       //$this->view->errorMsg = "Blog has been posted successfully.";
+                       $this->setSuccessMessage('Category Posted sucessfully');
+                   }
+
+               } else {
+                   $CategoryEntry->populate($data);
+               }
+           }
+
+           $this->view->CategoryEntry= $CategoryEntry;
+
+       }
+
+}

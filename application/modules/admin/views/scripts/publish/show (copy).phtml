@@ -1,0 +1,85 @@
+ <div class="row-fluid content-header">
+<h2>Moderate </h2>
+</div> 
+<?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
+<?php if(!empty($this->blog)) { ?>
+
+
+<div class="span11">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a
+            href="/admin/blogs/show/id/<?php echo $this->blog['blog_id']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->blog['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->blog['create_date']; ?></>
+        </p>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+            <?php
+                  if (!empty ($authNamespace->adminData['username'])): ?>
+                      <p>
+                       <a href="/admin/blogs/pending/id/<?php echo $this->blog['blog_id'] ?>" <?php echo ($this->blog['status'] == 'pending') ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->blog['status'] == 'pending') ? "Publish": "Pending" ?></a>
+                       <a href="/admin/admin-trashs/trash/id/<?php echo $this->blog['blog_id'] ?>" <?php echo ($this->blog['status'] == 'pending') ? "class='btn btn-warning'": "class='btn btn-warning'" ?>><?php echo ($this->blog['status'] == 'pending') ? "Trash": "Trash" ?></a>
+                       <a href="/admin/blogs/select/id/<?php echo  $this->blog['blog_id'] ?>" <?php echo ($this->blog['is_selected'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->blog['is_selected'] == 0) ? "Select": "Deselect" ?></a>
+                       <a href="/admin/blogs/sticky/id/<?php echo $this->blog['blog_id'] ?>" <?php echo ($this->blog['sticky_on_home_page'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->blog['sticky_on_home_page'] == 0) ? "Sticky": "Cancel sticky" ?></a>
+                       <a href="/admin/blogs/edit/id/<?php echo  $this->blog['blog_id'] ?>" class="btn edit">Edit</a>
+                       
+                      </p>
+            <?php endif ?>
+
+        </div>
+    </div>
+<h4>Comments : </h4>
+
+<?php if (empty($this->comment)): ?>
+<p><?php echo "মন্তব্য নেই" ?></p>
+ <?php endif; ?>
+
+            <div class="span7">
+                <?php   if (!empty($this->comment)) :
+  
+                foreach ($this->comment as $comment) :
+
+                    ?>
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?></p>
+
+<hr>
+
+                    <p><a href="/admin/publish/show-comment/id/<?php echo $comment['comment_id'] ?>"><?php echo $comment['comments']?> </a></p>
+<!--
+<br>
+
+<p>
+  <a href="/admin/comments/publish/id/<?php echo $comment['comment_id'] ?>" <?php echo ($comment['is_published'] == 1) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($comment['is_published'] == 1) ? "Publish": "Unpublish" ?></a>
+                       
+
+                       <a href="/admin/comments/edit/id/<?php echo  $comment['comment_id'] ?>" class="btn edit">Edit</a>
+                       <a href="/admin/comments/delete/id/<?php echo $comment['comment_id'] ?>" class="btn btn-danger">Delete</a>
+                      </p>-->
+
+
+
+<hr>
+
+                    <?php endforeach;  endif; ?> 
+
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+
+</div>
+</div>

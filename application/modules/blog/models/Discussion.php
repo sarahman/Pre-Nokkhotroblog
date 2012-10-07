@@ -32,9 +32,9 @@ class Blog_Model_Discussion extends Speed_Model_Abstract
 	return $this->dao->getAll();
 
 	}
-        public function getAllTrash()
+        public function getAllTrash($userId)
 	{
-	return $this->dao->getAllTrash();
+	return $this->dao->getAllTrash($userId);
 
 	}
 

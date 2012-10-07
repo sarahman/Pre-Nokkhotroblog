@@ -1,0 +1,70 @@
+<div class="row-fluid content-header">
+    <h1>Latest Users</h1>
+
+    <div class="header-buttons">
+
+    </div>
+</div>
+
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th class="span1">Sl</th>
+        <th class="span1">Name</th>
+        <th class="span3">User Name</th>
+        <th class="span3">Email</th>
+        <th class="span1">Active</th>
+        <th class="span1">Banned</th>
+        <th class="span1">Action</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (!empty($this->getAll)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->display AS $display) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+
+            <td><?php echo $display['name'] ?></td>
+            <td><?php echo $display['username'] ?></td>
+            <td><?php echo $display['email_address'] ?></td>
+            <td class="centered"><?php echo ($display['user_status'] == 'active') ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+            <td class="centered"><?php echo ($display['user_status'] == 'banned') ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+            <td class="span1"><a href="/admin/users/show/id/<?php echo $display['user_id'] ?>" class="btn btn-success">Show</a>
+            </td>
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

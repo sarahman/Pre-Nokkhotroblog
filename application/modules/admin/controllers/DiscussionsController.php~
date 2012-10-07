@@ -18,7 +18,7 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
 
     public function indexAction()
     {
-        $this->disableLayout();
+        
         $this->validateAdmin();         
         $discussionModel = new Admin_Model_Discussion(); 
         $display = $discussionModel->getAll();	
@@ -30,7 +30,7 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
     public function editAction()
     {
         $this->validateAdmin();      
-        $this->disableLayout();
+       
         $discussionModel = new Admin_Model_Discussion(); 
         $discussionId = $this->_request->getParam('id'); 
         $discussionModel->getDetail($discussionId);      
@@ -73,7 +73,7 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
     public function deleteAction()
     {
         $this->validateAdmin();
-        $this->disableLayout();
+       
         $discussionModel = new Admin_Model_Discussion();             
 
         $discussionId = $this->_request->getParam('id');	
@@ -89,9 +89,8 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
 
     public function showAction()
     {
-        $this->validateUser();
-        $this->disableLayout();
-                
+        $this->validateAdmin();
+        $this->_helper->layout->setLayout('admin');   
         $discussionModel = new Admin_Model_Discussion();				
         $discussionId = $this->_request->getParam('id');			
 
@@ -108,7 +107,7 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
     {
         $data = array();
 
-        $this->disableLayout();
+        
 
         $discussionId = $this->_request->getParam('id');
 
@@ -119,6 +118,27 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
 
         $discussionModel = new Admin_Model_Discussion();                
         $status = $discussionModel->setPublishStatus($data, $discussionId); 
+
+        if ($status) {
+            $this->redirectForSuccess("/admin/discussions/show/id/{$discussionId}", "Discussion status updated");
+        } else {
+            $this->redirectForFailure("/admin/discussions/show/id/{$discussionId}", "Something went wrong");
+        }
+
+    }
+ public function trashDiscussionAction()
+    {
+         $data = array();
+
+        $discussionId = $this->_request->getParam('id');
+
+        $authNamespace = new Zend_Session_Namespace('adminInformation');
+        $adminId = $authNamespace->adminData['admin_id'];
+
+        $data['update_by'] = $adminId;
+
+        $discussionModel = new Admin_Model_Discussion();                
+        $status = $discussionModel->setTrashStatus($data, $discussionId); 
 
         if ($status) {
             $this->redirectForSuccess("/admin/discussions/show/id/{$discussionId}", "Discussion status updated");

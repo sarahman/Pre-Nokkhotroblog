@@ -1,0 +1,77 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/blogs/index">All Blogs</a></li>
+        <li><a href="/admin/categories">Category</a></li>
+        <li><a href="/admin/categories/show-subcategory">Sub-Category</a></li>
+	    <li><a href="/admin/post-types">Post Types</a></li>
+	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+        <li><a href="/admin/blog-groups">Blog Groups</a></li>
+        <li><a href="/admin/comments">Comments</a></li>
+    </ul>
+</div>
+<br /><br />
+
+<div class="content-header">
+    <h1>Sub Category</h1>
+    <div class="header-buttons">
+        <a class="btn btn-success" href="/admin/categories/addsubcategory">New SubCategory</a>
+    </div>
+</div>
+
+
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th class="span1">Srl</th>
+
+        <th class="span6">Sub category name</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (!empty($this->getAll)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No blog has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->display AS $display) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+
+            <td><?php echo $display['subcategory_name'] ?></td>
+            <td class="span1"><a href="/admin/categories/edit-subcategory/id/<?php echo $display['subcategory_id'] ?>"
+                                 class="btn btn-success">Edit</a></td>
+            <td class="span1"><a href="/admin/categories/delete-subcategory/id/<?php echo $display['subcategory_id'] ?>"
+                                 class="btn danger delete">Delete</a></td>
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

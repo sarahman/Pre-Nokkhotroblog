@@ -294,9 +294,9 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         return $this->dao->getTopBlogger();
     }
     
-    public function getBlogtrash()
+    public function getBlogtrash($userId)
 	{
-	return $this->dao->getBlogtrash();
+	return $this->dao->getBlogtrash($userId);
 
 	}
 

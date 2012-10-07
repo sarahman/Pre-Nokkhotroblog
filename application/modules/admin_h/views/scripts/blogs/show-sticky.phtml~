@@ -1,0 +1,85 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+          <li><a href="/admin/blogs/show-sticky">Show Sticky</a></li>
+    </ul>
+</div>
+<br /><br />
+<div class="row-fluid">
+
+    <h1>Show All Sticky </h1>
+
+
+</div>
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th class="span1">Srl</th>
+
+        <th class="span2">Title</th>
+        <th class="span4">Description</th>
+        <th class="span1">Date</th>
+	<th class="span1">Status</th>
+
+        <th class="span3">Action</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->getsticky)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Sticky has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->getsticky AS $getsticky) : ?>
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+            <td><?php echo $getsticky['title'] ?></td>
+	<td><?php echo $getsticky['description'] ?></td>
+     <td><?php echo $getsticky['create_date'] ?></td>
+             <td><a href="#"<?php echo ($getsticky['sticky_on_home_page'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+ 
+<td><a href="/admin/blogs/puplish-sticky/id/<?php echo $getsticky['blog_id'] ?>"<?php echo ($getsticky['sticky_on_home_page'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($getsticky['sticky_on_home_page'] == 0) ? "Sticky": "UnSticky" ?></a>
+       
+
+
+                    <a href="/admin/blogs/delete/id/<?php echo $getsticky['blog_id'] ?>" class="btn btn-danger">Delete</a></td>       
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

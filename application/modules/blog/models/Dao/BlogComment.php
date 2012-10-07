@@ -125,10 +125,24 @@ class Blog_Model_Dao_BlogComment extends Speed_Model_Dao_Abstract
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-    public function getRecentComments()
+    /*public function getRecentComments()
     {
         $select = $this->select()
                        ->from($this->_name)
+->setIntegrityCheck(false)
+                       ->where("{$this->_name}.is_published =?", 1)
+                       ->order(array("{$this->_primaryKey} DESC"))
+                       ->limit(15);
+
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+    }*/
+public function getRecentComments()
+    {
+        $select = $this->select()
+                       ->from($this->_name)
+			->setIntegrityCheck(false)
+->join('blogs',"blogs.blog_id=comments.blog_id")
+->join ('users',"blogs.create_by=users.user_id")
                        ->where("{$this->_name}.is_published =?", 1)
                        ->order(array("{$this->_primaryKey} DESC"))
                        ->limit(15);

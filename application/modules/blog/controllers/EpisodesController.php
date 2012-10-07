@@ -26,20 +26,30 @@ class Blog_EpisodesController extends Speed_Controller_ActionController
         $this->view->display = $display;
     }
 
-    public function myEpisodesAction()
-    { 
-        $this->validateUser();
+   // public function myEpisodesAction()
+    //{ 
+     //   $this->validateUser();
+     //   $this->_helper->layout->setLayout('userprofile');
+     //   $username = $this->_request->getParam('username');
+     //   $userModel = new Speed_Model_User();
+     //   $user = $userModel->getDetailByUsername($username);
+     //   $episodesModel = new Blog_Model_EpisodName();
+     //   $episodes = $episodesModel->getEpisodesByUser($user['user_id']);
+     //   $allEpisode = $episodesModel->getAll();
+     //   $this->view->episode = $episodes;
+     //   $this->view->userDetail = $user;
+      //  $this->view->allEpisode = $allEpisode;
+    //}
+public function myEpisordAction()
+    {   
         $this->_helper->layout->setLayout('userprofile');
-        $username = $this->_request->getParam('username');
-        $userModel = new Speed_Model_User();
-        $user = $userModel->getDetailByUsername($username);
-        $episodesModel = new Blog_Model_EpisodName();
-        $episodes = $episodesModel->getEpisodesByUser($user['user_id']);
-        $allEpisode = $episodesModel->getAll();
-        $this->view->episode = $episodes;
-        $this->view->userDetail = $user;
-        $this->view->allEpisode = $allEpisode;
+        $episodnameModel = new Blog_Model_EpisodName();
+        $display = $episodnameModel->getAll();
+        $this->view->display = $display;
+
+
     }
+
 
     public function addAction()
     {
@@ -66,9 +76,9 @@ class Blog_EpisodesController extends Speed_Controller_ActionController
                 $episodesModel = new Blog_Model_Episod();
                 $result = $episodesModel->save($data);
                 if (empty($result)) {
-                    $this->redirectForFailure("/episode-list/{$user['username']}", "There was a problem , Please try again.");
+                    $this->redirectForFailure("/blog/episodes/my-episord", "There was a problem , Please try again.");
                 } else {
-                    $this->redirectForSuccess("/episode-list/{$user['username']}", "Your Episode is Submited.");
+                    $this->redirectForSuccess("/blog/episodes/my-episord", "Your Episode is Submited.");
                 }
 
             } else {
@@ -271,10 +281,10 @@ class Blog_EpisodesController extends Speed_Controller_ActionController
 
                 $result = $episodnameModel->save($data);
                 if (empty($result)) {
-                    $this->redirectForFailure("/episode-list/{$data['username']}","There was a problem. Please try again.");
+                    $this->redirectForFailure("/blog/episodes/my-episord","There was a problem. Please try again.");
                 } else {
 
-                    $this->redirectForSuccess("/episode-list/{$data['username']}","Episode name save successfully.");
+                    $this->redirectForSuccess("/blog/episodes/my-episord","Episode name save successfully.");
                 }
 
             } else {
@@ -292,11 +302,12 @@ class Blog_EpisodesController extends Speed_Controller_ActionController
 
         $authNamespace = new Zend_Session_Namespace('userInformation');
          $userName = $authNamespace->userData['username'];
+         $userId = $authNamespace->userData['user_id'];                 //add session to display draft
         $userDetail = $userdetailModel->getDetailByUserName($userName);
 
         $this->_helper->layout->setLayout('userprofile');
         $episodModel = new Blog_Model_Episod();
-        $display = $episodModel->getDraft();
+        $display = $episodModel->getDraft($userId);
         $this->view->Display = $display;
 $this->view->userDetail = $userDetail;
     }
@@ -336,8 +347,9 @@ $this->view->userDetail = $userDetail;
          $userName = $authNamespace->userData['username'];
         $userDetail = $userdetailModel->getDetailByUserName($userName);
         $this->_helper->layout->setLayout('userprofile');
+        $userId = $authNamespace->userData['user_id'];          //add session to trash
         $episodModel = new Blog_Model_Episod();
-        $TrashEpisode = $episodModel->getAllTrash();
+        $TrashEpisode = $episodModel->getAllTrash($userId);
         $this->view->Displaytrash = $TrashEpisode;
         $this->view->userDetail = $userDetail;
     }
@@ -363,5 +375,124 @@ $this->view->userDetail = $userDetail;
 
 
  }
+ //display all episodes
+ public function episodeDetailAction()               
+    {
+        $this->_helper->layout->setLayout('userprofile');
+        $episodeModel = new Blog_Model_Episod();
+        $episodeId = $this->_request->getParam('id');
+        $episode= $episodeModel->getEpisode($episodeId);
+        $this->view->episode = $episode;
+    }
+
+    //display detail of an episode
+    public function showEpisodedetailAction()               
+    {
+        $this->_helper->layout->setLayout('userprofile');
+        $episodeId = $this->_request->getParam('id');
+        $episodeModel = new Blog_Model_Episod();
+
+        $episodedetail= $episodeModel->getDetailForEpisod($episodeId);             // show detail episode
+        $this->view->episodedetail = $episodedetail;
+        
+         $commentId = $this->_request->getParam('id');
+        $episodescommentModel = new Blog_Model_EpisodComment();
+        $comment = $episodescommentModel->getAll($commentId);	
+        $this->view->comment = $comment;
+    }
+
+ //draft edit
+    public function neweditAction()             
+    {
+      $this->validateUser();
+        $this->_helper->layout->setLayout('userprofile');
+        $draftId = $this->_request->getParam('id');
+        $episodModel = new Blog_Model_Episod();
+        $episodname = new Blog_Model_EpisodName();
+
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+
+        $username = $authNamespace->userData['username'];
+        $userModel = new Speed_Model_User();
+        $user = $userModel->getDetailByUsername($username);
+        $blogstatus = new Blog_Model_BlogStatus();
+        $options = array(
+            'isEdit' => true,
+            'status' => $blogstatus->getSelected(),
+            'episode_id' => $episodname->getAll()
+        );
+        $episodEntry = new Blog_Form_EpisodEntry($options);
+        $data = $this->_request->getParams();
+
+        if ($this->_request->isPost()) {
+
+
+            if ($episodEntry->isValid($data)) {
+                $result = $episodModel->modify($data, $draftId);
+                if (empty($result)) {
+                    $this->redirectForFailure("/blog/episodes/display-draft", 'Problem , Please try again.');
+                } else {
+                    $this->redirectForSuccess("/blog/episodes/display-draft", 'Draft has been updated successfully.');
+                }
+            } else {
+                $episodEntry->populate($data);
+            }
+        } else {
+            
+            if (empty($draftId)) {
+                $this->redirectForFailure('/blog/episods/display-draft', 'No drafts found');
+            } else {
+                $episodModel = new Blog_Model_Episod();
+                $episodData = $episodModel->getDetaildraft($draftId);
+                if (empty($episodData)) {
+                    $this->redirectForFailure('/blog/episodes/display-draft', 'No Episod found.');
+                } else {
+                    $episodEntry->populate($episodData);
+                }
+            }
+        }
+        $this->view->DraftForm = $episodEntry;
+        $this->view->userDetail = $user;
+    }
+
+    //this function is for insert episode comment
+    public function addCommentAction()
+    {
+        $this->validateUser();
+        $this->_helper->layout->setLayout('userprofile');
+        $commentId = $this->_request->getParam('id');    
+        
+        $options = array(           
+            'isEdit' => false ,
+            'blog_id' =>$commentId             
+        );
+        
+        $commentForm = new Blog_Form_EpisodeComments ($options);      
+
+        if ($this->_request->isPost()) {
+    
+            $data = $this->_request->getParams();
+
+            if ($commentForm->isValid($data)) {        
+
+                $episodescommentModel = new Blog_Model_EpisodComment();    
+
+                $commentresult = $episodescommentModel->save($data, $commentId);          
+                if (empty($commentresult)) {
+                    $this->redirectForFailure('/blog/episodes/my-episord', "There was a problem , Please try again.");      // I couldn't fix the redirection path
+                } else {
+
+
+                    $this->redirectForSuccess('/blog/episodes/my-episord', "Your Comment is submitted.");       // I couldn't fix the redirection path
+                }
+
+            } else {
+                $commentForm->populate($data);            
+            }
+        }
+
+
+        $this->view->commentForm = $commentForm;      
+    }
 
 }

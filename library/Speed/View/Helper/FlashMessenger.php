@@ -59,9 +59,9 @@ class Speed_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
     {
         return <<<Speed
 
-            <div class="alert-message %s">
-                <a class="close" href="#">&times;</a>
-                <p>%s</p>
+            <div class="%s fade-in alert-block">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <strong>%s</strong>
             </div>
 Speed;
     }

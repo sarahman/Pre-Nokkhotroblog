@@ -1,0 +1,108 @@
+
+<h2>Moderate Episode</h2>
+<br><br>	
+<?php if (!empty($this->episod)) { ?>
+
+<div class="row-fluid">
+<div class="span12">
+
+    <div id="article-<?php echo $this->episod['blog_id']; ?>">
+<h2 class='page-header'><a
+            href="/admin/publish/show-episod/id/<?php echo $this->episod['blog_id'] ?>"><?php echo $this->episod['episode_number']; ?></a>
+        </h2>
+
+        <p class="author">
+            &nbsp; Posted By <cite><?php echo $this->episod['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->episod['create_date']; ?></>
+        </p>
+<hr>
+<p>
+<?php echo $this->episod['description']; ?>
+
+</p>
+<br>
+<a href="/admin/episods/publish/id/<?php echo $this->episod['blog_id'] ?>" <?php echo ($this->episod['status'] == 'pending') ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->episod['status'] == 'pending') ? "Publish": "Unpublish" ?></a>
+ <a href="/admin/publish/trash-episode/id/<?php echo $this->episod['blog_id'] ?>" class="btn btn-danger">Trash</a>
+
+
+
+        </div>
+    </div>
+</div><br>
+<h4>Comments : </h4>
+
+<?php if (empty($this->comment)): ?>
+<p><?php echo "মন্তব্য নেই" ?></p>
+ <?php endif; ?>
+
+            
+                <?php   if (!empty($this->comment)) :
+  
+                foreach ($this->comment as $comment) :
+
+                    ?>
+
+
+               <?php if($comment['status'] == 'pending')
+                {
+		?>
+               <div class="well">
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?>
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<a href="/admin/publish/publish-comment/id/<?php echo $comment['episode_comment_id'] ?>"><?php echo ($comment['status'] == 'pending') ? "UnPublish": "Publish" ?></a><!--<a href="/admin/publish/edit/id/<?php echo  $comment['comment_id'] ?>">Edit</a> <a href="/admin/publish/trash/id/<?php echo $comment['comment_id'] ?>"><?php echo ($comment['status'] == 0) ? "Trash": "Restore" ?></a>-->
+</p>
+
+
+<hr>
+
+                    <p><?php echo $comment['comment']?></p>
+
+
+                 </div>
+ 		   <?php } else { ?>
+
+<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                        &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<a href="/admin/publish/publish-comment/id/<?php echo $comment['episode_comment_id'] ?>"><?php echo ($comment['status'] == 'pending') ? "UnPublish": "Publish" ?></a><!--<a href="/admin/publish/edit/id/<?php echo  $comment['comment_id'] ?>">Edit</a> <a href="/admin/publish/trash/id/<?php echo $comment['comment_id'] ?>"><?php echo ($comment['status'] == 0) ? "Trash": "Restore" ?></a>-->
+</p>
+
+
+<hr>
+
+                    <p><?php echo $comment['comment']?></p>
+		<?php
+               }
+ 		?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+                    <?php endforeach;  endif; ?> 
+
+
+
+
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

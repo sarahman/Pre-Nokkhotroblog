@@ -12,7 +12,7 @@ class Admin_Model_Dao_Episod extends Speed_Model_Dao_Abstract
     public function __construct()
     {
         parent::__construct();
-        $this->loadTable('blogs','blog_id');			//episods,episode_id
+        $this->loadTable('blogs','blog_id');			
     }
 
 
@@ -24,10 +24,22 @@ class Admin_Model_Dao_Episod extends Speed_Model_Dao_Abstract
 		       ->setIntegrityCheck(false)
 			->join('episode_name',"{$this->_name}.episode_id = episode_name.episode_id")
                         ->where("post_type ='episode'")
+                        ->where("{$this->_name}.status =?",'pending')
                         ->order(array("{$this->_primaryKey} DESC"));
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
+    public function getAllPublishEpisods()
+    {
 
+        $select = $this->select()
+                       ->from($this->_name)
+		       ->setIntegrityCheck(false)
+			->join('episode_name',"{$this->_name}.episode_id = episode_name.episode_id")
+                        ->where("{$this->_name}.post_type ='episode'")
+                        ->where("{$this->_name}.status =?",'publish')
+                        ->order(array("{$this->_primaryKey} DESC"));
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+    }
 
 
 
@@ -59,6 +71,8 @@ class Admin_Model_Dao_Episod extends Speed_Model_Dao_Abstract
         {
             $select = $this->select()
 				->from($this->_name)
+                                ->setIntegrityCheck(false)
+                                ->join('users',"{$this->_name}.create_by = users.user_id")
 				->where("{$this->_primaryKey} =?", $episodId);	
 
 	 return $this->returnResultAsAnArray($this->fetchRow($select));
@@ -68,7 +82,7 @@ class Admin_Model_Dao_Episod extends Speed_Model_Dao_Abstract
         public function getPublishStatus($episodId)
         {
             $select = $this->select()
-                           ->from($this->_name,array('is_published'))
+                           ->from($this->_name,array('status'))
                            ->where("blog_id =?", $episodId);
 
             return $this->returnResultAsAnArray($this->fetchRow($select));

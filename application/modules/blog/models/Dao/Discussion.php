@@ -26,12 +26,13 @@ class Blog_Model_Dao_Discussion extends Speed_Model_Dao_Abstract
 
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
-     public function getAllTrash()
+     public function getAllTrash($userId)
     {
 
         $select = $this->select()
                        ->from($this->_name)
                        ->where("{$this->_name}.status =?", 'trash')
+                       ->where("{$this->_name}.create_by =?", $userId)  
                         ->order(array("{$this->_primaryKey} DESC"));
 
         return $this->returnResultAsAnArray($this->fetchAll($select));

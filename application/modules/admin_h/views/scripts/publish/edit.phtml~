@@ -1,0 +1,13 @@
+ <div class="row-fluid content-header">
+<h2>Moderate </h2>
+</div> 
+<br /><br />
+<div class="row-fluid">
+    <div class="span12">
+        <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
+        <?php else: ?>
+    <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+        <?php endif; ?>
+        <?php echo $this->CommentEntry; ?>
+    </div>
+</div>

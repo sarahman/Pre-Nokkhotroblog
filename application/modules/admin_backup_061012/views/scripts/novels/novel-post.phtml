@@ -1,0 +1,55 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/novels/index">All Novels</a></li>
+
+
+    </ul>
+</div>
+<br/><br/>
+
+<div class="row-fluid">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th class="span1">Serial</th>
+            <th class="span6">Post</th>
+            <th class="span1">Publish</th>
+            <th class="span2">Create Date</th>
+            <th class="span2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php if (empty($this->novels)) : ?>
+
+        <tr>
+            <td class="report-no-data" colspan="5">No novel has been found.</td>
+        </tr>
+            <?php else: $count = 0;
+            foreach ($this->novels AS $novel) : ?>
+
+            <tr>
+                <td class="centered span1"><?php echo ++$count ?></td>
+
+                <td class="span6"><a
+                    href="/admin/novels/show/id/<?php echo $novel['novel_id'];?>"><?php echo $novel['title'] ?></a>
+                </td>
+                <td class="span1">
+                        <?php echo ($novel['novel_is_published'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+
+                <td class="span2"><?php echo $novel['create_date'];?></td>
+                <td class="span2">
+
+                    <a href="/admin/novels/show/id/<?php echo $novel['novel_id'] ?>" class="btn btn-success">Show</a>
+
+                </td>
+
+            </tr>
+
+                <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+</div>
+

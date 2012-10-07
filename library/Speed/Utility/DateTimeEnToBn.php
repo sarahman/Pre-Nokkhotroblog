@@ -19,43 +19,62 @@ class Speed_Utility_DateTimeEnToBn{
 		$month=$this->MonthToBn($DateTime['month']);
 		$day=$this->IntToBn($DateTime['day']);
 		$hour=$this->IntToBn($DateTime['hour']);
+		$oDate = new DateTime($datetime);
+		$FinalHour=$this->IntToBn($oDate->format("h"));
 		$minute=$this->IntToBn($DateTime['minute']);
 		//28 September'12 shokal 12:32
-		$prefix=$this->prefix($DateTime['hour']);
-		echo $day . " " .$month." '".$year." ".$prefix." ".$hour."টা ".$minute." মিনিটে";
+		$prefix=$this->prefixPost($DateTime['hour']);
+		echo $day . " " .$month." '".$year." ".$prefix." ".$FinalHour."টা ".$minute." মিনিটে";
 		
 	}else{
 		$day=$this->dateToBn(false);
 		$month=$this->MonthToBn(false);
 		$hour=$this->IntToBn(date('h'));
 		$minute=$this->IntToBn(date('i'));
-		$prefix=$this->prefix(date('a'));
+		$prefix=$this->prefix();
 		$dayName=$this->bnDayName(false);
 		echo $day . " " .$month.", ". $dayName . ", ". $prefix." ".$hour.":".$minute;
 		}
 	}
-	function prefix($time){
+	function prefix(){
 		//$value="";
-		if(is_bool($time)){
-		$time= date('H');
-		}
-			if($time>=5 && $time<12 ){
+		$time=date('H');
+			if($time>=05 && $time<12 ){
 			return "সকাল";
 		}else if($time>=12 && $time<15){
 			return "দুপুর";}
-		else if($time>=15 && $time<19){
+		else if($time>=15 && $time<18){
 		return "বিকাল";}
-		else if($time>=19 && $time<20){
-		return "সন্ধা";}
+		else if($time>=18 && $time<20){
+		return "সন্ধ্যা";}
 		else if($time>=20 && $time<23){
 		return "রাত";}
-		else if($time>=0 && $time<4){
+		else if($time>=0 && $time<04){
 		return "রাত";}
-		else if($time>=4 && $time<5){
+		else if($time>=04 && $time<05){
 		return "ভোর";}else{
 		return "রাত";}
 		//return date('a');
 	}
+		function prefixPost($time){
+		//$value="";
+			if($time>=05 && $time<12 ){
+			return "সকাল";
+		}else if($time>=12 && $time<15){
+			return "দুপুর";}
+		else if($time>=15 && $time<18){
+		return "বিকাল";}
+		else if($time>=18 && $time<20){
+		return "সন্ধ্যা";}
+		else if($time>=20 && $time<23){
+		return "রাত";}
+		else if($time>=0 && $time<04){
+		return "রাত";}
+		else if($time>=04 && $time<05){
+		return "ভোর";}else{
+		return "রাত";}
+		//return date('a');
+		}
 	public function IntToBn($digit){
 		$value="";
 		$count=strlen($digit);

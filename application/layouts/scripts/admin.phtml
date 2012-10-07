@@ -18,15 +18,12 @@
 
 
     
-        <div class="navbar navbar-fixed-top">
+ <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+<a class="brand" href="/admin/index">Portal Admin Panel</a>
 
-            <div class="navbar-inner">
-
-                <div class="container-fluid">
-
-                    <a class="brand" href="/admin/index">Portal Admin Panel</a>
-
-                    <?php echo $this->render('admin_navigation.phtml') ?>
+                   
 
                     <?php $authNamespace = new Zend_Session_Namespace('adminInformation');
 
@@ -39,35 +36,39 @@
                             Logged in as <a href="#"><?php echo $authNamespace->adminData['username'] ?></a> | <a href="/user/auth/logout">Logout</a>
                         </p>
                     <?php endif ?>
+        </div>
+      </div>
+    </div>
 
-                </div>
-
-            </div>
-
+    <div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+            <img src="/public/../img/02.jpg" alt="" width="1300px" height="100px">
         </div>
 
-        <div class="container admin">
+    </div><br>
 
-            <div class="body-content">
 
-                <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
-                                        <div class="row" style="margin-bottom: 18px">
+
+
+      <div class="row-fluid">
+        <div class="span3">
+<?php echo $this->render('admin_navigation1.phtml') ?>
+          </div>
+        
+        <div class="span9">
+                <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>       
                                             <?php echo $flashMessenger ?>
-                                        </div>
+
                                         <?php endif; ?>
 
                 <?php echo $this->layout()->content ?>
-
-            </div>
-
         </div>
-    
-
-    <footer class="footer">
-        <p>&copy; <?php echo date('Y') ?> Portal</p>
-    </footer>
+      </div>
 
 
+
+  
 </body>
 </html>
 

@@ -1,0 +1,39 @@
+<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+<?php if(!empty($this->novel)) { ?>
+<div class="span6">
+       <div class="span12" ">
+        <h2 class='page-header'><a
+            href="/<?php echo $this->novel['username'] ?>/my-novel/<?php echo $this->novel['novel_name_permalink'] ?>/<?php echo $this->novel['novel_post_permalink']; ?>"><?php echo $this->novel['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            Posted in <?php echo $this->novel['novel_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->novel['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->novel['create_date']; ?></abbr>
+        </p>
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->novel['description']; ?>
+
+            </p>
+
+        </div>
+    </div>
+    <div class="span12">
+        <?php $authNamespace = new Zend_Session_Namespace('userInformation');
+                  $userId = $authNamespace->userData['user_id'];
+                  if ($userId == $this->novel['create_by']) {
+            ?>
+            <a href="/<?php echo $this->novel['username'] ?>/novel/edit/<?php echo $this->novel['novel_name_permalink'] ?>/<?php echo $this->novel['novel_post_permalink'] ?>"
+                                 class="btn btn-success">Edit</a>
+
+            <?php } ?>
+    </div>
+</div>
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

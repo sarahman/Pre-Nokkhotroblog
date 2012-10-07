@@ -21,7 +21,7 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
 
     public function indexAction()
     {
-        $this->validateUser();
+        //$this->validateUser();
         $this->_helper->layout->setLayout('userprofile');        
         $discussionModel = new Blog_Model_Discussion();
         $userModel = new Speed_Model_User();
@@ -147,7 +147,13 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
             $this->redirectForFailure("/blog/discussions", "Discussions has been deleted.");		
         }
 
-        $this->view->discussion = $discussion;		
+        $this->view->discussion = $discussion;	
+
+	//show comment 
+        $discussionIdtwo = $this->_request->getParam('id');
+        $discussioncommentModel = new Blog_Model_DiscussionComment(); 
+        $comment = $discussioncommentModel->getAll($discussionIdtwo);	
+        $this->view->comment = $comment;	
     }
     
      public function commentAction()
@@ -179,17 +185,18 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
     }
     
      // Trash Action Display
-     public function trashDiscussionAction()
+ public function trashDiscussionAction()
     {
         $userdetailModel = new Speed_Model_User();
 
         $authNamespace = new Zend_Session_Namespace('userInformation');
         $userName = $authNamespace->userData['username'];
+        $userId = $authNamespace->userData['user_id'];         //add session to trash
         $userDetail = $userdetailModel->getDetailByUserName($userName);
         $this->validateUser();
         $this->_helper->layout->setLayout('userprofile');  
         $trashModel = new Blog_Model_Discussion();
-        $status = $trashModel->getAllTrash();
+        $status = $trashModel->getAllTrash($userId);
         $this->view->Discussiontrash = $status;
         $this->view->userDetail = $userDetail;
 

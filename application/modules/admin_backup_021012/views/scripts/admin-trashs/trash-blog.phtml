@@ -1,0 +1,63 @@
+
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/blogs/index">All Blogs</a></li>
+        <li><a href="/admin/categories">Category</a></li>
+	    <li><a href="/admin/post-types">Post Types</a></li>
+	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+	    <li><a href="/admin/blog-groups">Blog Groups</a></li>
+        <li><a href="/admin/comments">Comments</a></li>
+         <li><a href="/admin/admin-trashs/index">Trash</a></li>
+    </ul>
+</div>
+<br /><br />
+<div class="row-fluid">
+    <h1>My Blog Trash </h1>
+
+   
+</div>
+
+<div class="row-fluid">
+
+    <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 20px">
+
+        <thead>
+            <tr>
+                <th width="5%">Serial</th>
+                <th width="10%">title</th>
+                <th width="40%">Description</th>
+                
+             
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php if (!empty($this->getAllTrash)) : ?>
+
+            <tr><td colspan="7" class="report-no-data">No Trash Blog has been found for you .</td></tr>
+
+            <?php else: $count = 0; foreach($this->displayp AS $blogtrash) : ?>
+
+            <tr>
+                <td class="centered"><?php echo ++$count ?></td>
+                <td class="centered"><?php echo $blogtrash['title'] ?></td>
+		<td class="centered"><?php echo $blogtrash['description'] ?></td>
+               
+                                 
+                <td class="centered">
+                     <a class="btn btn-warning" href="/admin/admin-trashs/trash/id/<?php echo $blogtrash['blog_id'] ?>">Restore</a>
+                    <a class="btn danger delete" href="/user/draft/delete/id/<?php echo $blogtrash['blog_id'] ?>">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; endif ?>
+           
+        </tbody>
+
+    </table>
+
+</div>
+
+<div id="user-modal" class="modal hide fade"></div>
+
+

@@ -33,7 +33,11 @@ class Admin_Model_Discussion extends Speed_Model_Abstract
 
 	}
 
+ public function getAllDiscussionTrash()
+	{
+	return $this->dao->getAllDiscussionTrash();
 
+	}
 	public function delete($discussionId = null)	
     		{
         if (empty($discussionId)) {	
@@ -74,8 +78,6 @@ class Admin_Model_Discussion extends Speed_Model_Abstract
         }
 
         $data['update_date'] = date('Y-m-d H:i:s');
-        //$authNamespace = new Zend_Session_Namespace('adminInformation');
-        //$data['update_by'] = $authNamespace->adminData['admin_id'];
         $this->dao->modify($data, $discussionId);
         return true;
     }
@@ -100,11 +102,11 @@ class Admin_Model_Discussion extends Speed_Model_Abstract
 
         $status = $this->getPublishStatus($discussionId);		
 
-        if ($status['is_published'] == 1) {
+        if ($status['status'] == 'publish') {
 
-            $data['is_published'] = 0;
+            $data['status'] = 'pending';
         } else {
-            $data['is_published'] = 1;
+            $data['status'] = 'publish';
         }
 
         $this->dao->modify($data, $discussionId);		
@@ -119,6 +121,47 @@ class Admin_Model_Discussion extends Speed_Model_Abstract
         }
 
         return $this->dao->getPublishStatus($discussionId);
+    }
+
+public function getAllPublishDiscussion()
+	{
+	return $this->dao->getAllPublishDiscussion();
+
+	}
+public function getAllPandingDiscussion()
+	{
+	return $this->dao->getAllPandingDiscussion();
+
+	}
+
+ public function setTrashStatus($data, $discussionId)		
+    {
+        if (empty($data) AND (empty($discussionId))) {		
+            return false;
+        }
+
+
+        $status = $this->getTrashStatus($discussionId);		
+
+        if ($status['status'] == 'pending') { 
+
+            $data['status'] = 'admin-trash';
+        } else {
+            $data['status'] = 'pending';
+        }
+     
+        $this->dao->modify($data, $discussionId);		
+
+        return true;
+    }
+
+  public function getTrashStatus($discussionId)
+    {
+        if (empty($discussionId)) {
+            return false;
+        }
+
+        return $this->dao->getTrashStatus($discussionId);
     }
 
 

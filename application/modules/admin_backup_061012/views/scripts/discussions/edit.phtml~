@@ -1,0 +1,20 @@
+
+
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/discussions">All Discussion</a></li>
+        <li><a href="/admin/comments">Comments</a></li>
+    </ul>
+</div>
+<br /><br />
+
+
+<div class="row-fluid">
+    <div class="span12">
+        <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
+        <?php else: ?>
+   <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+        <?php endif; ?>
+        <?php echo $this->DiscussionEntry; ?>
+    </div>
+</div>
