@@ -18,7 +18,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
 
         $username = $authNamespace->userData['username'];
         $userModel = new Speed_Model_User();
-
+		$BlogModel= new Blog_Model_Blog();
         if (!empty($authNamespace->userData)) {
           $this->view->blogInfo = $userModel->getDetailByUsername($username);
         }
@@ -283,6 +283,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
 
     public function meAction()
     {
+		$this->validateUser();
         $this->_helper->layout->setLayout('userprofile');
 
         $userdetailModel = new Speed_Model_User();
@@ -295,11 +296,10 @@ class Blog_UsersController extends Speed_Controller_ActionController
 
 
         if (empty($userDetail)) {
-            $this->redirectForFailure("/live", "User have been deleted.");
+            $this->redirectForFailure("/live", "You are not logged in.");
         }
 
         $this->view->userdetail = $userDetail;
-	$this->view->userDetail = $userDetail;
     }
 
     public function profileAction()

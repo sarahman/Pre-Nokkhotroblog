@@ -170,7 +170,22 @@ class Blog_Model_Blog extends Speed_Model_Abstract
 
         return $this->dao->getUserPosts($userId);
     }
+	public function getUserPostsTotal($userId)
+    {
+        if (empty($userId)) {
+            return false;
+        }
 
+        return $this->dao->getUserPostsTotal($userId);
+    }
+	public function getUserCommentsTotal($userId)
+    {
+        if (empty($userId)) {
+            return false;
+        }
+
+        return $this->dao->getUserCommentsTotal($userId);
+    }
     public function modify($data = array(), $blogId = null)
     {
         if (empty($data) || empty($blogId)) {

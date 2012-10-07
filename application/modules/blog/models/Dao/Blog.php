@@ -101,7 +101,22 @@ LIMIT 10";
 
             return $this->returnResultAsAnArray($this->fetchAll($select));
           }
+		  public function getUserPostsTotal($userId)
+        {
+            $select = $this->select()
+                           ->from($this->_name, array('total' => new Zend_Db_Expr('count(*)')))
+						  ->where('blogs.create_by =?', $userId);
 
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+          }
+		/*public function getUserCommentsTotal($userId)
+        {
+            $select = $this->select()
+                           ->from($this->comments, array('total' => new Zend_Db_Expr('count(*)')))
+						  ->where('comments.create_by =?', $userId);
+
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+          }*/
         public function getPublishStatus($blogId)
         {
             $select = $this->select()

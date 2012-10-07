@@ -1,156 +1,148 @@
 <?php
 $authNamespace = new Zend_Session_Namespace('userInformation');
-echo $this->doctype() ?>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8">
-    <?php echo $this->headTitle() ?>
-    <?php echo $this->headMeta() ?>
-    <?php echo $this->headLink() ?>
-    <?php echo $this->headScript() ?>
+echo $this->doctype()
+?>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Nokkhotro blog is a Bangladeshi popular blogging platform.">
+        <meta name="author" content="Nokkhotro Blog">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@nokkhotroblog">
+        <meta name='twitter:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'>
+        <meta property='og:title' content='Nokkhotro Blog - Popular Bangladeshi Blogging platform'/>
+        <meta property='og:description' content='Nokkhotro Blog is a popular blogging platform. Read the popular blog post and write your own blog in Nokkhotro Blog. It is the latest web technology driven bangla blogging system in Bangladesh.'/>
+        <meta property='og:url' content='http://www.nokkhotroblog.com/'/>
+        <meta property='og:site_name' content='Nokkhotro Blog -  Popular Bangladeshi Blogging platform'/>
+        <meta property='og:type' content='website'/>
+        <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
+        <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
+        
+        <?php //echo $this->headLink() ?>
+        <?php //echo $this->headScript() ?>
+        <link href="/css/css1/nokkhotroblog-bootstrap-min.css" media="screen" rel="stylesheet" type="text/css" >
+        <!--<link href="/css/css1/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css" >-->
+        <link href="/css/css1/nokkhotro-min.css" media="screen" rel="stylesheet" type="text/css" >
+        <script type="text/javascript" src="/js/js1/jquery.js"></script> 
+        <script type="text/javascript" src="/js/js1/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1.pack.js"></script>
+        <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1c4.js"></script>
+        <script type="text/javascript" src="/js/js1/documentmin.js"></script>
+
+        <!-- Le styles -->
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
  $(document).ready(function(){
    $('a').click(function(){
-     _gaq.push(['_trackEvent', 'UserProfile', 'Click', $(this).text()]);
+     _gaq.push(['_trackEvent', 'Homepage', 'Click', $(this).text()]);
    });
  });
 </script>
-</head>
+    </head>    
+    <body>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=245676048884809";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="brand" href="#">নক্ষত্র ব্লগ </span>
+		<?php if (empty($authNamespace->userData['username'])): ?>
+                    <p class="nav pull-right">
+                        <a data-toggle="modal" href="#myModal"  class="btn btn-primary" type="button" onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'Click', 'Signup']);">নিবন্ধন করুন</a>
+                        <a data-toggle="modal" href="#mylogin"  class="btn btn-primary" type="button" onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'click', 'Login']);">প্রবেশ করুন</a>
+                    </p>
+		<?php else: ?>
+                    <ul class="nav nav-pills pull-right">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="/me">
+                        স্বাগতম <?php echo $authNamespace->userData['username'] ?>
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/me" onClick="_gaq.push(['_trackEvent', 'UserProfile', 'click', 'My profile']);">প্রোফাইল</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/auth/logout">লগ আউট</a></li>
+                      </ul>
+                    </li>
+                    </ul>
+		<?php endif ?>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="time"><?php 
+                            date_default_timezone_set('Asia/Dhaka');
+                            //echo date('F jS,D h:ia'); ?> 
 
-<body class="userprofile">
+<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+<?php echo $date = $bn_date->ShowDate(false); ?>
+</li>
+                        </ul>
+                        <form class="form-inline nav-form">
+                            <div class="input-append">
+                                <input placeholder="Search" class="span2" id="appendedInput" size="16" type="text"><span class="add-on"><i class=" icon-search"></i></span>
+                            </div>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">ঢাকার সময় : <?php echo date('F jS,D H:ia');?></a>
-
-            <div class="btn-group pull-right">
-
-                <!--                <div class="span6"><a href="#">Messege / Invitation / Notification</a></div>-->
-                <?php
-                    if (empty ($authNamespace->userData['username'])) {
-                        ?>
-                        <a href="/signup">নিবন্ধন করুন</a>
-                        ||
-                        <a href="/auth/login">প্রবেশ করুন</a>
-
-                        <?php } else { ?>
-
-                        স্বাগতম <?php if (!empty($this->userDetail['display_name'])) { ?>
-
-                            <a href="/profile/<?php echo $authNamespace->userData['username'] ?>"><?php echo $this->userDetail['display_name']?></a>
-
-                            <?php
-                        } else {
-
-                            ?>
-                            <a href="/profile/<?php echo $authNamespace->userData['username'] ?>">আমার ব্লগ</a> &raquo; <a href="/auth/logout">লগ-আউট</a>
-                            <?php
-
-                        }
-                    }
-                    ?>
-                    
-                
-
-
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="nav-collapse">
-                <input type="text" data-provide="typeahead">
-            </div>
-            <!--/.nav-collapse -->
         </div>
-    </div>
-
-    <div class="subnav ">
-        <?php echo $this->render('navigation.phtml') ?>
-    </div>
-</div>
-
-<div class="container">
-<?php $flashMessenger = $this->flashMessenger();
+        <!--End of Nav-->
+        <!--SubHead-->
+        <div class="container">
+			<?php $flashMessenger = $this->flashMessenger();
                         if (!empty($flashMessenger)): ?>
                             <?php echo $flashMessenger ?>
 			<?php endif; ?>
+            <div class="row">
+                <div class="span12">
+                    <img src="/public/../img/subhead-banner.jpg" alt="Nokkhotro Blog - Bangladeshi blog platform" width="100%"> 
+                </div>
+                <div class="row subhead-nav">
+                    <div class="span12">
 
-<div class="row-fluid">
-    <div class="span12">
-        <img src="/public/../img/02.jpg" alt="" width="1300px" height="100px">
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-						
-            <h1 class="well">Blog of <a href="/blog/<?php echo $this->userDetail['username']; ?>">
-                            <?php 
-                
-                if(!empty($this->userDetail['display_name']))
-                {
-                echo $this->userDetail['display_name']; 
- 		}
-		
-                else
-		{
-                    if(!empty($this->userDetail['name']))
-			{
-                    echo $this->userDetail['name']; 
-                    }
-                    else 
-                    {
-                        echo $this->userDetail['username'];
-                        
-                        }
-                       }
-                ?>
-            
-            
-            
-            </a><?php if(!empty($this->userDetail['date_of_birth']) && $this->userDetail['date_of_birth']!="0000-00-00"){?>( <?php $year=explode("-",$this->userDetail['date_of_birth']);
-            echo $year[0];
-            ?> - now)<?php }?><span class="pull-right"><a href="/new/<?php echo $this->userDetail['username']; ?>" class="btn btn-primary">নতুন পোস্ট</a></span></h1>
+                        <div class="subnav">
+			<?php echo $this->render('navigation.phtml') ?>
 
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-
-<div class="container-fluid">
-
-<div class="row-fluid">
-<!--/Left contain -->
-<div class="span3">
-    <div class="row-fluid">
-        <div class="span12">
-
-            <!-- <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th style="width: 150px; height:150px;">
-
-                                    <img src="/<?php echo $this->userDetail['profile_picture']; ?>" />
-
-                                </th>
-
-                            </tr>
-                            </thead>
-
-                        </table>-->
-            <div class="thumbnail">
-                                <?php 
+        <!--End of Subhead-->
+<div class="container" style="margin-top:5px;">
+	<div class="row">
+    	<div class="span3">
+        <!--Profile Navigation-->
+        <ul class="nav nav-list well well-small">
+        	<?php 
                 
                 if(!empty($this->userDetail['profile_picture']))
                 {
 		?>
-                <img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="190px" height="130px"/>
+                <img class="img-rounded" style="border:1px solid #CCC;" src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="190px" height="130px"/>
  		   <?php } else { ?>
 
 		<img src="/img/maleIcon.png" alt="" width="190px" height="170px"/>
@@ -158,278 +150,71 @@ echo $this->doctype() ?>
 		<?php
                }
  		?>
-
-            </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-
-
-            <?php if (!empty($this->userDetail['facebook_link'])): ?>
-            <br>
-            <a href="<?php echo $this->userDetail['facebook_link'];?>"><img src="/public/../img/facebook-bullet.jpg">ফেইসবুক
-                প্রোফাইল</a> &nbsp;
-            <?php endif ?>
-
-            <?php if (!empty($this->userDetail['twitter_link'])): ?>
-            <hr/>
-            <a href="<?php echo $this->userDetail['twitter_link'];?>"><img src="/public/../img/twitter.png">টুইটার
-                প্রোফাইল</a> &nbsp;
-            <?php endif ?>
-
+            <hr />
+            <li><a href="/me/<?php echo $this->userDetail['username']; ?>"><i class="icon-user"></i> আমার প্রোফাইল</a></li>
+            <li><a href="/new/<?php echo $this->userDetail['username']; ?>"><i class="icon-pencil"></i> নতুন পোস্ট</a></li>
+            <li><a href="/blog/<?php echo $this->userDetail['username']; ?>"><i class="icon-th-large"></i> আমার ব্লগ</a></li>
+            <li><a href="/groups/<?php echo $this->userDetail['username']; ?>"><i class="icon-list-alt"></i> গ্রুপ সমূহ</a></li>
+            <li><a href="/blog/discussions/index"><i class="icon-screenshot"></i> আমার আলোচনা</a></li>
+            <li><a href="/user/draft/index"><i class="icon-folder-open"></i> সংরক্ষিতি পোস্ট</a></li>
+            <li><a href="/user/photo/index"><i class="icon-picture"></i> আমার যত ছবি</a></li>
+            <li> <a href="/user/trash/index"><i class="icon-trash"></i> মুছে ফেলা পোস্ট</a></li>
+        </ul>
+        <?php if (!empty($this->userDetail['facebook_link']) || !empty($this->userDetail['twitter_link']) || !empty($this->userDetail['gtalk_link']) || !empty($this->userDetail['linkedin_link'])): ?>
+        <br />
+        <ul class="nav nav-list well well-small">
+        	 <?php if (!empty($this->userDetail['facebook_link'])): ?>
+            <li><a href="<?php echo $this->userDetail['facebook_link'];?>" target="_blank"><i class="icon-globe icon-brown"></i> ফেইসবুক প্রোফাইল</a></li>
+            <?php endif;?>
+			<?php if (!empty($this->userDetail['twitter_link'])): ?>
+            <li><a href="<?php echo $this->userDetail['twitter_link'];?>" target="_blank"><i class="icon-globe icon-brown"></i> টুইটার প্রোফাইল</a></li>
+            <?php endif;?>
             <?php if (!empty($this->userDetail['gtalk_link'])): ?>
-            <hr/>
-            <a href="<?php echo $this->userDetail['gtalk_link'];?>"><img src="/public/../img/gtalk.png">গুগল টক</a>
-            &nbsp;
-            <?php endif ?>
-
+            <li><a href="<?php echo $this->userDetail['gtalk_link'];?>" target="_blank"><i class="icon-globe icon-brown"></i> গুগল প্রোফাইল</a></li>
+            <?php endif;?>
             <?php if (!empty($this->userDetail['linkedin_link'])): ?>
-            <hr/>
-            <a href="<?php echo $this->userDetail['linkedin_link'];?>"><img src="/public/../img/Linkedin-icon.png">লিংক্ড-ইন</a>
-            <?php endif ?>
-
-            <hr>
-
-            <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
-            <a onClick="_gaq.push(['_trackEvent', 'UserProfile', 'Click', 'My Profile']);" href="/me/<?php echo $this->userDetail['username']; ?>">আমার প্রোফাইল</a>
-            <hr/>
-            <?php endif ?>
-
-            <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
-
-            <a onClick="_gaq.push(['_trackEvent', 'UserProfile', 'Click', 'New Post']);" href="/new/<?php echo $this->userDetail['username']; ?>">নতুন পোস্ট</a>
-            <hr/>
-            <?php endif ?>
-
-            <a onClick="_gaq.push(['_trackEvent', 'UserProfile', 'Click', 'My Groups']);" href="/groups/<?php echo $this->userDetail['username']; ?>">গ্রুপ</a>
-            <hr/>
-            <a href="/blog/discussions/index">আলোচনা</a>
-
-            <hr/>
-            <a href="/<?php echo $this->userDetail['username'] ?>/novel-list">উপন্যাস</a>
-            <hr/>
-            <a href="/blog/<?php echo $this->userDetail['username']; ?>">ব্লগিং</a>
-            <hr/>
-            <a href="/blog/episodes/my-episord">&nbsp;&nbsp;Episode</a>
-            <!--<a href="/episode-list/<?php echo $this->userDetail['username'] ?>">&nbsp;&nbsp;Episods</a>-->
-	   <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
- 	  <hr/>
-            <a href="/user/photo/index">আমার যত ছবি</a><hr/>
-          <?php endif ?>
-            
-        <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
-            <a href="/user/draft/index">সংরক্ষিত পোস্ট</a><hr/>
-       <?php endif ?>
-            
-        <?php if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
-            <a href="/user/trash/index">মুছে ফেলা পোস্ট</a>
-     <?php endif ?>
-            <!--                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th style="width: 150px;">
-                                <?php if (!empty($this->userDetail['facebook_link'])): ?>
-                                    <a href="<?php echo $this->userDetail['facebook_link']; ?>">Facebook</a> /&nbsp;
-                                <?php endif ?>
-
-                                <?php if (!empty($this->userDetail['twitter_link'])): ?>
-                                    <a href="<?php echo $this->userDetail['twitter_link']; ?>">Twitter</a> /&nbsp;
-                                <?php endif ?>
-
-                                <?php if (!empty($this->userDetail['gtalk_link'])): ?>
-                                    <a href="<?php echo $this->userDetail['gtalk_link']; ?>">Gtalk</a> /&nbsp;
-                                <?php endif ?>
-
-                                <?php if (!empty($this->userDetail['linkedin_link'])): ?>
-                                    <a href="<?php echo $this->userDetail['linkedin_link']; ?>">Linkedin</a>
-                                <?php endif ?>
-
-                                </th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><a href="/me">My Profile</a></td>
-
-                            </tr>
-
-                            <tr>
-                                <td><a href="/new">New Blog</a></td>
-
-                            </tr>
-
-                            <tr>
-                                <td><a href="/<?php echo $this->userDetail['username'] ?>/novel-list">My Novels</a></td>
-
-                            </tr>
-
-                            <?php
-            if (!empty ($authNamespace->userData['username'])): ?>
-
-                            <?php endif ?>
-<!--                            <tr>-->
-            <!--                                <td>Draft</td>-->
-            <!---->
-            <!--                            </tr>-->
-            <!--                            <tr>-->
-            <!--                                <td>Photos</td>-->
-            <!---->
-            <!--                            </tr>-->
-            <!--                            <tr>-->
-            <!--                                <td>Events</td>-->
-            <!---->
-            <!--                            </tr>-->
-            <!--                            <tr>-->
-            <!--                                <td>Messege</td>-->
-            <!---->
-            <!--                            </tr>-->
-            <!--                            <tr>-->
-            <!--                                <td>Calender</td>-->
-            <!---->
-            <!--                            </tr>-->
-            <!--                          <tr>
-                                <td><a href="/blog/<?php echo $this->userDetail['username']; ?>">My Bloging</a></td>
-
-                            </tr>
-                            <tr>
-                                <td><a href="/groups/<?php echo $this->userDetail['username']; ?>">My Groups</a></td>
-
-                            </tr>
-                            <tr>
-                                <td> <a href="/blog/discussions/index">Discursion</a></td>
-
-                            </tr>
-                            <tr>
-
-                                <td> <a href="/episods/my-episord">Episods</a></td>
-
-                            </tr>
-
-                            </tbody>
-                        </table>-->
-
+            <li><a href="<?php echo $this->userDetail['linkedin_link'];?>" target="_blank"><i class="icon-globe icon-brown"></i> লিঙ্কড্‌-ইন প্রোফাইল</a></li>
+            <?php endif;?>
+        </ul>
+        <?php endif;?>
+        <br />
+        <ul class="nav nav-list well well-small">
+        	<h3>এক নজরে</h3>
+            <hr />
+            <?php 
+			$BlogModel= new Blog_Model_Blog();
+			$userLastPostTotal = $BlogModel->getUserPostsTotal($this->userdetail['user_id']);
+			?>
+            <li>সর্বমোট পোস্ট 
+			<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+            <?php echo $x=$bn_date->IntToBn($userLastPostTotal[0]['total']);?>
+			টি</li>
+        </ul>
+        <!--End of Profile Navigation-->
         </div>
-    </div>
-    <!--                <div class="row-fluid">-->
-    <!--                    <div class="span12">-->
-    <!--                        <table class="table table-bordered table-striped">-->
-    <!--                            <thead>-->
-    <!--                            <tr>-->
-    <!--                                <th style="width: 150px;">-->
-    <!--                                    Friends-->
-    <!---->
-    <!--                                </th>-->
-    <!---->
-    <!--                            </tr>-->
-    <!--                            </thead>-->
-    <!--                            <tbody>-->
-    <!--                            <tr>-->
-    <!--                                <td>sayeed<br>-->
-    <!--                                    Tomal<br>-->
-    <!--                                    Zafor-->
-    <!---->
-    <!---->
-    <!--                                </td>-->
-    <!---->
-    <!--                            </tr>-->
-    <!---->
-    <!---->
-    <!--                            </tbody>-->
-    <!--                        </table>-->
-    <!---->
-    <!---->
-    <!--                    </div>-->
-    <!--                </div>-->
-
-
-</div>
-
-<!--/end Left contain -->
-
-<!--/center contain -->
-<div class="span9">
-
-
-    <div class="row-fluid">
-        <div class="span12">
-
-
-            <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
+        <div class="span9">
+        	 <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
             <div style="margin-bottom: 18px">
                 <?php echo $flashMessenger ?>
             </div>
             <?php endif; ?>
-
-            <div>
-                <?php echo $this->layout()->content ?>
-            </div>
-
-
+            <?php echo $this->layout()->content ?>
         </div>
-
-
     </div>
-
-
 </div>
-<!--/end center contain -->
-
-
-</div>
-
-<hr>
-
-<footer>
-      
-    <p>
-<?php echo $this->render('navigation_footer.phtml') ?>
-    </p>
-</footer>
-
-</div>
-<!--/.fluid-container-->
-</div>
-<br><br>
-
-
-<div class="subnav bottombar">
-    <?php echo $this->render('navigation_buttom.phtml') ?>
-</div>
-
-    <!--Google Analytics Tracking Code (added by Shaharia Azam)-->
-    <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34878055-1']);
-  _gaq.push(['_setDomainName', 'nokkhotroblog.com']);
-  _gaq.push(['_trackPageview']);
-   ]);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-<!--End of Google analytics tracking-->
+<br /><br />
+<footer class="footer" data-spy="affix-bottom" data-offset-top="200">
+      <div class="container">
+        <p class="pull-right"><a href="#">Go to top</a></p>
+        <p><?php if(!empty($this->pages)): ?>
+<?php foreach($this->pages as $pages): ?>
+      <a href="/page/<?php echo $pages['permalink'] ?>"><?php echo $pages['page_name'] ?></a>&nbsp; &raquo; 
+<?php endforeach; else:?>
+<a href="/feedback">মন্তব্য/পরামর্শ</a> &nbsp; &raquo; 
+<?php endif; ?>
+ </p>
+     <br /><br />   <p>&copy; সর্বস্বত্ত্ব সংরক্ষিত <a href="<?php echo $this->baseUrl;?>">নক্ষত্র ব্লগ</a></p>
+      </div>
+    </footer>         
 </body>
-</html>
-
-
-<script type="text/javascript">
-
-    CKEDITOR.replace('description',
-        {
-            filebrowserBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Files',
-            filebrowserImageBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Images',
-            filebrowserFlashBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Flash',
-            filebrowserUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-            filebrowserImageUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-            filebrowserFlashUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-        });
-
-
-</script>
+</html>        

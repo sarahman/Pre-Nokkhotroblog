@@ -29,3 +29,6 @@ color: white;
 	font-size:13px;
 }
 .alert-success{color:white; background-color:#138318; border-color:black;}
+.icon-brown {
+  background-image: url("/img/glyphicons-halflings-brown.png");
+}

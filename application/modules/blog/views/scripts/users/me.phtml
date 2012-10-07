@@ -1,79 +1,75 @@
 <?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
-<div class="row-fluid">
-    <div class="span12">
 
 
-        <center><h3 class="well" style="background-color:white;">আমার প্রোফাইল <h3></center>
-    </div>
+        <center><h3 class="well" style="background-color:white;">আমার প্রোফাইল <h3></center>
 
-</div>
 <hr />
-<div class="span12">
 
     <table class="table table-striped">
 
         <tr>
-            <td>নাম:</td>
-            <td><?php echo $this->userdetail['name']; ?></td>
+            <td><strong>নাম:</strong></td>
+            <td><?php echo $this->userdetail['name']; ?>
+            </td>
         </tr>
          <tr>
-            <td > ছদ্ম নাম :</td>
+            <td><strong> ছদ্ম নাম :</strong></td>
             <td ><?php echo $this->userdetail['display_name']; ?></td>
         </tr>
         <tr>
-            <td>ইউজারনেম:</td>
+            <td><strong>ইউজারনেম:</strong></td>
             <td><?php echo $this->userdetail['username']; ?></td>
         </tr>
         <tr>
-            <td>ই-মেইল ঠিকানা:</td>
+            <td><strong>ই-মেইল ঠিকানা:</strong></td>
             <td><?php echo $this->userdetail['email_address']; ?></td>
         </tr>
         <!-- Update -->
          <tr>
-            <td >লিঙ্গ :</td>
+            <td ><strong>লিঙ্গ :</strong></td>
             <td ><?php echo $this->userdetail['sex']; ?></td>
         </tr>
 
         <tr>
-            <td >ফোন :</td>
+            <td ><strong>ফোন :</strong></td>
             <td ><?php echo $this->userdetail['phone']; ?></td>
         </tr>
        <tr>
-          <td >পেশা :</td>
+          <td ><strong>পেশা :</strong></td>
             <td ><?php echo $this->userdetail['profession']; ?></td>
         </tr>
         <!-- Update -->
         <tr>
-            <td>জন্ম তারিখ:</td>
+            <td><strong>জন্ম তারিখ:</strong></td>
             <td ><?php echo $this->userdetail['date_of_birth']; ?></td>
         </tr>
 
         <tr>
-            <td >জীবন-বৃত্তান্ত:</td>
+            <td ><strong>জীবন-বৃত্তান্ত:</strong></td>
             <td ><?php echo $this->userdetail['bio']; ?></td>
         </tr>
 
         <tr>
-            <td >শখ:</td>
+            <td ><strong>শখ:</strong></td>
             <td ><?php echo $this->userdetail['hobby']; ?></td>
         </tr>
         
         <tr>
-            <td >শুরুর দিন:</td>
+            <td ><strong>শুরুর দিন:</strong></td>
             <td ><?php echo date('F jS Y', strtotime($this->userdetail['create_date'])); ?></td>
         </tr>
         <tr>
-            <td >সর্বশেষ প্রবেশ:</td>
+            <td ><strong>সর্বশেষ প্রবেশ:</strong></td>
             <td ><?php echo date('F jS Y', strtotime($this->userdetail['last_login'])); ?></td>
         </tr>
 <!-- Update -->
        
          <tr>
-            <td >শহর:</td>
+            <td ><strong>শহর:</strong></td>
             <td ><?php echo $this->userdetail['district']; ?></td>
         </tr>
         <tr>
-            <td >দেশ:</td>
+            <td ><strong>দেশ:</strong></td>
             <td ><?php echo $this->userdetail['country']; ?></td>
         </tr>
         
@@ -82,7 +78,5 @@
     </table>
 <br />
     <?php if(!empty($authNamespace->userData['user_id']) AND ($authNamespace->userData['user_id'] == $this->userdetail['user_id'])) : ?>
-    <center><a href="/profile-edit" class="btn btn-primary edit">প্রোফাইল পরিবর্তন করুন</a><center>
+    <center><a href="/profile-edit" class="btn btn-primary edit">প্রোফাইল পরিবর্তন করুন</a><center>
     <?php endif; ?>
-
-</div>
