@@ -1,25 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Sep 15, 2012 at 05:05 PM
--- Server version: 5.5.24
--- PHP Version: 5.3.10-1ubuntu3.2
-
+-- The structure of the database named 'nblog_portal'.
+-- The date taken is 12-10-2012.
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
---
--- Database: `portal`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admins`
---
 
 CREATE TABLE IF NOT EXISTS `admins` (
   `admin_id` tinyint(5) NOT NULL AUTO_INCREMENT,
@@ -38,12 +21,6 @@ CREATE TABLE IF NOT EXISTS `admins` (
   KEY `role_id` (`role_id`),
   KEY `user_status` (`user_status`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blogs`
---
 
 CREATE TABLE IF NOT EXISTS `blogs` (
   `blog_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -74,23 +51,11 @@ CREATE TABLE IF NOT EXISTS `blogs` (
   KEY `is_selected` (`is_selected`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_categories`
---
-
 CREATE TABLE IF NOT EXISTS `blog_categories` (
   `blog_category_id` tinyint(6) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
   PRIMARY KEY (`blog_category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_groups`
---
 
 CREATE TABLE IF NOT EXISTS `blog_groups` (
   `blog_group_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -107,12 +72,6 @@ CREATE TABLE IF NOT EXISTS `blog_groups` (
   PRIMARY KEY (`blog_group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_group_posts`
---
-
 CREATE TABLE IF NOT EXISTS `blog_group_posts` (
   `blog_group_post_id` int(11) NOT NULL AUTO_INCREMENT,
   `blog_group_id` int(11) NOT NULL,
@@ -128,13 +87,7 @@ CREATE TABLE IF NOT EXISTS `blog_group_posts` (
   `last_moderate_by` int(11) NOT NULL,
   `last_moderate_date` datetime NOT NULL,
   PRIMARY KEY (`blog_group_post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `blog_group_types`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `blog_group_types` (
   `blog_group_type_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -146,15 +99,10 @@ CREATE TABLE IF NOT EXISTS `blog_group_types` (
   PRIMARY KEY (`blog_group_type_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
 CREATE TABLE IF NOT EXISTS `comments` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `blog_id` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
   `comments` text NOT NULL,
   `is_published` tinyint(1) NOT NULL,
   `total_comments` int(11) NOT NULL,
@@ -164,19 +112,22 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `update_by` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
---
--- RELATIONS FOR TABLE `comments`:
---   `blog_id`
---       `blogs` -> `blog_id`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `discussions`
---
+CREATE TABLE IF NOT EXISTS `comments_notice` (
+  `comment_notice_id` int(11) NOT NULL AUTO_INCREMENT,
+  `notice_id` int(11) NOT NULL,
+  `comments` text NOT NULL,
+  `is_published` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `total_comments` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  `create_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  PRIMARY KEY (`comment_notice_id`),
+  KEY `notice_id` (`notice_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `discussions` (
   `discussion_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -193,29 +144,33 @@ CREATE TABLE IF NOT EXISTS `discussions` (
   PRIMARY KEY (`discussion_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `discussion_comments`
---
-
 CREATE TABLE IF NOT EXISTS `discussion_comments` (
   `discussion_comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `discussion_id` int(11) NOT NULL,
   `comment` text NOT NULL,
   `is_published` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `create_by` int(11) NOT NULL,
   `update_by` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`discussion_comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `episode_name`
---
+CREATE TABLE IF NOT EXISTS `episode_comments` (
+  `episode_comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_id` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `trash` tinyint(1) NOT NULL,
+  `post_type` varchar(100) NOT NULL,
+  `episode_number` varchar(50) NOT NULL,
+  `comment` text NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  `create_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  PRIMARY KEY (`episode_comment_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `episode_name` (
   `episode_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -224,24 +179,12 @@ CREATE TABLE IF NOT EXISTS `episode_name` (
   PRIMARY KEY (`episode_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `favorites`
---
-
 CREATE TABLE IF NOT EXISTS `favorites` (
   `favorite_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `favorite_post_id` int(11) NOT NULL,
   PRIMARY KEY (`favorite_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `feedbacks`
---
 
 CREATE TABLE IF NOT EXISTS `feedbacks` (
   `feedback_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -251,13 +194,7 @@ CREATE TABLE IF NOT EXISTS `feedbacks` (
   `phonenumber` varchar(20) NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`feedback_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notices`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `notices` (
   `notice_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -268,14 +205,10 @@ CREATE TABLE IF NOT EXISTS `notices` (
   `update_date` datetime NOT NULL,
   `update_by` int(11) NOT NULL,
   `is_valid` tinyint(1) NOT NULL,
+  `make_active` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`notice_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `novels`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `novels` (
   `novel_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -292,11 +225,19 @@ CREATE TABLE IF NOT EXISTS `novels` (
   PRIMARY KEY (`novel_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `novel_name`
---
+CREATE TABLE IF NOT EXISTS `novel_comments` (
+  `novel_comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `novel_id` int(11) NOT NULL,
+  `novel_name_id` int(11) NOT NULL,
+  `comment` varchar(250) NOT NULL,
+  `is_published` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `create_by` int(11) NOT NULL,
+  `update_by` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`novel_comment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `novel_name` (
   `novel_name_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -312,27 +253,16 @@ CREATE TABLE IF NOT EXISTS `novel_name` (
   PRIMARY KEY (`novel_name_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `pages`
---
-
 CREATE TABLE IF NOT EXISTS `pages` (
   `page_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_name` varchar(50) NOT NULL,
+  `status` varchar(20) NOT NULL,
   `permalink` varchar(250) NOT NULL,
   `description` text NOT NULL,
   `last_moderate_by` int(11) NOT NULL,
   `last_moderate_date` datetime NOT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `post_types`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `post_types` (
   `post_type_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -342,13 +272,7 @@ CREATE TABLE IF NOT EXISTS `post_types` (
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`post_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `roles` (
   `role_id` tinyint(2) NOT NULL AUTO_INCREMENT,
@@ -358,13 +282,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `status`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `status` (
   `status_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -372,11 +290,12 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `system_status`
---
+CREATE TABLE IF NOT EXISTS `sub_category` (
+  `subcategory_id` tinyint(6) NOT NULL AUTO_INCREMENT,
+  `blog_category_id` tinyint(6) NOT NULL,
+  `subcategory_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`subcategory_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `system_status` (
   `system_status_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -386,20 +305,21 @@ CREATE TABLE IF NOT EXISTS `system_status` (
   PRIMARY KEY (`system_status_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` tinyint(2) NOT NULL,
   `auth_token` varchar(50) NOT NULL,
   `user_status` varchar(25) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `sex` varchar(8) NOT NULL,
   `username` varchar(50) NOT NULL,
   `display_name` varchar(50) NOT NULL,
+  `district` varchar(30) NOT NULL,
+  `country` varchar(30) NOT NULL,
+  `educational_background` varchar(250) NOT NULL,
+  `profession` varchar(150) NOT NULL,
+  `marital_status` varchar(15) NOT NULL,
+  `hobby` varchar(250) NOT NULL,
   `date_of_birth` date NOT NULL,
   `bio` text NOT NULL,
   `profile_picture` varchar(500) NOT NULL,
@@ -408,6 +328,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `tagline` varchar(250) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email_address` varchar(100) NOT NULL,
+  `phone` int(18) NOT NULL,
   `facebook_link` varchar(250) NOT NULL,
   `twitter_link` varchar(250) NOT NULL,
   `gtalk_link` varchar(250) NOT NULL,
@@ -419,24 +340,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_statuses`
---
-
 CREATE TABLE IF NOT EXISTS `user_statuses` (
   `user_status` varchar(25) NOT NULL,
   PRIMARY KEY (`user_status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`blog_id`)
+  REFERENCES `blogs` (`blog_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 SET FOREIGN_KEY_CHECKS=1;
