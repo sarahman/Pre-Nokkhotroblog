@@ -179,7 +179,7 @@ class User_BlogsController extends Speed_Controller_ActionController
     public function userprofileAction()
     {
         $this->validateUser();
-        $userdetailModel = new User_Model_Userdetail();
+        $userdetailModel = new User_Model_UserDetail();
         $userdetailId    = $this->_request->getParam('id');
         $userdetail      = $userdetailModel->getDetailForAdmin($userdetailId);
         if (empty($userdetail)) {

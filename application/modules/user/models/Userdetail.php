@@ -6,7 +6,7 @@
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
  * @copyright       Copyright (c) 2011
  */
-class User_Model_Userdetail extends Speed_Model_Abstract
+class User_Model_UserDetail extends Speed_Model_Abstract
 {
     /**
      * @var Admin_Model_Dao_Notic
