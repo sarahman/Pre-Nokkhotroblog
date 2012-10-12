@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -22,7 +19,6 @@
 
 /**
  * Interface for navigational helpers
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -39,6 +35,7 @@ interface Zend_View_Helper_Navigation_Helper
      *                                               null, which indicates that
      *                                               the container should be
      *                                               reset.
+     *
      * @return Zend_View_Helper_Navigation_Helper    fluent interface, returns
      *                                               self
      */
@@ -46,7 +43,6 @@ interface Zend_View_Helper_Navigation_Helper
 
     /**
      * Returns the navigation container the helper operates on by default
-     *
      * @return Zend_Navigation_Container  navigation container
      */
     public function getContainer();
@@ -59,6 +55,7 @@ interface Zend_View_Helper_Navigation_Helper
      *                                             {@link Zend_Translate_Adapter}
      *                                             or {@link Zend_Translate},
      *                                             or null. Default is null.
+     *
      * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
      *                                             self
      */
@@ -66,7 +63,6 @@ interface Zend_View_Helper_Navigation_Helper
 
     /**
      * Returns translator used in helper
-     *
      * @return Zend_Translate_Adapter|null  translator or null
      */
     public function getTranslator();
@@ -75,6 +71,7 @@ interface Zend_View_Helper_Navigation_Helper
      * Sets ACL to use when iterating pages
      *
      * @param  Zend_Acl $acl                       [optional] ACL instance
+     *
      * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
      *                                             self
      */
@@ -83,7 +80,6 @@ interface Zend_View_Helper_Navigation_Helper
     /**
      * Returns ACL or null if it isn't set using {@link setAcl()} or
      * {@link setDefaultAcl()}
-     *
      * @return Zend_Acl|null  ACL object or null
      */
     public function getAcl();
@@ -96,6 +92,7 @@ interface Zend_View_Helper_Navigation_Helper
      *                                             instance of type
      *                                             {@link Zend_Acl_Role_Interface},
      *                                             or null. Default is null.
+     *
      * @throws Zend_View_Exception                 if $role is invalid
      * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
      *                                             self
@@ -104,7 +101,6 @@ interface Zend_View_Helper_Navigation_Helper
 
     /**
      * Returns ACL role to use when iterating pages, or null if it isn't set
-     *
      * @return string|Zend_Acl_Role_Interface|null  role or null
      */
     public function getRole();
@@ -115,6 +111,7 @@ interface Zend_View_Helper_Navigation_Helper
      * @param  bool $useAcl                        [optional] whether ACL
      *                                             should be used. Default is
      *                                             true.
+     *
      * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
      *                                             self
      */
@@ -122,14 +119,12 @@ interface Zend_View_Helper_Navigation_Helper
 
     /**
      * Returns whether ACL should be used
-     *
      * @return bool  whether ACL should be used
      */
     public function getUseAcl();
 
     /**
      * Return renderInvisible flag
-     *
      * @return bool
      */
     public function getRenderInvisible();
@@ -138,6 +133,7 @@ interface Zend_View_Helper_Navigation_Helper
      * Render invisible items?
      *
      * @param  bool $renderInvisible                       [optional] boolean flag
+     *
      * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface
      *                                                     returns self
      */
@@ -149,6 +145,7 @@ interface Zend_View_Helper_Navigation_Helper
      * @param  bool $useTranslator                 [optional] whether
      *                                             translator should be used.
      *                                             Default is true.
+     *
      * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
      *                                             self
      */
@@ -156,42 +153,36 @@ interface Zend_View_Helper_Navigation_Helper
 
     /**
      * Returns whether translator should be used
-     *
      * @return bool  whether translator should be used
      */
     public function getUseTranslator();
 
     /**
      * Checks if the helper has a container
-     *
      * @return bool  whether the helper has a container or not
      */
     public function hasContainer();
 
     /**
      * Checks if the helper has an ACL instance
-     *
      * @return bool  whether the helper has a an ACL instance or not
      */
     public function hasAcl();
 
     /**
      * Checks if the helper has an ACL role
-     *
      * @return bool  whether the helper has a an ACL role or not
      */
     public function hasRole();
 
     /**
      * Checks if the helper has a translator
-     *
      * @return bool  whether the helper has a translator or not
      */
     public function hasTranslator();
 
     /**
      * Magic overload: Should proxy to {@link render()}.
-     *
      * @return string
      */
     public function __toString();
@@ -205,6 +196,7 @@ interface Zend_View_Helper_Navigation_Helper
      *                                               helper should render the
      *                                               container returned by
      *                                               {@link getContainer()}.
+     *
      * @return string                                helper output
      * @throws Zend_View_Exception                   if unable to render
      */

@@ -2,13 +2,13 @@
     <ul class="nav nav-pills">
         <li><a href="/admin/blogs/index">All Blogs</a></li>
         <li><a href="/admin/categories">Category</a></li>
-	    <li><a href="/admin/post-types">Post Types</a></li>
-	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+        <li><a href="/admin/post-types">Post Types</a></li>
+        <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
         <li><a href="/admin/blog-groups">Blog Groups</a></li>
         <li><a href="/admin/comments">Comments</a></li>
     </ul>
 </div>
-<br /><br />
+<br/><br/>
 <div class="row-fluid">
 
 
@@ -45,7 +45,9 @@
         <tr>
             <td class="centered"><?php echo ++$count ?></td>
             <td><?php echo $display['comments'] ?></td>
-            <td><a href="#"<?php echo ($display['is_published'] == 1) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($display['is_published'] == 1) ? "Un-publish": "Publish" ?></a></td>
+            <td><a
+                href="#"<?php echo ($display['is_published'] == 1) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($display['is_published'] == 1) ? "Un-publish" : "Publish" ?></a>
+            </td>
             <td><?php echo $display['create_date'] ?></td>
 
 

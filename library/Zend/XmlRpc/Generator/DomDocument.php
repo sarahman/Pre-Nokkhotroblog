@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Generator
@@ -34,7 +31,6 @@ class Zend_XmlRpc_Generator_DomDocument extends Zend_XmlRpc_Generator_GeneratorA
      * @var DOMDocument
      */
     protected $_dom;
-
     /**
      * @var DOMNode
      */
@@ -44,6 +40,7 @@ class Zend_XmlRpc_Generator_DomDocument extends Zend_XmlRpc_Generator_GeneratorA
      * Start XML element
      *
      * @param string $name
+     *
      * @return void
      */
     protected function _openElement($name)
@@ -65,10 +62,10 @@ class Zend_XmlRpc_Generator_DomDocument extends Zend_XmlRpc_Generator_GeneratorA
 
     /**
      * Close an previously opened XML element
-     *
      * Resets $_currentElement to the next parent node in the hierarchy
      *
      * @param string $name
+     *
      * @return void
      */
     protected function _closeElement($name)
@@ -80,7 +77,6 @@ class Zend_XmlRpc_Generator_DomDocument extends Zend_XmlRpc_Generator_GeneratorA
 
     /**
      * Save XML as a string
-     *
      * @return string
      */
     public function saveXml()
@@ -90,12 +86,11 @@ class Zend_XmlRpc_Generator_DomDocument extends Zend_XmlRpc_Generator_GeneratorA
 
     /**
      * Initializes internal objects
-     *
      * @return void
      */
     protected function _init()
     {
-        $this->_dom = new DOMDocument('1.0', $this->_encoding);
+        $this->_dom            = new DOMDocument('1.0', $this->_encoding);
         $this->_currentElement = $this->_dom;
     }
 }

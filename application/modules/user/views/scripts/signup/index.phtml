@@ -18,32 +18,31 @@
 <div class="container-fluid" style="margin: 0 auto">
 
 
-
-
     <div class="row">
 
 
-         <div class="span6 offset5" >
-              <h1>Registration page</h1>
-         </div>
+        <div class="span6 offset5">
+            <h1>Registration page</h1>
+        </div>
 
 
         <div class="span6 offset5" style="margin-top:80px">
 
             <?php if (empty($this->errorMsg)) : ?>
-                <?php echo $this->flashMessenger() ?>
+            <?php echo $this->flashMessenger() ?>
             <?php else : ?>
-                <div class="alert-message error">
-                    <a class="close" href="#">&times;</a>
-                    <p><?php echo $this->errorMsg ?></p>
-                </div>
+            <div class="alert-message error">
+                <a class="close" href="#">&times;</a>
+
+                <p><?php echo $this->errorMsg ?></p>
+            </div>
             <?php endif ?>
 
             <div class="row">
 
 
                 <div class="span6">
-                    <?php echo $this->userForm ; ?>
+                    <?php echo $this->userForm; ?>
                 </div>
             </div>
 
@@ -52,7 +51,8 @@
     </div>
 
 </div>
-<br /><br /><br /><br /><br />
+<br/><br/><br/><br/><br/>
+
 <div class="footer-container">
     <footer class="footer">
         <p>&copy; <?php echo date('Y') ?> Portal</p>

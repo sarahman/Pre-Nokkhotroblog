@@ -2,7 +2,7 @@
     <div class="span12">
         <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
         <?php else: ?>
-   <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+        <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
         <?php endif; ?>
         <?php echo $this->noticeEntry; ?>
     </div>

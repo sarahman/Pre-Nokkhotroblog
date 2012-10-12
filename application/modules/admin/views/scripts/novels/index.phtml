@@ -38,9 +38,11 @@
 
                 <td class="span6">
 
-                    <a href="/admin/novels/novel-name-publish-status/id/<?php echo $novel['novel_name_id'] ?>" <?php echo ($novel['novel_name_is_published'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($novel['novel_name_is_published'] == 0) ? "Publish": "Unpublish" ?></a>
-                    <a href="/admin/novels/edit-novel-name/id/<?php echo $novel['novel_name_id'] ?>" class="btn btn-success">Edit</a> &nbsp;&nbsp;
-                    <a href="/admin/novels/delete-novel-name/id/<?php echo $novel['novel_name_id'] ?>" class="btn btn-danger">Delete</a>
+                    <a href="/admin/novels/novel-name-publish-status/id/<?php echo $novel['novel_name_id'] ?>" <?php echo ($novel['novel_name_is_published'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($novel['novel_name_is_published'] == 0) ? "Publish" : "Unpublish" ?></a>
+                    <a href="/admin/novels/edit-novel-name/id/<?php echo $novel['novel_name_id'] ?>"
+                       class="btn btn-success">Edit</a> &nbsp;&nbsp;
+                    <a href="/admin/novels/delete-novel-name/id/<?php echo $novel['novel_name_id'] ?>"
+                       class="btn btn-danger">Delete</a>
                     <a href="/admin/novels/novel-post/id/<?php echo $novel['novel_name_id'] ?>" class="btn btn-success">Show</a>
 
                 </td>

@@ -1,49 +1,72 @@
+<div class="row-fluid content-header">
+    <h1>Admin Information </h1>
+
+</div>
+<table class="table table-striped table-bordered" class="span6">
 
 
-    <div class="row-fluid content-header">
-        <h1>Admin Information </h1>
+    <tbody>
 
-    </div>
-    <table class="table table-striped table-bordered" class="span6">
+    <?php if (!empty($this->getDetailForAdmin)) : ?><?php //$userId ?>
 
-        
+    <tr>
+        <td class="report-no-data" colspan="5">No User has been found.</td>
+    </tr>
 
-        <tbody>
+        <?php else:  foreach ($this->displayp AS $blog) : ?>
 
-            <?php if (!empty($this->getDetailForAdmin)) : ?><?php //$userId ?>
+    <tr>
+        <th class="span4">User Profile Details</th>
+    </tr>
 
-            <tr><td class="report-no-data" colspan="5">No User has been found.</td></tr>
+    <tr>
+        <td>User Name</td>
+        <td class="centered"><?php echo $blog['username']; ?></td>
+        </td></tr>
+    <tr>
+        <td>User Name</td>
+        <td class="centered"><?php echo $blog['name']; ?></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td class="centered"><?php echo $blog['email_address']; ?></td>
+    </tr>
+    <tr>
+        <td>Last Login</td>
+        <td class="centered"><?php echo $blog['last_login']; ?></td>
+    </tr>
+    <tr>
+        <td>Create Date</td>
+        <td class="centered"><?php echo $blog['create_date']; ?></td>
+    </tr>
+    <tr>
+        <td>Update Date</td>
+        <td class="centered"><?php echo $blog['update_date']; ?></td>
+    </tr>
+    <tr>
+        <td>Create By</td>
+        <td class="centered"><?php echo $blog['create_by']; ?></td>
+    </tr>
+    <tr>
+        <td>Action</td>
+        <td class="centered">
 
-            <?php else:  foreach($this->displayp AS $blog) : ?>
-			
-			<tr><th class="span4">User Profile Details</th></tr>
-           
-		<tr><td>User Name</td><td class="centered"><?php echo $blog['username']; ?></td></td></tr>
-               <tr> <td>User Name</td><td class="centered"><?php echo $blog['name']; ?></td></tr>
-               <tr> <td>Email</td><td class="centered"><?php echo $blog['email_address']; ?></td></tr>
-               <tr> <td>Last Login</td><td class="centered"><?php echo $blog['last_login']; ?></td></tr>
-                <tr> <td>Create Date</td><td class="centered"><?php echo $blog['create_date']; ?></td></tr>
-                <tr><td>Update Date</td><td class="centered"><?php echo $blog['update_date']; ?></td></tr>
-                <tr><td>Create By</td><td class="centered"><?php echo $blog['create_by']; ?></td></tr>
-                <tr><td>Action</td><td class="centered">
-		
 
-				<a href="/admin/admin-users/selectstatus/id/<?php echo $blog['admin_id'] ?>" <?php echo ($blog['user_status'] == 'in-active') ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($blog['user_status'] == 'in-active') ? "Active": "Deactive" ?></a>
-				
-                                <a href="/admin/admin-users/edit/id/<?php echo $blog['admin_id'] ?>" class='btn btn-warning'>Edit</a>
-				<a href="/admin/admin-users/delete/id/<?php echo $blog['admin_id'] ?>" class='btn btn-danger'>Delet</a>
-				<a href="/admin/admin-users" class="btn btn-success">Close Profile</a>
-               
-				
-                   
-                </td>
-            </tr>
+            <a href="/admin/admin-users/selectstatus/id/<?php echo $blog['admin_id'] ?>" <?php echo ($blog['user_status'] == 'in-active') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($blog['user_status'] == 'in-active') ? "Active" : "Deactive" ?></a>
 
-            <?php endforeach; endif ?>
+            <a href="/admin/admin-users/edit/id/<?php echo $blog['admin_id'] ?>" class='btn btn-warning'>Edit</a>
+            <a href="/admin/admin-users/delete/id/<?php echo $blog['admin_id'] ?>" class='btn btn-danger'>Delet</a>
+            <a href="/admin/admin-users" class="btn btn-success">Close Profile</a>
 
-        </tbody>
 
-    </table>
+        </td>
+    </tr>
+
+        <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
     
 
 

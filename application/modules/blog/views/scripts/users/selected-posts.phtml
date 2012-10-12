@@ -4,9 +4,12 @@
 
         <div class="well1">
             <?php foreach ($this->selectedBlogs as $selectedBlog): ?>
-            <h3><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a></h3>
+            <h3><a
+                href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+            </h3>
             <p class="author">
-                <img src="/<?php echo $selectedBlog['profile_picture']; ?>"  width="40px" height="40px"/> &nbsp; <?php echo $selectedBlog['username'];?>&nbsp;
+                <img src="/<?php echo $selectedBlog['profile_picture']; ?>" width="40px" height="40px"/>
+                &nbsp; <?php echo $selectedBlog['username'];?>&nbsp;
 
                 ::&nbsp;Posted By
                 <cite><?php echo $selectedBlog['category_name'] ?></cite> ::
@@ -30,7 +33,7 @@
         <!--/right contain -->
     </div>
     <div class="span4">
- <br />
+        <br/>
         <h9> Selected Bloger</h9>
         &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
         <hr/>

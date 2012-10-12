@@ -2,7 +2,6 @@
 
 /**
  * Authentication Plugin
- *
  * @category   Plugin
  * @copyright  Copyright (c) 2011 Right Brain Solution Ltd. http://rightbrainsolution.com
  * @author     Syed Abidur Rahman <abid@rightbrainsolution.com>
@@ -15,22 +14,22 @@ class Speed_Plugin_Authentication extends Zend_Controller_Plugin_Abstract
     {
 
         $actionToBeSkipped = array('login');
-        $userInformation = new Zend_Session_Namespace('userInformation');
+        $userInformation   = new Zend_Session_Namespace('userInformation');
 
         $acl = Speed_Model_Acl::getInstance();
         if ($userInformation->userData) {
 
             $isAllowed = $acl->isRoleAllowed(
-                    $userInformation->userData['role_id'],
-                    $request->getModuleName('module'),
-                    $request->getControllerName('controller'),
-                    $request->getActionName('action')
+                $userInformation->userData['role_id'],
+                $request->getModuleName('module'),
+                $request->getControllerName('controller'),
+                $request->getActionName('action')
             );
-
 
             if ($isAllowed == false) {
 
-                echo "You don't have access"; die;
+                echo "You don't have access";
+                die;
 
                 $this->setPath($request, array(
                     'Module' => 'user',
@@ -38,9 +37,6 @@ class Speed_Plugin_Authentication extends Zend_Controller_Plugin_Abstract
                     'Action' => 'have-no-access',
                 ));
             }
-
-
-
         } else {
 
             if (!in_array($request->getActionName(), $actionToBeSkipped)) {

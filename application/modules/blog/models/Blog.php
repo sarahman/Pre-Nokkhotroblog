@@ -1,7 +1,6 @@
 <?php
 /**
  * Blog Model
- *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -30,16 +29,13 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($data)) {
             return false;
         }
-
-        $permalink = new Speed_Utility_Url();
-        $authNamespace = new Zend_Session_Namespace('userInformation');
-
+        $permalink           = new Speed_Utility_Url();
+        $authNamespace       = new Zend_Session_Namespace('userInformation');
         $data['create_date'] = date('Y-m-d H:i:s');
-        $data['permalink'] = $permalink->getUrl($data['title']);
-        $data['create_by'] = $authNamespace->userData['user_id'];
-        $data['post_type'] = 'blog';
-        $blogId = $this->dao->create($data);
-
+        $data['permalink']   = $permalink->getUrl($data['title']);
+        $data['create_by']   = $authNamespace->userData['user_id'];
+        $data['post_type']   = 'blog';
+        $blogId              = $this->dao->create($data);
         return $blogId;
     }
 
@@ -48,20 +44,14 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($data) AND (empty($blogId))) {
             return false;
         }
-
         $data['last_modaretion_date'] = date('Y-m-d H:i:s');
-
-        $status = $this->getPublishStatus($blogId);
-
+        $status                       = $this->getPublishStatus($blogId);
         if ($status['is_published'] == 1) {
-
             $data['is_published'] = 0;
         } else {
             $data['is_published'] = 1;
         }
-
         $this->dao->modify($data, $blogId);
-
         return true;
     }
 
@@ -70,7 +60,6 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($blogId)) {
             return false;
         }
-
         return $this->dao->getPublishStatus($blogId);
     }
 
@@ -79,21 +68,14 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($data) AND (empty($blogId))) {
             return false;
         }
-
         $data['last_modaretion_date'] = date('Y-m-d H:i:s');
-
-
-        $status = $this->getSelectStatus($blogId);
-
+        $status                       = $this->getSelectStatus($blogId);
         if ($status['is_selected'] == 1) {
-
             $data['is_selected'] = 0;
         } else {
             $data['is_selected'] = 1;
         }
-
         $this->dao->modify($data, $blogId);
-
         return true;
     }
 
@@ -102,7 +84,6 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($blogId)) {
             return false;
         }
-
         return $this->dao->getSelectStatus($blogId);
     }
 
@@ -111,29 +92,21 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($data) AND (empty($blogId))) {
             return false;
         }
-
         $sticky = $this->getStickeyPost();
-
-
         if (!empty($sticky)) {
             if ($sticky[0]['sticky_on_home_page'] == 1) {
-
                 $data['sticky_on_home_page'] = 0;
-
                 $this->dao->modify($data, $sticky[0]['blog_id']);
             }
         } else {
             $data['sticky_on_home_page'] = 1;
         }
-
         $this->dao->modify($data, $blogId);
-
         return true;
     }
 
     public function getStickeyPost()
     {
-
         return $this->dao->getStickeyPost();
     }
 
@@ -141,9 +114,6 @@ class Blog_Model_Blog extends Speed_Model_Abstract
     {
         return $this->dao->getRecentPosts();
     }
-
-
-
 
     public function getSelectedPosts()
     {
@@ -155,19 +125,15 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty ($blogId)) {
             return false;
         }
-
         $record = $this->dao->getDetailForAdmin($blogId);
-
         return $record;
     }
-    
 
     public function getUserPosts($userId)
     {
         if (empty($userId)) {
             return false;
         }
-
         return $this->dao->getUserPosts($userId);
     }
 
@@ -176,26 +142,14 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($data) || empty($blogId)) {
             return false;
         }
-
-        $permalink = new Speed_Utility_Url();
-        $data['permalink'] = $permalink->getUrl($data['title']);
-
-        $data['update_date'] = date('Y-m-d H:i:s');
-        $authNamespace = new Zend_Session_Namespace('userInformation');
-        $data['update_by'] = $authNamespace->userData['user_id'];
+        $permalink            = new Speed_Utility_Url();
+        $data['permalink']    = $permalink->getUrl($data['title']);
+        $data['update_date']  = date('Y-m-d H:i:s');
+        $authNamespace        = new Zend_Session_Namespace('userInformation');
+        $data['update_by']    = $authNamespace->userData['user_id'];
         $data['is_published'] = 0;
-
         $this->dao->modify($data, $blogId);
         return true;
-    }
-
-    public function delete($blogId = null)
-    {
-        if (empty($blogId)) {
-            return false;
-        }
-
-        return $this->dao->remove($blogId);
     }
 
     protected function formatDate($date)
@@ -209,7 +163,6 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty ($options)) {
             return array();
         }
-
         $options = $this->checkData($options);
         return $this->dao->getSummary($this->setCountOffset($options));
     }
@@ -219,7 +172,6 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty ($options)) {
             return 0;
         }
-
         $options = $this->checkData($options);
         return $this->dao->getRowCount($options);
     }
@@ -232,10 +184,9 @@ class Blog_Model_Blog extends Speed_Model_Abstract
     protected function checkData(array $options)
     {
         if (empty($options['semester_id'])) {
-            $semesterModel = new Devnet_Model_Semester();
+            $semesterModel          = new Devnet_Model_Semester();
             $options['semester_id'] = $semesterModel->getCurrentSemesterId();
         }
-
         return $options;
     }
 
@@ -256,19 +207,16 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         if (empty($examId)) {
             return '';
         }
-
         $teacherCourseModel = new Exam_Model_TeacherCourse();
-        $result = $teacherCourseModel->getDetails(array('exam_id' => $examId));
-
+        $result             = $teacherCourseModel->getDetails(array('exam_id' => $examId));
         return $result['semester_title'] . " " . $result['course_title'] . " " . $result['exam_title'];
     }
 
     public function getDetailByPermalink($permalink)
     {
-        if (empty($permalink)){
+        if (empty($permalink)) {
             return false;
         }
-
         return $this->dao->getDetailByPermalink($permalink);
     }
 
@@ -277,15 +225,11 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         return $this->dao->getMaxViewBlog();
     }
 
-    public function updateBlogViewed($blogId,$viewed)
+    public function updateBlogViewed($blogId, $viewed)
     {
-
-        $data = array();
-
+        $data           = array();
         $data['viewed'] = $viewed + 1;
-
         $this->dao->modify($data, $blogId);
-
         return true;
     }
 
@@ -293,35 +237,27 @@ class Blog_Model_Blog extends Speed_Model_Abstract
     {
         return $this->dao->getTopBlogger();
     }
-    
+
     public function getBlogtrash()
-	{
-	return $this->dao->getBlogtrash();
-
-	}
-
- public function getDetailByCategoryId($id)
     {
-        if(empty($id)){
+        return $this->dao->getBlogtrash();
+    }
+
+    public function getDetailByCategoryId($id)
+    {
+        if (empty($id)) {
             return false;
         }
         $record = $this->dao->getDetailByCategoryId($id);
-
         return $record;
-
-      
     }
-   public function getDetailByCategory($id)
+
+    public function getDetailByCategory($id)
     {
-        if(empty($id)){
+        if (empty($id)) {
             return false;
         }
         $record = $this->dao->getDetailByCategory($id);
-
         return $record;
-
-      
     }
-
-
 }

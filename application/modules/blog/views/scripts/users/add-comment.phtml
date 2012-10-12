@@ -2,53 +2,50 @@
 <div class="span12">
 
     <div id="article-<?php echo $this->blog['blog_id']; ?>">
-        <h2 class='page-header'><a href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"><?php echo $this->blog['title']; ?></a>
+        <h2 class='page-header'><a
+            href="/show/<?php echo $this->blog['username'] ?>/<?php echo $this->blog['permalink']; ?>"><?php echo $this->blog['title']; ?></a>
         </h2>
 
         <p class="author">
-                              <?php 
-                
-                if(!empty($this->blog['profile_picture']))
-                {
-		?>
-               <img src="/<?php echo  $this->blog['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
+            <?php
 
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+            if (!empty($this->blog['profile_picture'])) {
+                ?>
+                <img src="/<?php echo  $this->blog['profile_picture'] ?>" width="40px" height="40px"/>
+                <?php } else { ?>
 
-		<?php
-               }
- 		?>
-</a>
-                              <a href="/profile/<?php echo $this->blog['username'] ?>">
+                <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
 
- <?php 
-                
-                if(!empty($this->blog['display_name']))
-                {
-                echo $this->blog['display_name']; 
- 		}
-		
+                <?php
+            }
+            ?>
+            </a>
+            <a href="/profile/<?php echo $this->blog['username'] ?>">
+
+                <?php
+
+                if (!empty($this->blog['display_name'])) {
+                    echo $this->blog['display_name'];
+                }
                 else
-		{
-                    if(!empty($this->blog['name']))
-			{
-                    echo $this->blog['name']; 
+                {
+                    if (!empty($this->blog['name'])) {
+                        echo $this->blog['name'];
                     }
-                    else 
+                    else
                     {
                         echo $this->blog['username'];
-                        
-                        }
-                       }
+                    }
+                }
                 ?>
-</a>::
-                              <a href="/category/<?php echo $this->blog['blog_category_id'] ?>"><?php echo $this->blog['category_name'] ?></a> ::
-                              &nbsp;<?php echo date('F jS Y', strtotime($this->blog['create_date'])); ?>:: &nbsp;
-                              মন্তব্য টি :: <?php echo $this->blog['viewed'] ?> বার পঠিত
+            </a>::
+            <a href="/category/<?php echo $this->blog['blog_category_id'] ?>"><?php echo $this->blog['category_name'] ?></a>
+            ::
+            &nbsp;<?php echo date('F jS Y', strtotime($this->blog['create_date'])); ?>:: &nbsp;
+            মন্তব্য টি :: <?php echo $this->blog['viewed'] ?> বার পঠিত
 
-                          </p>
-<hr>
+        </p>
+        <hr>
 
 
         <div class='meta'>
@@ -57,14 +54,14 @@
                 <?php echo $this->blog['description']; ?>
 
             </p>
-           <?php
-                   if($authNamespace->userData['username'] == $this->userDetail['username']): ?>
-                      <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
-            <?php endif ?>
+            <?php
+            if ($authNamespace->userData['username'] == $this->userDetail['username']): ?>
+                <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
+                <?php endif ?>
 
         </div>
     </div>
 </div>
 
 
-                <?php echo $this->commentsForm; ?>
+<?php echo $this->commentsForm; ?>

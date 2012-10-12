@@ -1,20 +1,16 @@
 <div class="span12">
-  <div class="row-fluid">
- <?php if (empty($this->pagePosts)) : ?>
-       No Notice has been found.
+    <div class="row-fluid">
+        <?php if (empty($this->pagePosts)) : ?>
+        No Notice has been found.
 
         <?php else:
         foreach ($this->pagePosts AS $pagePosts) : ?>
-           
-               <?php echo $pagePosts['description'] ?>
+
+            <?php echo $pagePosts['description'] ?>
 
             <?php endforeach; endif ?>
 
 
-
-
-
-
-  </div>
+    </div>
 
 </div>

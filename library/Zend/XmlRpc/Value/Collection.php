@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Value
@@ -20,12 +17,10 @@
  * @version    $Id: Collection.php 24594 2012-01-05 21:27:01Z matthew $
  */
 
-
 /**
  * Zend_XmlRpc_Value
  */
 require_once 'Zend/XmlRpc/Value.php';
-
 
 /**
  * @category   Zend
@@ -36,7 +31,6 @@ require_once 'Zend/XmlRpc/Value.php';
  */
 abstract class Zend_XmlRpc_Value_Collection extends Zend_XmlRpc_Value
 {
-
     /**
      * Set the value of a collection type (array and struct) native types
      *
@@ -44,7 +38,7 @@ abstract class Zend_XmlRpc_Value_Collection extends Zend_XmlRpc_Value
      */
     public function __construct($value)
     {
-        $values = (array)$value;   // Make sure that the value is an array
+        $values = (array)$value; // Make sure that the value is an array
         foreach ($values as $key => $value) {
             // If the elements of the given array are not Zend_XmlRpc_Value objects,
             // we need to convert them as such (using auto-detection from PHP value)
@@ -55,10 +49,8 @@ abstract class Zend_XmlRpc_Value_Collection extends Zend_XmlRpc_Value
         }
     }
 
-
     /**
      * Return the value of this object, convert the XML-RPC native collection values into a PHP array
-     *
      * @return arary
      */
     public function getValue()

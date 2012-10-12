@@ -1,7 +1,6 @@
 <?php
 /**
  * Blog category Dao Model
- *
  * @category        Model
  * @package         Blog
  * @author             Mohammad Zafar Iqbal <zafar@speedplusnet.com >
@@ -10,35 +9,27 @@
 class Admin_Model_Dao_Feedback extends Speed_Model_Dao_Abstract
 {
     public function __construct()
-    	{
+    {
         parent::__construct();
-        $this->loadTable('feedbacks','feedback_id');
-	
-   	 }
-
+        $this->loadTable('feedbacks', 'feedback_id');
+    }
 
     public function getAll()
-    	{
-
+    {
         $select = $this->select()
-                       ->from($this->_name);
-
+            ->from($this->_name);
         return $this->returnResultAsAnArray($this->fetchAll($select));
-    	}
+    }
 
-
-	public function getFeedbackDetail($userId)
-    	{
-       
+    public function getFeedbackDetail($userId)
+    {
         $select = $this->select()
-                       ->from($this->_name)
-                        ->where('admin_id=?', $userId);
-
+            ->from($this->_name)
+            ->where('admin_id=?', $userId);
         return $this->returnResultAsAnArray($this->fetchAll($select));
-   	 }
-         
-   /*	 
-   	 public function validateUser($data)
+    }
+    /*
+        public function validateUser($data)
     {
 
         $select = $this->select()
@@ -50,9 +41,9 @@ class Admin_Model_Dao_Feedback extends Speed_Model_Dao_Abstract
         return $this->returnResultAsAnArray($this->fetchRow($select));
     }
 
-    
 
-   
+
+
    // public function getDetail($userId)
    // {
         //$select = $this->select()
@@ -62,11 +53,11 @@ class Admin_Model_Dao_Feedback extends Speed_Model_Dao_Abstract
        // return $this->returnResultAsAnArray($this->fetchRow($select));
     //}
 
-     public function getDetail($postId)			
+     public function getDetail($postId)
         {
             $select = $this->select()
                 ->from($this->_name)
-                ->where("{$this->_primaryKey} =?", $postId);		
+                ->where("{$this->_primaryKey} =?", $postId);
 
             return $this->returnResultAsAnArray($this->fetchRow($select));
         }
@@ -91,18 +82,18 @@ class Admin_Model_Dao_Feedback extends Speed_Model_Dao_Abstract
        return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-	public function remove($id = null)
-    	{
-			if (empty ($id)) 
-			{
-				return false;
-			}
+    public function remove($id = null)
+        {
+            if (empty ($id))
+            {
+                return false;
+            }
 
-			return parent::delete("{$this->_primaryKey} = '{$id}'");
-		}
-		
-	
-		
+            return parent::delete("{$this->_primaryKey} = '{$id}'");
+        }
+
+
+
    
 
     public function getDetailByUsername($username)
@@ -126,7 +117,5 @@ class Admin_Model_Dao_Feedback extends Speed_Model_Dao_Abstract
            }
     
     */
-	
-
 }
 

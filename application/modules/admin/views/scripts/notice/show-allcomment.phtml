@@ -3,52 +3,56 @@
         <li><a href="/admin/notice">All Notice</a></li>
         <li><a href="/admin/notice/show-pandingcomment">All Pending Comment</a></li>
         <li><a href="/admin/notice/show-allcomment">All Publish Comment</a></li>
-         
+
     </ul>
 </div>
-<br /><br />
+<br/><br/>
 
 <div class="row-fluid content-header">
     <h1>Latest Comment Notices</h1>
 
 </div>
 
-    <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
 
-        <thead>
-            <tr>
+    <thead>
+    <tr>
 
-                <th class="span1">Sl</th>
-               <th class="span6">Comment</th>
-	       <th class="span6">Create Date</th>
-	       <th class="span6">Publish Status</th>
+        <th class="span1">Sl</th>
+        <th class="span6">Comment</th>
+        <th class="span6">Create Date</th>
+        <th class="span6">Publish Status</th>
 
-            </tr>
-        </thead>
+    </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
 
-            <?php if (empty($this->notice)) : ?>
+    <?php if (empty($this->notice)) : ?>
 
-            <tr><td class="report-no-data" colspan="5">No Notice has been found.</td></tr>
+    <tr>
+        <td class="report-no-data" colspan="5">No Notice has been found.</td>
+    </tr>
 
-            <?php else: $count = 0; foreach($this->notice AS $notice) : ?>
+        <?php else: $count = 0;
+        foreach ($this->notice AS $notice) : ?>
 
-            <tr>
-                <td class="centered"><?php echo ++$count ?></td>
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
 
-		<td><?php echo $notice['comments'] ?></td>
-		<td><?php echo $notice['create_date'] ?></td>
-		<td class="centered"><?php echo ($notice['is_published'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
-                <td class="span1"><a href ="/admin/notice/show-comment/id/<?php echo $notice['comment_notice_id'] ?>" class="btn btn-success">Show</a></td>
+            <td><?php echo $notice['comments'] ?></td>
+            <td><?php echo $notice['create_date'] ?></td>
+            <td class="centered"><?php echo ($notice['is_published'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
+            <td class="span1"><a href="/admin/notice/show-comment/id/<?php echo $notice['comment_notice_id'] ?>"
+                                 class="btn btn-success">Show</a></td>
 
-            </tr>
+        </tr>
 
             <?php endforeach; endif ?>
 
-        </tbody>
+    </tbody>
 
-    </table>
+</table>
 
 
 

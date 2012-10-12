@@ -22,18 +22,19 @@
                     <?php echo $excerpt->word_limiter($recentBlogs['description']); ?>
                 </p>
                 <hr/>
-                <a href="/show/<?php echo $recentBlogs['username'] ?>/<?php echo $recentBlogs['permalink']; ?>">Read More</a>
+                <a href="/show/<?php echo $recentBlogs['username'] ?>/<?php echo $recentBlogs['permalink']; ?>">Read
+                    More</a>
                 <?php
 
                 if (empty ($authNamespace->userData['user_id'])): ?>
                     <a href="/user/auth/login/<?php echo $recentBlogs['blog_id']; ?>">Comment here</a>
 
-                <?php else: ?>
+                    <?php else: ?>
                     <a href="/user/blogs/comment/id/<?php echo $recentBlogs['blog_id']; ?>">Comment here</a>
-                <?php endif ?>
+                    <?php endif ?>
 
             </div>
-    </div>
+        </div>
         <?php endforeach ?>
     </div>
 

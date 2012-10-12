@@ -10,10 +10,9 @@
 
                 <a class="btn btn-success" href="/<?php echo $this->userDetail['username'] ?>/new-episode">Create New
 
-                
 
                     Episode</a>
-                
+
             </div>
             <?php } ?>
 
@@ -44,13 +43,14 @@
                     foreach ($this->episode AS $episode) : ?>
 
                     <tr>
-                        <td><?php echo ++ $count ?></td>
-                        <td> <a href="/<?php echo $this->userDetail['username'] ?>/show-episodes/<?php echo  $episode['episode_id'] ?>"><?php echo $episode['episode_name'] ?></a>
+                        <td><?php echo ++$count ?></td>
+                        <td><a
+                            href="/<?php echo $this->userDetail['username'] ?>/show-episodes/<?php echo  $episode['episode_id'] ?>"><?php echo $episode['episode_name'] ?></a>
                         </td>
                         <?php $cdata = $episode['create_by'];
                         if ($authNamespace->userData['user_id'] == $cdata) {
                             ?>
-                            <td><a href="/blog/episodes/add/id/<?php echo  $episode['episode_id'] ?>">Continue 
+                            <td><a href="/blog/episodes/add/id/<?php echo  $episode['episode_id'] ?>">Continue
                                 Writing</a></td>
                             <?php
                         }
@@ -81,14 +81,14 @@
         &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
         <hr/>
 
-         <?php if (!empty($this->allEpisode)) : ?>
-     <?php foreach ($this->allEpisode AS $allEpisode) : ?>
+        <?php if (!empty($this->allEpisode)) : ?>
+        <?php foreach ($this->allEpisode AS $allEpisode) : ?>
 
 
-             <a href="/<?php echo $this->userDetail['username'] ?>/episode/<?php echo  $allEpisode['episode_id'] ?>"><?php echo $allEpisode['episode_name'] ?></a>
+            <a href="/<?php echo $this->userDetail['username'] ?>/episode/<?php echo  $allEpisode['episode_id'] ?>"><?php echo $allEpisode['episode_name'] ?></a>
 
-        
-<hr/>
+
+            <hr/>
             <?php endforeach; endif ?>
 
         &nbsp;&nbsp;

@@ -2,7 +2,6 @@
 
 /**
  * Photo Dao
- *
  * @Photo    Dao
  * @package     Library
  * @author      Eftakhairul Islam <eftakhairul@gmail.com>
@@ -14,6 +13,6 @@ class Speed_Model_Dao_Photo extends Speed_Model_Dao_Abstract
     public function __construct()
     {
         parent::__construct();
-        $this->loadTable('photo_gallery','photo_id');
+        $this->loadTable('photo_gallery', 'photo_id');
     }
 }

@@ -1,24 +1,19 @@
 <?php
 
-
 /**
  * User Model
- *
  * @category    Model
  * @package     Library
  * @author      Eftakhairul Islam <eftakhairul@gmail.com>
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
  * @copyright   Right Brain Solution Ltd. (http://www.rightbrainsolution.com)
  */
-
-
 class Speed_Model_User extends Speed_Model_Abstract
 {
     /**
      * @var Speed_Model_Dao_User
      */
     protected $dao;
-
     protected $salt = "Speed-Key";
 
     public function __construct(Speed_Model_Dao_Abstract $dao = null)
@@ -32,13 +27,11 @@ class Speed_Model_User extends Speed_Model_Abstract
 
     public function validateUser($data = array())
     {
-
         if (empty($data)) {
             return false;
         }
 
         (empty($data['password'])) || ($data['password'] = $this->applyHashing($data['password'], $this->salt));
-
         return $this->dao->validateUser($data);
     }
 
@@ -57,7 +50,6 @@ class Speed_Model_User extends Speed_Model_Abstract
             return false;
         }
 
-
         $data = array('password' => $this->applyHashing($data['password'], $this->salt));
         return $this->dao->updatePassword($data, $activationCode);
     }
@@ -73,8 +65,7 @@ class Speed_Model_User extends Speed_Model_Abstract
         (empty($data['password'])) || ($data['password'] = $this->applyHashing($data['password'], $this->salt));
 
         $data['activation_code'] = $this->applyHashing($data['username'], $this->salt);
-
-        $data['auth_token'] = $authToken;
+        $data['auth_token']  = $authToken;
         $data['user_status'] = User_Model_UserStatus::INACTIVE;
         $data['create_date'] = date('Y-m-d H:i:s');
 
@@ -112,11 +103,6 @@ class Speed_Model_User extends Speed_Model_Abstract
         return $this->dao->getAllUsers();
     }
 
-    public function getDetail($userId)
-    {
-        return $this->dao->getDetail($userId);
-    }
-
     public function updateLastLoginTime($userId)
     {
         if (empty($userId)) {
@@ -124,8 +110,7 @@ class Speed_Model_User extends Speed_Model_Abstract
         }
 
         $data['last_login'] = date('Y-m-d H:i:s');
-
-        $this->dao->modify($data, $userId);
+        return $this->dao->modify($data, $userId);
     }
 
     public function getDetailByEmail($email)
@@ -152,22 +137,21 @@ class Speed_Model_User extends Speed_Model_Abstract
             return false;
         }
 
-
         $data['update_date'] = date('Y-m-d H:i:s');
-
         return $this->dao->modify($data, $userId);
     }
+
     public function activateNewUser($id, $activationCode)
     {
         $activate = $this->checkValidActivationCode($id, $activationCode);
 
-        if($activate == true){
+        if ($activate == true) {
 
-          $data['user_status'] = "active";
-          $data['update_date'] = date('Y-m-d H:i:s');
+            $data['user_status'] = "active";
+            $data['update_date'] = date('Y-m-d H:i:s');
 
             return $this->dao->modify($data, $id);
-        }else{
+        } else {
             return false;
         }
     }
@@ -179,6 +163,5 @@ class Speed_Model_User extends Speed_Model_Abstract
         }
 
         return $this->dao->checkValidActivationCode($id, $activationCode);
-
     }
 }

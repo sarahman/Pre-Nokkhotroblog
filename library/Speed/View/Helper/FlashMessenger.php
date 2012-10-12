@@ -9,8 +9,9 @@ class Speed_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
 
     /**
      * Display Flash Messages.
-     * 
+     *
      * @param string $key Message level for string messages
+     *
      * @return string Flash messages formatted for output
      */
     public function flashMessenger($key = 'warning')
@@ -27,14 +28,14 @@ class Speed_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
             $flashMessenger->clearCurrentMessages();
         }
 
-        $output ='';
+        $output = '';
 
         foreach ($messages as $message)
         {
             if (is_array($message)) {
-                list($key,$message) = each($message);
+                list($key, $message) = each($message);
             }
-            $output .= sprintf($this->_getTemplate(),$key,$message);
+            $output .= sprintf($this->_getTemplate(), $key, $message);
         }
 
         return $output;
@@ -42,15 +43,14 @@ class Speed_View_Helper_FlashMessenger extends Zend_View_Helper_Abstract
 
     /**
      * Lazily fetches FlashMessenger Instance.
-     * 
      * @return null|Zend_Controller_Action_Helper_FlashMessenger
      */
     public function _getFlashMessenger()
     {
         if (null === $this->_flashMessenger) {
-            $this->_flashMessenger =
-                Zend_Controller_Action_HelperBroker::getStaticHelper(
-                    'FlashMessenger');
+            $this->_flashMessenger
+                = Zend_Controller_Action_HelperBroker::getStaticHelper(
+                'FlashMessenger');
         }
         return $this->_flashMessenger;
     }

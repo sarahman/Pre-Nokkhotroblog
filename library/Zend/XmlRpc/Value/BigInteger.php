@@ -2,9 +2,7 @@
 
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -12,7 +10,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Value
@@ -41,14 +38,13 @@ class Zend_XmlRpc_Value_BigInteger extends Zend_XmlRpc_Value_Integer
     public function __construct($value)
     {
         require_once 'Zend/Crypt/Math/BigInteger.php';
-        $integer = new Zend_Crypt_Math_BigInteger;
+        $integer      = new Zend_Crypt_Math_BigInteger;
         $this->_value = $integer->init($value);
-        $this->_type = self::XMLRPC_TYPE_I8;
+        $this->_type  = self::XMLRPC_TYPE_I8;
     }
-    
+
     /**
      * Return bigint value
-     * 
      * @return string
      */
     public function getValue()

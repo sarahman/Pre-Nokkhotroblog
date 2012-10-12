@@ -1,17 +1,15 @@
 <?php
 /**
  * User Profile Form
- *
  * @category        Form
  * @copyright       Copyright (c) 2011
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
  */
 class User_Form_ProfileForm extends Speed_Form_Base
 {
-   public function __construct($options = array())
+    public function __construct($options = array())
     {
         parent::__construct();
-
         $isEdit = empty($options['isEdit']) ? false : true;
         $this->setAttrib('enctype', 'multipart/form-data');
         $this->initForm();
@@ -21,31 +19,26 @@ class User_Form_ProfileForm extends Speed_Form_Base
         //$this->addConfirmedUserPasswordField();
         //$this->addEmailField($isEdit);
         $this->addDisplayField();
-	$this->addDobField();
-	$this->addBioField();
-	//$this->addProfileImage();
+        $this->addDobField();
+        $this->addBioField();
+        //$this->addProfileImage();
         //$this->addAvaterImage();
-	//$this->addBannerImage();
-	$this->addTaglineField();
-
+        //$this->addBannerImage();
+        $this->addTaglineField();
         //$this->addProfileImage();
         $this->addSubmitButtonField();
         $this->addCancelButtonField();
-
         $this->finalizeForm();
         EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP, 'submit', 'cancel');
     }
 
     protected function initForm()
     {
-
         $options = array(
             'name' => 'Edit Profile',
             'class' => 'span12',
             'enctype' => 'multipart/form-data'
         );
-
-
         $this->initializeForm($options);
     }
 
@@ -57,9 +50,7 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => 'Username is required and has to be unique.'
         );
-
         $element = $this->addTextElement($options);
-
         if ($isEdit) {
             $element->setAttrib('readonly', 'readonly');
         } else {
@@ -67,7 +58,6 @@ class User_Form_ProfileForm extends Speed_Form_Base
                 'table' => 'users', 'field' => 'username')));
         }
     }
-
 
     protected function addNameField()
     {
@@ -78,9 +68,7 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'messageForRequired' => 'name is required.'
         );
         $this->addTextElement($options);
-
     }
-
 
     protected function addEmailField($isEdit = false)
     {
@@ -90,14 +78,11 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => 'Email Address is required and has to be unique.'
         );
-
         $element = $this->addTextElement($options);
-
         $element->addValidator('EmailAddress', true, array('messages' => 'Please enter valid email address'));
-
         if ($isEdit == false) {
             $element->addValidator(new Zend_Validate_Db_NoRecordExists(
-                array('table' => 'users', 'field' => 'email_address')));
+                                       array('table' => 'users', 'field' => 'email_address')));
         }
     }
 
@@ -109,7 +94,6 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => 'Please enter password.'
         );
-
         $this->addPasswordElement($options);
     }
 
@@ -121,9 +105,7 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => 'Please confirm password.'
         );
-
         $element = $this->addPasswordElement($options);
-
         $element->addValidator('Identical', false, array(
             'token' => 'password',
             'messages' => 'Passwords do not match.'
@@ -139,7 +121,6 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'messageForRequired' => 'name is required.'
         );
         $this->addTextElement($options);
-
     }
 
     protected function addDobField()
@@ -147,12 +128,10 @@ class User_Form_ProfileForm extends Speed_Form_Base
         $options = array(
             'name' => 'date_of_birth',
             'label' => 'Date of birth',
-
             'class' => 'span10',
             'messageForRequired' => 'name is required.'
         );
         $this->addTextElement($options);
-
     }
 
     protected function addBioField()
@@ -161,12 +140,11 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'name' => 'bio',
             'label' => 'Bio',
             'class' => 'span10',
-            'rows'  => 10,
-            'cols'  => 20,
+            'rows' => 10,
+            'cols' => 20,
             'messageForRequired' => 'name is required.'
         );
         $this->addTextAreaElement($options);
-
     }
 
     protected function addTaglineField()
@@ -178,12 +156,11 @@ class User_Form_ProfileForm extends Speed_Form_Base
             'messageForRequired' => 'name is required.'
         );
         $this->addTextElement($options);
-
     }
+
     protected function addProfileImage()
     {
         $file = new Zend_Form_Element_File('user_image');
-
         $file->setLabel('Image')
             ->setAttrib('class', 'span4')
             ->addValidator('Extension', false, 'jpg,png,gif')
@@ -191,27 +168,21 @@ class User_Form_ProfileForm extends Speed_Form_Base
             ->setDescription('Maximize FIle Size 2 MB')
             ->setDestination('uploads/user_profile_images/')
             ->setMaxFileSize(20000);
-
         $this->addElement($file);
         //$this->addElement['user_image'] = $file;
     }
 
-
     public function addBannerImage()
     {
-       $file = new Zend_Form_Element_File('user_panel_benner');
-
+        $file = new Zend_Form_Element_File('user_panel_benner');
         $file->setLabel('Banner Image')
-             ->addValidator('Extension', false, 'jpg,png,gif')
-             ->addValidator('Size', false, 20000)
-             ->setDescription('Maximize FIle Size 2 MB')
-             ->setDestination('uploads/user_panel_benner/')
-             ->setMaxFileSize(20000);
-
+            ->addValidator('Extension', false, 'jpg,png,gif')
+            ->addValidator('Size', false, 20000)
+            ->setDescription('Maximize FIle Size 2 MB')
+            ->setDestination('uploads/user_panel_benner/')
+            ->setMaxFileSize(20000);
         $this->formElements['user_panel_benner'] = $file;
-
     }
-
 
     protected function addSubmitButtonField()
     {
@@ -221,12 +192,11 @@ class User_Form_ProfileForm extends Speed_Form_Base
     protected function addCancelButtonField()
     {
         $this->addRedirectingCancelButtonElement(array(
-            'name' => 'cancel',
-            'redirectLink' => '/user/auth'
-        ));
+                                                     'name' => 'cancel',
+                                                     'redirectLink' => '/user/auth'
+                                                 ));
     }
-
-  /*public function __construct($options = null) 
+    /*public function __construct($options = null)
 
     { 
 
@@ -275,8 +245,5 @@ class User_Form_ProfileForm extends Speed_Form_Base
 
 
     }*/
-
-
-
 }
 

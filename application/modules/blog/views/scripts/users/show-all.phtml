@@ -1,29 +1,28 @@
 <?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
 <div class="row-fluid">
 
-<h4>Comments:</h4>         
-<?php if (empty($this->comment)): ?>
-<p><?php echo "মন্তব্য নেই" ?></p>
- <?php endif; ?>
+    <h4>Comments:</h4>
+    <?php if (empty($this->comment)): ?>
+    <p><?php echo "মন্তব্য নেই" ?></p>
+    <?php endif; ?>
 
-            <div class="span7">
-                <?php   if (!empty($this->comment)) :
-  
-                foreach ($this->comment as $comment) :
+    <div class="span7">
+        <?php   if (!empty($this->comment)) :
 
-                    ?>
+        foreach ($this->comment as $comment) :
 
-<hr>
-                   
+            ?>
 
-<hr>
-                    <p><?php echo $comment['comments']?> </p>
-<hr>
+            <hr>
 
-                    <?php endforeach;  endif; ?>
 
-            </div>
+            <hr>
+            <p><?php echo $comment['comments']?> </p>
+            <hr>
 
- 
-   
+            <?php endforeach;  endif; ?>
+
+    </div>
+
+
 </div>

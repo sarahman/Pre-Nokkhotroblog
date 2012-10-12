@@ -29,20 +29,20 @@ echo $this->doctype() ?>
 
             <div class="btn-group pull-right">
 
-<!--                <div class="span6"><a href="#">Messege / Invitation / Notification</a></div>-->
-               <?php
-  if (empty ($authNamespace->userData['username'])): ?>
-            <a  href="/signup">Sign up</a>
-            ||
-            <a  href="/auth/login">Login</a>
+                <!--                <div class="span6"><a href="#">Messege / Invitation / Notification</a></div>-->
+                <?php
+                if (empty ($authNamespace->userData['username'])): ?>
+                    <a href="/signup">Sign up</a>
+                    ||
+                    <a href="/auth/login">Login</a>
 
-<?php else: ?>
+                    <?php else: ?>
 
-  Welcome to <a href="/me"><?php echo $authNamespace->userData['username'] ?></a> | <a href="/auth/logout">Logout</a>
-<?php endif ?></div>
+                    Welcome to <a href="/me"><?php echo $authNamespace->userData['username'] ?></a> | <a
+                        href="/auth/logout">Logout</a>
+                    <?php endif ?></div>
 
 
-         
             <div class="nav-collapse">
 
 
@@ -119,11 +119,9 @@ echo $this->doctype() ?>
 </div>
 
 
-
-    <div class="subnav bottombar">
+<div class="subnav bottombar">
     <?php echo $this->render('navigation_buttom.phtml') ?>
-      </div>
-
+</div>
 
 
 </body>

@@ -8,7 +8,6 @@
  */
 class Admin_AdminUsersController extends Speed_Controller_ActionController
 {
-
     protected $blogModel;
 
     protected function initialize()
@@ -21,72 +20,49 @@ class Admin_AdminUsersController extends Speed_Controller_ActionController
     public function indexAction()
     {
         $this->validateAdmin();
-
-        $blogDisplayModel = new Admin_Model_AdminUser();
-
-        $display = $blogDisplayModel->getAll();
-
-
+        $blogDisplayModel    = new Admin_Model_AdminUser();
+        $display             = $blogDisplayModel->getAll();
         $this->view->display = $display;
     }
 
     public function showAction()
     {
         $this->validateAdmin();
-
-        $blogModel = new Admin_Model_AdminUser();
-        $userId = $this->_request->getParam('id');
-
-        $displayp = $blogModel->getDetailForAdmin($userId);
-
+        $blogModel            = new Admin_Model_AdminUser();
+        $userId               = $this->_request->getParam('id');
+        $displayp             = $blogModel->getDetailForAdmin($userId);
         $this->view->displayp = $displayp;
     }
 
     public function addAction()
-
     {
-        $options = array(
+        $options   = array(
             'isEdit' => false
         );
-
         $adminForm = new Admin_Form_AdminUser($options);
-
         if ($this->_request->isPost()) {
-
             $data = $this->_request->getParams();
-
             if ($adminForm->isValid($data)) {
-
                 $userModel = new Admin_Model_AdminUser();
-
-                $result = $userModel->save($data);
+                $result    = $userModel->save($data);
                 if (empty($result)) {
                     $this->redirectForFailure('/admin/auth/login', "There was a problem , Please try again.");
                 } else {
-
-
                     $this->redirectForSuccess('/admin/admin-users', "Your registration is complete. Please sign in here.");
                 }
-
             } else {
                 $adminForm->populate($data);
             }
         }
-
-
         $this->view->adminForm = $adminForm;
-
     }
 
     public function deleteAction()
     {
         $this->validateAdmin();
         $posttypeDeleteModel = new Admin_Model_AdminUser();
-
-        $postId = $this->_request->getParam('id');
-
-        $status = $posttypeDeleteModel->delete($postId);
-
+        $postId              = $this->_request->getParam('id');
+        $status              = $posttypeDeleteModel->delete($postId);
         if ($status) {
             $this->redirectForSuccess('/admin/admin-users', "Admin User deleted Sucessfully.");
         } else {
@@ -99,15 +75,13 @@ class Admin_AdminUsersController extends Speed_Controller_ActionController
     {
         $this->validateAdmin();
         $posttypeModel = new Admin_Model_AdminUser();
-        $postId = $this->_request->getParam('id');
+        $postId        = $this->_request->getParam('id');
         $posttypeModel->getDetail($postId);
-        $options = array(
+        $options   = array(
             'isEdit' => true,
             'admin_id' => $postId
         );
         $postEntry = new Admin_Form_AdminUser($options);
-
-
         if ($this->_request->isPost()) {
             $data = $this->_request->getParams();
             if ($postEntry->isValid($data)) {
@@ -121,12 +95,11 @@ class Admin_AdminUsersController extends Speed_Controller_ActionController
                 $postEntry->populate($data);
             }
         } else {
-
             if (empty($postId)) {
                 $this->redirectForFailure('/admin/admin-users', 'No Post found');
             } else {
                 $posttypeModel = new Admin_Model_AdminUser();
-                $postData = $posttypeModel->getDetail($postId);
+                $postData      = $posttypeModel->getDetail($postId);
                 if (empty($postData)) {
                     $this->redirectForFailure('/admin/admin-users', 'No Post found.');
                 } else {
@@ -135,28 +108,21 @@ class Admin_AdminUsersController extends Speed_Controller_ActionController
             }
         }
         $this->view->PostEntry = $postEntry;
-
     }
-
 
     public function selectstatusAction()
     {
         $data = array();
-
         $this->disableLayout();
-
-        $userId = $this->_request->getParam('id');
-
-        $blogModel = new Admin_Model_AdminUser();
-        $status = $blogModel->setSelectStatus($data, $userId);
+        $userId             = $this->_request->getParam('id');
+        $blogModel          = new Admin_Model_AdminUser();
+        $status             = $blogModel->setSelectStatus($data, $userId);
         $this->view->status = $status;
-
         if ($status) {
             $this->redirectForSuccess("/admin/admin-users/show/id/{$userId}", "User select status updated");
         } else {
             $this->redirectForFailure("/admin/admin-users/show/id/{$userId}", "Something went wrong");
         }
-
     }
 }
 

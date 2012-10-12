@@ -1,7 +1,6 @@
 <?php
 /**
  * Roles Controller
- *
  * @category   Controller
  * @package    User
  * @copyright  Copyright (c) Right Brain Solution Ltd. http://rightbrainsolution.com

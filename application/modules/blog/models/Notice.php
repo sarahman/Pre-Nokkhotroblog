@@ -1,7 +1,6 @@
 <?php
 /**
  * Notice Model
- *
  * @Notice        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -20,12 +19,8 @@ class Blog_Model_Notice extends Speed_Model_Abstract
         }
     }
 
-
-
     public function getNoticePost()
     {
         return $this->dao->getNoticePost();
     }
-
-
 }

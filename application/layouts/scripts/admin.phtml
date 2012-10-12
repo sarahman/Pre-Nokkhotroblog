@@ -13,59 +13,58 @@
     <![endif]-->
 </head>
 
-<body >
+<body>
 
 
+<div class="navbar navbar-fixed-top">
 
-    
-        <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
 
-            <div class="navbar-inner">
+        <div class="container-fluid">
 
-                <div class="container-fluid">
+            <a class="brand" href="/admin/index">Portal Admin Panel</a>
 
-                    <a class="brand" href="/admin/index">Portal Admin Panel</a>
+            <?php echo $this->render('admin_navigation.phtml') ?>
 
-                    <?php echo $this->render('admin_navigation.phtml') ?>
+            <?php $authNamespace = new Zend_Session_Namespace('adminInformation');
 
-                    <?php $authNamespace = new Zend_Session_Namespace('adminInformation');
-
-                    if (empty ($authNamespace->adminData['username'])): ?>
-                        <p class="pull-right">
-                            <a href="#">Login</a>
-                        </p>
-                    <?php else: ?>
-                        <p class="pull-right">
-                            Logged in as <a href="#"><?php echo $authNamespace->adminData['username'] ?></a> | <a href="/user/auth/logout">Logout</a>
-                        </p>
-                    <?php endif ?>
-
-                </div>
-
-            </div>
+            if (empty ($authNamespace->adminData['username'])): ?>
+                <p class="pull-right">
+                    <a href="#">Login</a>
+                </p>
+                <?php else: ?>
+                <p class="pull-right">
+                    Logged in as <a href="#"><?php echo $authNamespace->adminData['username'] ?></a> | <a
+                    href="/user/auth/logout">Logout</a>
+                </p>
+                <?php endif ?>
 
         </div>
 
-        <div class="container admin">
+    </div>
 
-            <div class="body-content">
+</div>
 
-                <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
-                                        <div class="row" style="margin-bottom: 18px">
-                                            <?php echo $flashMessenger ?>
-                                        </div>
-                                        <?php endif; ?>
+<div class="container admin">
 
-                <?php echo $this->layout()->content ?>
+    <div class="body-content">
 
-            </div>
-
+        <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
+        <div class="row" style="margin-bottom: 18px">
+            <?php echo $flashMessenger ?>
         </div>
-    
+        <?php endif; ?>
 
-    <footer class="footer">
-        <p>&copy; <?php echo date('Y') ?> Portal</p>
-    </footer>
+        <?php echo $this->layout()->content ?>
+
+    </div>
+
+</div>
+
+
+<footer class="footer">
+    <p>&copy; <?php echo date('Y') ?> Portal</p>
+</footer>
 
 
 </body>
@@ -73,15 +72,15 @@
 
 <script type="text/javascript">
 
-    CKEDITOR.replace( 'description',
-    {
-    filebrowserBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Files',
-    filebrowserImageBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Images',
-    filebrowserFlashBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Flash',
-    filebrowserUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-    filebrowserImageUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-    filebrowserFlashUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-    });
+    CKEDITOR.replace('description',
+        {
+            filebrowserBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Files',
+            filebrowserImageBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
 
 
 </script>

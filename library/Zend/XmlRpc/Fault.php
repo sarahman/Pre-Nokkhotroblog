@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @package    Zend_XmlRpc
  * @subpackage Server
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -26,14 +23,11 @@ require_once 'Zend/XmlRpc/Value.php';
 
 /**
  * XMLRPC Faults
- *
  * Container for XMLRPC faults, containing both a code and a message;
  * additionally, has methods for determining if an XML response is an XMLRPC
  * fault, as well as generating the XML for an XMLRPC fault response.
- *
  * To allow method chaining, you may only use the {@link getInstance()} factory
  * to instantiate a Zend_XmlRpc_Server_Fault.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -46,60 +40,57 @@ class Zend_XmlRpc_Fault
      * @var int
      */
     protected $_code;
-
     /**
      * Fault character encoding
      * @var string
      */
     protected $_encoding = 'UTF-8';
-
     /**
      * Fault message
      * @var string
      */
     protected $_message;
-
     /**
      * Internal fault codes => messages
      * @var array
      */
-    protected $_internal = array(
-        404 => 'Unknown Error',
+    protected $_internal
+        = array(
+            404 => 'Unknown Error',
 
-        // 610 - 619 reflection errors
-        610 => 'Invalid method class',
-        611 => 'Unable to attach function or callback; not callable',
-        612 => 'Unable to load array; not an array',
-        613 => 'One or more method records are corrupt or otherwise unusable',
+            // 610 - 619 reflection errors
+            610 => 'Invalid method class',
+            611 => 'Unable to attach function or callback; not callable',
+            612 => 'Unable to load array; not an array',
+            613 => 'One or more method records are corrupt or otherwise unusable',
 
-        // 620 - 629 dispatch errors
-        620 => 'Method does not exist',
-        621 => 'Error instantiating class to invoke method',
-        622 => 'Method missing implementation',
-        623 => 'Calling parameters do not match signature',
+            // 620 - 629 dispatch errors
+            620 => 'Method does not exist',
+            621 => 'Error instantiating class to invoke method',
+            622 => 'Method missing implementation',
+            623 => 'Calling parameters do not match signature',
 
-        // 630 - 639 request errors
-        630 => 'Unable to read request',
-        631 => 'Failed to parse request',
-        632 => 'Invalid request, no method passed; request must contain a \'methodName\' tag',
-        633 => 'Param must contain a value',
-        634 => 'Invalid method name',
-        635 => 'Invalid XML provided to request',
-        636 => 'Error creating xmlrpc value',
+            // 630 - 639 request errors
+            630 => 'Unable to read request',
+            631 => 'Failed to parse request',
+            632 => 'Invalid request, no method passed; request must contain a \'methodName\' tag',
+            633 => 'Param must contain a value',
+            634 => 'Invalid method name',
+            635 => 'Invalid XML provided to request',
+            636 => 'Error creating xmlrpc value',
 
-        // 640 - 649 system.* errors
-        640 => 'Method does not exist',
+            // 640 - 649 system.* errors
+            640 => 'Method does not exist',
 
-        // 650 - 659 response errors
-        650 => 'Invalid XML provided for response',
-        651 => 'Failed to parse response',
-        652 => 'Invalid response',
-        653 => 'Invalid XMLRPC value in response',
-    );
+            // 650 - 659 response errors
+            650 => 'Invalid XML provided for response',
+            651 => 'Failed to parse response',
+            652 => 'Invalid response',
+            653 => 'Invalid XMLRPC value in response',
+        );
 
     /**
      * Constructor
-     *
      * @return Zend_XmlRpc_Fault
      */
     public function __construct($code = 404, $message = '')
@@ -119,17 +110,17 @@ class Zend_XmlRpc_Fault
      * Set the fault code
      *
      * @param int $code
+     *
      * @return Zend_XmlRpc_Fault
      */
     public function setCode($code)
     {
-        $this->_code = (int) $code;
+        $this->_code = (int)$code;
         return $this;
     }
 
     /**
      * Return fault code
-     *
      * @return int
      */
     public function getCode()
@@ -141,17 +132,17 @@ class Zend_XmlRpc_Fault
      * Retrieve fault message
      *
      * @param string
+     *
      * @return Zend_XmlRpc_Fault
      */
     public function setMessage($message)
     {
-        $this->_message = (string) $message;
+        $this->_message = (string)$message;
         return $this;
     }
 
     /**
      * Retrieve fault message
-     *
      * @return string
      */
     public function getMessage()
@@ -163,6 +154,7 @@ class Zend_XmlRpc_Fault
      * Set encoding to use in fault response
      *
      * @param string $encoding
+     *
      * @return Zend_XmlRpc_Fault
      */
     public function setEncoding($encoding)
@@ -174,7 +166,6 @@ class Zend_XmlRpc_Fault
 
     /**
      * Retrieve current fault encoding
-     *
      * @return string
      */
     public function getEncoding()
@@ -186,6 +177,7 @@ class Zend_XmlRpc_Fault
      * Load an XMLRPC fault from XML
      *
      * @param string $fault
+     *
      * @return boolean Returns true if successfully loaded fault response, false
      * if response was not a fault response
      * @throws Zend_XmlRpc_Exception if no or faulty XML provided, or if fault
@@ -203,7 +195,7 @@ class Zend_XmlRpc_Fault
         } catch (Exception $e) {
             // Not valid XML
             require_once 'Zend/XmlRpc/Exception.php';
-            throw new Zend_XmlRpc_Exception('Failed to parse XML fault: ' .  $e->getMessage(), 500, $e);
+            throw new Zend_XmlRpc_Exception('Failed to parse XML fault: ' . $e->getMessage(), 500, $e);
         }
 
         // Check for fault
@@ -256,6 +248,7 @@ class Zend_XmlRpc_Fault
      * Determine if an XML response is an XMLRPC fault
      *
      * @param string $xml
+     *
      * @return boolean
      */
     public static function isFault($xml)
@@ -273,31 +266,29 @@ class Zend_XmlRpc_Fault
 
     /**
      * Serialize fault to XML
-     *
      * @return string
      */
     public function saveXml()
     {
         // Create fault value
         $faultStruct = array(
-            'faultCode'   => $this->getCode(),
+            'faultCode' => $this->getCode(),
             'faultString' => $this->getMessage()
         );
-        $value = Zend_XmlRpc_Value::getXmlRpcValue($faultStruct);
+        $value       = Zend_XmlRpc_Value::getXmlRpcValue($faultStruct);
 
         $generator = Zend_XmlRpc_Value::getGenerator();
         $generator->openElement('methodResponse')
-                  ->openElement('fault');
+            ->openElement('fault');
         $value->generateXml();
         $generator->closeElement('fault')
-                  ->closeElement('methodResponse');
+            ->closeElement('methodResponse');
 
         return $generator->flush();
     }
 
     /**
      * Return XML fault response
-     *
      * @return string
      */
     public function __toString()

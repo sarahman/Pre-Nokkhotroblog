@@ -4,15 +4,15 @@
     <ul class="nav nav-pills">
         <li><a href="/admin/blogs/index">All Blogs</a></li>
         <li><a href="/admin/categories">Category</a></li>
-	    <li><a href="/admin/post-types">Post Types</a></li>
-	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+        <li><a href="/admin/post-types">Post Types</a></li>
+        <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
         <li><a href="/admin/blog-groups">Blog Groups</a></li>
         <li><a href="/admin/comments">Comments</a></li>
     </ul>
 </div>
-<br /><br />
+<br/><br/>
 <div class='class="row content-header"'>
-            <h4 class='page-header'>Groups:</h4>
+    <h4 class='page-header'>Groups:</h4>
 </div>
 
 <div class="span12">
@@ -47,18 +47,18 @@
         </table>
 
 
-            <?php
-            if (!empty ($authNamespace->adminData['admin_id'])): ?>
-                <p>
-                    <a href="/admin/bloggroups/publish/id/<?php echo $this->notice['group_id'] ?>" <?php echo ($this->notice['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_active'] == 0) ? "Publish" : "Unpublish" ?></a>
+        <?php
+        if (!empty ($authNamespace->adminData['admin_id'])): ?>
+            <p>
+                <a href="/admin/bloggroups/publish/id/<?php echo $this->notice['group_id'] ?>" <?php echo ($this->notice['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_active'] == 0) ? "Publish" : "Unpublish" ?></a>
 
-                    <a href="/admin/bloggroups/edit/id/<?php echo  $this->notice['group_id'] ?>" class="btn edit">Edit</a>
-                    <a href="/admin/bloggroups/delete/id/<?php echo $this->notice['group_id'] ?>" class="btn btn-danger">Delete</a>
-                </p>
-                <?php endif ?>
+                <a href="/admin/bloggroups/edit/id/<?php echo  $this->notice['group_id'] ?>" class="btn edit">Edit</a>
+                <a href="/admin/bloggroups/delete/id/<?php echo $this->notice['group_id'] ?>" class="btn btn-danger">Delete</a>
+            </p>
+            <?php endif ?>
 
-        </div>
     </div>
+</div>
 
 <?php } else { ?>
 

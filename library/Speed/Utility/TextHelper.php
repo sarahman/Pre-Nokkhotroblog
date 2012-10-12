@@ -2,7 +2,6 @@
 
 class Speed_Utility_TextHelper
 {
-
     public function word_limiter($str, $limit = 100, $end_char = '&#8230;')
     {
         if (trim($str) == '') {
@@ -39,15 +38,13 @@ class Speed_Utility_TextHelper
                 return (strlen($out) == strlen($str)) ? $out : $out . $end_char;
             }
         }
-
     }
-
 
     public function ascii_to_entities($str)
     {
         $count = 1;
-        $out = '';
-        $temp = array();
+        $out   = '';
+        $temp  = array();
 
         for ($i = 0, $s = strlen($str); $i < $s; $i++) {
             $ordinal = ord($str[$i]);
@@ -76,7 +73,7 @@ class Speed_Utility_TextHelper
 
                     $out .= '&#' . $number . ';';
                     $count = 1;
-                    $temp = array();
+                    $temp  = array();
                 }
             }
         }
@@ -94,7 +91,6 @@ class Speed_Utility_TextHelper
 
                 if ($digits < 128) {
                     $out .= chr($digits);
-
                 }
                 elseif ($digits < 2048) {
                     $out .= chr(192 + (($digits - ($digits % 64)) / 64));
@@ -112,13 +108,12 @@ class Speed_Utility_TextHelper
 
         if ($all) {
             $str = str_replace(array("&amp;", "&lt;", "&gt;", "&quot;", "&apos;", "&#45;"),
-                array("&", "<", ">", "\"", "'", "-"),
-                $str);
+                               array("&", "<", ">", "\"", "'", "-"),
+                               $str);
         }
 
         return $str;
     }
-
 
     public function word_censor($str, $censored, $replacement = '')
     {
@@ -146,7 +141,6 @@ class Speed_Utility_TextHelper
         return trim($str);
     }
 
-
     public function highlight_code($str)
     {
         // The highlight string function encodes and highlights
@@ -157,7 +151,7 @@ class Speed_Utility_TextHelper
         // break the string out of PHP, and thus, thwart the highlighting.
 
         $str = str_replace(array('<?', '?>', '<%', '%>', '\\', '</script>'),
-            array('phptagopen', 'phptagclose', 'asptagopen', 'asptagclose', 'backslashtmp', 'scriptclose'), $str);
+                           array('phptagopen', 'phptagclose', 'asptagopen', 'asptagclose', 'backslashtmp', 'scriptclose'), $str);
 
         // The highlight_string function requires that the text be surrounded
         // by PHP tags, which we will remove later
@@ -181,7 +175,7 @@ class Speed_Utility_TextHelper
 
         // Replace our markers back to PHP tags.
         $str = str_replace(array('phptagopen', 'phptagclose', 'asptagopen', 'asptagclose', 'backslashtmp', 'scriptclose'),
-            array('&lt;?', '?&gt;', '&lt;%', '%&gt;', '\\', '&lt;/script&gt;'), $str);
+                           array('&lt;?', '?&gt;', '&lt;%', '%&gt;', '\\', '&lt;/script&gt;'), $str);
 
         return $str;
     }
@@ -215,7 +209,6 @@ class Speed_Utility_TextHelper
         return preg_replace(array_keys($foreign_characters), array_values($foreign_characters), $str);
     }
 
-
     public function word_wrap($str, $charlim = '76')
     {
         // Se the character limit
@@ -236,7 +229,7 @@ class Speed_Utility_TextHelper
         if (preg_match_all("|(\{unwrap\}.+?\{/unwrap\})|s", $str, $matches)) {
             for ($i = 0; $i < count($matches['0']); $i++) {
                 $unwrap[] = $matches['1'][$i];
-                $str = str_replace($matches['1'][$i], "{{unwrapped" . $i . "}}", $str);
+                $str      = str_replace($matches['1'][$i], "{{unwrapped" . $i . "}}", $str);
             }
         }
 
@@ -292,7 +285,6 @@ class Speed_Utility_TextHelper
         return $output;
     }
 
-
     public function ellipsize($str, $max_length, $position = 1, $ellipsis = '&hellip;')
     {
         // Strip tags
@@ -316,6 +308,5 @@ class Speed_Utility_TextHelper
 
         return $beg . $ellipsis . $end;
     }
-
 }
 

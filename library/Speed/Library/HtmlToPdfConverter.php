@@ -2,7 +2,6 @@
 
 /**
  * HTML TO PDF Converter
- *
  * @category   Library
  * @copyright  Right Brain Solution Ltd. (http://rightbrainsolution.com)
  * @author     Eftakhairul Islam <eftakhairul@gmail.com>
@@ -18,7 +17,7 @@ class Speed_Library_HtmlToPdfConverter
     {
         spl_autoload_register('DOMPDF_autoload');
         $this->pdfConverter = new DOMPDF();
-        $this->data  = null;
+        $this->data         = null;
     }
 
     public function setTemplate($template, $data)
@@ -34,7 +33,7 @@ class Speed_Library_HtmlToPdfConverter
 
     public function setHtml($html)
     {
-        if(empty($html)) {
+        if (empty($html)) {
             return false;
         }
 
@@ -44,7 +43,7 @@ class Speed_Library_HtmlToPdfConverter
 
     public function setHtmlPath($path)
     {
-        if(empty($path)) {
+        if (empty($path)) {
             return false;
         }
 
@@ -52,10 +51,9 @@ class Speed_Library_HtmlToPdfConverter
         return $this;
     }
 
-
     public function setPdfLocation($location)
     {
-        if(empty($location)) {
+        if (empty($location)) {
             return false;
         }
 
@@ -65,13 +63,13 @@ class Speed_Library_HtmlToPdfConverter
 
     public function makePdf($name)
     {
-        $pdfName = empty($name) ?  mt_rand(100000, 999999) : $name;
+        $pdfName = empty($name) ? mt_rand(100000, 999999) : $name;
 
         if (empty($this->data)) {
             throw new Exception('HTML not found');
         }
 
-        $pdfFile = $this->pdfLocation .'/'. $pdfName. '.pdf';
+        $pdfFile = $this->pdfLocation . '/' . $pdfName . '.pdf';
 
         $this->pdfConverter->load_html($this->data);
         $this->pdfConverter->render();
@@ -82,7 +80,7 @@ class Speed_Library_HtmlToPdfConverter
 
     public function downloadPdf($name)
     {
-        $pdfName = empty($name) ?  mt_rand(100000, 999999) : $name;
+        $pdfName = empty($name) ? mt_rand(100000, 999999) : $name;
 
         if (empty($this->data)) {
             throw new Exception('HTML not found');

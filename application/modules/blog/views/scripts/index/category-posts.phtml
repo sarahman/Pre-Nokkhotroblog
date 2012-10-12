@@ -1,112 +1,126 @@
- <div class="span12">
-  <!--/center contain -->   
-<div class="row-fluid">
-<div class="span8">
-  <!--/main -->     
+<div class="span12">
+    <!--/center contain -->
+    <div class="row-fluid">
+        <div class="span8">
+            <!--/main -->
 
-    <?php if (empty($this->categoryPosts)) : ?>
-       No Notice has been found.
+            <?php if (empty($this->categoryPosts)) : ?>
+            No Notice has been found.
 
-        <?php else: $count = 0;
-        foreach ($this->categoryPosts AS $display) : ?>
-         <div class="span12">
-             <h3><a href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>"><?php echo $display['title'] ?></a> </h3><hr>
+            <?php else: $count = 0;
+            foreach ($this->categoryPosts AS $display) : ?>
+                <div class="span12">
+                    <h3><a
+                        href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>"><?php echo $display['title'] ?></a>
+                    </h3>
+                    <hr>
 
-<?php 
-                
-                if(!empty($display['profile_picture']))
-                {
-		?>
-               <img src="/<?php echo $display['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
+                    <?php
 
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+                    if (!empty($display['profile_picture'])) {
+                        ?>
+                        <img src="/<?php echo $display['profile_picture'] ?>" width="40px" height="40px"/>
+                        <?php } else { ?>
 
-		<?php
-               }
- 		?>
-::  <?php echo $display['category_name'] ?> ::  <?php echo $display['last_modaretion_date'] ?> ::     টি মন্তব্য ::  <?php echo $display['viewed']; ?>  বার পঠিত
-             <hr>
-             <div class="row-fluid">
-                 <div class="span12">
-            <?php $imageTag = new Speed_View_Helper_Image();
-                      $img = $imageTag->extract($display['description']); ?>       
-                     
-	<?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                        <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
 
                         <?php
+                    }
+                    ?>
+                    ::  <?php echo $display['category_name'] ?> ::  <?php echo $display['last_modaretion_date'] ?> :: টি
+                    মন্তব্য ::  <?php echo $display['viewed']; ?>  বার পঠিত
+                    <hr>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <?php $imageTag = new Speed_View_Helper_Image();
+                            $img            = $imageTag->extract($display['description']); ?>
 
-                        $content = $imageTag->removeImageTag($display['description']);
+                            <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                            <?php
+
+                            $content = $imageTag->removeImageTag($display['description']);
 
 
-                        ?>
+                            ?>
 
-<?php if(empty($img)):?>
-<?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>
+                            <?php if (empty($img)): ?>
+                            <?php echo $excerpt->word_limiter($content, 50); ?><a
+                                href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">বিস্তারিত
+                                পড়ুন</a><br><br>
 
-<?php else :?>
-         <div class="thumbnail span4">
-                            <img src="<?php echo  $img; ?>" width="120px" height="80px">
+                            <?php else : ?>
+                            <div class="thumbnail span4">
+                                <img src="<?php echo  $img; ?>" width="120px" height="80px">
+                            </div>
+                            <?php echo $excerpt->word_limiter($content, 50); ?><a
+                                href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">বিস্তারিত
+                                পড়ুন</a><br><br>
+
+
+                            <?php endif;?>
+                            <?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
+                            <?php if (empty ($authNamespace->userData['user_id'])): ?>
+
+                            <a href="/user/auth/login">মন্তব্য</a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                            &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+                            <hr>
+
+                            <?php else: ?>
+
+                            <a href="/comment/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">মন্তব্য
+                            </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                            &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+                            <hr>
+                            <?php endif ?>
+
+
                         </div>
-<?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>
 
 
-<?php endif;?>
-<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
-            <?php if (empty ($authNamespace->userData['user_id'])): ?>
+                    </div>
 
-                    <a href="/user/auth/login">মন্তব্য</a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
-                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a><hr>
-
-                    <?php else: ?>
-
-                    <a href="/comment/<?php echo $display['username'] ?>/<?php echo $display['permalink']; ?>">মন্তব্য
-                        </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
-                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a><hr>
-                    <?php endif ?>
-
-             
-                 </div>
-           
-                 
-             </div>
-      
-         </div>
+                </div>
 
 
-            <?php endforeach; endif ?>
-                      
-
-  
- 	
-<!--/end main contain -->
- </div>
+                <?php endforeach; endif ?>
 
 
-<div class="span4">
- <!--/right --> 
 
 
-&nbsp;&nbsp;<h9> সর্বাধিক মন্তব্য </h9> &nbsp;&nbsp;&nbsp;&nbsp;
-<hr/>
+            <!--/end main contain -->
+        </div>
 
 
-&nbsp;&nbsp;<h9> সর্বাধিক পঠিত  <?php echo $display['category_name'] ?> </h9> &nbsp;&nbsp;&nbsp;&nbsp;
-<hr>
+        <div class="span4">
+            <!--/right -->
 
 
-<?php 
- foreach ($this->category AS $category) : ?>
- <a href="/show/<?php echo $category['username'] ?>/<?php echo $category['permalink']; ?>"><?php echo $category['title'] ?></a><hr>
-<?php endforeach;?>
+            &nbsp;&nbsp;
+            <h9> সর্বাধিক মন্তব্য</h9>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <hr/>
 
 
-<!--/end right contain -->
-  </div> 
+            &nbsp;&nbsp;
+            <h9> সর্বাধিক পঠিত  <?php echo $display['category_name'] ?> </h9>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <hr>
+
+
+            <?php
+            foreach ($this->category AS $category) : ?>
+                <a href="/show/<?php echo $category['username'] ?>/<?php echo $category['permalink']; ?>"><?php echo $category['title'] ?></a>
+                <hr>
+                <?php endforeach;?>
+
+
+            <!--/end right contain -->
+        </div>
+
+    </div>
 
 </div>
-
-     </div>
 
 
 

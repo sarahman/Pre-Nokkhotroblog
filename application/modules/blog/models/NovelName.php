@@ -1,7 +1,6 @@
 <?php
 /**
  * Blog category Model
- *
  * @category        Model
  * @package         blog
  * @author          Mohammad Zafar Iqbal
@@ -9,7 +8,6 @@
  */
 class Blog_Model_NovelName extends Speed_Model_Abstract
 {
-
     /**
      * @var Blog_Model_Dao_NovelName
      */
@@ -19,17 +17,14 @@ class Blog_Model_NovelName extends Speed_Model_Abstract
     {
         if (empty ($dao)) {
             $this->dao = new Blog_Model_Dao_NovelName();
-
         } else {
             $this->dao = $dao;
         }
     }
 
-
     public function getAll()
     {
         return $this->dao->getAll();
-
     }
 
     public function myNovel($userId)
@@ -37,7 +32,6 @@ class Blog_Model_NovelName extends Speed_Model_Abstract
         if (empty ($userId)) {
             return false;
         }
-
         return $this->dao->myNovel($userId);
     }
 
@@ -46,7 +40,6 @@ class Blog_Model_NovelName extends Speed_Model_Abstract
         if (empty($novelName)) {
             return false;
         }
-
         return $this->dao->getDetailByNovelPermalink($novelName);
     }
 
@@ -55,33 +48,21 @@ class Blog_Model_NovelName extends Speed_Model_Abstract
         if (empty ($nId)) {
             return false;
         }
-
         $record = $this->dao->getNovelDetail($nId);
-
         return $record;
-    }
-
-    public function delete($categoryId = null)
-    {
-        if (empty($categoryId)) {
-            return false;
-        }
-
-        return $this->dao->remove($categoryId);
     }
 
     public function save($data)
     {
         if (empty($data)) {
-
             return false;
         }
-        $permalink = new Speed_Utility_Url();
-        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $permalink                    = new Speed_Utility_Url();
+        $authNamespace                = new Zend_Session_Namespace('userInformation');
         $data['novel_name_permalink'] = $permalink->getUrl($data['name']);
-        $data['create_by'] = $authNamespace->userData['user_id'];
-        $data['create_date'] = date('Y-m-d H:i:s');
-        $categoryId = $this->dao->create($data);
+        $data['create_by']            = $authNamespace->userData['user_id'];
+        $data['create_date']          = date('Y-m-d H:i:s');
+        $categoryId                   = $this->dao->create($data);
         return $categoryId;
     }
 
@@ -90,35 +71,17 @@ class Blog_Model_NovelName extends Speed_Model_Abstract
         if (empty ($userId)) {
             return false;
         }
-
         $record = $this->dao->getDetailForNovel($userId);
-
         return $record;
     }
-
-    public function getDetail($novelId)
-    {
-        if (empty ($novelId)) {
-            return false;
-        }
-
-        $record = $this->dao->getDetail($novelId);
-
-        return $record;
-    }
-
 
     public function modify($data = array(), $novelNameId = null)
     {
         if (empty($data) || empty($novelNameId)) {
             return false;
         }
-
         $data['novel_name_permalink'] = $novelNameId;
-
         $this->dao->modify($data, $novelNameId);
         return true;
     }
-
-
 }

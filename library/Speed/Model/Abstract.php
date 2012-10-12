@@ -2,7 +2,6 @@
 
 /**
  * Abstract Model
- *
  * @category    Model
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
  * @author      Eftakhairul Islam <eftakhairul@gmail.com>
@@ -30,13 +29,13 @@ class Speed_Model_Abstract
 
     protected function setCountOffset($data = array())
     {
-        if (!empty ($data['page'])){
-            $this->page =  $data['page'];
+        if (!empty ($data['page'])) {
+            $this->page = $data['page'];
         }
 
-        $offset = ($this->page - 1) * $this->rowPerPage;
+        $offset         = ($this->page - 1) * $this->rowPerPage;
         $data['offset'] = $offset;
-        $data['total'] = $this->rowPerPage;
+        $data['total']  = $this->rowPerPage;
 
         return $data;
     }

@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Server
@@ -22,7 +19,6 @@
 
 /**
  * XML-RPC system.* methods
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Server
@@ -40,6 +36,7 @@ class Zend_XmlRpc_Server_System
      * Constructor
      *
      * @param  Zend_XmlRpc_Server $server
+     *
      * @return void
      */
     public function __construct(Zend_XmlRpc_Server $server)
@@ -49,9 +46,7 @@ class Zend_XmlRpc_Server_System
 
     /**
      * List all available XMLRPC methods
-     *
      * Returns an array of methods.
-     *
      * @return array
      */
     public function listMethods()
@@ -64,6 +59,7 @@ class Zend_XmlRpc_Server_System
      * Display help message for an XMLRPC method
      *
      * @param string $method
+     *
      * @return string
      */
     public function methodHelp($method)
@@ -81,6 +77,7 @@ class Zend_XmlRpc_Server_System
      * Return a method signature
      *
      * @param string $method
+     *
      * @return array
      */
     public function methodSignature($method)
@@ -97,18 +94,17 @@ class Zend_XmlRpc_Server_System
     /**
      * Multicall - boxcar feature of XML-RPC for calling multiple methods
      * in a single request.
-     *
      * Expects a an array of structs representing method calls, each element
      * having the keys:
      * - methodName
      * - params
-     *
      * Returns an array of responses, one for each method called, with the value
      * returned by the method. If an error occurs for a given method, returns a
      * struct with a fault response.
-     *
      * @see http://www.xmlrpc.com/discuss/msgReader$1208
+     *
      * @param  array $methods
+     *
      * @return array
      */
     public function multicall($methods)
@@ -151,7 +147,7 @@ class Zend_XmlRpc_Server_System
 
             if ($fault) {
                 $responses[] = array(
-                    'faultCode'   => $fault->getCode(),
+                    'faultCode' => $fault->getCode(),
                     'faultString' => $fault->getMessage()
                 );
             }

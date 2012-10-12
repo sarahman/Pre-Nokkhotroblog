@@ -5,569 +5,608 @@ echo $this->doctype()
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Nokkhotro Blog - Bangladeshi Blogging Platform</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Nokkhotro blog is a Bangladeshi popular blogging platform.">
-        <meta name="author" content="Nokkhotro Blog">
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@nokkhotroblog">
-        <meta name='twitter:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'>
-        <meta property='og:title' content='Nokkhotro Blog - Popular Bangladeshi Blogging platform'/>
-        <meta property='og:description' content='Nokkhotro Blog is a popular blogging platform. Read the popular blog post and write your own blog in Nokkhotro Blog. It is the latest web technology driven bangla blogging system in Bangladesh.'/>
-        <meta property='og:url' content='http://www.nokkhotroblog.com/'/>
-        <meta property='og:site_name' content='Nokkhotro Blog -  Popular Bangladeshi Blogging platform'/>
-        <meta property='og:type' content='website'/>
-        <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
-        <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
-        <?php echo $this->headTitle() ?>
-        <?php echo $this->headMeta() ?>
-        <?php //echo $this->headLink() ?>
-        <?php //echo $this->headScript() ?>
-        <link href="/css/css1/nokkhotroblog-bootstrap-min.css" media="screen" rel="stylesheet" type="text/css" >
-        <!--<link href="/css/css1/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css" >-->
-        <link href="/css/css1/nokkhotro-min.css" media="screen" rel="stylesheet" type="text/css" >
-        <script type="text/javascript" src="/js/js1/jquery.js"></script> 
-        <script type="text/javascript" src="/js/js1/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1.pack.js"></script>
-        <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1c4.js"></script>
-        <script type="text/javascript" src="/js/js1/documentmin.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>Nokkhotro Blog - Bangladeshi Blogging Platform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nokkhotro blog is a Bangladeshi popular blogging platform.">
+    <meta name="author" content="Nokkhotro Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@nokkhotroblog">
+    <meta name='twitter:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'>
+    <meta property='og:title' content='Nokkhotro Blog - Popular Bangladeshi Blogging platform'/>
+    <meta property='og:description'
+          content='Nokkhotro Blog is a popular blogging platform. Read the popular blog post and write your own blog in Nokkhotro Blog. It is the latest web technology driven bangla blogging system in Bangladesh.'/>
+    <meta property='og:url' content='http://www.nokkhotroblog.com/'/>
+    <meta property='og:site_name' content='Nokkhotro Blog -  Popular Bangladeshi Blogging platform'/>
+    <meta property='og:type' content='website'/>
+    <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
+    <meta property='og:image' content='http://www.nokkhotroblog.com/img/NokkhotroImageForWebUse.jpg'/>
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php //echo $this->headLink() ?>
+    <?php //echo $this->headScript() ?>
+    <link href="/css/css1/nokkhotroblog-bootstrap-min.css" media="screen" rel="stylesheet" type="text/css">
+    <!--<link href="/css/css1/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css" >-->
+    <link href="/css/css1/nokkhotro-min.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/js1/jquery.js"></script>
+    <script type="text/javascript" src="/js/js1/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1.pack.js"></script>
+    <script type="text/javascript" src="/js/js1/jcarousellite_1.0.1c4.js"></script>
+    <script type="text/javascript" src="/js/js1/documentmin.js"></script>
 
-        <!-- Le styles -->
+    <!-- Le styles -->
 
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <script type="text/javascript">
- $(document).ready(function(){
-   $('a').click(function(){
-     _gaq.push(['_trackEvent', 'Homepage', 'Click', $(this).text()]);
-   });
- });
-</script>
-    </head>    
-    <body>
-    <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=245676048884809";
-  fjs.parentNode.insertBefore(js, fjs);
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a').click(function () {
+                _gaq.push(['_trackEvent', 'Homepage', 'Click', $(this).text()]);
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=245676048884809";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-        <!-- Navbar
-        ================================================== -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <span class="brand" href="#">নক্ষত্র ব্লগ</span>
-		<?php if (empty($authNamespace->userData['username'])): ?>
-                    <p class="nav pull-right">
-                        <a data-toggle="modal" href="#myModal"  class="btn btn-primary" type="button" onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'Click', 'Signup']);">নিবন্ধন করুন</a>
-                        <a data-toggle="modal" href="#mylogin"  class="btn btn-primary" type="button" onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'click', 'Login']);">প্রবেশ করুন</a>
-                    </p>
-		<?php else: ?>
-                    <ul class="nav nav-pills pull-right">
-                    <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="/me">
+<!-- Navbar
+================================================== -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="brand" href="#">নক্ষত্র ব্লগ</span>
+            <?php if (empty($authNamespace->userData['username'])): ?>
+            <p class="nav pull-right">
+                <a data-toggle="modal" href="#myModal" class="btn btn-primary" type="button"
+                   onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'Click', 'Signup']);">নিবন্ধন করুন</a>
+                <a data-toggle="modal" href="#mylogin" class="btn btn-primary" type="button"
+                   onClick="_gaq.push(['_trackEvent', 'LoginSignup', 'click', 'Login']);">প্রবেশ করুন</a>
+            </p>
+            <?php else: ?>
+            <ul class="nav nav-pills pull-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/me">
                         স্বাগতম <?php echo $authNamespace->userData['username'] ?>
                         <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="/me" onClick="_gaq.push(['_trackEvent', 'UserProfile', 'click', 'My profile']);">প্রোফাইল</a></li>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/me" onClick="_gaq.push(['_trackEvent', 'UserProfile', 'click', 'My profile']);">প্রোফাইল</a>
+                        </li>
                         <li class="divider"></li>
                         <li><a href="/auth/logout">লগ আউট</a></li>
-                      </ul>
-                    </li>
                     </ul>
-		<?php endif ?>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="time">ঢাকা সময় : <?php 
-                            date_default_timezone_set('Asia/Dhaka');
-                            echo date('F jS,D h:ia'); ?></li>
-                        </ul>
-                        <form class="form-inline nav-form">
-                            <div class="input-append">
-                                <input placeholder="Search" class="span2" id="appendedInput" size="16" type="text"><span class="add-on"><i class=" icon-search"></i></span>
-                            </div>
-
-                        </form>
+                </li>
+            </ul>
+            <?php endif ?>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="time">ঢাকা সময় : <?php
+                        date_default_timezone_set('Asia/Dhaka');
+                        echo date('F jS,D h:ia'); ?></li>
+                </ul>
+                <form class="form-inline nav-form">
+                    <div class="input-append">
+                        <input placeholder="Search" class="span2" id="appendedInput" size="16" type="text"><span
+                        class="add-on"><i class=" icon-search"></i></span>
                     </div>
-                </div>
+
+                </form>
             </div>
         </div>
-        <!--End of Nav-->
-        <!--SubHead-->
-        <div class="container">
-			<?php $flashMessenger = $this->flashMessenger();
-                        if (!empty($flashMessenger)): ?>
-                            <div style="margin-bottom: 18px">
-                            <?php echo $flashMessenger ?>
-                            </div>
-			<?php endif; ?>
-            <div class="row">
-                <div class="span12">
-                    <img src="/public/../img/subhead-banner.jpg" alt="Nokkhotro Blog - Bangladeshi blog platform" width="100%"> 
+    </div>
+</div>
+<!--End of Nav-->
+<!--SubHead-->
+<div class="container">
+    <?php $flashMessenger = $this->flashMessenger();
+    if (!empty($flashMessenger)): ?>
+        <div style="margin-bottom: 18px">
+            <?php echo $flashMessenger ?>
+        </div>
+        <?php endif; ?>
+    <div class="row">
+        <div class="span12">
+            <img src="/public/../img/subhead-banner.jpg" alt="Nokkhotro Blog - Bangladeshi blog platform" width="100%">
+        </div>
+        <div class="row subhead-nav">
+            <div class="span12">
+
+                <div class="subnav">
+                    <?php echo $this->render('navigation.phtml') ?>
+
                 </div>
-                <div class="row subhead-nav">
-                    <div class="span12">
-
-                        <div class="subnav">
-			<?php echo $this->render('navigation.phtml') ?>
-
-                        </div>
 
 
-                    </div>
-                </div>
             </div>
         </div>
-        <!--End of Subhead-->
-        <div class="container" style="margin-top:5px;">
-            <div class="row">
-                <div class="span5">
-             <?php if (!empty($this->selectedBlogs)) { ?>
-                    <section id="carousel vertical">
-                        <div class="newsticker-jcarousellite" style="min-height:598px;">
-                            <ul>
-                             <?php foreach ($this->selectedBlogs as $selectedBlog): ?>
-                              <?php $imageTag = new Speed_View_Helper_Image();
-                               $img = $imageTag->extract($selectedBlog['description']);
-                                ?>
+    </div>
+</div>
+<!--End of Subhead-->
+<div class="container" style="margin-top:5px;">
+<div class="row">
+<div class="span5">
+    <?php if (!empty($this->selectedBlogs)) { ?>
+    <section id="carousel vertical">
+        <div class="newsticker-jcarousellite" style="min-height:598px;">
+            <ul>
+                <?php foreach ($this->selectedBlogs as $selectedBlog): ?>
+                <?php $imageTag = new Speed_View_Helper_Image();
+                $img            = $imageTag->extract($selectedBlog['description']);
+                ?>
 
-				<?php if(empty($img)):?>
-                                <li>
-                                    <div class="row">
-                                        <div class="info span6" style="width: 360px; text-align: justify; padding:4px;">
+                <?php if (empty($img)): ?>
+                    <li>
+                        <div class="row">
+                            <div class="info span6" style="width: 360px; text-align: justify; padding:4px;">
 
-                                            <a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-
-                                            <span class="cat"> 
-                                                <p>
-                                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-							 <?php
-                                                          $content = $imageTag->removeImageTag($selectedBlog['description']);
-                                                            ?>
-                                                            <?php echo strip_tags($excerpt->word_limiter($content, 30)); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a></p></span>
-
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </li>
-                        <?php else :?>  
-                                <li>
-                                    <div class="row-fluid">
-                                        <div class="thumbnail span4">
-                                           <img src="<?php echo $img; ?>" width="250px" height="85px" >
-                                        </div>
-                                        <div class="info span6">
-					<a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+                                <a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
 
                                             <span class="cat"> 
                                                 <p>
                                                     <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-							<?php
-					$content = $imageTag->removeImageTag($selectedBlog['description']);
-  						?>
- 				<?php echo $excerpt->word_limiter($content, 50); ?><strong></strong></p></span>
+                                                    <?php
+                                                    $content = $imageTag->removeImageTag($selectedBlog['description']);
+                                                    ?>
+                                                    <?php echo strip_tags($excerpt->word_limiter($content, 30)); ?><a
+                                                    href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                                                    পড়ুন</a></p></span>
 
-                                        </div>
-                                    </div>
-                                    <div class="clear"></div>
-                                </li>
-			<?php endif;?>
-                      <?php endforeach; ?>
-                                
-                                
-                                
-                            </ul>
+                            </div>
                         </div>
-                    </section>
-                      <!--<span style="float:right;"><a href="/selected-posts">See All</a></span>-->
-                       <?php } ?>
+                        <div class="clear"></div>
+                    </li>
+                    <?php else : ?>
+                    <li>
+                        <div class="row-fluid">
+                            <div class="thumbnail span4">
+                                <img src="<?php echo $img; ?>" width="250px" height="85px">
+                            </div>
+                            <div class="info span6">
+                                <a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+
+                                            <span class="cat"> 
+                                                <p>
+                                                    <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                                    <?php
+                                                    $content = $imageTag->removeImageTag($selectedBlog['description']);
+                                                    ?>
+                                                    <?php echo $excerpt->word_limiter($content, 50); ?><strong></strong>
+                                                </p></span>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+
+            </ul>
+        </div>
+    </section>
+    <!--<span style="float:right;"><a href="/selected-posts">See All</a></span>-->
+    <?php } ?>
+</div>
+<!--Right Part-->
+<div class="span7">
+    <div class="row">
+        <!--Article/Notice-->
+        <div class="span5">
+            <?php foreach ($this->notices AS $notice): ?>
+            <div class="bs-docs-example">
+                <h4><a
+                    href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>"><?php echo $notice['title']; ?></a>
+                </h4>
+                <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                <p class="lead">
+                    <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                    <?php echo $excerpt->word_limiter($notice['description'], 30); ?> .. <a class="btn-link"
+                                                                                            href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত
+                    পড়ুন &raquo;</a>
+                </p>
+            </div>
+            <div class="prettyprint"> <?php echo date('F jS Y', strtotime($notice['create_date'])); ?> &nbsp; &nbsp;
+                &nbsp;<span class="pull-right"><?php
+
+                if (empty ($authNamespace->userData['user_id'])): ?>
+                    <a href="/user/auth/login">মন্তব্য </a>&raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a>
+                    <?php else: ?>
+                    <!---update---------------------------------------------------------->
+                    <a href="/blog/users/add-noticcomment/id/<?php echo $notice['notice_id']; ?>">মন্তব্য</a> &raquo; <a
+                        href="/blog/users/show-allnotic">সমস্ত নোটিশ</a></span><?php endif ?></div><?php endforeach ?>
+
+            <!--Posts-->
+            <?php foreach ($this->stickyPost AS $stickyPost): ?>
+            <div class="bs-docs-example StickyPost-box" style="margin-top:5px;">
+                <h4><a class="btn-link"
+                       href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>"><?php echo $stickyPost['title']; ?></a>
+                </h4>
+
+                <?php $imageTag = new Speed_View_Helper_Image();
+                $img            = $imageTag->extract($stickyPost['description']); ?>
+
+                <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                <?php
+
+                $content = $imageTag->removeImageTag($stickyPost['description']);
+
+                ?>
+                <?php if (empty($img)): ?>
+
+                <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 30); ?><a class="btn-link"
+                                                                                                href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত
+                    পড়ুন &raquo;</a> <br/>
+
+                </p>
+                <?php else : ?>
+                <div class="thumbnail span2">
+                    <img src="<?php echo  $img; ?>" width="120px" height="80px">
                 </div>
-                <!--Right Part-->
-                <div class="span7">
-                    <div class="row">
-                        <!--Article/Notice-->
-                        <div class="span5">
-			<?php foreach ($this->notices AS $notice): ?>
-                            <div class="bs-docs-example">
-                                <h4><a href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>"><?php echo $notice['title']; ?></a></h4>
-					<?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                                
-                                <p class="lead">
-                                    <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                                <?php echo $excerpt->word_limiter($notice['description'], 30); ?> .. <a class="btn-link" href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
-                                </p>
-                            </div>
-                            <div class="prettyprint"> <?php echo date('F jS Y', strtotime($notice['create_date'])); ?> &nbsp; &nbsp; &nbsp;<span class="pull-right"><?php
-
-                                  if (empty ($authNamespace->userData['user_id'])): ?>
-                                     <a href="/user/auth/login">মন্তব্য </a>&raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a>
-                                      <?php else: ?>
- <!---update---------------------------------------------------------->
-                                      <a href="/blog/users/add-noticcomment/id/<?php echo $notice['notice_id']; ?>">মন্তব্য</a> &raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a></span><?php endif ?></div><?php endforeach ?>
-                           
-                            <!--Posts-->
-			<?php foreach ($this->stickyPost AS $stickyPost): ?>
-                            <div class="bs-docs-example StickyPost-box" style="margin-top:5px;">
-                                <h4><a class="btn-link" href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>"><?php echo $stickyPost['title']; ?></a></h4>
-
-                              <?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($stickyPost['description']); ?>
-
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-
-                              <?php
-
-                              $content = $imageTag->removeImageTag($stickyPost['description']);
-
-                              ?>
-			<?php if(empty($img)):?>
-
-                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 30); ?><a class="btn-link" href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
-
-                                    </p>
-			<?php else :?> 
-				<div class="thumbnail span2">
-                                        <img src="<?php echo  $img; ?>" width="120px" height="80px">
-                                    </div>
-                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
-                                    </p>
+                <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 50); ?><a
+                    href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত
+                    পড়ুন &raquo;</a> <br/>
+                </p>
 
 
-			<?php endif;?>
+                <?php endif;?>
 
-                            </div>
-			
-                            <div class="prettyprint StickyPostFooter"> <?php echo date('F jS Y', strtotime($stickyPost['create_date'])); ?>&nbsp; &nbsp; &nbsp;<span class="pull-right">
+            </div>
+
+            <div
+                class="prettyprint StickyPostFooter"> <?php echo date('F jS Y', strtotime($stickyPost['create_date'])); ?>
+                &nbsp; &nbsp; &nbsp;<span class="pull-right">
 
                                       <a href="/comment/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">মন্তব্য </a>
- &raquo; <a href="blog/stickys/index">সমস্ত স্টিকি পোস্ট</a> </span></div><?php endforeach ?>
-                        </div>
-                        <!--end of article/notice-->
-                        <div class="span2">
-                            <ul class="nav nav-list">
-                                <li class="active label label-info">আকর্ষনীয় ফিচার</li>
+                    &raquo; <a href="blog/stickys/index">সমস্ত স্টিকি পোস্ট</a> </span></div><?php endforeach ?>
+        </div>
+        <!--end of article/notice-->
+        <div class="span2">
+            <ul class="nav nav-list">
+                <li class="active label label-info">আকর্ষনীয় ফিচার</li>
 
-                                <li><a href="/episodes/index">ধারাবাহিক লেখা</a></li>
+                <li><a href="/episodes/index">ধারাবাহিক লেখা</a></li>
 
-                                <li><a href="/novels">উপন্যাস</a></li>
+                <li><a href="/novels">উপন্যাস</a></li>
 
-                                <li><a href="#">ব্লগের ম্যাগাজিন</a></li>
+                <li><a href="#">ব্লগের ম্যাগাজিন</a></li>
 
-                                <li><a href="#">বই</a></li>
+                <li><a href="#">বই</a></li>
 
-                                <li><a href="#">লাইব্রেরী</a></li>
+                <li><a href="#">লাইব্রেরী</a></li>
 
-                                <li><a href="#">মুক্ত আলোচনা</a></li>
-                                <li><a href="#">দিনপঞ্জি</a></li>
-                                <li><a href="#">গ্রুপ</a></li>
-                                <li><a href="#">অভিধান</li>
-                                <li class="active"><a href="#">আরো অনেক &raquo;</a></li>
+                <li><a href="#">মুক্ত আলোচনা</a></li>
+                <li><a href="#">দিনপঞ্জি</a></li>
+                <li><a href="#">গ্রুপ</a></li>
+                <li><a href="#">অভিধান</li>
+                <li class="active"><a href="#">আরো অনেক &raquo;</a></li>
 
-                            </ul><br />
-                            <img src="/img/letsraise.jpg" style="height:300px">
-                        </div>
-                    </div>
-                </div>
-                <!-- AddThis Button BEGIN -->
+            </ul>
+            <br/>
+            <img src="/img/letsraise.jpg" style="height:300px">
+        </div>
+    </div>
+</div>
+<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_floating_style addthis_counter_style" style="left:20px;top:40%;z-index:999">
-<a class="addthis_button_facebook_like" fb:like:href="https://www.facebook.com/pages/নক্ষত্র-ব্লগ/367250483354302"  fb:like:layout="box_count"></a>
-<a href="https://twitter.com/nokkhotroblog" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @nokkhotroblog</a>
-<a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
-<a class="addthis_counter"></a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <a class="addthis_button_facebook_like" fb:like:href="https://www.facebook.com/pages/নক্ষত্র-ব্লগ/367250483354302"
+       fb:like:layout="box_count"></a>
+    <a href="https://twitter.com/nokkhotroblog" class="twitter-follow-button" data-show-count="false"
+       data-show-screen-name="false">Follow @nokkhotroblog</a>
+    <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
+    <a class="addthis_counter"></a>
+    <script>!function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, "script", "twitter-wjs");</script>
 </div>
 <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-505d075e286482fb"></script>
 <!-- AddThis Button END -->
-                <!--Right Part-->
-<br />
+<!--Right Part-->
+<br/>
+
 <div class="clear"></div>
-                <!--Recent comments/Recent Post/ Tabs-->
-                <div class="container">
-                    <div class="row" style="margin-top:10px;">
-                        <div class="span6">
-                            <div class="row">
-                                <div class="span3">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 150px; background-color:orange; color:white;">সম্প্রতি মন্তব্য</th>
+<!--Recent comments/Recent Post/ Tabs-->
+<div class="container">
+    <div class="row" style="margin-top:10px;">
+        <div class="span6">
+            <div class="row">
+                <div class="span3">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 150px; background-color:orange; color:white;">সম্প্রতি মন্তব্য</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                   <?php foreach ($this->recentComments as $comment): ?>
-                                            <tr>
-                                                <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                    <a href="/show/<?php echo $comment['comment_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
-                                                </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->recentComments as $comment): ?>
+                        <tr>
+                            <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                <a href="/show/<?php echo $comment['comment_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
+                            </td>
 
-                                            </tr>
-				<?php endforeach; ?>
-                                            
-
+                        </tr>
+                            <?php endforeach; ?>
 
 
-                                        </tbody>
-                                    </table>
-					<div class="accordion" id="accordion2">
-					  <div class="accordion-group">
-					    <div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-						সর্বোচ্চ পোস্টদাতা
-					      </a>
-					    </div>
-					    <div id="collapseOne" class="accordion-body collapse in">
-					      <div class="accordion-inner">
-					       <?php foreach ($this->topBloger as $blogger): ?>
-									<ul class="nav nav-list">
-										<li><a href="/profile/<?php echo $blogger['username'] ?>"><?php echo $blogger['username'] ?></a></li>
-									</ul>
-									<?php endforeach; ?>
-					      </div>
-					    </div>
-					  </div>
-					  <div class="accordion-group">
-					    <div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-						সর্বোচ্চ মন্তব্যকারী
-					      </a>
-					    </div>
-					    <div id="collapseTwo" class="accordion-body collapse in">
-					      <div class="accordion-inner">
-						<?php foreach ($this->topCommentPoster as $commenter): ?>
-									<ul class="nav nav-list">
-										<li><a href="/profile/<?php echo $commenter['username'] ?>"><?php echo $commenter['username'] ?></a></li>
-									</ul>
-									<?php endforeach; ?>
-					      </div>
-					    </div>
-					  </div>
-<div class="accordion-group">
-					    <div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-						অধিক আলোচিত
-					      </a>
-					    </div>
-					    <div id="collapseThree" class="accordion-body collapse in">
-					      <div class="accordion-inner">
-						
-									<?php foreach ($this->topDiscussion as $topdiscussion): ?>
-                                                                                                                <ul class="nav nav-list">
-                                                                                                                        <li><?php echo $topdiscussion['title']; ?></li>
-                                                                                                                </ul>
-						<?php endforeach; ?>
-								
-					      </div>
-					    </div>
-					  </div>
-					  <div class="accordion-group">
-					    <div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
-						শীর্ষ গ্রুপ
-					      </a>
-					    </div>
-					    <div id="collapseFour" class="accordion-body collapse in">
-					      <div class="accordion-inner">
-					      <ul class="nav nav-list">
-						<li></li>
-									</ul>
-									
-					      </div>
-					    </div>
-					  </div>
-
-
-
-
-
-
-
-
-					</div>
-
-                                </div>
-                                <div class="span3">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 150px; color:white; background-color:orange;">পুরাতন পোস্ট</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                       <?php foreach ($this->maxViewed as $oldBlog) : ?>
-                                            <tr>
-                                                <td><a href="/show/<?php echo $oldBlog['username'] ?>/<?php echo $oldBlog['permalink']; ?>"><?php echo $oldBlog['title']; ?></a>
-                                                </td>
-
-                                            </tr>
-				<?php endforeach; ?>
-
-                                        </tbody>
-                                    </table>
-<table class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 150px; background-color:orange; color:white;">নতুন ব্লগার</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                  <?php foreach ($this->newBlogger AS $newBlogger): ?>
-                                            <tr>
-                                                <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                    <a href="/profile/<?php echo $newBlogger['username'] ?>"><?php echo $newBlogger['username'] ?></a>
-                                                </td>
-
-                                            </tr>
-				<?php endforeach; ?>
-                                            
-
-
-
-                                        </tbody>
-                                    </table>
+                        </tbody>
+                    </table>
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapseOne">
+                                    সর্বোচ্চ পোস্টদাতা
+                                </a>
+                            </div>
+                            <div id="collapseOne" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <?php foreach ($this->topBloger as $blogger): ?>
+                                    <ul class="nav nav-list">
+                                        <li><a
+                                            href="/profile/<?php echo $blogger['username'] ?>"><?php echo $blogger['username'] ?></a>
+                                        </li>
+                                    </ul>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="span6">
-<?php echo $this->layout()->content ?>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapseTwo">
+                                    সর্বোচ্চ মন্তব্যকারী
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <?php foreach ($this->topCommentPoster as $commenter): ?>
+                                    <ul class="nav nav-list">
+                                        <li><a
+                                            href="/profile/<?php echo $commenter['username'] ?>"><?php echo $commenter['username'] ?></a>
+                                        </li>
+                                    </ul>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapseThree">
+                                    অধিক আলোচিত
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+
+                                    <?php foreach ($this->topDiscussion as $topdiscussion): ?>
+                                    <ul class="nav nav-list">
+                                        <li><?php echo $topdiscussion['title']; ?></li>
+                                    </ul>
+                                    <?php endforeach; ?>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapseFour">
+                                    শীর্ষ গ্রুপ
+                                </a>
+                            </div>
+                            <div id="collapseFour" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="span3">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 150px; color:white; background-color:orange;">পুরাতন পোস্ট</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->maxViewed as $oldBlog) : ?>
+                        <tr>
+                            <td><a
+                                href="/show/<?php echo $oldBlog['username'] ?>/<?php echo $oldBlog['permalink']; ?>"><?php echo $oldBlog['title']; ?></a>
+                            </td>
+
+                        </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th style="width: 150px; background-color:orange; color:white;">নতুন ব্লগার</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->newBlogger AS $newBlogger): ?>
+                        <tr>
+                            <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                <a href="/profile/<?php echo $newBlogger['username'] ?>"><?php echo $newBlogger['username'] ?></a>
+                            </td>
+
+                        </tr>
+                            <?php endforeach; ?>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
- </div></div></div></div></div>
-<footer class="footer" data-spy="affix-bottom" data-offset-top="200">
-      <div class="container">
-        <p class="pull-right"><a href="#">Go to top</a></p>
-        <p><?php if(!empty($this->pages)): ?>
-<?php foreach($this->pages as $pages): ?>
-      <a href="/page/<?php echo $pages['permalink'] ?>"><?php echo $pages['page_name'] ?></a>&nbsp; &raquo; 
-<?php endforeach; else:?>
-<a href="/feedback">Feedback</a> &nbsp; &raquo; 
-<?php endif; ?>
- </p>
-     <br /><br />   <p>&copy; All rights reserved by <a href="<?php echo $this->baseUrl;?>">Nokkhotro Blog</a></p>
-      </div>
-    </footer> 
-<!-- popup sinupform -->
-          <div id="myModal" class="modal hide fade">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3>নিবন্ধন করুন নক্ষত্র ব্লগে</h3>
-            </div>
-            <div class="modal-body">
-<div class="span5">
-<?php echo $this->userForm ; ?>
+        <div class="span6">
+            <?php echo $this->layout()->content ?>
+        </div>
+    </div>
 </div>
+</div>
+</div>
+</div>
+<footer class="footer" data-spy="affix-bottom" data-offset-top="200">
+    <div class="container">
+        <p class="pull-right"><a href="#">Go to top</a></p>
+
+        <p><?php if (!empty($this->pages)): ?>
+            <?php foreach ($this->pages as $pages): ?>
+                <a href="/page/<?php echo $pages['permalink'] ?>"><?php echo $pages['page_name'] ?></a>&nbsp; &raquo;
+                <?php endforeach; else: ?>
+            <a href="/feedback">Feedback</a> &nbsp; &raquo;
+            <?php endif; ?>
+        </p>
+        <br/><br/>
+
+        <p>&copy; All rights reserved by <a href="<?php echo $this->baseUrl;?>">Nokkhotro Blog</a></p>
+    </div>
+</footer>
+<!-- popup sinupform -->
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>নিবন্ধন করুন নক্ষত্র ব্লগে</h3>
+    </div>
+    <div class="modal-body">
+        <div class="span5">
+            <?php echo $this->userForm; ?>
+        </div>
 
 
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
 
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
-              
-            </div>
-          </div>
-
-
+    </div>
+</div>
 
 
 <!-- popup login -->
-          <div id="mylogin" class="modal hide fade">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3>Login Form</h3>
+<div id="mylogin" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Login Form</h3>
 
-            </div>
-            <div class="modal-body">
-               <div class="span6">
-                <form action="<?php echo $this->loginForm->getAction() ?>"
-                      method="<?php echo $this->loginForm->getMethod() ?>">
+    </div>
+    <div class="modal-body">
+        <div class="span6">
+            <form action="<?php echo $this->loginForm->getAction() ?>"
+                  method="<?php echo $this->loginForm->getMethod() ?>">
 
-                    <?php echo $this->loginForm->getDisplayGroup('auth') ?>
+                <?php echo $this->loginForm->getDisplayGroup('auth') ?>
 
-                    <div style="padding: 10px 0 0 125px">
-                        <button type="submit" class="btn primary" style="margin-right: 10px">Login</button>
-                        <br /><br />Don't have an account ? <a data-toggle="modal" href="#myModal" data-dismiss="modal">sign up</a> <br />
-                        <a data-toggle="modal" href="#myforgot" data-dismiss="modal">Forget Password</a>
-                    </div>
+                <div style="padding: 10px 0 0 125px">
+                    <button type="submit" class="btn primary" style="margin-right: 10px">Login</button>
+                    <br/><br/>Don't have an account ? <a data-toggle="modal" href="#myModal" data-dismiss="modal">sign
+                    up</a> <br/>
+                    <a data-toggle="modal" href="#myforgot" data-dismiss="modal">Forget Password</a>
+                </div>
 
-                </form>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+
+    </div>
 </div>
 
 
-
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
-              
-            </div>
-          </div>
-
-
 <!-- popup forgot password -->
-          <div id="myforgot" class="modal hide fade">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3>Forget Password</h3>
+<div id="myforgot" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Forget Password</h3>
 
-            </div>
-            <div class="modal-body">
-               <div class="span6">
-                <form action="<?php echo $this->forgetPasswordForm->getAction() ?>"
-                      method="<?php echo $this->forgetPasswordForm->getMethod() ?>">
+    </div>
+    <div class="modal-body">
+        <div class="span6">
+            <form action="<?php echo $this->forgetPasswordForm->getAction() ?>"
+                  method="<?php echo $this->forgetPasswordForm->getMethod() ?>">
 
-                    <?php echo $this->forgetPasswordForm->getDisplayGroup('auth') ?>
+                <?php echo $this->forgetPasswordForm->getDisplayGroup('auth') ?>
 
-                    <div style="padding: 10px 0 0 125px">
-                        <button type="submit" class="btn primary" style="margin-right: 10px">Submit</button>
-                        <a data-toggle="modal" href="#mylogin" data-dismiss="modal">Login</a>
-                    </div>
+                <div style="padding: 10px 0 0 125px">
+                    <button type="submit" class="btn primary" style="margin-right: 10px">Submit</button>
+                    <a data-toggle="modal" href="#mylogin" data-dismiss="modal">Login</a>
+                </div>
 
-                </form>
-              </div>
+            </form>
+        </div>
 
 
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
 
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
-              
-            </div>
-          </div>                
-          
-          
-    <!--Google Analytics Tracking Code (added by Shaharia Azam)-->
-    <script type="text/javascript">
+    </div>
+</div>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34878055-1']);
-  _gaq.push(['_setDomainName', 'nokkhotroblog.com']);
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<!--Google Analytics Tracking Code (added by Shaharia Azam)-->
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34878055-1']);
+    _gaq.push(['_setDomainName', 'nokkhotroblog.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
 
 </script>
 <!--End of Google analytics tracking-->
-    </body>
-    <script type="text/javascript">
+</body>
+<script type="text/javascript">
 
-        CKEDITOR.replace('description',
+    CKEDITOR.replace('description',
         {
             filebrowserBrowseUrl:'<?= $this->baseUrl(); ?>/includes/ckfinder/ckfinder.html?Type=Files',
             filebrowserImageBrowseUrl:'<?= $this->baseUrl(); ?>/includes/ckfinder/ckfinder.html?Type=Images',
@@ -577,17 +616,17 @@ echo $this->doctype()
             filebrowserFlashUploadUrl:'<?= $this->baseUrl(); ?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
         });
 
-    </script>
+</script>
 
 
-    <script type="text/javascript">
-        $(function () {
-            $(".newsticker-jcarousellite").jCarouselLite({
-                vertical:true,
-                hoverPause:true,
-                visible:5,
-                auto:500,
-                speed:5000
-            });
+<script type="text/javascript">
+    $(function () {
+        $(".newsticker-jcarousellite").jCarouselLite({
+            vertical:true,
+            hoverPause:true,
+            visible:5,
+            auto:500,
+            speed:5000
         });
-    </script>
+    });
+</script>

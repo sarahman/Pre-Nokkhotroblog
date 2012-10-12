@@ -2,7 +2,6 @@
 
 /**
  * Email Address Element
- *
  * @category        Form Element
  * @package         Speed
  * @copyright       Copyright (c) 2011 Right Brain Solution Ltd. http://rightbrainsolution.com

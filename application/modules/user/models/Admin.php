@@ -2,7 +2,6 @@
 
 /**
  * Admin Model
- *
  * @category    Model
  * @package     User
  * @author      Syed Abidur Rahman <aabid048@gmail.com>

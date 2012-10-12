@@ -2,7 +2,6 @@
 
 /**
  * ACL Model
- *
  * @category    Model
  * @package     Library
  * @author      Eftakhairul Islam <eftakhairul@gmail.com> (http://eftakhairul.com)
@@ -11,11 +10,9 @@
 class Speed_Model_Acl extends Zend_Acl
 {
     protected static $instance;
-
     private $roles;
 
     /**
-     *
      * @return App_Model_Acl
      */
     public static function getInstance()
@@ -48,7 +45,7 @@ class Speed_Model_Acl extends Zend_Acl
         $this->roles = new Zend_Config_Ini(APPLICATION_PATH . '/configs/roles.ini');
         $this->roles = $this->roles->toArray();
 
-        foreach($this->roles AS $role)
+        foreach ($this->roles AS $role)
         {
             $this->addRole(new Zend_Acl_Role($role));
         }
@@ -56,17 +53,17 @@ class Speed_Model_Acl extends Zend_Acl
 
     private function addResources()
     {
-       $resources = new Zend_Config_Ini(APPLICATION_PATH . '/configs/resources.ini');
-       $resources = $resources->toArray();
+        $resources = new Zend_Config_Ini(APPLICATION_PATH . '/configs/resources.ini');
+        $resources = $resources->toArray();
 
-      foreach($resources AS $moduleName => $modules)
-      {
-          foreach($modules AS $controller)
-          {
-            $resource =  $this->makeResource($moduleName, $controller);
-            $this->add(new Zend_Acl_Resource($resource));
-          }
-      }
+        foreach ($resources AS $moduleName => $modules)
+        {
+            foreach ($modules AS $controller)
+            {
+                $resource = $this->makeResource($moduleName, $controller);
+                $this->add(new Zend_Acl_Resource($resource));
+            }
+        }
     }
 
     private function addPermissions()
@@ -74,17 +71,17 @@ class Speed_Model_Acl extends Zend_Acl
         $permissions = new Zend_Config_Ini(APPLICATION_PATH . '/configs/permissions.ini');
         $permissions = $permissions->toArray();
 
-//        echo '<pre>';
-//        print_r($permissions);
-//        echo '</pre>';
+        //        echo '<pre>';
+        //        print_r($permissions);
+        //        echo '</pre>';
 
-        foreach($permissions AS $userType => $modules)
+        foreach ($permissions AS $userType => $modules)
         {
-            foreach($modules AS $moduleName => $controllers)
+            foreach ($modules AS $moduleName => $controllers)
             {
-                foreach($controllers AS $controllerName => $actions)
+                foreach ($controllers AS $controllerName => $actions)
                 {
-                    $resource =  $this->makeResource($moduleName, $controllerName);
+                    $resource = $this->makeResource($moduleName, $controllerName);
                     $this->allow($this->roles[$userType], $resource, $actions);
                 }
             }
@@ -97,7 +94,7 @@ class Speed_Model_Acl extends Zend_Acl
             $action = strtolower($action);
         }
 
-        $resource =  $this->makeResource($module, $controller);
+        $resource = $this->makeResource($module, $controller);
 
         if ($this->hasRole($role) && $this->isAllowed($role, $resource, $action)) {
             return true;

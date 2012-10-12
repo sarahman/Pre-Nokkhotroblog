@@ -2,7 +2,6 @@
 
 /**
  * User Status Model
- *
  * @category    Model
  * @package     User
  * @author      Eftakhairul Islam <eftakhairul@gmail.com>
@@ -18,9 +17,9 @@ class User_Model_UserStatus
     public function getAll()
     {
         return array(
-            self::ACTIVE   => ucfirst(self::ACTIVE),
+            self::ACTIVE => ucfirst(self::ACTIVE),
             self::INACTIVE => ucfirst(self::INACTIVE),
-            self::BANNED   => ucfirst(self::BANNED)
+            self::BANNED => ucfirst(self::BANNED)
         );
     }
 }

@@ -1,5 +1,5 @@
 <?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
-<?php if(!empty($this->page)) { ?>
+<?php if (!empty($this->page)) { ?>
 
 
 <div class="span12">
@@ -8,8 +8,8 @@
         <h2 class='page-header'><a
             href="/admin/blogs/show/id/<?php echo $this->page['page_id']; ?>"><?php echo $this->page['page_name']; ?></a>
         </h2>
-  <!--      <p class="author">
-            Posted in <?php echo $this->page['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->page['last_moderate_by'] ;?></cite> ::
+        <!--      <p class="author">
+            Posted in <?php echo $this->page['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->page['last_moderate_by'];?></cite> ::
             <abbr class="published">Published &nbsp;<?php echo $this->page['create_date']; ?></>
         </p>-->
 
@@ -20,21 +20,21 @@
 
             </p>
             <?php
-                  if (!empty ($authNamespace->adminData['username'])): ?>
-                      <p>
-                       <a href="/admin/pages/pending/id/<?php echo $this->page['page_id'] ?>" <?php echo ($this->page['status'] == 'pending') ? "class='btn btn-warning'": "class='btn btn-success'" ?>><?php echo ($this->page['status'] == 'pending') ? "Pending": "Publish" ?></a>
-                       <a href="/admin/pages/trash/id/<?php echo $this->page['page_id'] ?>" <?php echo ($this->page['status'] == 'pending') ? "class='btn btn-warning'": "class='btn btn-warning'" ?>><?php echo ($this->page['status'] == 'pending') ? "Trash": "Trash" ?></a>
-                       <a href="/admin/pages/edit/id/<?php echo  $this->page['page_id'] ?>" class="btn edit">Edit</a>
-                       
-                      </p>
-            <?php endif ?>
+            if (!empty ($authNamespace->adminData['username'])): ?>
+                <p>
+                    <a href="/admin/pages/pending/id/<?php echo $this->page['page_id'] ?>" <?php echo ($this->page['status'] == 'pending') ? "class='btn btn-warning'" : "class='btn btn-success'" ?>><?php echo ($this->page['status'] == 'pending') ? "Pending" : "Publish" ?></a>
+                    <a href="/admin/pages/trash/id/<?php echo $this->page['page_id'] ?>" <?php echo ($this->page['status'] == 'pending') ? "class='btn btn-warning'" : "class='btn btn-warning'" ?>><?php echo ($this->page['status'] == 'pending') ? "Trash" : "Trash" ?></a>
+                    <a href="/admin/pages/edit/id/<?php echo  $this->page['page_id'] ?>" class="btn edit">Edit</a>
+
+                </p>
+                <?php endif ?>
 
         </div>
     </div>
 
-<?php }else{ ?>
+    <?php } else { ?>
 
-<div class="span6">
-    <h3>No such post to show</h3>
-</div>
+    <div class="span6">
+        <h3>No such post to show</h3>
+    </div>
 <?php } ?>

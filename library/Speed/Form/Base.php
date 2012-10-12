@@ -2,11 +2,10 @@
 
 /**
  * Speed Base Form
- *
- * @package			Speed Library
- * @category		Form
- * @author			Syed Abidur Rahman <aabid048@gmail.com>
- * @copyright		Copyright (c) 2011 Right Brain Solution Ltd. <http://rightbrainsolution.com>
+ * @package            Speed Library
+ * @category        Form
+ * @author            Syed Abidur Rahman <aabid048@gmail.com>
+ * @copyright        Copyright (c) 2011 Right Brain Solution Ltd. <http://rightbrainsolution.com>
  */
 class Speed_Form_Base extends Zend_Form
 {
@@ -51,9 +50,9 @@ class Speed_Form_Base extends Zend_Form
         $field = new Zend_Form_Element_Text($options['name']);
 
         $field->setLabel($options['label'])
-              ->addFilter('StringTrim')
-              ->addFilter('StripTags')
-              ->addFilter('HtmlEntities');
+            ->addFilter('StringTrim')
+            ->addFilter('StripTags')
+            ->addFilter('HtmlEntities');
 
         empty($options['class']) || $field->setAttrib('class', $options['class']);
         empty($options['messageForRequired']) || $this->setElementRequired($field, $options['messageForRequired']);
@@ -97,7 +96,7 @@ class Speed_Form_Base extends Zend_Form
         $field = new Zend_Form_Element_Password($options['name']);
 
         $field->setLabel($options['label'])
-              ->addFilter('StringTrim');
+            ->addFilter('StringTrim');
 
         empty($options['class']) || $field->setAttrib('class', $options['class']);
         empty($options['messageForRequired']) || $this->setElementRequired($field, $options['messageForRequired']);
@@ -115,10 +114,9 @@ class Speed_Form_Base extends Zend_Form
         $field->setLabel($options['label']);
 
         empty($options['class']) || $field->setAttrib('class', $options['class']);
-        empty($options['cols']) || $field->setAttrib('cols',$options['cols']);
-        empty($options['rows']) || $field->setAttrib('rows',$options['rows']);
+        empty($options['cols']) || $field->setAttrib('cols', $options['cols']);
+        empty($options['rows']) || $field->setAttrib('rows', $options['rows']);
         empty($options['attributes']) || $field->setAttribs($options['attributes']);
-
 
         $this->formElements[$options['name']] = $field;
         return $field;
@@ -135,9 +133,9 @@ class Speed_Form_Base extends Zend_Form
         $field = new Zend_Form_Element_Submit($name);
 
         $field->setIgnore(true)
-              ->setLabel(ucwords($name))
-              ->setAttrib('class', 'btn-primary')
-              ->removeDecorator('label');
+            ->setLabel(ucwords($name))
+            ->setAttrib('class', 'btn-primary')
+            ->removeDecorator('label');
 
         empty($options['id']) || $field->setAttrib('id', $options['id']);
         empty($options['class']) || $field->setAttrib('class', $options['class']);
@@ -148,7 +146,7 @@ class Speed_Form_Base extends Zend_Form
 
     protected function addRedirectingCancelButtonElement($options = array())
     {
-        $name = empty($options['name']) ? 'cancel' : $options['name'];
+        $name  = empty($options['name']) ? 'cancel' : $options['name'];
         $field = new Zend_Form_Element_Button($name);
 
         $field->setLabel(ucfirst($name));
@@ -167,13 +165,13 @@ class Speed_Form_Base extends Zend_Form
 
     protected function addCancelButtonElement()
     {
-        $name = 'cancel';
+        $name  = 'cancel';
         $field = new Zend_Form_Element_Button($name);
 
         $field->setLabel(ucfirst($name))
-              ->setAttrib('id', 'cancel-button')
-              ->setAttrib('class', 'btn')
-              ->removeDecorator('label');
+            ->setAttrib('id', 'cancel-button')
+            ->setAttrib('class', 'btn')
+            ->removeDecorator('label');
 
         empty($options['class']) || $field->setAttrib('class', $options['class']);
 
@@ -184,8 +182,8 @@ class Speed_Form_Base extends Zend_Form
     protected function setElementRequired(Zend_Form_Element $element, $errorMsg)
     {
         $element->setRequired(true)
-                ->addDecorator('Label', $this->getOptionsForReqLabel($element))
-                ->addValidator('NotEmpty', true, array('messages' => $errorMsg));
+            ->addDecorator('Label', $this->getOptionsForReqLabel($element))
+            ->addValidator('NotEmpty', true, array('messages' => $errorMsg));
 
         return $this;
     }

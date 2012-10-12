@@ -1,7 +1,6 @@
 <?php
 /**
  * URL Helper
- *
  * @category   Utility
  * @author     Sirajus Salayhin <salayhin@gmail.com>
  */
@@ -46,8 +45,7 @@ class Speed_Utility_Url
 //		return trim(trim(stripslashes($str)), $replace);
 //	}
 
-
-    public  function getUrl($str, $replace = array(), $delimiter = '-')
+    public function getUrl($str, $replace = array(), $delimiter = '-')
     {
         if (!empty($replace)) {
             $str = str_replace((array)$replace, ' ', $str);
@@ -60,5 +58,4 @@ class Speed_Utility_Url
 
         return $clean;
     }
-
 }

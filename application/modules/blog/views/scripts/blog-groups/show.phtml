@@ -1,17 +1,17 @@
-      	<div class="row-fluid">
-        <div class="span12">
+<div class="row-fluid">
+    <div class="span12">
 
 
-     <center>Groups</center>
+        <center>Groups</center>
 
 
     </div>
 
-   </div>
- <hr>
+</div>
+<hr>
 
 <div class='class="row content-header"'>
-            <h4 class='page-header'>Groups:</h4>
+    <h4 class='page-header'>Groups:</h4>
 </div>
 
 <div class="span12">
@@ -45,13 +45,14 @@
 
         </table>
 
-                <p>
-                    <a href="/admin/bloggroups/publish/id/<?php echo $this->notice['group_id'] ?>" <?php echo ($this->notice['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_active'] == 0) ? "Publish" : "Unpublish" ?></a>
+        <p>
+            <a href="/admin/bloggroups/publish/id/<?php echo $this->notice['group_id'] ?>" <?php echo ($this->notice['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_active'] == 0) ? "Publish" : "Unpublish" ?></a>
 
-                    <a href="/admin/bloggroups/edit/id/<?php echo  $this->notice['group_id'] ?>" class="btn edit">Edit</a>
-                    <a href="/admin/bloggroups/delete/id/<?php echo $this->notice['group_id'] ?>" class="btn btn-danger">Delete</a>
-                </p>
+            <a href="/admin/bloggroups/edit/id/<?php echo  $this->notice['group_id'] ?>" class="btn edit">Edit</a>
+            <a href="/admin/bloggroups/delete/id/<?php echo $this->notice['group_id'] ?>"
+               class="btn btn-danger">Delete</a>
+        </p>
 
-        </div>
     </div>
+</div>
 

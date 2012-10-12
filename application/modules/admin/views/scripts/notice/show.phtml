@@ -2,7 +2,7 @@
 <?php if (!empty($this->notice)) { ?>
 
 <div class='class="row content-header"'>
-            <h4 class='page-header'>Notices:</h4>
+    <h4 class='page-header'>Notices:</h4>
 </div>
 
 <div class="span12">
@@ -37,18 +37,19 @@
         </table>
 
 
-            <?php
-            if (!empty ($authNamespace->adminData['admin_id'])): ?>
-                <p>
-                    <a href="/admin/notice/valid/id/<?php echo $this->notice['notice_id'] ?>" <?php echo ($this->notice['is_valid'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_valid'] == 0) ? "Publish" : "Unpublish" ?></a>
-			<a href="/admin/notice/active/id/<?php echo $this->notice['notice_id'] ?>" <?php echo ($this->notice['make_active'] == 1) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['make_active'] == 1) ? "Active" : "UnActive" ?></a>
-                    <a href="/admin/notice/edit/id/<?php echo  $this->notice['notice_id'] ?>" class="btn edit">Edit</a>
-                    <a href="/admin/notice/delete/id/<?php echo $this->notice['notice_id'] ?>" class="btn btn-danger">Delete</a>
-                </p>
-                <?php endif ?>
+        <?php
+        if (!empty ($authNamespace->adminData['admin_id'])): ?>
+            <p>
+                <a href="/admin/notice/valid/id/<?php echo $this->notice['notice_id'] ?>" <?php echo ($this->notice['is_valid'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['is_valid'] == 0) ? "Publish" : "Unpublish" ?></a>
+                <a href="/admin/notice/active/id/<?php echo $this->notice['notice_id'] ?>" <?php echo ($this->notice['make_active'] == 1) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->notice['make_active'] == 1) ? "Active" : "UnActive" ?></a>
+                <a href="/admin/notice/edit/id/<?php echo  $this->notice['notice_id'] ?>" class="btn edit">Edit</a>
+                <a href="/admin/notice/delete/id/<?php echo $this->notice['notice_id'] ?>"
+                   class="btn btn-danger">Delete</a>
+            </p>
+            <?php endif ?>
 
-        </div>
     </div>
+</div>
 
 <?php } else { ?>
 

@@ -2,7 +2,6 @@
 
 /**
  * ACL Library
- *
  * @category   Library
  * @copyright  Copyright (c) 2011 Right Brain Solution Ltd. http://rightbrainsolution.com
  * @author     Syed Abidur Rahman <abid@rightbrainsolution.com>
@@ -27,7 +26,7 @@ class Speed_Library_Acl extends Zend_Acl
     private function __construct()
     {
 
-        $resources = new Zend_Config_Ini(APPLICATION_PATH . '/configs/resources.ini');
+        $resources       = new Zend_Config_Ini(APPLICATION_PATH . '/configs/resources.ini');
         $this->resources = empty($resources) ? array() : $resources->toArray();
 
         $this->addResources();
@@ -76,20 +75,20 @@ class Speed_Library_Acl extends Zend_Acl
         if ($this->hasRole($role) && $this->isAllowed($role, $resource, $action)) {
             return true;
         }
-//            $isAllowed = $acl->isRoleAllowed(
-//                    $userInformation->userData['group_id'],
-//                    $request->getControllerName('controller'),
-//                    $request->getActionName('action')
-//            );
-//
-//            if ($isAllowed == false) {
-//
-//                $this->setPath($request, array(
-//                    'Module' => 'user',
-//                    'Controller' => 'Error',
-//                    'Action' => 'have-no-access',
-//                ));
-//            }
+        //            $isAllowed = $acl->isRoleAllowed(
+        //                    $userInformation->userData['group_id'],
+        //                    $request->getControllerName('controller'),
+        //                    $request->getActionName('action')
+        //            );
+        //
+        //            if ($isAllowed == false) {
+        //
+        //                $this->setPath($request, array(
+        //                    'Module' => 'user',
+        //                    'Controller' => 'Error',
+        //                    'Action' => 'have-no-access',
+        //                ));
+        //            }
         return false;
     }
 }

@@ -7,10 +7,8 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -18,9 +16,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  * PHP Version 5
- *
  * @category   EasyBib
  * @package    EasyBib_Form
  * @subpackage Decorator
@@ -32,9 +28,7 @@
 
 /**
  * Ez_Form_Decorator_BootstrapTag
- *
  * Wraps content in an HTML block tag.
- *
  * Options accepted are:
  * - tag: tag to use in decorator
  * - noAttribs: do not render attributes in the opening tag
@@ -43,9 +37,7 @@
  *   before content.
  * - openOnly: render opening tag only
  * - closeOnly: render closing tag only
- *
  * Any other options passed are processed as HTML attributes of the tag.
- *
  * @category   EasyBib
  * @package    EasyBib_Form
  * @subpackage Decorator
@@ -60,6 +52,7 @@ class EasyBib_Form_Decorator_BootstrapTag extends Zend_Form_Decorator_HtmlTag
      * Render content wrapped in an HTML tag
      *
      * @param  string $content
+     *
      * @return string
      */
     public function render($content)
@@ -87,8 +80,8 @@ class EasyBib_Form_Decorator_BootstrapTag extends Zend_Form_Decorator_HtmlTag
                     return $content . $this->_getOpenTag($tag, $attribs);
                 }
                 return $content
-                     . $this->_getOpenTag($tag, $attribs)
-                     . $this->_getCloseTag($tag);
+                    . $this->_getOpenTag($tag, $attribs)
+                    . $this->_getCloseTag($tag);
             case self::PREPEND:
                 if ($closeOnly) {
                     return $this->_getCloseTag($tag) . $content;
@@ -97,13 +90,12 @@ class EasyBib_Form_Decorator_BootstrapTag extends Zend_Form_Decorator_HtmlTag
                     return $this->_getOpenTag($tag, $attribs) . $content;
                 }
                 return $this->_getOpenTag($tag, $attribs)
-                     . $this->_getCloseTag($tag)
-                     . $content;
+                    . $this->_getCloseTag($tag)
+                    . $content;
             default:
                 return (($openOnly || !$closeOnly) ? $this->_getOpenTag($tag, $attribs) : '')
-                     . $content
-                     . (($closeOnly || !$openOnly) ? $this->_getCloseTag($tag) : '');
+                    . $content
+                    . (($closeOnly || !$openOnly) ? $this->_getCloseTag($tag) : '');
         }
     }
-
 }

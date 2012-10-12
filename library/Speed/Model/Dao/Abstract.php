@@ -2,7 +2,6 @@
 
 /**
  * Abstract Model Dao
- *
  * @category    Dao
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
  * @copyright   Right Brain Solution Ltd. <http://www.rightbrainsolution.com>
@@ -14,7 +13,7 @@ abstract class Speed_Model_Dao_Abstract extends Zend_Db_Table_Abstract
 
     protected function loadTable($table, $primaryKey = 'id')
     {
-        $this->_name = $table;
+        $this->_name       = $table;
         $this->_primaryKey = $primaryKey;
     }
 
@@ -34,7 +33,7 @@ abstract class Speed_Model_Dao_Abstract extends Zend_Db_Table_Abstract
     {
         if (empty ($result)) {
             return array();
-        } else if (is_object($result)){
+        } else if (is_object($result)) {
             return $result->toArray();
         }
 
@@ -65,8 +64,8 @@ abstract class Speed_Model_Dao_Abstract extends Zend_Db_Table_Abstract
     public function getTotalRows($options = array())
     {
         $select = $this->select()
-                        ->from($this->_name,
-                            array('total' => new Zend_Db_Expr('count(*)')));
+            ->from($this->_name,
+                   array('total' => new Zend_Db_Expr('count(*)')));
 
         $select = $this->setQuerySegments($select, $options);
 
@@ -77,12 +76,12 @@ abstract class Speed_Model_Dao_Abstract extends Zend_Db_Table_Abstract
     public function getDetail($id)
     {
         $select = $this->select()
-                       ->from($this->_name)
-                       ->where("$this->_primaryKey =?" , $id);
+            ->from($this->_name)
+            ->where("$this->_primaryKey =?", $id);
 
         return $this->returnResultAsAnArray($this->fetchRow($select));
-
     }
 
-    protected function setQuerySegments(Zend_Db_Table_Select $select, $options = array()) { return $select; }
+    protected function setQuerySegments(Zend_Db_Table_Select $select, $options = array())
+    { return $select; }
 }

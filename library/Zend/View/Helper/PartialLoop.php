@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -26,7 +23,6 @@ require_once 'Zend/View/Helper/Partial.php';
 /**
  * Helper for rendering a template fragment in its own variable scope; iterates
  * over data provided and renders for each iteration.
- *
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -34,7 +30,6 @@ require_once 'Zend/View/Helper/Partial.php';
  */
 class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
 {
-
     /**
      * Marker to where the pointer is at in the loop
      * @var integer
@@ -44,15 +39,15 @@ class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
     /**
      * Renders a template fragment within a variable scope distinct from the
      * calling View object.
-     *
      * If no arguments are provided, returns object instance.
      *
-     * @param  string $name Name of view script
+     * @param  string       $name Name of view script
      * @param  string|array $module If $model is empty, and $module is an array,
      *                              these are the variables to populate in the
      *                              view. Otherwise, the module in which the
      *                              partial resides
-     * @param  array $model Variables to populate in the view
+     * @param  array        $model Variables to populate in the view
+     *
      * @return string
      */
     public function partialLoop($name = null, $module = null, $model = null)

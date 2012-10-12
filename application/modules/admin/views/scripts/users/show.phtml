@@ -2,7 +2,7 @@
 <?php if (!empty($this->user)) { ?>
 
 <div class='class="row content-header"'>
-            <h4 class='page-header'>User:</h4>
+    <h4 class='page-header'>User:</h4>
 </div>
 
 <div class="span12">
@@ -41,18 +41,18 @@
         </table>
 
 
-            <?php
-            if (!empty ($authNamespace->adminData['admin_id'])): ?>
-                <p>
-                    <a href="/admin/users/valid/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'in-active') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'in-active') ? "Active" : "In-active" ?></a>
+        <?php
+        if (!empty ($authNamespace->adminData['admin_id'])): ?>
+            <p>
+                <a href="/admin/users/valid/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'in-active') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'in-active') ? "Active" : "In-active" ?></a>
 
-                    <a href="/admin/users/banned/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'allow') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'allow') ? "Banned" : "Allow" ?></a>
-                    <a href="/admin/users/delete/id/<?php echo $this->user['user_id'] ?>" class="btn btn-danger">Delete</a>
-                </p>
-                <?php endif ?>
+                <a href="/admin/users/banned/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'allow') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'allow') ? "Banned" : "Allow" ?></a>
+                <a href="/admin/users/delete/id/<?php echo $this->user['user_id'] ?>" class="btn btn-danger">Delete</a>
+            </p>
+            <?php endif ?>
 
-        </div>
     </div>
+</div>
 
 <?php } else { ?>
 

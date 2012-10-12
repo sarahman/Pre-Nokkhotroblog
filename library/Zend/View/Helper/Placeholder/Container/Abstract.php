@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -22,7 +19,6 @@
 
 /**
  * Abstract class representing container for placeholder values
- *
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -34,56 +30,47 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Whether or not to override all contents of placeholder
      * @const string
      */
-    const SET    = 'SET';
-
+    const SET = 'SET';
     /**
      * Whether or not to append contents to placeholder
      * @const string
      */
     const APPEND = 'APPEND';
-
     /**
      * Whether or not to prepend contents to placeholder
      * @const string
      */
     const PREPEND = 'PREPEND';
-
     /**
      * What text to prefix the placeholder with when rendering
      * @var string
      */
-    protected $_prefix    = '';
-
+    protected $_prefix = '';
     /**
      * What text to append the placeholder with when rendering
      * @var string
      */
-    protected $_postfix   = '';
-
+    protected $_postfix = '';
     /**
      * What string to use between individual items in the placeholder when rendering
      * @var string
      */
     protected $_separator = '';
-
     /**
      * What string to use as the indentation of output, this will typically be spaces. Eg: '    '
      * @var string
      */
     protected $_indent = '';
-
     /**
      * Whether or not we're already capturing for this given container
      * @var bool
      */
     protected $_captureLock = false;
-
     /**
      * What type of capture (overwrite (set), append, prepend) to use
      * @var string
      */
     protected $_captureType;
-
     /**
      * Key to which to capture content
      * @var string
@@ -92,7 +79,6 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Constructor - This is needed so that we can attach a class member as the ArrayObject container
-     *
      * @return void
      */
     public function __construct()
@@ -104,6 +90,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Set a single value
      *
      * @param  mixed $value
+     *
      * @return void
      */
     public function set($value)
@@ -115,6 +102,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Prepend a value to the top of the container
      *
      * @param  mixed $value
+     *
      * @return void
      */
     public function prepend($value)
@@ -126,10 +114,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Retrieve container value
-     *
      * If single element registered, returns that element; otherwise,
      * serializes to array.
-     *
      * @return mixed
      */
     public function getValue()
@@ -147,17 +133,17 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Set prefix for __toString() serialization
      *
      * @param  string $prefix
+     *
      * @return Zend_View_Helper_Placeholder_Container
      */
     public function setPrefix($prefix)
     {
-        $this->_prefix = (string) $prefix;
+        $this->_prefix = (string)$prefix;
         return $this;
     }
 
     /**
      * Retrieve prefix
-     *
      * @return string
      */
     public function getPrefix()
@@ -169,17 +155,17 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Set postfix for __toString() serialization
      *
      * @param  string $postfix
+     *
      * @return Zend_View_Helper_Placeholder_Container
      */
     public function setPostfix($postfix)
     {
-        $this->_postfix = (string) $postfix;
+        $this->_postfix = (string)$postfix;
         return $this;
     }
 
     /**
      * Retrieve postfix
-     *
      * @return string
      */
     public function getPostfix()
@@ -189,21 +175,20 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Set separator for __toString() serialization
-     *
      * Used to implode elements in container
      *
      * @param  string $separator
+     *
      * @return Zend_View_Helper_Placeholder_Container
      */
     public function setSeparator($separator)
     {
-        $this->_separator = (string) $separator;
+        $this->_separator = (string)$separator;
         return $this;
     }
 
     /**
      * Retrieve separator
-     *
      * @return string
      */
     public function getSeparator()
@@ -216,6 +201,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * optionally, if a number is passed, it will be the number of spaces
      *
      * @param  string|int $indent
+     *
      * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function setIndent($indent)
@@ -226,7 +212,6 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Retrieve indentation
-     *
      * @return string
      */
     public function getIndent()
@@ -238,6 +223,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Retrieve whitespace representation of $indent
      *
      * @param  int|string $indent
+     *
      * @return string
      */
     public function getWhitespace($indent)
@@ -246,13 +232,14 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
             $indent = str_repeat(' ', $indent);
         }
 
-        return (string) $indent;
+        return (string)$indent;
     }
 
     /**
      * Start capturing content to push into placeholder
      *
      * @param  int $type How to capture content into placeholder; append, prepend, or set
+     *
      * @return void
      * @throws Zend_View_Helper_Placeholder_Exception if nested captures detected
      */
@@ -268,14 +255,13 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
         $this->_captureLock = true;
         $this->_captureType = $type;
         if ((null !== $key) && is_scalar($key)) {
-            $this->_captureKey = (string) $key;
+            $this->_captureKey = (string)$key;
         }
         ob_start();
     }
 
     /**
      * End content capture
-     *
      * @return void
      */
     public function captureEnd()
@@ -321,7 +307,6 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Get keys
-     *
      * @return array
      */
     public function getKeys()
@@ -332,7 +317,6 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Next Index
-     *
      * as defined by the PHP manual
      * @return int
      */
@@ -348,27 +332,25 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
 
     /**
      * Render the placeholder
-     *
      * @return string
      */
     public function toString($indent = null)
     {
         $indent = ($indent !== null)
-                ? $this->getWhitespace($indent)
-                : $this->getIndent();
+            ? $this->getWhitespace($indent)
+            : $this->getIndent();
 
         $items  = $this->getArrayCopy();
         $return = $indent
-                . $this->getPrefix()
-                . implode($this->getSeparator(), $items)
-                . $this->getPostfix();
+            . $this->getPrefix()
+            . implode($this->getSeparator(), $items)
+            . $this->getPostfix();
         $return = preg_replace("/(\r\n?|\n)/", '$1' . $indent, $return);
         return $return;
     }
 
     /**
      * Serialize object to string
-     *
      * @return string
      */
     public function __toString()

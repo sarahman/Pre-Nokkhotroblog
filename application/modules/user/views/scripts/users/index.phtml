@@ -11,24 +11,27 @@
     <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 20px">
 
         <thead>
-            <tr>
-                <th width="5%">Serial</th>
-                <th width="10%">Username</th>
-                <th width="15%">Email Address</th>
-                <th width="10%">Role</th>
-                <th width="5%">Status</th>
-                <th width="12%">Last Logged In</th>
-                <th width="21%">&nbsp;</th>
-            </tr>
+        <tr>
+            <th width="5%">Serial</th>
+            <th width="10%">Username</th>
+            <th width="15%">Email Address</th>
+            <th width="10%">Role</th>
+            <th width="5%">Status</th>
+            <th width="12%">Last Logged In</th>
+            <th width="21%">&nbsp;</th>
+        </tr>
         </thead>
 
         <tbody>
 
-            <?php if (empty($this->users)) : ?>
+        <?php if (empty($this->users)) : ?>
 
-            <tr><td colspan="7" class="report-no-data">No user has been found.</td></tr>
+        <tr>
+            <td colspan="7" class="report-no-data">No user has been found.</td>
+        </tr>
 
-            <?php else: $count = 0; foreach($this->users AS $user) : ?>
+            <?php else: $count = 0;
+            foreach ($this->users AS $user) : ?>
 
             <tr>
                 <td class="centered"><?php echo ++$count ?></td>
@@ -43,7 +46,7 @@
                     <a class="btn danger delete" href="/user/users/delete/id/<?php echo $user['user_id'] ?>">Delete</a>
                 </td>
             </tr>
-            <?php endforeach; endif ?>
+                <?php endforeach; endif ?>
 
         </tbody>
 
@@ -54,11 +57,11 @@
 <div id="user-modal" class="modal hide fade"></div>
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         $.ajax({
-            url: '/user/users/add',
-            type: 'POST',
-            success: function(data){
+            url:'/user/users/add',
+            type:'POST',
+            success:function (data) {
                 $('#user-modal').html(data);
             }
         });

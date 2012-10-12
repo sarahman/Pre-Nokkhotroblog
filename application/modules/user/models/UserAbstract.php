@@ -2,7 +2,6 @@
 
 /**
  * User Abstract Model
- *
  * @category    Model
  * @package     User
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
@@ -18,13 +17,10 @@ abstract class User_Model_UserAbstract extends Speed_Model_Abstract
     public function save(array $data)
     {
         return $this->dao->create($data);
-
-
     }
 
     public function modify(array $data, $userId)
     {
         return $this->dao->modify($data, $userId);
     }
-
- }
+}

@@ -1,15 +1,15 @@
-
 <?php
 $authNamespace = new Zend_Session_Namespace('userInformation');
 
 ?>
 <?php if (!empty($authNamespace->userData['user_id'])) : ?>
 <div class="row-fluid content-header">
-        <div class="header-buttons">
-        <a class="btn btn-success" href="/<?php echo $this->novelname['username'] ?>/novel/<?php echo $this->novelname['permalink'] ; ?>/new">New </a>
+    <div class="header-buttons">
+        <a class="btn btn-success"
+           href="/<?php echo $this->novelname['username'] ?>/novel/<?php echo $this->novelname['permalink']; ?>/new">New </a>
     </div>
-      </div>
-        <br />
+</div>
+<br/>
 <?php endif; ?>
 
     <p>
@@ -33,17 +33,19 @@ $authNamespace = new Zend_Session_Namespace('userInformation');
                             <hr/>
                             <a href="/<?php echo $novel['username'] ?>/my-novel/<?php echo $novel['novel_name_permalink']; ?>/<?php echo $novel['novel_post_permalink']; ?>">Read
                                 More</a>
-<!--                            --><?php
-//
-//                            if (empty ($authNamespace->userData['user_id'])): ?>
-<!---->
-<!--                                <a href="/user/auth/login">Comment here</a>-->
-<!---->
-<!--                                --><?php //else: ?>
-<!---->
-<!--                                <a href="/comment/--><?php //echo $novel['username'] ?><!--/--><?php //echo $novel['permalink']; ?><!--">Comment-->
-<!--                                    here</a>-->
-<!--                                --><?php //endif ?>
+                            <!--                            --><?php
+                            //
+                            //                            if (empty ($authNamespace->userData['user_id'])): ?>
+                            <!---->
+                            <!--                                <a href="/user/auth/login">Comment here</a>-->
+                            <!---->
+                            <!--                                --><?php //else: ?>
+                            <!---->
+                            <!--                                <a href="/comment/-->
+                                <?php //echo $novel['username'] ?><!--/-->
+                                <?php //echo $novel['permalink']; ?><!--">Comment-->
+                            <!--                                    here</a>-->
+                            <!--                                --><?php //endif ?>
 
 
 
@@ -55,7 +57,7 @@ $authNamespace = new Zend_Session_Namespace('userInformation');
                     </div>
                     <?php endforeach ?>
 </p>
-        <br />
+<br/>
 <h4><a href="/novels">Back</a></h4>
 
 

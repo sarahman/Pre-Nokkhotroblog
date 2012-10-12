@@ -1,7 +1,6 @@
 <?php
 /**
  * Discussion Type Entry Form
- *
  * @category        Form
  * @package         Discussion Type
  * @author          Mohammad Zafar Iqbal <zafar@speedplusnet.com>
@@ -9,19 +8,15 @@
  */
 class Admin_Form_NovelForm extends Speed_Form_Base
 {
-
     public function __construct($options = array())
     {
         parent::__construct();
-
         $isEdit = empty($options['isEdit']) ? false : true;
-
         $this->initForm();
         $this->addTitleField();
         $this->addNovelField($isEdit);
         $this->addSubmitButtonField();
         $this->addCancelButtonField();
-
         $this->finalizeForm();
         EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP, 'submit', 'cancel');
     }
@@ -32,7 +27,6 @@ class Admin_Form_NovelForm extends Speed_Form_Base
             'name' => 'signup-form',
             'class' => 'span10'
         );
-
         $this->initializeForm($options);
     }
 
@@ -44,10 +38,8 @@ class Admin_Form_NovelForm extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => "Please enter the Episode Type."
         );
-
         $this->addTextElement($options);
     }
-
 
     protected function addNovelField()
     {
@@ -68,11 +60,9 @@ class Admin_Form_NovelForm extends Speed_Form_Base
     protected function addCancelButtonField()
     {
         $this->addRedirectingCancelButtonElement(array(
-            'name' => 'cancel',
-            'redirectLink' => '/blog/novels/index'
-        ));
+                                                     'name' => 'cancel',
+                                                     'redirectLink' => '/blog/novels/index'
+                                                 ));
     }
-
-
 }
 

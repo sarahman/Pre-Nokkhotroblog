@@ -1,67 +1,64 @@
 <div class="row-fluid content-header">
-    
+
     <?php
-            $authNamespace = new Zend_Session_Namespace('userInformation');
-            $authNamespace->userData['user_id']; 
+    $authNamespace = new Zend_Session_Namespace('userInformation');
+    $authNamespace->userData['user_id'];
     ?>
-    
-    
+
+
 </div>
 
-<?php if(!empty($this->display)) {?>
+<?php if (!empty($this->display)) { ?>
 
 <div class="span12">
 
     <div id="article-<?php echo $this->display['comment_id']; ?>">
- 	  <h3><a href="/show/<?php echo $this->display['username'] ?>/<?php echo $this->display['permalink']; ?>"><?php echo $this->display['title']; ?></h3><hr>
-
-         
-<?php 
-                
-                if(!empty( $this->display['profile_picture']))
-                {
-		?>
-               <img src="/<?php echo  $this->display['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
-
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
-
-		<?php
-               }
- 		?>
-</a> :: <a href="/profile/<?php echo $this->display['username'];?>">
-
- <?php 
-                
-                if(!empty($this->display['display_name']))
-                {
-                echo $this->display['display_name']; 
- 		}
-		
-                else
-		{
-                    if(!empty($this->display['name']))
-			{
-                    echo $this->display['name']; 
-                    }
-                    else 
-                    {
-                        echo $this->display['username'];
-                        
-                        }
-                       }
-                ?>
-</a> ::  <?php echo date('F jS Y', strtotime($this->display['create_date'])); ?><hr>
-          <p>
-              <?php echo $this->display['description']; ?>
-          </p>
+        <h3><a
+            href="/show/<?php echo $this->display['username'] ?>/<?php echo $this->display['permalink']; ?>"><?php echo $this->display['title']; ?>
+        </h3>
+        <hr>
 
 
+        <?php
+
+        if (!empty($this->display['profile_picture'])) {
+            ?>
+            <img src="/<?php echo  $this->display['profile_picture'] ?>" width="40px" height="40px"/>
+            <?php } else { ?>
+
+            <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+            <?php
+        }
+        ?>
+        </a> :: <a href="/profile/<?php echo $this->display['username'];?>">
+
+        <?php
+
+        if (!empty($this->display['display_name'])) {
+            echo $this->display['display_name'];
+        }
+        else
+        {
+            if (!empty($this->display['name'])) {
+                echo $this->display['name'];
+            }
+            else
+            {
+                echo $this->display['username'];
+            }
+        }
+        ?>
+    </a> ::  <?php echo date('F jS Y', strtotime($this->display['create_date'])); ?>
+        <hr>
+        <p>
+            <?php echo $this->display['description']; ?>
+        </p>
 
 
         <div class='meta'>
             <h4>Comments: </h4>
-                        <?php echo $this->display['comments']; ?>
+            <?php echo $this->display['comments']; ?>
 
             <p>
 
@@ -70,7 +67,7 @@
         </div>
     </div>
 </div>
-<?php }else{ ?>
+<?php } else { ?>
 
 <div class="span6">
     <h3>No such post to show</h3>

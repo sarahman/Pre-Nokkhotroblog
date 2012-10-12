@@ -2,7 +2,6 @@
 
 /**
  * Role Dao
- *
  * @category    Dao
  * @package     User
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
@@ -19,9 +18,8 @@ class User_Model_Dao_Role extends Speed_Model_Dao_Abstract
     public function getAll()
     {
         $select = $this->select()
-                       ->from($this->_name)
-                       ->order("{$this->_primaryKey} DESC");
-
+            ->from($this->_name)
+            ->order("{$this->_primaryKey} DESC");
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 

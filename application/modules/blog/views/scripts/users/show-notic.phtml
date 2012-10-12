@@ -1,82 +1,89 @@
 <div class="row" style="margin-top:10px;">
-<?php if(!empty($this->notice)) { ?>
-<div class="span3 well">
-	<h1 style="color:red;">অফিসিয়াল বিজ্ঞপ্তি</h1>
-	<hr style="margin:0px;" />
-	<br /><br />
-	<h3 style="color:green;">বিজ্ঞপ্তি প্রকাশের তারিখঃ</h3>
-	<?php echo $this->notice['create_date']; ?>
-	<hr style="margin:0px;" />
-	<br />
-	<br />
-	বিজ্ঞপ্তিটি নক্ষত্র ব্লগের কর্তৃপক্ষের নির্দেশে প্রকাশিত হয়েছে। বিজ্ঞপ্তি সংক্রান্ত কোন মতামত জানাতে চাইলে বিজ্ঞপ্তিতে মন্তব্য লিখতে পারেন।
-</div>
-<div class="span9" style="line-height:22px;">
+<?php if (!empty($this->notice)) { ?>
+    <div class="span3 well">
+        <h1 style="color:red;">অফিসিয়াল বিজ্ঞপ্তি</h1>
+        <hr style="margin:0px;"/>
+        <br/><br/>
+
+        <h3 style="color:green;">বিজ্ঞপ্তি প্রকাশের তারিখঃ</h3>
+        <?php echo $this->notice['create_date']; ?>
+        <hr style="margin:0px;"/>
+        <br/>
+        <br/>
+        বিজ্ঞপ্তিটি নক্ষত্র ব্লগের কর্তৃপক্ষের নির্দেশে প্রকাশিত হয়েছে। বিজ্ঞপ্তি সংক্রান্ত কোন মতামত জানাতে চাইলে
+        বিজ্ঞপ্তিতে মন্তব্য লিখতে পারেন।
+    </div>
+    <div class="span9" style="line-height:22px;">
 
         <h1 style="border-bottom:1px solid black;" class='page-header'><?php echo $this->notice['title']; ?>
         </h1>
-				<br />
-				<div style="clear:both;">&nbsp;</div>
-                <span style="font-size:14px;"><?php echo $this->notice['description']; ?></span>
-                <br /><br />
-                <table class="table table-bordered span6">
-  <thead>
-    <tr>
-      <th>শেয়ার করুন</th>
-      <th><!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style " style="width:250px;">
-<a class="addthis_button_preferred_1"></a>
-<a class="addthis_button_preferred_2"></a>
-<a class="addthis_button_preferred_3"></a>
-<a class="addthis_button_preferred_4"></a>
-<a class="addthis_button_compact"></a>
-<a class="addthis_counter addthis_bubble_style"></a>
+        <br/>
+
+        <div style="clear:both;">&nbsp;</div>
+        <span style="font-size:14px;"><?php echo $this->notice['description']; ?></span>
+        <br/><br/>
+        <table class="table table-bordered span6">
+            <thead>
+            <tr>
+                <th>শেয়ার করুন</th>
+                <th><!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style " style="width:250px;">
+                        <a class="addthis_button_preferred_1"></a>
+                        <a class="addthis_button_preferred_2"></a>
+                        <a class="addthis_button_preferred_3"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript"
+                            src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-505d075e286482fb"></script>
+                    <!-- AddThis Button END --></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
-<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-505d075e286482fb"></script>
-<!-- AddThis Button END --></th>
-    </tr>
-  </thead>
-</table>
-</div>
-</div>
-<?php }else{ ?>
+<?php } else { ?>
 <div class="row">
-	<div class="span5">
-		<h1 style="color:red;">অফিসিয়াল বিজ্ঞপ্তি</h1>
-		<hr style="margin:0px;" />
-		<br /><br />
-	</div>
-	<div class="span7">
-		  <h3 class="alert alert-error">দুঃখিত এই পেজে কোন বিজ্ঞপ্তি নেই</h3>
-	</div>
+    <div class="span5">
+        <h1 style="color:red;">অফিসিয়াল বিজ্ঞপ্তি</h1>
+        <hr style="margin:0px;"/>
+        <br/><br/>
+    </div>
+    <div class="span7">
+        <h3 class="alert alert-error">দুঃখিত এই পেজে কোন বিজ্ঞপ্তি নেই</h3>
+    </div>
 </div>
 <?php } ?>
-<h4>Comments:</h4>         
+<h4>Comments:</h4>
 <?php if (empty($this->comment)): ?>
 <p><?php echo "মন্তব্য নেই" ?></p>
- <?php endif; ?>
+<?php endif; ?>
 
             <div class="span7">
                 <?php   if (!empty($this->comment)) :
-  
+
                 foreach ($this->comment as $comment) :
 
                     ?>
-<p><a href="/profile/<?php echo $comment['username'] ?>"><img src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
-&nbsp;<a href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
+                    <p><a href="/profile/<?php echo $comment['username'] ?>"><img
+                        src="/<?php echo $comment['profile_picture'] ?>" width="40px" height="40px"/></a>
+                        &nbsp;<a
+                            href="/profile/<?php echo $comment['username'] ?>"><?php echo $comment['display_name']?></a>&nbsp;
                         &nbsp; <?php echo date('F jS Y', strtotime($comment['create_date'])); ?></p>
 
-<hr>
+                    <hr>
 
                     <p><?php echo $comment['comments']?> </p>
-<hr>
+                    <hr>
 
                     <?php endforeach;  endif; ?>
-<?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?><br>
+                <?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?><br>
 
-                              <?php    if (empty ($authNamespace->userData['user_id'])): ?>
-                                     <a href="/user/auth/login">মন্তব্য </a>
-                                      <?php else: ?>
+                <?php    if (empty ($authNamespace->userData['user_id'])): ?>
+                <a href="/user/auth/login">মন্তব্য </a>
+                <?php else: ?>
 
-                                      <a href="/blog/users/add-noticcomment/id/<?php echo $comment['notice_id']; ?>">মন্তব্য</a> &raquo; </span><?php endif ?><br><br>
+                <a href="/blog/users/add-noticcomment/id/<?php echo $comment['notice_id']; ?>">মন্তব্য</a> &raquo; </span><?php endif ?>
+                <br><br>

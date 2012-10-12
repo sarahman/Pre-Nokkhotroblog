@@ -7,10 +7,8 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -18,9 +16,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  * PHP Version 5
- *
  * @category EasyBib
  * @package  Form
  * @author   Michael Scholl <michael@sch0ll.de>
@@ -31,12 +27,10 @@
 
 /**
  * EasyBib_Form
- *
  * Extends Zend_Form
  * - provides model support
  * - provides buildBootstrapErrorDecorators method
  *   for adding css error classes to form if not valid
- *
  * @category EasyBib
  * @package  Form
  * @author   Michael Scholl <michael@sch0ll.de>
@@ -64,12 +58,13 @@ class EasyBib_Form extends Zend_Form
     {
         $this->model = $model;
     }
-    
+
     /**
      * Proxie to Zend_Form::isValid()
      * calls buildBootstrapErrorDecorators for parent::isValid() returning false
      *
      * @param  array $data
+     *
      * @return boolean
      */
     public function isValid($values)
@@ -84,8 +79,9 @@ class EasyBib_Form extends Zend_Form
     /**
      * Build Bootstrap Error Decorators
      */
-    public function buildBootstrapErrorDecorators() {
-        foreach ($this->getErrors() AS $key=>$errors) {
+    public function buildBootstrapErrorDecorators()
+    {
+        foreach ($this->getErrors() AS $key => $errors) {
             $htmlTagDecorator = $this->getElement($key)->getDecorator('HtmlTag');
             if (empty($htmlTagDecorator)) {
                 continue;

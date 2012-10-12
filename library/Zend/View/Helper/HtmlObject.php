@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -42,16 +39,17 @@ class Zend_View_Helper_HtmlObject extends Zend_View_Helper_HtmlElement
      * @param array  $attribs Attribs for the object tag
      * @param array  $params Params for in the object tag
      * @param string $content Alternative content for object
+     *
      * @return string
      */
     public function htmlObject($data, $type, array $attribs = array(), array $params = array(), $content = null)
     {
         // Merge data and type
         $attribs = array_merge(array('data' => $data,
-                                     'type' => $type), $attribs);
+                                   'type' => $type), $attribs);
 
         // Params
-        $paramHtml = array();
+        $paramHtml      = array();
         $closingBracket = $this->getClosingBracket();
 
         foreach ($params as $param => $options) {
@@ -71,9 +69,9 @@ class Zend_View_Helper_HtmlObject extends Zend_View_Helper_HtmlElement
 
         // Object header
         $xhtml = '<object' . $this->_htmlAttribs($attribs) . '>' . self::EOL
-                 . implode(self::EOL, $paramHtml) . self::EOL
-                 . ($content ? $content . self::EOL : '')
-                 . '</object>';
+            . implode(self::EOL, $paramHtml) . self::EOL
+            . ($content ? $content . self::EOL : '')
+            . '</object>';
 
         return $xhtml;
     }

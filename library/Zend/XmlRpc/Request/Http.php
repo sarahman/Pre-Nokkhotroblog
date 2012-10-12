@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_Controller
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -25,11 +22,9 @@ require_once 'Zend/XmlRpc/Request.php';
 
 /**
  * XmlRpc Request object -- Request via HTTP
- *
  * Extends {@link Zend_XmlRpc_Request} to accept a request via HTTP. Request is
  * built at construction time using a raw POST; if no data is available, the
  * request is declared a fault.
- *
  * @category Zend
  * @package  Zend_XmlRpc
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -43,7 +38,6 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
      * @var array
      */
     protected $_headers;
-
     /**
      * Raw XML as received via request
      * @var string
@@ -52,11 +46,9 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
 
     /**
      * Constructor
-     *
      * Attempts to read from php://input to get raw POST request; if an error
      * occurs in doing so, or if the XML is invalid, the request is declared a
      * fault.
-     *
      * @return void
      */
     public function __construct()
@@ -75,7 +67,6 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
 
     /**
      * Retrieve the raw XML request
-     *
      * @return string
      */
     public function getRawRequest()
@@ -85,9 +76,7 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
 
     /**
      * Get headers
-     *
      * Gets all headers as key => value pairs and returns them.
-     *
      * @return array
      */
     public function getHeaders()
@@ -96,7 +85,7 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
             $this->_headers = array();
             foreach ($_SERVER as $key => $value) {
                 if ('HTTP_' == substr($key, 0, 5)) {
-                    $header = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))));
+                    $header                  = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))));
                     $this->_headers[$header] = $value;
                 }
             }
@@ -107,7 +96,6 @@ class Zend_XmlRpc_Request_Http extends Zend_XmlRpc_Request
 
     /**
      * Retrieve the full HTTP request, including headers and XML
-     *
      * @return string
      */
     public function getFullRequest()

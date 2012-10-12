@@ -1,7 +1,6 @@
 <?php
 /**
  * Sticky Controller
- *
  * @Group Type   Controller
  * @package     Blog
  * Date Sep 24 2012
@@ -9,58 +8,40 @@
  */
 class Blog_Model_Sticky extends Speed_Model_Abstract
 {
-
     /**
-    * @var Blog_Model_Dao_Sticky
-    */
+     * @var Blog_Model_Dao_Sticky
+     */
     protected $dao;
 
     public function __construct($dao = null)
-       {
-           if (empty ($dao)) {
-               $this->dao = new Blog_Model_Dao_Sticky();
-
-           } else {
-               $this->dao = $dao;
-       }
+    {
+        if (empty ($dao)) {
+            $this->dao = new Blog_Model_Dao_Sticky();
+        } else {
+            $this->dao = $dao;
+        }
     }
 
-
-
-   public function getAll()
-    	{
-        return $this->dao->getAll();
-
-    	}
- public function getDetailForAdmin($stickyId)			
+    public function getAll()
     {
-        if (empty ($stickyId)) {				
+        return $this->dao->getAll();
+    }
+
+    public function getDetailForAdmin($stickyId)
+    {
+        if (empty ($stickyId)) {
             return false;
         }
-
-        $record = $this->dao->getDetailForAdmin($stickyId);			
-
+        $record = $this->dao->getDetailForAdmin($stickyId);
         return $record;
     }
-	public function delete($categoryId = null)
-    		{
-        if (empty($categoryId)) {
-            return false;
-        }
 
-        return $this->dao->remove($categoryId);
-	 }
-
-	public function save($data)
-    		{
+    public function save($data)
+    {
         if (empty($data)) {
             return false;
         }
-
         $categoryId = $this->dao->create($data);
         return $categoryId;
     }
-
-	
-
 }

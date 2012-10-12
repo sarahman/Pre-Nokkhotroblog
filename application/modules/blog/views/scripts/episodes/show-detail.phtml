@@ -1,26 +1,26 @@
 <?php
 $authNamespace = new Zend_Session_Namespace('userInformation');
-$data= $authNamespace->userData['user_id'];
+$data          = $authNamespace->userData['user_id'];
 
 ?>
 
 <?php if (!empty($this->episode)) { ?>
 
 <div class="row-fluid content-header">
-            <h4 class='page-header'>Episode</h4>
+    <h4 class='page-header'>Episode</h4>
 </div>
 
 <div class="span12">
-            Episode Titel: <?php echo $this->episode['episode_number']; ?><br>
-            Description: <?php echo $this->episode['description']; ?> 
+    Episode Titel: <?php echo $this->episode['episode_number']; ?><br>
+    Description: <?php echo $this->episode['description']; ?>
 
-          
-<hr>
 
- 
-           <a href="/blog/episods/index" class="btn edit">Cancel</a>
+    <hr>
 
-    </div>
+
+    <a href="/blog/episods/index" class="btn edit">Cancel</a>
+
+</div>
 
 <?php } else { ?>
 

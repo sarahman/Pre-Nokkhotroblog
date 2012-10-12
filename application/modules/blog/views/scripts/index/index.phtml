@@ -1,401 +1,420 @@
 <?php $authNamespace = new Zend_Session_Namespace('userInformation'); ?>
 <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#home" data-toggle="tab">ক্রমানুসারে পোস্ট</a> 
-	</li>
+    <li class="active"><a href="#home" data-toggle="tab">ক্রমানুসারে পোস্ট</a>
+    </li>
     <li><a href="#profile" data-toggle="tab">আলোচিত পোস্ট</a></li>
     <li><a href="#dropdown1" data-toggle="tab"> সর্বাধিক পঠিত</a></li>
 
 </ul>
           <div id="myTabContent" class="tab-content row-fluid span12">
-              <div class="tab-pane fade in active" id="home">
-                  <div data-spy="scroll" class="scrollspy-example">
+          <div class="tab-pane fade in active" id="home">
+              <div data-spy="scroll" class="scrollspy-example">
 
-                      <?php foreach ($this->recentBlogs AS $selectedBlog): ?>
-                      <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
-                          <h2 class='page-header'><a
-                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-                          </h2>
+                  <?php foreach ($this->recentBlogs AS $selectedBlog): ?>
+                  <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
+                      <h2 class='page-header'><a
+                          href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+                      </h2>
 
-                          <p class="author">
-				<div class="row">
-				<div style="float:left; width:50px; margin-left:30px;">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php 
-                
-                if(!empty($selectedBlog['profile_picture']))
-                {
-		?>
-               <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
+                      <p class="author">
 
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+                      <div class="row">
+                          <div style="float:left; width:50px; margin-left:30px;">
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php
 
-		<?php
-               }
- 		?></a></div><div class="span8" style="font-size:13px;">
+                                  if (!empty($selectedBlog['profile_picture'])) {
+                                      ?>
+                                      <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>"
+                                           width="40px" height="40px"/>
+                                      <?php } else { ?>
+
+                                      <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+                                      <?php
+                                  }
+                                  ?></a></div>
+                          <div class="span8" style="font-size:13px;">
                               <a href="/profile/<?php echo $selectedBlog['username'] ?>">
-<?php 
-                
-                if(!empty($selectedBlog['display_name']))
-                {
-                echo $selectedBlog['display_name']; 
- 		}
-		
-                else
-		{
-                    if(!empty($selectedBlog['name']))
-			{
-                    echo $selectedBlog['name']; 
-                    }
-                    else 
-                    {
-                        echo $selectedBlog['username'];
-                        
-                        }
-                       }
-                ?>
- </a><i class="icon-chevron-right"></i>
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> &nbsp;।
-						<?php 
-						$CommentsModel = new Blog_Model_BlogComment();
-						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
-					?>
-<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
-                              &nbsp;<strong><?php echo $x=$bn_date->IntToBn(sizeof($TotalComments));?></strong>টি মন্তব্য এবং <strong><?php echo $x=$bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার পঠিত<br />
-					
-                             		<span> <i class="icon-time"> </i> <?php echo $date = $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?> প্রকাশিত</span>
-				</div>
-				</div>
-                          </p>
-                          <hr style="margin:0px;">
+                                  <?php
 
-
-                          <div class='meta'>
-
-
-                              <?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($selectedBlog['description']); ?>
-                              <?php if(empty($img)):?>
-     
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-
+                                  if (!empty($selectedBlog['display_name'])) {
+                                      echo $selectedBlog['display_name'];
+                                  }
+                                  else
+                                  {
+                                      if (!empty($selectedBlog['name'])) {
+                                          echo $selectedBlog['name'];
+                                      }
+                                      else
+                                      {
+                                          echo $selectedBlog['username'];
+                                      }
+                                  }
+                                  ?>
+                              </a><i class="icon-chevron-right"></i>
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              &nbsp;।
                               <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
+                              $CommentsModel = new Blog_Model_BlogComment();
+                              $TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
                               ?>
+                              <?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp;<strong><?php echo $x = $bn_date->IntToBn(sizeof($TotalComments));?></strong>টি
+                              মন্তব্য এবং
+                              <strong><?php echo $x = $bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার
+                              পঠিত<br/>
 
-                             
-                                  <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>
-                              
-                              
-                              
-                              
-                              
-                              <?php else :?>
-                                 <div class="thumbnail span4">
-                                  <img src="<?php echo  $img; ?>" width="250px" height="100px" >
-                              </div>
-
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-
-                              <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
-                              ?>
-
-                             
-                                  <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>   
-                              
-                              
-                              
-                              
-                              
-                              
-                              <?php endif;?>
-
- <p >
-                                 <?php
-
-                                  if (empty ($authNamespace->userData['user_id'])): ?>
-
-                                      <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
-                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-
-                                      <?php else: ?>
-
-                                      <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
-                                      </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
-                                          href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-                                      <?php endif ?>
-
-                              <hr/>
-
-                              </p>
-
-
+                              <span> <i
+                                  class="icon-time"> </i> <?php echo $date = $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?>
+                                  প্রকাশিত</span>
                           </div>
                       </div>
-                      <?php endforeach ?>
+                      </p>
+                      <hr style="margin:0px;">
 
-                  </div>
-              </div>
 
-              <div class="tab-pane fade" id="profile">
-                  <div data-spy="scroll" class="scrollspy-example">
-                      <?php foreach ($this->maxCommented AS $selectedBlog): ?>
-                      <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
-                          <h2 class='page-header'><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-                          </h2>
+                      <div class='meta'>
 
-                          <p class="author">
-				<div class="row">
-				<div style="float:left; width:50px; margin-left:30px;">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php 
-                
-                if(!empty($selectedBlog['profile_picture']))
-                {
-		?>
-               <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
 
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+                          <?php $imageTag = new Speed_View_Helper_Image();
+                          $img            = $imageTag->extract($selectedBlog['description']); ?>
+                          <?php if (empty($img)): ?>
 
-		<?php
-               }
- 		?></a></div><div class="span8" style="font-size:13px;">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>">
-<?php 
-                
-                if(!empty($selectedBlog['display_name']))
-                {
-                echo $selectedBlog['display_name']; 
- 		}
-		
-                else
-		{
-                    if(!empty($selectedBlog['name']))
-			{
-                    echo $selectedBlog['name']; 
-                    }
-                    else 
-                    {
-                        echo $selectedBlog['username'];
-                        
-                        }
-                       }
-                ?>
- </a><i class="icon-chevron-right"></i>
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> &nbsp;।
-						<?php 
-						$CommentsModel = new Blog_Model_BlogComment();
-						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
-					?>
-<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
-                              &nbsp;<strong><?php echo $x=$bn_date->IntToBn(sizeof($TotalComments));?></strong>টি মন্তব্য এবং <strong><?php echo $x=$bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার পঠিত<br />
-					
-                             		<span><i class="icon-time"></i><?php echo $date = $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?> প্রকাশিত</span>
-				</div>
-				</div>
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+
+
+                          <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+
+
+
+
+
+                          <?php else : ?>
+                          <div class="thumbnail span4">
+                              <img src="<?php echo  $img; ?>" width="250px" height="100px">
+                          </div>
+
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+
+
+                          <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+
+
+
+
+
+
+                          <?php endif;?>
+
+                          <p>
+                              <?php
+
+                              if (empty ($authNamespace->userData['user_id'])): ?>
+
+                                  <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                                  &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+
+                                  <?php else: ?>
+
+                                  <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
+                                  </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
+                                      href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+                                  <?php endif ?>
+
+                          <hr/>
+
                           </p>
-<hr>
-
-                          <div class='meta'>
 
 
+                      </div>
+                  </div>
+                  <?php endforeach ?>
 
-				<?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($selectedBlog['description']); ?>
-                              <?php if(empty($img)):?>
-     
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+              </div>
+          </div>
 
+          <div class="tab-pane fade" id="profile">
+              <div data-spy="scroll" class="scrollspy-example">
+                  <?php foreach ($this->maxCommented AS $selectedBlog): ?>
+                  <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
+                      <h2 class='page-header'><a
+                          href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+                      </h2>
+
+                      <p class="author">
+
+                      <div class="row">
+                          <div style="float:left; width:50px; margin-left:30px;">
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php
+
+                                  if (!empty($selectedBlog['profile_picture'])) {
+                                      ?>
+                                      <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>"
+                                           width="40px" height="40px"/>
+                                      <?php } else { ?>
+
+                                      <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+                                      <?php
+                                  }
+                                  ?></a></div>
+                          <div class="span8" style="font-size:13px;">
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>">
+                                  <?php
+
+                                  if (!empty($selectedBlog['display_name'])) {
+                                      echo $selectedBlog['display_name'];
+                                  }
+                                  else
+                                  {
+                                      if (!empty($selectedBlog['name'])) {
+                                          echo $selectedBlog['name'];
+                                      }
+                                      else
+                                      {
+                                          echo $selectedBlog['username'];
+                                      }
+                                  }
+                                  ?>
+                              </a><i class="icon-chevron-right"></i>
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              &nbsp;।
                               <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
+                              $CommentsModel = new Blog_Model_BlogComment();
+                              $TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
                               ?>
- <p >
- <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>
-<?php else :?>
-                                 <div class="thumbnail span4">
-                                  <img src="<?php echo  $img; ?>" width="250px" height="100px" >
-                              </div>
+                              <?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp;<strong><?php echo $x = $bn_date->IntToBn(sizeof($TotalComments));?></strong>টি
+                              মন্তব্য এবং
+                              <strong><?php echo $x = $bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার
+                              পঠিত<br/>
 
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-
-                              <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
-                              ?>
-
-                             
-                                  <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>   
-                              
-                              
-                              
-                              
-                              
-                              
-                              <?php endif;?>
-
-                                 <?php
-
-                                  if (empty ($authNamespace->userData['user_id'])): ?>
-
-                                      <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
-                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-
-                                      <?php else: ?>
-
-                                      <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
-                                      </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
-                                          href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-                                      <?php endif ?>
-
-                              <hr/>
-
-                              </p>
-
-
-
-
-
-
-                             
+                              <span><i
+                                  class="icon-time"></i><?php echo $date = $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?>
+                                  প্রকাশিত</span>
                           </div>
                       </div>
-                      <?php endforeach ?>
-                  </div>
+                      </p>
+                      <hr>
 
+                      <div class='meta'>
+
+
+                          <?php $imageTag = new Speed_View_Helper_Image();
+                          $img            = $imageTag->extract($selectedBlog['description']); ?>
+                          <?php if (empty($img)): ?>
+
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+ <p>
+ <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+                          <?php else : ?>
+                          <div class="thumbnail span4">
+                              <img src="<?php echo  $img; ?>" width="250px" height="100px">
+                          </div>
+
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+
+
+                          <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+
+
+
+
+
+
+                          <?php endif;?>
+
+                          <?php
+
+                          if (empty ($authNamespace->userData['user_id'])): ?>
+
+                              <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                              &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+
+                              <?php else: ?>
+
+                              <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
+                              </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
+                                  href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+                              <?php endif ?>
+
+                          <hr/>
+
+                          </p>
+
+
+                      </div>
+                  </div>
+                  <?php endforeach ?>
               </div>
 
-              <div class="tab-pane fade" id="dropdown1">
-                  <div data-spy="scroll" class="scrollspy-example">
-                      <?php foreach ($this->maxViewed AS $selectedBlog): ?>
-                      <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
-                          <h2 class='page-header'><a
-                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-                          </h2>
+          </div>
 
-                          <p class="author">
-				<div class="row">
-				<div style="float:left; width:50px; margin-left:30px;">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php 
-                
-                if(!empty($selectedBlog['profile_picture']))
-                {
-		?>
-               <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/>
- 		   <?php } else { ?>
+          <div class="tab-pane fade" id="dropdown1">
+              <div data-spy="scroll" class="scrollspy-example">
+                  <?php foreach ($this->maxViewed AS $selectedBlog): ?>
+                  <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
+                      <h2 class='page-header'><a
+                          href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
+                      </h2>
 
-		<img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+                      <p class="author">
 
-		<?php
-               }
- 		?></a></div><div class="span8" style="font-size:13px;">
+                      <div class="row">
+                          <div style="float:left; width:50px; margin-left:30px;">
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php
+
+                                  if (!empty($selectedBlog['profile_picture'])) {
+                                      ?>
+                                      <img class="img-rounded" src="/<?php echo $selectedBlog['profile_picture'] ?>"
+                                           width="40px" height="40px"/>
+                                      <?php } else { ?>
+
+                                      <img src="/img/maleIcon.png" alt="" width="40px" height="40px"/>
+
+                                      <?php
+                                  }
+                                  ?></a></div>
+                          <div class="span8" style="font-size:13px;">
                               <a href="/profile/<?php echo $selectedBlog['username'] ?>">
-<?php 
-                
-                if(!empty($selectedBlog['display_name']))
-                {
-                echo $selectedBlog['display_name']; 
- 		}
-		
-                else
-		{
-                    if(!empty($selectedBlog['name']))
-			{
-                    echo $selectedBlog['name']; 
-                    }
-                    else 
-                    {
-                        echo $selectedBlog['username'];
-                        
-                        }
-                       }
-                ?>
- </a><i class="icon-chevron-right"></i>
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> &nbsp;।
-						<?php 
-						$CommentsModel = new Blog_Model_BlogComment();
-						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
-					?>
-<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
-                              &nbsp;<strong><?php echo $x=$bn_date->IntToBn(sizeof($TotalComments));?></strong>টি মন্তব্য এবং <strong><?php echo $x=$bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার পঠিত<br />
-					
-                             		<span><i class="icon-time"></i><?php echo $date = "&nbsp; ".$bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?> প্রকাশিত</span>
-				</div>
-				</div>
-                          </p>
-<hr>
-                          <div class='meta'>
-				<?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($selectedBlog['description']); ?>
-                              <?php if(empty($img)):?>
-     
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+                                  <?php
 
+                                  if (!empty($selectedBlog['display_name'])) {
+                                      echo $selectedBlog['display_name'];
+                                  }
+                                  else
+                                  {
+                                      if (!empty($selectedBlog['name'])) {
+                                          echo $selectedBlog['name'];
+                                      }
+                                      else
+                                      {
+                                          echo $selectedBlog['username'];
+                                      }
+                                  }
+                                  ?>
+                              </a><i class="icon-chevron-right"></i>
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              &nbsp;।
                               <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
+                              $CommentsModel = new Blog_Model_BlogComment();
+                              $TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
                               ?>
+                              <?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp;<strong><?php echo $x = $bn_date->IntToBn(sizeof($TotalComments));?></strong>টি
+                              মন্তব্য এবং
+                              <strong><?php echo $x = $bn_date->IntToBn($selectedBlog['viewed']); ?></strong> বার
+                              পঠিত<br/>
 
-<p >
- <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>
-<?php else :?>
-                                 <div class="thumbnail span4">
-                                  <img src="<?php echo  $img; ?>" width="250px" height="100px" >
-                              </div>
-
-                              <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-
-                              <?php
-
-                              $content = $imageTag->removeImageTag($selectedBlog['description']);
-
-
-                              ?>
-
-                             
-                                  <?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a><br><br>   
-                              
-                              
-                              
-                              
-                              
-                              
-                              <?php endif;?>
-
-                                 <?php
-
-                                  if (empty ($authNamespace->userData['user_id'])): ?>
-
-                                      <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
-                                      &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-
-                                      <?php else: ?>
-
-                                      <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
-                                      </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
-                                          href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
-                                      <?php endif ?>
-
-                              <hr/>
-
-                              </p>
-
-
+                              <span><i
+                                  class="icon-time"></i><?php echo $date = "&nbsp; " . $bn_date->ShowDate($selectedBlog['last_modaretion_date']); ?>
+                                  প্রকাশিত</span>
                           </div>
                       </div>
-                      <?php endforeach ?>
-                  </div>
+                      </p>
+                      <hr>
+                      <div class='meta'>
+                          <?php $imageTag = new Speed_View_Helper_Image();
+                          $img            = $imageTag->extract($selectedBlog['description']); ?>
+                          <?php if (empty($img)): ?>
 
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+
+<p>
+ <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+                          <?php else : ?>
+                          <div class="thumbnail span4">
+                              <img src="<?php echo  $img; ?>" width="250px" height="100px">
+                          </div>
+
+                          <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+
+                          <?php
+
+                          $content = $imageTag->removeImageTag($selectedBlog['description']);
+
+
+                          ?>
+
+
+                          <?php echo $excerpt->word_limiter($content, 50); ?><a
+                              href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
+                              পড়ুন</a><br><br>
+
+
+
+
+
+
+                          <?php endif;?>
+
+                          <?php
+
+                          if (empty ($authNamespace->userData['user_id'])): ?>
+
+                              <a href="/user/auth/login">মন্তব্য </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>
+                              &nbsp;&nbsp;&nbsp; <a href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+
+                              <?php else: ?>
+
+                              <a href="/comment/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">মন্তব্য
+                              </a>&nbsp;&nbsp;&nbsp;<a href="#">ফেভারিট </a>&nbsp;&nbsp;&nbsp; <a
+                                  href="#">Like </a>&nbsp;&nbsp;&nbsp; <a href="#">Share </a>
+                              <?php endif ?>
+
+                          <hr/>
+
+                          </p>
+
+
+                      </div>
+                  </div>
+                  <?php endforeach ?>
               </div>
+
+          </div>

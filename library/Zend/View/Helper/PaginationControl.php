@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -29,14 +26,11 @@ class Zend_View_Helper_PaginationControl
 {
     /**
      * View instance
-     *
      * @var Zend_View_Instance
      */
     public $view = null;
-
     /**
      * Default view partial
-     *
      * @var string|array
      */
     protected static $_defaultViewPartial = null;
@@ -45,6 +39,7 @@ class Zend_View_Helper_PaginationControl
      * Sets the view instance.
      *
      * @param  Zend_View_Interface $view View instance
+     *
      * @return Zend_View_Helper_PaginationControl
      */
     public function setView(Zend_View_Interface $view)
@@ -65,7 +60,6 @@ class Zend_View_Helper_PaginationControl
 
     /**
      * Gets the default view partial
-     *
      * @return string|array
      */
     public static function getDefaultViewPartial()
@@ -79,9 +73,10 @@ class Zend_View_Helper_PaginationControl
      * the defaults will be used (if set).
      *
      * @param  Zend_Paginator (Optional) $paginator
-     * @param  string $scrollingStyle (Optional) Scrolling style
-     * @param  string $partial (Optional) View partial
-     * @param  array|string $params (Optional) params to pass to the partial
+     * @param  string                    $scrollingStyle (Optional) Scrolling style
+     * @param  string                    $partial (Optional) View partial
+     * @param  array|string              $params (Optional) params to pass to the partial
+     *
      * @return string
      * @throws Zend_View_Exception
      */
@@ -119,7 +114,7 @@ class Zend_View_Helper_PaginationControl
         $pages = get_object_vars($paginator->getPages($scrollingStyle));
 
         if ($params !== null) {
-            $pages = array_merge($pages, (array) $params);
+            $pages = array_merge($pages, (array)$params);
         }
 
         if (is_array($partial)) {

@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Value
@@ -20,12 +17,10 @@
  * @version    $Id: Base64.php 24594 2012-01-05 21:27:01Z matthew $
  */
 
-
 /**
  * Zend_XmlRpc_Value_Scalar
  */
 require_once 'Zend/XmlRpc/Value/Scalar.php';
-
 
 /**
  * @category   Zend
@@ -36,21 +31,20 @@ require_once 'Zend/XmlRpc/Value/Scalar.php';
  */
 class Zend_XmlRpc_Value_Base64 extends Zend_XmlRpc_Value_Scalar
 {
-
     /**
      * Set the value of a base64 native type
      * We keep this value in base64 encoding
      *
      * @param string $value
-     * @param bool $already_encoded If set, it means that the given string is already base64 encoded
+     * @param bool   $already_encoded If set, it means that the given string is already base64 encoded
      */
     public function __construct($value, $alreadyEncoded = false)
     {
         $this->_type = self::XMLRPC_TYPE_BASE64;
 
-        $value = (string)$value;    // Make sure this value is string
+        $value = (string)$value; // Make sure this value is string
         if (!$alreadyEncoded) {
-            $value = base64_encode($value);     // We encode it in base64
+            $value = base64_encode($value); // We encode it in base64
         }
         $this->_value = $value;
     }
@@ -58,7 +52,6 @@ class Zend_XmlRpc_Value_Base64 extends Zend_XmlRpc_Value_Scalar
     /**
      * Return the value of this object, convert the XML-RPC native base64 value into a PHP string
      * We return this value decoded (a normal string)
-     *
      * @return string
      */
     public function getValue()

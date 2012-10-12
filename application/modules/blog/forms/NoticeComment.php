@@ -2,7 +2,6 @@
 
 /**
  * Comments Form
- *
  * @category        Form
  * @copyright       Copyright (c) 2011 Right Brain Solution Ltd. http://www.rightbrainsolution.com
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -11,16 +10,13 @@ class Blog_Model_NoticComment extends Speed_Form_Base
 {
     public function __construct($options = array())
     {
-
         parent::__construct();
         $isEdit = empty($options['isEdit']) ? false : true;
-
         $this->initForm($isEdit);
         $this->loadElements($options, $isEdit);
-
         $this->finalizeForm();
         EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP,
-            empty($isEdit) ? 'add' : 'update');
+                                                 empty($isEdit) ? 'add' : 'update');
     }
 
     protected function initForm($isEdit = false)
@@ -31,7 +27,6 @@ class Blog_Model_NoticComment extends Speed_Form_Base
             'id' => (empty($isEdit) ? 'add' : 'edit') . '-comments-form',
             'action' => '/blog/users/comment'
         );
-
         $this->initializeForm($options);
     }
 
@@ -46,11 +41,11 @@ class Blog_Model_NoticComment extends Speed_Form_Base
     protected function addCommentsDescriptionField()
     {
         $options = array(
-            'name'  => 'comments',
+            'name' => 'comments',
             'label' => 'Enter your comments here:',
             'class' => 'span10',
-            'rows'  => 10,
-            'cols'  => 20,
+            'rows' => 10,
+            'cols' => 20,
             'messageForRequired' => "Please enter comments."
         );
         $this->addTextAreaElement($options);
@@ -60,9 +55,9 @@ class Blog_Model_NoticComment extends Speed_Form_Base
     {
         $name = empty($isEdit) ? 'add' : 'update';
         $this->addSubmitButtonElement(array(
-            'name' => $name,
-            'id' => $name . '-button'
-        ));
+                                          'name' => $name,
+                                          'id' => $name . '-button'
+                                      ));
     }
 }
 

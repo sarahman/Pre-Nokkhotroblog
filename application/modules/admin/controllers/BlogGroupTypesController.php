@@ -1,14 +1,13 @@
 <?php
 /**
  * Group Type Controller
- *
  * @Group Type   Controller
  * @package     Admin
  * @author      Md. Sirajus Salayhin <salayhin@gmail.com>
  */
 class Admin_BlogGroupTypesController extends Speed_Controller_ActionController
 {
-    protected $group;		
+    protected $group;
 
     protected function initialize()
     {
@@ -20,64 +19,55 @@ class Admin_BlogGroupTypesController extends Speed_Controller_ActionController
     public function indexAction()
     {
         $this->validateAdmin();
-        $groupModel = new Admin_Model_BlogGroupType();
-        $display = $groupModel->getAll();		
+        $groupModel          = new Admin_Model_BlogGroupType();
+        $display             = $groupModel->getAll();
         $this->view->display = $display;
-
     }
 
     public function editAction()
     {
         $this->validateAdmin();
         $groupModel = new Admin_Model_BlogGroupType();
-        $groupId = $this->_request->getParam('id');	
-        $groupModel->getDetail($groupId);		
+        $groupId    = $this->_request->getParam('id');
+        $groupModel->getDetail($groupId);
         $groupEntry = new Admin_Form_BlogGroupTypesEntry(array(
             'isEdit' => true,
-            'post_type' => $groupId		
+            'post_type' => $groupId
         ));
-
         if ($this->_request->isPost()) {
             $data = $this->_request->getParams();
-
-            if ($groupEntry->isValid($data)) {		
+            if ($groupEntry->isValid($data)) {
                 $result = $groupModel->modify($data, $data['blog_group_type_id']);
                 if (empty($result)) {
-                    $this->redirectForFailure('/admin/blog-group-types','Problem , Please try again.');
+                    $this->redirectForFailure('/admin/blog-group-types', 'Problem , Please try again.');
                 } else {
-                    $this->redirectForSuccess('/admin/blog-group-types','Blog group type has been updated successfully.');
+                    $this->redirectForSuccess('/admin/blog-group-types', 'Blog group type has been updated successfully.');
                 }
             } else {
-                $groupEntry->populate($data);	
+                $groupEntry->populate($data);
             }
         } else {
-
-            if (empty($groupId)) {		
-                $this->redirectForFailure('/blog-group-types/index','No Post found');
+            if (empty($groupId)) {
+                $this->redirectForFailure('/blog-group-types/index', 'No Post found');
             } else {
                 $groupModel = new Admin_Model_BlogGroupType();
-                $groupData = $groupModel->getDetail($groupId);	
-                if (empty($groupData)) {		
-                    $this->redirectForFailure('/blog-group-types/index','No Post found.');
+                $groupData  = $groupModel->getDetail($groupId);
+                if (empty($groupData)) {
+                    $this->redirectForFailure('/blog-group-types/index', 'No Post found.');
                 } else {
-                    $groupEntry->populate($groupData);	
+                    $groupEntry->populate($groupData);
                 }
             }
         }
-        $this->view->GroupEntry = $groupEntry;	
-
+        $this->view->GroupEntry = $groupEntry;
     }
-
 
     public function deleteAction()
     {
         $this->validateAdmin();
         $groupModel = new Admin_Model_BlogGroupType();
-
-        $groupId = $this->_request->getParam('id');	
-
-        $status = $groupModel->delete($groupId);	
-
+        $groupId    = $this->_request->getParam('id');
+        $status     = $groupModel->delete($groupId);
         if ($status) {
             $this->redirectForSuccess("/admin/blog-group-types", "Blog group type deleted Sucessfully.");
         } else {
@@ -88,34 +78,22 @@ class Admin_BlogGroupTypesController extends Speed_Controller_ActionController
     public function addAction()
     {
         $this->validateAdmin();
-
         $groupEntry = new Admin_Form_BlogGroupTypesEntry();
-
         if ($this->_request->isPost()) {
-
-            $data = $this->_request->getParams();
+            $data               = $this->_request->getParams();
             $data['group_type'] = stripslashes($this->_request->getParam('group_type'));
-
-
-            if ($groupEntry->isValid($data)) {	
-
+            if ($groupEntry->isValid($data)) {
                 $groupModel = new Admin_Model_BlogGroupType();
-
-                $result = $groupModel->save($data);		
+                $result     = $groupModel->save($data);
                 if (empty($result)) {
-                    $this->redirectForFailure('/admin/blog-group-types/index','There was a problem , Please try again.');
+                    $this->redirectForFailure('/admin/blog-group-types/index', 'There was a problem , Please try again.');
                 } else {
-
-                    $this->redirectForSuccess('/admin/blog-group-types/index','Blog group type inserted sucessfully');
+                    $this->redirectForSuccess('/admin/blog-group-types/index', 'Blog group type inserted sucessfully');
                 }
-
             } else {
-                $groupEntry->populate($data);	
+                $groupEntry->populate($data);
             }
         }
-
-        $this->view->GroupEntry = $groupEntry;	
-
+        $this->view->GroupEntry = $groupEntry;
     }
-
 }

@@ -1,14 +1,12 @@
 <?php
 /**
  * Role Model
- *
  * @category    Model
  * @package     User
  * @author      Eftakhairul Islam <eftakhairul@gmail.com>
  * @author      Syed Abidur Rahman <aabid048@gmail.com>
  * @copyright   Right Brain Solution Ltd. (http://rightbrainsolution.com)
  */
-
 class User_Model_Role extends Speed_Model_Abstract
 {
     /**

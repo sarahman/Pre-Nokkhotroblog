@@ -2,7 +2,7 @@
 <?php if (!empty($this->detail)) { ?>
 
 <div class='class="row content-header"'>
-            <h4 class='page-header'>detail:</h4>
+    <h4 class='page-header'>detail:</h4>
 </div>
 
 <div class="span7">
@@ -35,24 +35,24 @@
                 <td class="span2">Access:</td>
                 <td><?php echo $this->detail['is_active'] ? "Yes" : "No"; ?> </td>
             </tr>
-            
+
 
         </table>
 
 
-            <?php
-            if (!empty ($authNamespace->userData['user_id'])): ?>
-                <p>
-			 
-                    <a href="/user/mygroups/valid/id/<?php echo $this->detail['my_group_id'] ?>" <?php echo ($this->detail['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->detail['is_active'] == 0) ? "Active" : "In-Active" ?></a>
+        <?php
+        if (!empty ($authNamespace->userData['user_id'])): ?>
+            <p>
 
-                   
-                    <a href="/user/mygroups/delete/id/<?php echo $this->detail['my_group_id'] ?>" class="btn btn-danger">Delete</a>
-                </p>
-                <?php endif ?>
+                <a href="/user/mygroups/valid/id/<?php echo $this->detail['my_group_id'] ?>" <?php echo ($this->detail['is_active'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->detail['is_active'] == 0) ? "Active" : "In-Active" ?></a>
 
-        </div>
+
+                <a href="/user/mygroups/delete/id/<?php echo $this->detail['my_group_id'] ?>" class="btn btn-danger">Delete</a>
+            </p>
+            <?php endif ?>
+
     </div>
+</div>
 
 <?php } else { ?>
 

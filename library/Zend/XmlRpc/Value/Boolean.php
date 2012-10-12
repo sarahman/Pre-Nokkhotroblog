@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Value
@@ -20,12 +17,10 @@
  * @version    $Id: Boolean.php 24594 2012-01-05 21:27:01Z matthew $
  */
 
-
 /**
  * Zend_XmlRpc_Value_Scalar
  */
 require_once 'Zend/XmlRpc/Value/Scalar.php';
-
 
 /**
  * @category   Zend
@@ -36,7 +31,6 @@ require_once 'Zend/XmlRpc/Value/Scalar.php';
  */
 class Zend_XmlRpc_Value_Boolean extends Zend_XmlRpc_Value_Scalar
 {
-
     /**
      * Set the value of a boolean native type
      * We hold the boolean type as an integer (0 or 1)
@@ -53,7 +47,6 @@ class Zend_XmlRpc_Value_Boolean extends Zend_XmlRpc_Value_Scalar
 
     /**
      * Return the value of this object, convert the XML-RPC native boolean value into a PHP boolean
-     *
      * @return bool
      */
     public function getValue()

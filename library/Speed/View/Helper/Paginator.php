@@ -13,11 +13,11 @@ class Speed_View_Helper_Paginator extends Zend_View_Helper_Abstract
             return '';
         }
 
-//        $this->view->addScriptPath(APPLICATION_PATH . DIRECTORY_SEPARATOR . 'order'. DIRECTORY_SEPARATOR. 'views'. DIRECTORY_SEPARATOR. 'scripts');
+        //        $this->view->addScriptPath(APPLICATION_PATH . DIRECTORY_SEPARATOR . 'order'. DIRECTORY_SEPARATOR. 'views'. DIRECTORY_SEPARATOR. 'scripts');
 
         return $this->view->paginationControl($paginator, 'Sliding',
-            'partials' . DIRECTORY_SEPARATOR. 'pagination.phtml',
-            array('paginatorOptions' => $options));
+                                              'partials' . DIRECTORY_SEPARATOR . 'pagination.phtml',
+                                              array('paginatorOptions' => $options));
     }
 
     public function buildLink($page, $label, $options = array(), $class = '')
@@ -34,7 +34,7 @@ class Speed_View_Helper_Paginator extends Zend_View_Helper_Abstract
             $url = rtrim($url, '/') . $str;
         }
 
-        $formattedString = '<li'. (empty($class) ? '' : " class='{$class}'") .'><a href="%s"  >%s</a></li>';
+        $formattedString = '<li' . (empty($class) ? '' : " class='{$class}'") . '><a href="%s"  >%s</a></li>';
 
         return sprintf($formattedString, $url, $label);
     }

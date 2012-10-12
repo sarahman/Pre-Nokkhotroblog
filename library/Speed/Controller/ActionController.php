@@ -2,7 +2,6 @@
 
 /**
  * Description of Action Controller
- *
  * @package         Action
  * @category        Controller
  * @author          Syed Abidur Rahman <aabid048@gmail.com>
@@ -19,7 +18,8 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
         $this->initialize();
     }
 
-    protected function initialize() {}
+    protected function initialize()
+    { }
 
     protected function redirectForSuccess($redirectLink, $message)
     {
@@ -56,14 +56,14 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
 
     protected function processSearchForm($options = array())
     {
-        $options['fields'] = empty ($options['fields']) ? array () : $options['fields'];
+        $options['fields']     = empty ($options['fields']) ? array() : $options['fields'];
         $options['submitLink'] = empty ($options['submitLink']) ? '' : $options['submitLink'];
 
-        $searchKey = $this->getSearchKey($options['fields']);
+        $searchKey        = $this->getSearchKey($options['fields']);
         $searchFormFields = Attendance_Form_SearchFormField::getSearchFormFields($options);
-        $searchForm = new Speed_Form_CommonSearchForm($searchFormFields, $searchKey);
+        $searchForm       = new Speed_Form_CommonSearchForm($searchFormFields, $searchKey);
 
-        $this->view->searchForm = $searchForm;
+        $this->view->searchForm    = $searchForm;
         $this->view->searchKeyHash = $this->hash;
 
         return $searchKey;
@@ -73,12 +73,12 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
     {
         $searchQuery = new Zend_Session_Namespace('searchQuery');
 
-        foreach($options AS $option) {
-            $searchKey[$option]= $this->_request->getParam($option, null);
+        foreach ($options AS $option) {
+            $searchKey[$option] = $this->_request->getParam($option, null);
         }
 
         if ($this->getRequest()->isPost()) {
-            $hash = md5(uniqid());
+            $hash               = md5(uniqid());
             $searchQuery->$hash = $searchKey;
         } else {
             $hash = $this->_request->getParam('hash', false);
@@ -93,19 +93,19 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
 
     protected function setPaginationOptions(array $options)
     {
-        $model = $options['model'];
+        $model      = $options['model'];
         $reportRows = $options['reportRows'];
-        $total = $options['totalRows'];
-        $url = $options['itemLink'];
-        $paginator = $model->getPaginator($reportRows, $total);
+        $total      = $options['totalRows'];
+        $url        = $options['itemLink'];
+        $paginator  = $model->getPaginator($reportRows, $total);
 
-        $this->view->baseUrl = 'http://' . $_SERVER['HTTP_HOST'];
+        $this->view->baseUrl    = 'http://' . $_SERVER['HTTP_HOST'];
         $this->view->reportRows = $reportRows;
-        $this->view->paginator = $paginator;
+        $this->view->paginator  = $paginator;
 
         $this->view->paginatorOptions = array(
-                    'path' => '',
-                    'itemLink' => $url
+            'path' => '',
+            'itemLink' => $url
         );
     }
 
@@ -127,21 +127,21 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
     }
 
     protected function validateUser()
-        {
-            $authNamespace = new Zend_Session_Namespace('userInformation');
+    {
+        $authNamespace = new Zend_Session_Namespace('userInformation');
 
-            if (empty($authNamespace->userData['username'])){
-                $this->redirectForFailure("/user/auth/login","Please login first to view");
-            }
+        if (empty($authNamespace->userData['username'])) {
+            $this->redirectForFailure("/user/auth/login", "Please login first to view");
         }
+    }
 
     protected function validateAdmin()
     {
         {
             $authNamespace = new Zend_Session_Namespace('adminInformation');
 
-            if (empty($authNamespace->adminData['username'])){
-                $this->redirectForFailure("/admin/auth/login","Please login first to view");
+            if (empty($authNamespace->adminData['username'])) {
+                $this->redirectForFailure("/admin/auth/login", "Please login first to view");
             }
         }
     }

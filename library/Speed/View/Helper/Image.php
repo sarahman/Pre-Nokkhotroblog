@@ -2,15 +2,12 @@
 
 /**
  * Image Helper
- *
  * @category   Utility
  * @author     Sirajus Salayhin <salayhin@gmail.com>
  */
 
-
 class Speed_View_Helper_Image
 {
-
     public function extract($text)
     {
         $html = $text;
@@ -18,7 +15,6 @@ class Speed_View_Helper_Image
 
         $pattern = '/<img[^>]+src[\\s=\'"]';
         $pattern .= '+([^"\'>\\s]+)/is';
-
 
         if (preg_match(
             $pattern,

@@ -1,6 +1,3 @@
-
-
-
 <div class="subnav">
     <ul class="nav nav-pills">
         <li><a href="/admin/discussions">All Discussion</a></li>
@@ -8,47 +5,45 @@
     </ul>
 </div>
 </div>
-<br /><br />
+<br/><br/>
 <div class="row-fluid">
-<table class="table table-striped table-bordered">
-    <thead>
-            <tr>
-                <th>Serial</th>
-                
-                <th>Description</th>
-              <th>Comment</th>
-
-                <th>Action</th>
-
-              
-                
-                
-            </tr>
-     </thead>
-    <tbody>
-
-    <?php if (!empty($this->getAll)) : ?>
-
-    <tr>
-        <td class="report-no-data" colspan="5">No discussion has been found.</td>
-    </tr>
-        <?php else: $count = 0;
-        foreach ($this->display AS $display) : ?>
-
+    <table class="table table-striped table-bordered">
+        <thead>
         <tr>
-            <td class="centered"><?php echo ++$count ?></td>
-		<td><?php echo $display['discussion_id'] ?></td>
-            <td><?php echo $display['comment'] ?></td> 	
+            <th>Serial</th>
 
-         
-            <td><a href="/admin/discussion-comments/show/id/<?php echo $display['discussion_comment_id'] ?>"
-                                  class="btn btn-success">Show</a></td>
+            <th>Description</th>
+            <th>Comment</th>
+
+            <th>Action</th>
+
 
         </tr>
+        </thead>
+        <tbody>
 
-            <?php endforeach; endif ?>
+        <?php if (!empty($this->getAll)) : ?>
 
-    </tbody>
+        <tr>
+            <td class="report-no-data" colspan="5">No discussion has been found.</td>
+        </tr>
+            <?php else: $count = 0;
+            foreach ($this->display AS $display) : ?>
 
-</table>
+            <tr>
+                <td class="centered"><?php echo ++$count ?></td>
+                <td><?php echo $display['discussion_id'] ?></td>
+                <td><?php echo $display['comment'] ?></td>
+
+
+                <td><a href="/admin/discussion-comments/show/id/<?php echo $display['discussion_comment_id'] ?>"
+                       class="btn btn-success">Show</a></td>
+
+            </tr>
+
+                <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
 </div>

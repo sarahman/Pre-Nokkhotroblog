@@ -2,7 +2,6 @@
 
 /**
  * EmailManager Library
- *
  * @category   Library
  * @copyright  Copyright (c) 2011 Right Brain Solution Ltd. http://rightbrainsolution.com
  * @author     Eftakhairul Islam <eftakhairul@gmail.com>
@@ -14,7 +13,6 @@ class Speed_Library_EmailManager
      * @var Zend_Mail_Transport_Abstract
      */
     protected $transport;
-
     /**
      * @var Zend_Mail
      */
@@ -27,8 +25,8 @@ class Speed_Library_EmailManager
                 'config' => APPLICATION_PATH . '/configs/email.ini'
             );
         }
-        
-        $config = new Zend_Config_Ini($options['config']);
+
+        $config   = new Zend_Config_Ini($options['config']);
         $settings = $config->toArray();
 
         $this->init($settings);
@@ -37,7 +35,7 @@ class Speed_Library_EmailManager
     private function init($settings)
     {
         $this->transport = new Zend_Mail_Transport_Smtp($settings['server'], $settings);
-        $this->emailer = new Zend_Mail();
+        $this->emailer   = new Zend_Mail();
         $this->emailer->setFrom($settings['username']);
     }
 
@@ -58,7 +56,7 @@ class Speed_Library_EmailManager
 
         $view->setScriptPath(APPLICATION_PATH . '/templates');
         $view->assign($data);
-        
+
         $body = $view->render($template . ".phtml");
         return $body;
     }

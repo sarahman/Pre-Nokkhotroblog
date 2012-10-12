@@ -2,14 +2,14 @@
     <ul class="nav nav-pills">
         <li><a href="/admin/blogs/index">All Blogs</a></li>
         <li><a href="/admin/categories">Category</a></li>
-	    <li><a href="/admin/post-types">Post Types</a></li>
-	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+        <li><a href="/admin/post-types">Post Types</a></li>
+        <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
         <li><a href="/admin/blog-groups">Blog Groups</a></li>
         <li><a href="/admin/comments">Comments</a></li>
-          <li><a href="/admin/blogs/show-sticky">Show Sticky</a></li>
+        <li><a href="/admin/blogs/show-sticky">Show Sticky</a></li>
     </ul>
 </div>
-<br /><br />
+<br/><br/>
 <div class="row-fluid">
 
     <h1>Show All Sticky </h1>
@@ -26,7 +26,7 @@
         <th class="span2">Title</th>
         <th class="span4">Description</th>
         <th class="span1">Date</th>
-	<th class="span1">Status</th>
+        <th class="span1">Status</th>
 
         <th class="span3">Action</th>
 
@@ -46,16 +46,18 @@
         <tr>
             <td class="centered"><?php echo ++$count ?></td>
             <td><?php echo $getsticky['title'] ?></td>
-	<td><?php echo $getsticky['description'] ?></td>
-     <td><?php echo $getsticky['create_date'] ?></td>
-             <td><a href="#"<?php echo ($getsticky['sticky_on_home_page'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
- 
-<td><a href="/admin/blogs/puplish-sticky/id/<?php echo $getsticky['blog_id'] ?>"<?php echo ($getsticky['sticky_on_home_page'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($getsticky['sticky_on_home_page'] == 0) ? "Sticky": "UnSticky" ?></a>
-       
+            <td><?php echo $getsticky['description'] ?></td>
+            <td><?php echo $getsticky['create_date'] ?></td>
+            <td><a
+                href="#"<?php echo ($getsticky['sticky_on_home_page'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a>
+            </td>
+
+            <td><a
+                href="/admin/blogs/puplish-sticky/id/<?php echo $getsticky['blog_id'] ?>"<?php echo ($getsticky['sticky_on_home_page'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($getsticky['sticky_on_home_page'] == 0) ? "Sticky" : "UnSticky" ?></a>
 
 
-                    <a href="/admin/blogs/delete/id/<?php echo $getsticky['blog_id'] ?>" class="btn btn-danger">Delete</a></td>       
-
+                <a href="/admin/blogs/delete/id/<?php echo $getsticky['blog_id'] ?>" class="btn btn-danger">Delete</a>
+            </td>
 
 
         </tr>

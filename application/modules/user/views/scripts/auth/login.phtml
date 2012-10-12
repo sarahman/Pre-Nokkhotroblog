@@ -22,12 +22,13 @@
         <div class="span6 offset5" style="margin-top:200px">
 
             <?php if (empty($this->errorMsg)) : ?>
-                <?php echo $this->flashMessenger() ?>
+            <?php echo $this->flashMessenger() ?>
             <?php else : ?>
-                <div class="alert-message error">
-                    <a class="close" href="#">&times;</a>
-                    <p><?php echo $this->errorMsg ?></p>
-                </div>
+            <div class="alert-message error">
+                <a class="close" href="#">&times;</a>
+
+                <p><?php echo $this->errorMsg ?></p>
+            </div>
             <?php endif ?>
 
             <div id="auth-panel" class="hero-unit" style="background-color:#F5F5DA">
@@ -39,7 +40,7 @@
 
                     <div style="padding: 10px 0 0 125px">
                         <button type="submit" class="btn primary" style="margin-right: 10px">Login</button>
-                        <br /><br />Don't have an account ? <a href="/user/signup">sign up</a> <br />
+                        <br/><br/>Don't have an account ? <a href="/user/signup">sign up</a> <br/>
                         <a href="/user/auth/forget">Forget Password</a>
                     </div>
 

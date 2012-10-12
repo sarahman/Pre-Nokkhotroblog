@@ -1,9 +1,6 @@
-
-
 <?php
 /**
  * Discussion Type Entry Form
- *
  * @category        Form
  * @package         Blog
  * @author          Mohammad Zafar Iqbal <zafar@speedplusnet.com>
@@ -11,30 +8,26 @@
  */
 class Admin_Form_NovelName extends Speed_Form_Base
 {
-     
     public function __construct($options = array())
-        {
-            parent::__construct();
+    {
+        parent::__construct();
+        $isEdit = empty($options['isEdit']) ? false : true;
+        $this->initForm();
+        $this->addNovelNameField($isEdit);
+        $this->addSubmitButtonField();
+        $this->addCancelButtonField();
+        $this->finalizeForm();
+        EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP, 'submit', 'cancel');
+    }
 
-            $isEdit = empty($options['isEdit']) ? false : true;
-
-            $this->initForm();
-            $this->addNovelNameField($isEdit); 
-            $this->addSubmitButtonField();
-            $this->addCancelButtonField();
-            $this->finalizeForm();
-            EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP,'submit','cancel');
-        }
-
-        protected function initForm()
-        {
-            $options = array(
-                'name'  => 'novel-name-form',
-                'class' => 'span10'
-            );
-
-            $this->initializeForm($options);
-        }
+    protected function initForm()
+    {
+        $options = array(
+            'name' => 'novel-name-form',
+            'class' => 'span10'
+        );
+        $this->initializeForm($options);
+    }
 
     protected function addNovelNameField()
     {
@@ -44,24 +37,20 @@ class Admin_Form_NovelName extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => "Please enter the Episode Type."
         );
-
         $this->addTextElement($options);
-        
     }
 
     protected function addSubmitButtonField()
-        {
-            $this->addSubmitButtonElement(array('name' => 'submit'));
-        }
+    {
+        $this->addSubmitButtonElement(array('name' => 'submit'));
+    }
 
-        protected function addCancelButtonField()
-        {
-            $this->addRedirectingCancelButtonElement(array(
-                'name' => 'cancel',
-                'redirectLink' => '/novel/name'
-            ));
-        }
-        
-        
+    protected function addCancelButtonField()
+    {
+        $this->addRedirectingCancelButtonElement(array(
+                                                     'name' => 'cancel',
+                                                     'redirectLink' => '/novel/name'
+                                                 ));
+    }
 }
 

@@ -7,7 +7,8 @@
         </h2>
 
         <p class="author">
-            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->blog['username'] ;?></cite> ::
+            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By
+            <cite><?php echo $this->blog['username'];?></cite> ::
             <abbr class="published">Published &nbsp;<?php echo $this->blog['create_date']; ?></abbr>
         </p>
 
@@ -18,15 +19,15 @@
                 <?php echo $this->blog['description']; ?>
 
             </p>
-           <?php
-                  if (!empty ($authNamespace->userData['username'])): ?>
-                      <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
-            <?php endif ?>
+            <?php
+            if (!empty ($authNamespace->userData['username'])): ?>
+                <p><a href="/user/blogs/edit/id/<?php echo $this->blog['blog_id'] ?>">Edit</a></p>
+                <?php endif ?>
 
         </div>
     </div>
 </div>
 
 
-                <?php echo $this->commentsForm; ?>
+<?php echo $this->commentsForm; ?>
 

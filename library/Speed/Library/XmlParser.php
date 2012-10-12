@@ -2,7 +2,6 @@
 
 /**
  * XML Parser Library
- *
  * @category   Library
  * @copyright  Copyright (c) 2011 Right Brain Solution Ltd. http://rightbrainsolution.com
  * @author     Eftakhairul Islam <eftakhairul@gmail.com>
@@ -15,7 +14,7 @@ class Speed_Library_XmlParser
 
     public function loadFile($filePath = null)
     {
-        if(empty($filePath)) {
+        if (empty($filePath)) {
             return false;
         }
 
@@ -25,7 +24,7 @@ class Speed_Library_XmlParser
 
     public function setFolderLocation($url = null)
     {
-        if(empty($url)) {
+        if (empty($url)) {
             return false;
         }
 
@@ -35,7 +34,7 @@ class Speed_Library_XmlParser
 
     public function parseXML()
     {
-        if(empty($this->xmlFile)){
+        if (empty($this->xmlFile)) {
             return false;
         }
 
@@ -43,10 +42,10 @@ class Speed_Library_XmlParser
         $answers = get_object_vars($xml->answers);
 
         $data = array(
-            'exam_code'  => (string) $xml->examcode,
-            'full_name'  => (string) $xml->studentname,
-            'student_id' => (string) $xml->studentid,
-            'answers'    => $answers
+            'exam_code' => (string)$xml->examcode,
+            'full_name' => (string)$xml->studentname,
+            'student_id' => (string)$xml->studentid,
+            'answers' => $answers
         );
 
         return $data;
@@ -55,21 +54,20 @@ class Speed_Library_XmlParser
     public function parseAllFiles()
     {
 
-        if(empty($this->folderLocation)){
+        if (empty($this->folderLocation)) {
             return false;
         }
 
-        $files = scandir($this->folderLocation);
+        $files       = scandir($this->folderLocation);
         $studentData = array();
 
-        foreach($files AS $file)
+        foreach ($files AS $file)
         {
-            if($file != "." OR $file != "..") {
-                $studentData[] = $this->loadFile($this->folderLocation.'/'.$file)->parseXML();
+            if ($file != "." OR $file != "..") {
+                $studentData[] = $this->loadFile($this->folderLocation . '/' . $file)->parseXML();
             }
         }
 
         return $studentData;
     }
-
 }

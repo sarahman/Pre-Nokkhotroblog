@@ -7,10 +7,8 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -18,9 +16,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  * PHP Version 5
- *
  * @category EasyBib
  * @package  EasyBib_Form
  * @author   Michael Scholl <michael@sch0ll.de>
@@ -31,7 +27,6 @@
 
 /**
  * Default Decorators Set
- *
  * General usage:
  * EasyBib_Form_Decorator::setFormDecorator($form, 'div', 'submit', 'cancel');
  * EasyBib_Form_Decorator::setFormDecorator(
@@ -43,7 +38,6 @@
  *   Name of submit button,
  *   Name of cancel button
  * );
- *
  * @category EasyBib
  * @package  EasyBib_Form
  * @author   Michael Scholl <michael@sch0ll.de>
@@ -57,775 +51,763 @@ class EasyBib_Form_Decorator
      * Constants Definition for Decorator
      */
     const TABLE = 'table';
-
     const DIV = 'div';
-
     const BOOTSTRAP = 'bootstrap';
-
     const BOOTSTRAP_MINIMAL = 'bootstrap_minimal';
-
     /**
      * Element Decorator
-     *
      * @staticvar array
      */
-    protected static $_ElementDecorator = array(
-        'table' => array(
-            'ViewHelper',
-            array(
-                'Description',
+    protected static $_ElementDecorator
+        = array(
+            'table' => array(
+                'ViewHelper',
                 array(
-                    'tag'   => ''
-                )
-            ),
-            'Errors',
-            array(
+                    'Description',
+                    array(
+                        'tag' => ''
+                    )
+                ),
+                'Errors',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                array(
-                    'row' => 'HtmlTag'
+                    'Label',
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'tr'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
+                )
+            ),
+            'div' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'hint'
+                    )
+                ),
+                array(
+                    'Errors'
+                ),
+                array(
+                    'Label'
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div'
+                    )
+                )
+            ),
+            'bootstrap' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
+                )
+            ),
+            'bootstrap_minimal' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'Label'
                 )
             )
-        ),
-        'div' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'hint'
-                )
-            ),
-            array(
-                'Errors'
-            ),
-            array(
-                'Label'
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag' => 'div'
-                )
-            )
-        ),
-        'bootstrap' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'BootstrapTag',
-                array(
-                    'class' => 'controls'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'Label'
-            )
-        )
-    );
-
+        );
     /**
      * Captcha Decorator
-     *
      * @staticvar array
      */
-    protected static $_CaptchaDecorator = array(
-        'table' => array(
-            'Errors',
-            array(
+    protected static $_CaptchaDecorator
+        = array(
+            'table' => array(
+                'Errors',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                array(
-                    'row' => 'HtmlTag'
+                    'Label',
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'tr'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
+                )
+            ),
+            'div' => array(
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'hint'
+                    )
+                ),
+                array(
+                    'Errors'
+                ),
+                array(
+                    'Label'
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div'
+                    )
+                )
+            ),
+            'bootstrap' => array(
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
+                )
+            ),
+            'bootstrap_minimal' => array(
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'Label'
                 )
             )
-        ),
-        'div' => array(
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'hint'
-                )
-            ),
-            array(
-                'Errors'
-            ),
-            array(
-                'Label'
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag' => 'div'
-                )
-            )
-        ),
-        'bootstrap' => array(
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'BootstrapTag',
-                array(
-                    'class' => 'controls'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'Label'
-            )
-        )
-    );
-
+        );
     /**
      * Captcha Decorator
-     *
      * @staticvar array
      */
-    protected static $_FileDecorator = array(
-        'table' => array(
-            'File',
-            array(
-                'Description',
-                array(
-                    'tag'   => ''
-                )
-            ),
-            'Errors',
-            array(
-                array(
-                    'data' => 'HtmlTag'
-                ),
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                array(
-                    'row' => 'HtmlTag'
-                ),
-                array(
-                    'tag' => 'tr'
-                )
-            )
-        ),
-        'div' => array(
-            array(
-                'File'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'hint'
-                )
-            ),
-            array(
-                'Errors'
-            ),
-            array(
-                'Label'
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag' => 'div'
-                )
-            )
-        ),
-        'bootstrap' => array(
-            array(
+    protected static $_FileDecorator
+        = array(
+            'table' => array(
                 'File',
                 array(
-                    'class' => 'input-file'
+                    'Description',
+                    array(
+                        'tag' => ''
+                    )
+                ),
+                'Errors',
+                array(
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'tag' => 'td'
+                    )
+                ),
+                array(
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
                 )
             ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
+            'div' => array(
                 array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
+                    'File'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'hint'
+                    )
+                ),
+                array(
+                    'Errors'
+                ),
+                array(
+                    'Label'
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div'
+                    )
                 )
             ),
-            array(
-                'BootstrapTag',
+            'bootstrap' => array(
                 array(
-                    'class' => 'controls'
+                    'File',
+                    array(
+                        'class' => 'input-file'
+                    )
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
                 )
             ),
-            array(
-                'Label',
+            'bootstrap_minimal' => array(
                 array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
+                    'File',
+                    array(
+                        'class' => 'input-file'
+                    )
+                ),
                 array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'Label'
                 )
             )
-        ),
-        'bootstrap_minimal' => array(
-            array(
-                'File',
-                array(
-                    'class' => 'input-file'
-                )
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'Label'
-            )
-        )
-    );
-
+        );
     /**
      * Multi Decorator
-     *
      * @staticvar array
      */
-    protected static $_MultiDecorator = array(
-        'table' => array(
-            'ViewHelper',
-            array(
-                'Description',
+    protected static $_MultiDecorator
+        = array(
+            'table' => array(
+                'ViewHelper',
                 array(
-                    'tag' => '',
-                )
-            ),
-            'Errors',
-            array(
+                    'Description',
+                    array(
+                        'tag' => '',
+                    )
+                ),
+                'Errors',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                array(
-                    'row' => 'HtmlTag'
+                    'Label',
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'tr'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
+                )
+            ),
+            'div' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'hint'
+                    )
+                ),
+                array(
+                    'Errors'
+                ),
+                array(
+                    'Label'
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div'
+                    )
+                )
+            ),
+            'bootstrap' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                    )
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
+                )
+            ),
+            'bootstrap_minimal' => array(
+                array(
+                    'ViewHelper'
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'p',
+                        'class' => 'help-block',
+                    )
+                ),
+                array(
+                    'Label'
                 )
             )
-        ),
-        'div' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'hint'
-                )
-            ),
-            array(
-                'Errors'
-            ),
-            array(
-                'Label'
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag' => 'div'
-                )
-            )
-        ),
-        'bootstrap' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                )
-            ),
-            array(
-                'BootstrapTag',
-                array(
-                    'class' => 'controls'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            array(
-                'ViewHelper'
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'p',
-                    'class' => 'help-block',
-                )
-            ),
-            array(
-                'Label'
-            )
-        )
-    );
-
+        );
     /**
      * Submit Element Decorator
-     *
      * @staticvar array
      */
-    protected static $_SubmitDecorator = array(
-        'table' => array(
-            'ViewHelper',
-            array(
+    protected static $_SubmitDecorator
+        = array(
+            'table' => array(
+                'ViewHelper',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr',
+                        'class' => 'buttons'
+                    )
                 )
             ),
-            array(
+            'div' => array(
+                'ViewHelper'
+            ),
+            'bootstrap' => array(
+                'ViewHelper',
                 array(
-                    'row' => 'HtmlTag'
-                ),
-                array(
-                    'tag' => 'tr',
-                    'class' => 'buttons'
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'form-actions',
+                        'openOnly' => false
+                    )
                 )
+            ),
+            'bootstrap_minimal' => array(
+                'ViewHelper'
             )
-        ),
-        'div' => array(
-            'ViewHelper'
-        ),
-        'bootstrap' => array(
-            'ViewHelper',
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'form-actions',
-                    'openOnly' => false
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            'ViewHelper'
-        )
-    );
-
+        );
     /**
      * Reset Element Decorator
-     *
      * @staticvar array
      */
-    protected static $_ResetDecorator = array(
-        'table' => array(
-            'ViewHelper',
-            array(
+    protected static $_ResetDecorator
+        = array(
+            'table' => array(
+                'ViewHelper',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
                 )
             ),
-            array(
+            'div' => array(
+                'ViewHelper'
+            ),
+            'bootstrap' => array(
+                'ViewHelper',
                 array(
-                    'row' => 'HtmlTag'
-                ),
-                array(
-                    'tag' => 'tr'
+                    'HtmlTag',
+                    array(
+                        'closeOnly' => false
+                    )
                 )
+            ),
+            'bootstrap_minimal' => array(
+                'ViewHelper'
             )
-        ),
-        'div' => array(
-            'ViewHelper'
-        ),
-        'bootstrap' => array(
-            'ViewHelper',
-            array(
-                'HtmlTag',
-                array(
-                    'closeOnly' => false
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            'ViewHelper'
-        )
-    );
-
+        );
     /**
      * Hiden Element Decorator
-     *
      * @staticvar array
      */
-    protected static $_HiddenDecorator = array(
-        'table' => array(
-            'ViewHelper'
-        ),
-        'div' => array(
-            'ViewHelper'
-        ),
-        'bootstrap' => array(
-            'ViewHelper'
-        ),
-        'bootstrap_minimal' => array(
-            'ViewHelper'
-        )
-    );
-
+    protected static $_HiddenDecorator
+        = array(
+            'table' => array(
+                'ViewHelper'
+            ),
+            'div' => array(
+                'ViewHelper'
+            ),
+            'bootstrap' => array(
+                'ViewHelper'
+            ),
+            'bootstrap_minimal' => array(
+                'ViewHelper'
+            )
+        );
     /**
      * Form Element Decorator
-     *
      * @staticvar array
      */
-    protected static $_FormDecorator = array(
-        'table' => array(
-            'FormElements',
-            'Form'
-        ),
-        'div' => array(
-            'FormElements',
-            'Form'
-        ),
-        'bootstrap' => array(
-            'FormElements',
-            'Form'
-        ),
-        'bootstrap_minimal' => array(
-            'FormElements',
-            'Form'
-        )
-    );
-
+    protected static $_FormDecorator
+        = array(
+            'table' => array(
+                'FormElements',
+                'Form'
+            ),
+            'div' => array(
+                'FormElements',
+                'Form'
+            ),
+            'bootstrap' => array(
+                'FormElements',
+                'Form'
+            ),
+            'bootstrap_minimal' => array(
+                'FormElements',
+                'Form'
+            )
+        );
     /**
      * DisplayGroup Decorator
-     *
      * @staticvar array
      */
-    protected static $_DisplayGroupDecorator = array(
-        'table' => array(
-            'FormElements',
-            array(
-                'HtmlTag',
+    protected static $_DisplayGroupDecorator
+        = array(
+            'table' => array(
+                'FormElements',
                 array(
-                    'tag' => 'table',
-                    'summary' => ''
-                )
+                    'HtmlTag',
+                    array(
+                        'tag' => 'table',
+                        'summary' => ''
+                    )
+                ),
+                'Fieldset'
             ),
-            'Fieldset'
-        ),
-        'div' => array(
-            'FormElements',
-            'Fieldset'
-        ),
-        'bootstrap' => array(
-            'FormElements',
-            'Fieldset'
-        ),
-        'bootstrap_minimal' => array(
-            'FormElements',
-            'Fieldset'
-        )
+            'div' => array(
+                'FormElements',
+                'Fieldset'
+            ),
+            'bootstrap' => array(
+                'FormElements',
+                'Fieldset'
+            ),
+            'bootstrap_minimal' => array(
+                'FormElements',
+                'Fieldset'
+            )
 
-    );
-
+        );
     /**
      * ZendX_Jquery Decorator
-     *
      * @staticvar array
      */
-    protected static $_JqueryElementDecorator = array(
-        'table' => array(
-            'UiWidgetElement',
-            array(
-                'Description',
+    protected static $_JqueryElementDecorator
+        = array(
+            'table' => array(
+                'UiWidgetElement',
                 array(
-                    'tag' => '',
-                )
-            ),
-            'Errors',
-            array(
+                    'Description',
+                    array(
+                        'tag' => '',
+                    )
+                ),
+                'Errors',
                 array(
-                    'data' => 'HtmlTag'
+                    array(
+                        'data' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'tag' => 'td'
-                )
-            ),
-            array(
-                array(
-                    'row' => 'HtmlTag'
+                    'Label',
+                    array(
+                        'tag' => 'td'
+                    )
                 ),
                 array(
-                    'tag' => 'tr'
+                    array(
+                        'row' => 'HtmlTag'
+                    ),
+                    array(
+                        'tag' => 'tr'
+                    )
+                )
+            ),
+            'div' => array(
+                array(
+                    'UiWidgetElement'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'hint'
+                    )
+                ),
+                array(
+                    'Errors'
+                ),
+                array(
+                    'Label'
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div'
+                    )
+                )
+            ),
+            'bootstrap' => array(
+                array(
+                    'UiWidgetElement'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
+                )
+            ),
+            'bootstrap_minimal' => array(
+                array(
+                    'UiWidgetElement'
+                ),
+                array(
+                    'Description',
+                    array(
+                        'tag' => 'span',
+                        'class' => 'help-block',
+                        'style' => 'color: #999;'
+                    )
+                ),
+                array(
+                    'BootstrapErrors'
+                ),
+                array(
+                    'BootstrapTag',
+                    array(
+                        'class' => 'controls'
+                    )
+                ),
+                array(
+                    'Label',
+                    array(
+                        'class' => 'control-label'
+                    )
+                ),
+                array(
+                    'HtmlTag',
+                    array(
+                        'tag' => 'div',
+                        'class' => 'control-group'
+                    )
                 )
             )
-        ),
-        'div' => array(
-            array(
-                'UiWidgetElement'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'hint'
-                )
-            ),
-            array(
-                'Errors'
-            ),
-            array(
-                'Label'
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag' => 'div'
-                )
-            )
-        ),
-        'bootstrap' => array(
-            array(
-                'UiWidgetElement'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'BootstrapTag',
-                array(
-                    'class' => 'controls'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
-                )
-            )
-        ),
-        'bootstrap_minimal' => array(
-            array(
-                'UiWidgetElement'
-            ),
-            array(
-                'Description',
-                array(
-                    'tag'   => 'span',
-                    'class' => 'help-block',
-                    'style' => 'color: #999;'
-                )
-            ),
-            array(
-                'BootstrapErrors'
-            ),
-            array(
-                'BootstrapTag',
-                array(
-                    'class' => 'controls'
-                )
-            ),
-            array(
-                'Label',
-                array(
-                    'class' => 'control-label'
-                )
-            ),
-            array(
-                'HtmlTag',
-                array(
-                    'tag'   => 'div',
-                    'class' => 'control-group'
-                )
-            )
-        )
-    );
+        );
 
     /**
      * Set the form decorators by the given string format or by the default div style
      *
      * @param object $objForm        Zend_Form pointer-reference
      * @param string $constFormat    Project_Plugin_FormDecoratorDefinition constants
+     *
      * @return NULL
      */
     public static function setFormDecorator(Zend_Form $form, $format = self::BOOTSTRAP, $submit_str = 'submit', $cancel_str = 'cancel')
@@ -872,6 +854,7 @@ class EasyBib_Form_Decorator
      *
      * @param  Zend_Form $form
      * @param  string    $format
+     *
      * @return void
      */
     protected static function setFormDefaults($form, $format)
@@ -900,6 +883,7 @@ class EasyBib_Form_Decorator
      * @param  string    $format
      * @param  string    $submit_str
      * @param  string    $cancel_str
+     *
      * @return void
      */
     protected static function setButtonDecorators($form, $format, $submit_str, $cancel_str)
@@ -921,8 +905,8 @@ class EasyBib_Form_Decorator
                 $submitBtn->setAttrib('class', $attribs);
 
                 if (($submitBtn instanceof Zend_Form_Element_Button)
-                    && $submitBtn->getAttrib('type') === null)
-                {
+                    && $submitBtn->getAttrib('type') === null
+                ) {
                     $submitBtn->setAttrib('type', 'submit');
                 }
 

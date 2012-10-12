@@ -1,7 +1,6 @@
 <?php
 /**
  * Discussion Dao Model
- *
  * @category        Model
  * @package         Admin
  * @author          Mohammad Zafar Iqbal <zafarmba10104014@gmail.com>
@@ -12,73 +11,57 @@ class Admin_Model_Dao_Discussion extends Speed_Model_Dao_Abstract
     public function __construct()
     {
         parent::__construct();
-        $this->loadTable('discussions','discussion_id');			
+        $this->loadTable('discussions', 'discussion_id');
     }
-
 
     public function getAll()
     {
-        $mystatus = array('publish','pending');
-       
-        $select = $this->select()
-                       ->from($this->_name)
-                        ->where("discussions.status IN (?)", $mystatus)
-                        ->order(array("{$this->_primaryKey} DESC"));
-
+        $mystatus = array('publish', 'pending');
+        $select   = $this->select()
+            ->from($this->_name)
+            ->where("discussions.status IN (?)", $mystatus)
+            ->order(array("{$this->_primaryKey} DESC"));
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-public function getAllDiscussionTrash()
+    public function getAllDiscussionTrash()
     {
-
         $select = $this->select()
-                       ->from($this->_name)
-                       ->where("discussions.status =?", 'admin-trash')
-                        ->order(array("{$this->_primaryKey} DESC"));
-
+            ->from($this->_name)
+            ->where("discussions.status =?", 'admin-trash')
+            ->order(array("{$this->_primaryKey} DESC"));
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-	
-	 public function remove($id = null)
-    		{
+    public function remove($id = null)
+    {
         if (empty ($id)) {
             return false;
         }
-
         return parent::delete("{$this->_primaryKey} = '{$id}'");
     }
-    
-   
-	 public function getDetail($discussionId)	
-		{
-			$select = $this->select()
-				->from($this->_name)
-				->where("{$this->_primaryKey} =?", $discussionId);	
 
-	 return $this->returnResultAsAnArray($this->fetchRow($select));
-		}
-		
-		
-	 public function getDetailForAdmin($discussionId)			
-        {
-            $select = $this->select()
-				->from($this->_name)
-				->where("{$this->_primaryKey} =?", $discussionId);	
+    public function getDetail($discussionId)
+    {
+        $select = $this->select()
+            ->from($this->_name)
+            ->where("{$this->_primaryKey} =?", $discussionId);
+        return $this->returnResultAsAnArray($this->fetchRow($select));
+    }
 
-	 return $this->returnResultAsAnArray($this->fetchRow($select));
-        }
-        
-        
-        public function getPublishStatus($discussionId)
-        {
-            $select = $this->select()
-                           ->from($this->_name,array('status'))
-                           ->where("discussion_id =?", $discussionId);
+    public function getDetailForAdmin($discussionId)
+    {
+        $select = $this->select()
+            ->from($this->_name)
+            ->where("{$this->_primaryKey} =?", $discussionId);
+        return $this->returnResultAsAnArray($this->fetchRow($select));
+    }
 
-            return $this->returnResultAsAnArray($this->fetchRow($select));
-
-        }
-	
-
+    public function getPublishStatus($discussionId)
+    {
+        $select = $this->select()
+            ->from($this->_name, array('status'))
+            ->where("discussion_id =?", $discussionId);
+        return $this->returnResultAsAnArray($this->fetchRow($select));
+    }
 }

@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <h1>My Discussion Draft </h1>
 
-   
+
 </div>
 
 <div class="row-fluid">
@@ -9,34 +9,38 @@
     <table id="draft-exams" class="zebra-striped bordered-table" style="margin-top: 20px">
 
         <thead>
-            <tr>
-                <th width="5%">Serial</th>
-                <th width="10%">Title</th>
-                <th width="15%">Discription</th>
-             
-            </tr>
+        <tr>
+            <th width="5%">Serial</th>
+            <th width="10%">Title</th>
+            <th width="15%">Discription</th>
+
+        </tr>
         </thead>
 
         <tbody>
 
-            <?php if (empty($this->draft)) : ?>
+        <?php if (empty($this->draft)) : ?>
 
-            <tr><td colspan="7" class="report-no-data">No draft has been found.</td></tr>
+        <tr>
+            <td colspan="7" class="report-no-data">No draft has been found.</td>
+        </tr>
 
-            <?php else: $count = 0; foreach($this->draft AS $draft) : ?>
+            <?php else: $count = 0;
+            foreach ($this->draft AS $draft) : ?>
 
             <tr>
                 <td class="centered"><?php echo ++$count ?></td>
                 <td class="centered"><?php echo $draft['title'] ?></td>
                 <td class="centered"><?php echo $draft['description'] ?></td>
-                
+
                 <td class="centered">
-                    
+
                     <a class="btn" href="/blog/discussions/edit/id/<?php echo $draft['discussion_id'] ?>">Edit</a>
-                    <a class="btn btn-warning" href="/user/trash/trashdiscussion/id/<?php echo $draft['discussion_id'] ?>">Trash</a>
+                    <a class="btn btn-warning"
+                       href="/user/trash/trashdiscussion/id/<?php echo $draft['discussion_id'] ?>">Trash</a>
                 </td>
             </tr>
-            <?php endforeach; endif ?>
+                <?php endforeach; endif ?>
 
         </tbody>
 

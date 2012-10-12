@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -22,7 +19,6 @@
 
 /**
  * Helper for returning the current server URL (optionally with request URI)
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -33,21 +29,17 @@ class Zend_View_Helper_ServerUrl
 {
     /**
      * Scheme
-     *
      * @var string
      */
     protected $_scheme;
-
     /**
      * Host (including port)
-     *
      * @var string
      */
     protected $_host;
 
     /**
      * Constructor
-     *
      * @return void
      */
     public function __construct()
@@ -59,7 +51,7 @@ class Zend_View_Helper_ServerUrl
                 $scheme = 'https';
                 break;
             default:
-            $scheme = 'http';
+                $scheme = 'http';
         }
         $this->setScheme($scheme);
 
@@ -70,7 +62,8 @@ class Zend_View_Helper_ServerUrl
             $port = $_SERVER['SERVER_PORT'];
 
             if (($scheme == 'http' && $port == 80) ||
-                ($scheme == 'https' && $port == 443)) {
+                ($scheme == 'https' && $port == 443)
+            ) {
                 $this->setHost($name);
             } else {
                 $this->setHost($name . ':' . $port);
@@ -87,6 +80,7 @@ class Zend_View_Helper_ServerUrl
      *                                     as a path. If a string is given, it
      *                                     will be appended as a path. Default
      *                                     is to not append any path.
+     *
      * @return string                      server url
      */
     public function serverUrl($requestUri = null)
@@ -104,7 +98,6 @@ class Zend_View_Helper_ServerUrl
 
     /**
      * Returns host
-     *
      * @return string  host
      */
     public function getHost()
@@ -116,6 +109,7 @@ class Zend_View_Helper_ServerUrl
      * Sets host
      *
      * @param  string $host                new host
+     *
      * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
      */
     public function setHost($host)
@@ -126,7 +120,6 @@ class Zend_View_Helper_ServerUrl
 
     /**
      * Returns scheme (typically http or https)
-     *
      * @return string  scheme (typically http or https)
      */
     public function getScheme()
@@ -138,6 +131,7 @@ class Zend_View_Helper_ServerUrl
      * Sets scheme (typically http or https)
      *
      * @param  string $scheme              new scheme (typically http or https)
+     *
      * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
      */
     public function setScheme($scheme)

@@ -16,9 +16,11 @@
                           </h2>
 
                           <p class="author">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img
+                                  src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
                               <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php echo $selectedBlog['username'];?> </a>::
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> ::
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              ::
                               &nbsp;<?php echo $selectedBlog['create_date']; ?>:: &nbsp;
                               মন্তব্য টি :: পঠিত বার
 
@@ -29,7 +31,7 @@
                           <div class='meta'>
 
                               <?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($selectedBlog['description']); ?>
+                              $img            = $imageTag->extract($selectedBlog['description']); ?>
 
 
 
@@ -56,7 +58,7 @@
                                   href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
                                   পড়ুন</a><br><br>
 
-                                 <?php
+                                  <?php
 
                                   if (empty ($authNamespace->userData['user_id'])): ?>
 
@@ -83,7 +85,7 @@
               </div>
 
               <div class="tab-pane fade" id="profile">
-                 
+
                   <div data-spy="scroll" class="scrollspy-example">
                       <?php foreach ($this->maxCommented AS $selectedBlog): ?>
                       <div id="article-<?php echo $selectedBlog['blog_id']; ?>">
@@ -92,14 +94,16 @@
                           </h2>
 
                           <p class="author">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img
+                                  src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
                               <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php echo $selectedBlog['username'];?> </a>::
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> ::
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              ::
                               &nbsp;<?php echo $selectedBlog['create_date']; ?>:: &nbsp;
                               মন্তব্য টি :: পঠিত বার
 
                           </p>
-<hr>
+                          <hr>
 
 
                           <div class='meta'>
@@ -108,7 +112,7 @@
                                   <?php echo $excerpt->word_limiter($selectedBlog['description'], 50); ?><a
                                   href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
                                   পড়ুন</a>
-                             
+
                               <hr/>
 
 
@@ -130,10 +134,12 @@
                               href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
                           </h2>
 
-                             <p class="author">
-                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
+                          <p class="author">
+                              <a href="/profile/<?php echo $selectedBlog['username'] ?>"><img
+                                  src="/<?php echo $selectedBlog['profile_picture'] ?>" width="40px" height="40px"/></a>
                               <a href="/profile/<?php echo $selectedBlog['username'] ?>"><?php echo $selectedBlog['username'];?> </a>::
-                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a> ::
+                              <a href="/category/<?php echo $selectedBlog['blog_category_id'] ?>"><?php echo $selectedBlog['category_name'] ?></a>
+                              ::
                               &nbsp;<?php echo $selectedBlog['create_date']; ?>:: &nbsp;
                               মন্তব্য টি :: পঠিত বার
 
@@ -142,8 +148,8 @@
 
 
                           <div class='meta'>
-<?php $imageTag = new Speed_View_Helper_Image();
-                              $img = $imageTag->extract($selectedBlog['description']); ?>
+                              <?php $imageTag = new Speed_View_Helper_Image();
+                              $img            = $imageTag->extract($selectedBlog['description']); ?>
 
 
 
@@ -170,7 +176,7 @@
                                   href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত
                                   পড়ুন</a><br><br>
 
-                                 <?php
+                                  <?php
 
                                   if (empty ($authNamespace->userData['user_id'])): ?>
 

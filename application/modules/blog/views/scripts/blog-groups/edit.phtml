@@ -1,22 +1,24 @@
-       	<div class="row-fluid">
-        <div class="span12">
-
-
-     <center><h7>Groups</h7></center>
-
-
-    </div>
-
-   </div>
- <hr>
-<div class="well1">
 <div class="row-fluid">
-    <div class="span10">
-        <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
-        <?php else: ?>
-    <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
-        <?php endif; ?>
-        <?php echo $this->GroupEntry; ?>
+    <div class="span12">
+
+
+        <center>
+            <h7>Groups</h7>
+        </center>
+
+
     </div>
+
 </div>
+<hr>
+<div class="well1">
+    <div class="row-fluid">
+        <div class="span10">
+            <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
+            <?php else: ?>
+            <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+            <?php endif; ?>
+            <?php echo $this->GroupEntry; ?>
+        </div>
+    </div>
 </div>

@@ -1,12 +1,9 @@
 <?php
 /**
  * URL Helper
- *
  * @category   Utility
  * @author     Sirajus Salayhin <salayhin@gmail.com>
  */
-
-
 
 class Security
 {

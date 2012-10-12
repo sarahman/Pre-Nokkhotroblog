@@ -25,7 +25,7 @@
 
 <div>
     <?php $authNamespace = new Zend_Session_Namespace('userInformation');
-    $userId = $authNamespace->userData['user_id'];
+    $userId              = $authNamespace->userData['user_id'];
     if ($userId == $this->blogGroupPost['create_by']) {
         ?>
         <p>

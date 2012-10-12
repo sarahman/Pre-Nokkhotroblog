@@ -2,7 +2,6 @@
 
 /**
  * Admin Dao
- *
  * @category    Dao
  * @package     User
  * @author      Syed Abidur Rahman <aabid048@gmail.com>

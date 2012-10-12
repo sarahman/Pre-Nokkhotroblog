@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -28,7 +25,6 @@ require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Translation view helper
- *
  * @category  Zend
  * @package   Zend_View
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -38,7 +34,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
 {
     /**
      * Translation object
-     *
      * @var Zend_Translate_Adapter
      */
     protected $_translator;
@@ -63,6 +58,7 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
      * Example 2: translate('%1\$s + %2\$s', array($value1, $value2), $locale);
      *
      * @param  string $messageid Id of the message to be translated
+     *
      * @return string|Zend_View_Helper_Translate Translated message
      */
     public function translate($messageid = null)
@@ -102,6 +98,7 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
      * Sets a translation Adapter for translation
      *
      * @param  Zend_Translate|Zend_Translate_Adapter $translate Instance of Zend_Translate
+     *
      * @throws Zend_View_Exception When no or a false instance was set
      * @return Zend_View_Helper_Translate
      */
@@ -123,7 +120,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
 
     /**
      * Retrieve translation object
-     *
      * @return Zend_Translate_Adapter|null
      */
     public function getTranslator()
@@ -142,6 +138,7 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
      * Set's an new locale for all further translations
      *
      * @param  string|Zend_Locale $locale New locale to set
+     *
      * @throws Zend_View_Exception When no Zend_Translate instance was set
      * @return Zend_View_Helper_Translate
      */
@@ -161,7 +158,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
 
     /**
      * Returns the set locale for translations
-     *
      * @throws Zend_View_Exception When no Zend_Translate instance was set
      * @return string|Zend_Locale
      */

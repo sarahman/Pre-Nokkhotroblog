@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_XmlRpc
  * @subpackage Generator
@@ -27,7 +24,6 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 {
     /**
      * XML encoding string
-     *
      * @var string
      */
     protected $_encoding;
@@ -45,11 +41,11 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 
     /**
      * Start XML element
-     *
      * Method opens a new XML element with an element name and an optional value
      *
      * @param string $name XML tag name
      * @param string $value Optional value of the XML tag
+     *
      * @return Zend_XmlRpc_Generator_Abstract Fluent interface
      */
     public function openElement($name, $value = null)
@@ -64,10 +60,10 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 
     /**
      * End of an XML element
-     *
      * Method marks the end of an XML element
      *
      * @param string $name XML tag name
+     *
      * @return Zend_XmlRpc_Generator_Abstract Fluent interface
      */
     public function closeElement($name)
@@ -79,14 +75,12 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 
     /**
      * Return XML as a string
-     *
      * @return string
      */
     abstract public function saveXml();
 
     /**
      * Return encoding
-     *
      * @return string
      */
     public function getEncoding()
@@ -96,7 +90,6 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 
     /**
      * Returns the XML as a string and flushes all internal buffers
-     *
      * @return string
      */
     public function flush()
@@ -108,7 +101,6 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
 
     /**
      * Returns XML without document declaration
-     *
      * @return string
      */
     public function __toString()
@@ -120,6 +112,7 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
      * Removes XML declaration from a string
      *
      * @param string $xml
+     *
      * @return string
      */
     public function stripDeclaration($xml)

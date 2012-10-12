@@ -1,7 +1,6 @@
 <?php
 /**
  * Blog Controller
- *
  * @category        Controller
  * @package         Blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -9,7 +8,5 @@
  */
 class Blog_BlogsController extends Speed_Controller_CrudController
 {
-
-
 }
 

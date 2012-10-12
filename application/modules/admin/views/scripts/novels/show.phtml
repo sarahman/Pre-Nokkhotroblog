@@ -1,40 +1,43 @@
 <div class="subnav">
     <ul class="nav nav-pills">
         <li><a href="/admin/novels/index">All Novels</a></li>
-     </ul>
+    </ul>
 </div>
 <br/><br/>
-<?php if(!empty($this->novel)) { ?>
+<?php if (!empty($this->novel)) { ?>
 <div class="span6">
-       <div class="span12" ">
-        <h2 class='page-header'><a
-            href="/admin/novels/show/id/<?php echo $this->novel['novel_id'] ?>/<?php echo $this->novel['novel_post_permalink']; ?>"><?php echo $this->novel['title']; ?></a>
-        </h2>
+    <div class="span12"
+    ">
+    <h2 class='page-header'><a
+        href="/admin/novels/show/id/<?php echo $this->novel['novel_id'] ?>/<?php echo $this->novel['novel_post_permalink']; ?>"><?php echo $this->novel['title']; ?></a>
+    </h2>
 
-        <p class="author">
-            Posted in <?php echo $this->novel['novel_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->novel['username'] ;?></cite> ::
-            <abbr class="published">Published &nbsp;<?php echo $this->novel['create_date']; ?></abbr>
+    <p class="author">
+        Posted in <?php echo $this->novel['novel_name'] ?> :: &nbsp; Posted By
+        <cite><?php echo $this->novel['username'];?></cite> ::
+        <abbr class="published">Published &nbsp;<?php echo $this->novel['create_date']; ?></abbr>
+    </p>
+
+
+    <div class='meta'>
+        <p>
+
+            <?php echo $this->novel['description']; ?>
+
         </p>
 
-
-        <div class='meta'>
-            <p>
-
-                <?php echo $this->novel['description']; ?>
-
-            </p>
-
-        </div>
     </div>
+</div>
 
-    <div>
-        <p>         <a href="/admin/novels/novel-publish-status/id/<?php echo $this->novel['novel_id'] ?>" <?php echo ($this->novel['novel_is_published'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->novel['novel_is_published'] == 0) ? "Publish": "Unpublish" ?></a>
-                    <a href="/admin/novels/edit/id/<?php echo $this->novel['novel_id'] ?>" class="btn btn-success">Edit</a> &nbsp;&nbsp;
-                    <a href="/admin/novels/delete/id/<?php echo $this->novel['novel_id'] ?>" class="btn btn-danger">Delete</a></p>
-    </div>
+<div>
+    <p><a
+        href="/admin/novels/novel-publish-status/id/<?php echo $this->novel['novel_id'] ?>" <?php echo ($this->novel['novel_is_published'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->novel['novel_is_published'] == 0) ? "Publish" : "Unpublish" ?></a>
+        <a href="/admin/novels/edit/id/<?php echo $this->novel['novel_id'] ?>" class="btn btn-success">Edit</a> &nbsp;&nbsp;
+        <a href="/admin/novels/delete/id/<?php echo $this->novel['novel_id'] ?>" class="btn btn-danger">Delete</a></p>
+</div>
 
 </div>
-<?php }else{ ?>
+<?php } else { ?>
 
 <div class="span6">
     <h3>No such post to show</h3>

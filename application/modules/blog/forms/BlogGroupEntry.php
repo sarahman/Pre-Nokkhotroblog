@@ -1,7 +1,6 @@
 <?php
 /**
  * Group Type Entry Form
- *
  * @category        Form
  * @package         Group Type
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -11,16 +10,13 @@ class Blog_Form_BlogGroupEntry extends Speed_Form_Base
 {
     public function __construct($options = array())
     {
-
         parent::__construct();
         $isEdit = empty($options['isEdit']) ? false : true;
-
         $this->initForm($isEdit);
         $this->loadElements($options, $isEdit);
-
         $this->finalizeForm();
         EasyBib_Form_Decorator::setFormDecorator($this, EasyBib_Form_Decorator::BOOTSTRAP,
-        empty($isEdit) ? 'add' : 'update');
+                                                 empty($isEdit) ? 'add' : 'update');
     }
 
     protected function initForm($isEdit = false)
@@ -30,7 +26,6 @@ class Blog_Form_BlogGroupEntry extends Speed_Form_Base
             'class' => 'span12',
             'id' => (empty($isEdit) ? 'add' : 'edit') . '-category-form'
         );
-
         $this->initializeForm($options);
     }
 
@@ -42,7 +37,7 @@ class Blog_Form_BlogGroupEntry extends Speed_Form_Base
         empty($isEdit) || $this->addHiddenElement('blog_group_id');
     }
 
-       protected function addgroupField()	
+    protected function addgroupField()
     {
         $options = array(
             'name' => 'blog_group',
@@ -50,7 +45,6 @@ class Blog_Form_BlogGroupEntry extends Speed_Form_Base
             'class' => 'span10',
             'messageForRequired' => "Please enter the group type."
         );
-
         $this->addTextElement($options);
     }
 
@@ -58,18 +52,16 @@ class Blog_Form_BlogGroupEntry extends Speed_Form_Base
     {
         $name = empty($isEdit) ? 'add' : 'update';
         $this->addSubmitButtonElement(array(
-            'name' => $name,
-            'id' => $name . '-button'
-        ));
+                                          'name' => $name,
+                                          'id' => $name . '-button'
+                                      ));
     }
-    
-    protected function addCancelButtonField()
-        {
-            $this->addRedirectingCancelButtonElement(array(
-                'name' => 'cancel',
-                'redirectLink' => '/me'
-            ));
-        }
 
-	
+    protected function addCancelButtonField()
+    {
+        $this->addRedirectingCancelButtonElement(array(
+                                                     'name' => 'cancel',
+                                                     'redirectLink' => '/me'
+                                                 ));
+    }
 }

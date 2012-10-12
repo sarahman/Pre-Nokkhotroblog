@@ -1,103 +1,108 @@
 <div class="row-fluid">
-<div class="span8">
-    <h8>
-<a href="/blog/<?php echo $this->userDetail['username']; ?>">
-<?php 
-                
-                if(!empty($this->userDetail['display_name']))
-                {
-                echo $this->userDetail['display_name']." -এর ব্লগ"; 
- 		}
-		
+    <div class="span8">
+        <h8>
+            <a href="/blog/<?php echo $this->userDetail['username']; ?>">
+                <?php
+
+                if (!empty($this->userDetail['display_name'])) {
+                    echo $this->userDetail['display_name'] . " -এর ব্লগ";
+                }
                 else
-		{
-                    if(!empty($this->userDetail['name']))
-			{
-                    echo $this->userDetail['name']." -এর ব্লগ"; 
+                {
+                    if (!empty($this->userDetail['name'])) {
+                        echo $this->userDetail['name'] . " -এর ব্লগ";
                     }
-                    else 
+                    else
                     {
-                        echo $this->userDetail['username']." -এর ব্লগ"; 
-                        
-                        }
-                       }
+                        echo $this->userDetail['username'] . " -এর ব্লগ";
+                    }
+                }
                 ?>
-</a>
-</h8>
+            </a>
+        </h8>
 
-<hr>
-	<div class="well2">
+        <hr>
+        <div class="well2">
 
-        <?php echo $this->userDetail['bio']; ?>
+            <?php echo $this->userDetail['bio']; ?>
 
 
+        </div>
+        <hr>
+        <table class="table table-bordered">
+
+            <tr>
+                <td>Name:</td>
+                <td><?php echo $this->userDetail['name']; ?></td>
+            </tr>
+
+            <tr>
+                <td>date_of_birth:</td>
+                <td><?php echo $this->userDetail['date_of_birth']; ?></td>
+            </tr>
+            <tr>
+                <td>Create Date:</td>
+                <td><?php echo date('F jS Y', strtotime($this->userDetail['create_date'])); ?></td>
+            </tr>
+            <tr>
+                <td>Last Login:</td>
+                <td><?php echo date('F jS Y', strtotime($this->userDetail['last_login'])); ?></td>
+            </tr>
+
+
+        </table>
+
+        <!--/right contain -->
     </div>
-<hr>
-	<table class="table table-bordered">
+    <div class="span4">
 
-        <tr>
-            <td >Name:</td>
-            <td><?php echo $this->userDetail['name']; ?></td>
-        </tr>
+        <br>
 
-        <tr>
-            <td >date_of_birth:</td>
-            <td><?php echo $this->userDetail['date_of_birth']; ?></td>
-        </tr>
-        <tr>
-            <td >Create Date:</td>
-            <td ><?php echo date('F jS Y', strtotime($this->userDetail['create_date'])); ?></td>
-        </tr>
-        <tr>
-            <td >Last Login:</td>
-            <td ><?php echo date('F jS Y', strtotime($this->userDetail['last_login'])); ?></td>
-        </tr>
+        &nbsp;&nbsp;
+        <h9> আমার যত ফেভারিট</h9>
+        &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+        <hr/>
+        &nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/>
+        &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+        <hr/>
+        &nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/>
+        &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+        <hr/>
+        &nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/>
+        &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+        <hr/>
+        &nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/>
+        &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
+        <hr/>
 
 
-    </table>
+        &nbsp;&nbsp;
+        <h9> পছন্দের যত পোস্ট</h9>
+        &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+        <hr/>
+        <a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+        <hr/>
+        <a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
+        <hr/>
 
-<!--/right contain -->
+        &nbsp;&nbsp;
+        <h9> সাম্প্রতিক মন্তব্য</h9>
+        &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
+        <hr>
+
+        <?php if (empty($this->userComment)): ?>
+        <p><?php echo "মন্তব্য নেই" ?></p>
+        <?php endif; ?>
+        <?php $excerpt = new Speed_Utility_TextHelper(); ?>
+        <?php   if (!empty($this->userComment)) :
+
+        foreach ($this->userComment AS $userComment) : ?>
+
+            <a href="/show/<?php echo $userComment['comment_id'];?>"><?php echo $excerpt->word_limiter($userComment['comments'], 3); ?></a>
+            <hr>
+            <?php endforeach; endif; ?>
     </div>
-<div class="span4">
-
-<br>
-
-&nbsp;&nbsp;<h9> আমার যত ফেভারিট </h9> &nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
-<hr/>
-&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
-<hr/>
-&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
-<hr/>
-&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
-<hr/>
-&nbsp;&nbsp;<img src="/<?php echo $this->userDetail['profile_picture']; ?>" alt="" width="30px" height="30px"/> &nbsp;&nbsp;<a href="#"><?php echo $this->userDetail['name'] ?></a>
-<hr/>
 
 
-&nbsp;&nbsp;<h9> পছন্দের যত পোস্ট </h9>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
-<hr/>
-<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
-<hr/>
-<a href="#">&nbsp;&nbsp;সৌম্য'র মুখ বই</a>
-<hr/>
-
-&nbsp;&nbsp;<h9> সাম্প্রতিক মন্তব্য </h9>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/public/../img/glyphicons_042_group.png">
-<hr>
-
-<?php if (empty($this->userComment)): ?>
-<p><?php echo "মন্তব্য নেই" ?></p>
- <?php endif; ?>
-<?php $excerpt = new Speed_Utility_TextHelper(); ?>
- <?php   if (!empty($this->userComment)) :
- 
- foreach ($this->userComment AS $userComment) : ?>
-
- <a href="/show/<?php echo $userComment['comment_id'];?>"><?php echo $excerpt->word_limiter($userComment['comments'],3); ?></a><hr>
-<?php endforeach; endif; ?>
-  </div> 
-
-
-
-
-<!--/end right contain -->
+    <!--/end right contain -->
 </div>

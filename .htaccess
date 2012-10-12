@@ -27,7 +27,7 @@ ExpiresActive On
 ExpiresDefault "access plus 1 month"
 
 # My favicon
-ExpiresByType image/x-icon "access plus 1 year”
+ExpiresByType image/x-icon "access plus 1 year"
 
 # Images
 ExpiresByType image/gif "access plus 3 month"
@@ -36,7 +36,7 @@ ExpiresByType image/jpg "access plus 3 month"
 ExpiresByType image/jpeg "access plus 3 month"
 
 # CSS
-ExpiresByType text/css "access 3 month”
+ExpiresByType text/css "access 3 month"
 
 # Javascript
 ExpiresByType application/javascript "access plus 1 year"

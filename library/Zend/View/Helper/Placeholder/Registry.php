@@ -1,9 +1,7 @@
 <?php
 /**
  * Zend Framework
- *
  * LICENSE
- *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
@@ -11,7 +9,6 @@
  * If you did not receive a copy of the license and are unable to
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
- *
  * @category   Zend
  * @package    Zend_View
  * @subpackage Helper
@@ -31,7 +28,6 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
 
 /**
  * Registry for placeholder containers
- *
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
@@ -44,13 +40,11 @@ class Zend_View_Helper_Placeholder_Registry
      * @const string
      */
     const REGISTRY_KEY = 'Zend_View_Helper_Placeholder_Registry';
-
     /**
      * Default container class
      * @var string
      */
     protected $_containerClass = 'Zend_View_Helper_Placeholder_Container';
-
     /**
      * Placeholder containers
      * @var array
@@ -59,7 +53,6 @@ class Zend_View_Helper_Placeholder_Registry
 
     /**
      * Retrieve or create registry instnace
-     *
      * @return void
      */
     public static function getRegistry()
@@ -78,12 +71,13 @@ class Zend_View_Helper_Placeholder_Registry
      * createContainer
      *
      * @param  string $key
-     * @param  array $value
+     * @param  array  $value
+     *
      * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function createContainer($key, array $value = array())
     {
-        $key = (string) $key;
+        $key = (string)$key;
 
         $this->_items[$key] = new $this->_containerClass($value);
         return $this->_items[$key];
@@ -93,11 +87,12 @@ class Zend_View_Helper_Placeholder_Registry
      * Retrieve a placeholder container
      *
      * @param  string $key
+     *
      * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function getContainer($key)
     {
-        $key = (string) $key;
+        $key = (string)$key;
         if (isset($this->_items[$key])) {
             return $this->_items[$key];
         }
@@ -111,25 +106,27 @@ class Zend_View_Helper_Placeholder_Registry
      * Does a particular container exist?
      *
      * @param  string $key
+     *
      * @return bool
      */
     public function containerExists($key)
     {
-        $key = (string) $key;
-        $return =  array_key_exists($key, $this->_items);
+        $key    = (string)$key;
+        $return = array_key_exists($key, $this->_items);
         return $return;
     }
 
     /**
      * Set the container for an item in the registry
      *
-     * @param  string $key
+     * @param  string                                   $key
      * @param  Zend_View_Placeholder_Container_Abstract $container
+     *
      * @return Zend_View_Placeholder_Registry
      */
     public function setContainer($key, Zend_View_Helper_Placeholder_Container_Abstract $container)
     {
-        $key = (string) $key;
+        $key                = (string)$key;
         $this->_items[$key] = $container;
         return $this;
     }
@@ -138,11 +135,12 @@ class Zend_View_Helper_Placeholder_Registry
      * Delete a container
      *
      * @param  string $key
+     *
      * @return bool
      */
     public function deleteContainer($key)
     {
-        $key = (string) $key;
+        $key = (string)$key;
         if (isset($this->_items[$key])) {
             unset($this->_items[$key]);
             return true;
@@ -155,6 +153,7 @@ class Zend_View_Helper_Placeholder_Registry
      * Set the container class to use
      *
      * @param  string $name
+     *
      * @return Zend_View_Helper_Placeholder_Registry
      */
     public function setContainerClass($name)
@@ -178,7 +177,6 @@ class Zend_View_Helper_Placeholder_Registry
 
     /**
      * Retrieve the container class
-     *
      * @return string
      */
     public function getContainerClass()

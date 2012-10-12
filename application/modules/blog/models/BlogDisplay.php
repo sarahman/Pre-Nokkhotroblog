@@ -1,7 +1,6 @@
 <?php
 /**
  * Blog category Model
- *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -9,38 +8,23 @@
  */
 class Blog_Model_BlogDisplay extends Speed_Model_Abstract
 {
-
     /**
-    * @var Blog_Model_Dao_BlogCategory
-    */
+     * @var Blog_Model_Dao_BlogCategory
+     */
     protected $dao;
 
     public function __construct($dao = null)
-       {
-           if (empty ($dao)) {
-               $this->dao = new Blog_Model_Dao_BlogDisplay();
-
-           } else {
-               $this->dao = $dao;
-       }
+    {
+        if (empty ($dao)) {
+            $this->dao = new Blog_Model_Dao_BlogDisplay();
+        } else {
+            $this->dao = $dao;
+        }
     }
-
-
 
     public function getAll()
     {
         return $this->dao->getAll();
         return $result;
     }
-
-
-/*public function delete($blogId = null)
-    {
-        if (empty($blogId)) {
-            return false;
-        }
-
-        return $this->dao->remove($blogId);
-	 }*/
-
 }
