@@ -8,22 +8,13 @@
  */
 class User_PhotoController extends Speed_Controller_CrudController
 {
-    /**
-     * @var Speed_Model_User
-     */
-    public function init()
+    protected function initialize()
     {
-        parent::init();
         $this->_helper->layout->setLayout('userprofile');
         $categoryModel        = new Blog_Model_BlogCategory();
         $this->view->Category = $categoryModel->getAll();
         $pageModel            = new Admin_Model_Page();
         $this->view->pages    = $pageModel->getAll();
-    }
-
-    protected function initialize()
-    {
-        $this->_helper->layout->setLayout('userprofile');
     }
 
     public function indexAction()

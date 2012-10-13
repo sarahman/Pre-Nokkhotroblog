@@ -8,10 +8,8 @@
  */
 class Blog_UsersController extends Speed_Controller_ActionController
 {
-    public function init()
+    protected function initialize()
     {
-        parent::init();
-        $this->_helper->layout->setLayout('userprofile');
         $authNamespace = new Zend_Session_Namespace('userInformation');
         $username      = $authNamespace->userData['username'];
         $userModel     = new Speed_Model_User();
@@ -22,16 +20,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
         $this->view->Category = $categoryModel->getAll();
         $pageModel            = new Admin_Model_Page();
         $this->view->pages    = $pageModel->getAll();
-    }
-
-    public function initialize()
-    {
-        $authNamespace = new Zend_Session_Namespace('userInformation');
-        $username      = $authNamespace->userData['username'];
-        $userModel     = new Speed_Model_User();
-        if (!empty($authNamespace->userData)) {
-            $this->view->blogInfo = $userModel->getDetailByUsername($username);
-        }
+        $this->_helper->layout->setLayout('userprofile');
     }
 
     public function indexAction()

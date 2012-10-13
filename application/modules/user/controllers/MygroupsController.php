@@ -8,9 +8,8 @@
  */
 class User_MygroupsController extends Speed_Controller_ActionController
 {
-    public function init()
+    protected function initialize()
     {
-        parent::init();
         $userModel                 = new Speed_Model_User();
         $blogModel                 = new Blog_Model_Blog();
         $authNamespace             = new Zend_Session_Namespace('userInformation');

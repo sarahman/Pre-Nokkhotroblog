@@ -137,12 +137,10 @@ class Speed_Controller_ActionController extends Zend_Controller_Action
 
     protected function validateAdmin()
     {
-        {
-            $authNamespace = new Zend_Session_Namespace('adminInformation');
+        $authNamespace = new Zend_Session_Namespace('adminInformation');
 
-            if (empty($authNamespace->adminData['username'])) {
-                $this->redirectForFailure("/admin/auth/login", "Please login first to view");
-            }
+        if (empty($authNamespace->adminData['username'])) {
+            $this->redirectForFailure("/admin/auth/login", "Please login first to view");
         }
     }
 }

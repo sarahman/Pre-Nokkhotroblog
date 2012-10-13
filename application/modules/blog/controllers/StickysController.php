@@ -8,9 +8,8 @@
  */
 class Blog_StickysController extends Speed_Controller_ActionController
 {
-    public function init()
+    protected function initialize()
     {
-        parent::init();
         $categoryModel        = new Blog_Model_BlogCategory();
         $this->view->Category = $categoryModel->getAll();
         $pageModel            = new Admin_Model_Page();

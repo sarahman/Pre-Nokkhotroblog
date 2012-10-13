@@ -8,9 +8,8 @@
  */
 class User_CommentsController extends Speed_Controller_CrudController
 {
-    public function init()
+    protected function initialize()
     {
-        parent::init();
         $userModel                 = new Speed_Model_User();
         $blogModel                 = new Blog_Model_Blog();
         $authNamespace             = new Zend_Session_Namespace('userInformation');

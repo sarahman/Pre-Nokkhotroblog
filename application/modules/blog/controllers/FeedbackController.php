@@ -12,16 +12,11 @@ class Blog_FeedbackController extends Speed_Controller_ActionController
 
     protected function initialize()
     {
-        $this->_helper->layout->setLayout('general');
-    }
-
-    public function init()
-    {
-        parent::init();
         $categoryModel        = new Blog_Model_BlogCategory();
         $this->view->Category = $categoryModel->getAll();
         $pageModel            = new Admin_Model_Page();
         $this->view->pages    = $pageModel->getAll();
+        $this->_helper->layout->setLayout('general');
     }
 
     public function indexAction()

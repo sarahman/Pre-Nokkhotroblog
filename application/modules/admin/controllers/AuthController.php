@@ -11,14 +11,9 @@
  */
 class Admin_AuthController extends Speed_Controller_ActionController
 {
-    public function init()
-    {
-        parent::init();
-    }
-
     public function indexAction()
     {
-        $this->view->user = "This is a test";
+        $this->_redirect('/admin/auth/login');
     }
 
     public function loginAction()

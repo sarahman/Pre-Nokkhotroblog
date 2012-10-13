@@ -8,12 +8,6 @@
  */
 class User_BlogsController extends Speed_Controller_ActionController
 {
-    public function init()
-    {
-        parent::init();
-        $this->_helper->layout->setLayout('userprofile');
-    }
-
     protected function initialize()
     {
         $this->_helper->layout->setLayout('userprofile');

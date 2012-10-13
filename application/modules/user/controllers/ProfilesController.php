@@ -10,25 +10,20 @@
  */
 class User_ProfilesController extends Speed_Controller_CrudController
 {
-    public function init()
+    protected function initialize()
     {
-        parent::init();
-        $this->_helper->layout->setLayout('userprofile');
         $categoryModel        = new Blog_Model_BlogCategory();
         $this->view->Category = $categoryModel->getAll();
         $pageModel            = new Admin_Model_Page();
         $this->view->pages    = $pageModel->getAll();
-    }
-
-    protected function initialize()
-    {
         $this->view->navBar = 'users-profile';
+        $this->_helper->layout->setLayout('userprofile');
     }
 
     public function indexAction()
     {
         $this->validateUser();
-        //$userdetailModel = new User_Model_UserProfile();
+        $userdetailModel = new User_Model_UserProfile();
         $userdetailId = $this->_request->getParam('id');
         $userdetail   = $userdetailModel->getDetailForAdmin($userdetailId);
         if (empty($userdetail)) {
