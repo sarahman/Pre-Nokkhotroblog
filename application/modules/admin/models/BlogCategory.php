@@ -9,7 +9,7 @@
 class Admin_Model_BlogCategory extends Speed_Model_Abstract
 {
     /**
-     * @var Blog_Model_Dao_BlogCategory
+     * @var Admin_Model_Dao_BlogCategory
      */
     protected $dao;
 

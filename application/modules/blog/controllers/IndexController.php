@@ -28,6 +28,7 @@ class Blog_IndexController extends Speed_Controller_ActionController
         $userModel                    = new Speed_Model_User();
         $this->view->selectedBlogs    = $blogModel->getSelectedPosts();
         $this->view->recentBlogs      = $blogModel->getRecentPosts();
+        var_dump($blogModel->getRecentPosts());
         $this->view->notices          = $noticeModel->getNoticePost();
         $this->view->newBlogger       = $userModel->getAllUsers();
         $this->view->maxViewed        = $blogModel->getMaxViewBlog();

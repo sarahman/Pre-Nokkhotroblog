@@ -8,6 +8,9 @@
  */
 class User_Model_Comment extends Speed_Model_Abstract
 {
+    /**
+     * @var     User_Model_Dao_Comment
+     */
     protected $dao;
 
     public function __construct(Speed_Model_Dao_Abstract $dao = null)

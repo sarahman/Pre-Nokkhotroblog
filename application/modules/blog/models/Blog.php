@@ -8,6 +8,9 @@
  */
 class Blog_Model_Blog extends Speed_Model_Abstract
 {
+    /**
+     * @var Blog_Model_Dao_Blog
+     */
     protected $dao;
 
     public function __construct(Speed_Model_Dao_Abstract $dao = null)

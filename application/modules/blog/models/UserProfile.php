@@ -10,7 +10,7 @@
 class Blog_Model_UserProfile extends Speed_Model_Abstract
 {
     /**
-     * @var Blog_Model_Dao_UserProfile
+     * @var User_Model_Dao_UserProfile
      */
     protected $dao;
 

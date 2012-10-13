@@ -9,7 +9,7 @@
 class Admin_Model_Role extends Speed_Model_Abstract
 {
     /**
-     * @var Admin_Model_Dao_UserSS
+     * @var Admin_Model_Dao_Role
      */
     protected $dao;
 

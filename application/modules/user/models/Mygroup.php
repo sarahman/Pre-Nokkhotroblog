@@ -9,7 +9,7 @@
 class User_Model_Mygroup extends Speed_Model_Abstract
 {
     /**
-     * @var Admin_Model_Dao_Notic
+     * @var User_Model_Dao_Mygroup
      */
     protected $dao;
 

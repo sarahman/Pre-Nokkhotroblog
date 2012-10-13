@@ -9,7 +9,7 @@
 class Blog_Model_BlogDisplay extends Speed_Model_Abstract
 {
     /**
-     * @var Blog_Model_Dao_BlogCategory
+     * @var Blog_Model_Dao_BlogDisplay
      */
     protected $dao;
 
