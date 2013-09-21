@@ -1,0 +1,62 @@
+<?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
+<?php if (!empty($this->user)) { ?>
+
+<div class='class="row content-header"'>
+            <h4 class='page-header'>User:</h4>
+</div>
+
+<div class="span12">
+
+    <div id="article-<?php echo $this->user['user_id']; ?>">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <td >Name:</td>
+                <td><?php echo $this->user['name']; ?></td>
+            </tr>
+            <tr>
+                <td>User Name:</td>
+                <td><?php echo $this->user['username']; ?></td>
+            </tr>
+            <tr>
+                <td>User Status:</td>
+                <td><?php echo $this->user['user_status']; ?></td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td><?php echo $this->user['email_address']; ?></td>
+            </tr>
+            <tr>
+                <td>Last Login:</td>
+                <td><?php echo $this->user['last_login']; ?></td>
+            </tr>
+            <tr>
+                <td>Create Date:</td>
+                <td><?php echo $this->user['create_date']; ?></td>
+            </tr>
+            <tr>
+                <td >Update By:</td>
+                <td><?php echo $this->user['update_date']; ?></td>
+            </tr>
+
+        </table>
+
+
+            <?php
+            if (!empty ($authNamespace->adminData['admin_id'])): ?>
+                <p>
+                    <a href="/admin/users/valid/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'in-active') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'in-active') ? "Active" : "In-active" ?></a>
+
+                    <a href="/admin/users/banned/id/<?php echo $this->user['user_id'] ?>" <?php echo ($this->user['user_status'] == 'allow') ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($this->user['user_status'] == 'allow') ? "Banned" : "Allow" ?></a>
+                    <a href="/admin/users/delete/id/<?php echo $this->user['user_id'] ?>" class="btn btn-danger">Delete</a>
+                </p>
+                <?php endif ?>
+
+        </div>
+    </div>
+
+<?php } else { ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>

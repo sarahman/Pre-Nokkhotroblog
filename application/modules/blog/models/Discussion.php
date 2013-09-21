@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Model
+ *
  * @category        Model
  * @package         Discussion
  * @author          Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -26,10 +27,19 @@ class Blog_Model_Discussion extends Speed_Model_Abstract
     {
         return $this->dao->getAll();
     }
-
-    public function getAllTrash()
+    
+    public function getAllTrash($userId)
     {
-        return $this->dao->getAllTrash();
+        return $this->dao->getAllTrash($userId);
+    }
+
+    public function delete($discussionId = null)
+    {
+        if (empty($discussionId)) {
+            return false;
+        }
+
+        return $this->dao->remove($discussionId);
     }
 
     public function save($data)
@@ -83,6 +93,7 @@ class Blog_Model_Discussion extends Speed_Model_Abstract
         if (empty($groupId)) {
             return false;
         }
+
         return $this->dao->getPublishStatus($groupId);
     }
 
@@ -91,6 +102,7 @@ class Blog_Model_Discussion extends Speed_Model_Abstract
         if (empty ($commentId)) {
             return false;
         }
+
         $record = $this->dao->getDetailForComment($commentId);
         return $record;
     }

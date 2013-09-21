@@ -1,5 +1,0 @@
-<div class="row-fluid">
-    <div class="span10">
-        <?php echo $this->novelNameForm; ?>
-    </div>
-</div>

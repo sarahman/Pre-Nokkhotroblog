@@ -1,0 +1,20 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/blogs/index">All Blogs</a></li>
+        <li><a href="/admin/categories">Category</a></li>
+	    <li><a href="/admin/post-types">Post Types</a></li>
+	    <li><a href="/admin/blog-group-types">Blog Group Types</a></li>
+        <li><a href="/admin/blog-groups">Blog Groups</a></li>
+        <li><a href="/admin/comments">Comments</a></li>
+    </ul>
+</div>
+<br /><br />
+<div class="row">
+    <div class="span8">
+        <?php if (empty($this->errorMsg)) : echo $this->flashMessenger(); ?>
+        <?php else: ?>
+    <div class="message errormsg"><p><?php echo $this->errorMsg ?></p></div>
+        <?php endif; ?>
+        <?php echo $this->GroupEntry; ?>
+    </div>
+</div>

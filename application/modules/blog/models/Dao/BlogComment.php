@@ -1,6 +1,7 @@
 <?php
 /**
  * Blog category Dao Model
+ *
  * @category        Model
  * @package         Blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -57,6 +58,7 @@ class Blog_Model_Dao_BlogComment extends Speed_Model_Dao_Abstract
         $select = $this->select()
             ->from($this->_name)
             ->where("{$this->_primaryKey} =?", $commentId);
+
         return $this->returnResultAsAnArray($this->fetchRow($select));
     }
 
@@ -65,6 +67,7 @@ class Blog_Model_Dao_BlogComment extends Speed_Model_Dao_Abstract
         if (empty ($id)) {
             return false;
         }
+
         return parent::delete("{$this->_primaryKey} = '{$id}'");
     }
 
@@ -108,13 +111,28 @@ class Blog_Model_Dao_BlogComment extends Speed_Model_Dao_Abstract
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
+    /*public function getRecentComments()
+    {
+        $select = $this->select()
+                       ->from($this->_name)
+->setIntegrityCheck(false)
+                       ->where("{$this->_name}.is_published =?", 1)
+                       ->order(array("{$this->_primaryKey} DESC"))
+                       ->limit(15);
+
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+    }*/
     public function getRecentComments()
     {
         $select = $this->select()
-            ->from($this->_name)
-            ->where("{$this->_name}.is_published =?", 1)
-            ->order(array("{$this->_primaryKey} DESC"))
-            ->limit(15);
+                       ->from($this->_name)
+                       ->setIntegrityCheck(false)
+                       ->join('blogs',"blogs.blog_id=comments.blog_id")
+                       ->join ('users',"blogs.create_by=users.user_id")
+                       ->where("{$this->_name}.is_published =?", 1)
+                       ->order(array("{$this->_primaryKey} DESC"))
+                       ->limit(15);
+
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
@@ -127,7 +145,7 @@ class Blog_Model_Dao_BlogComment extends Speed_Model_Dao_Abstract
 
     public function countComment($postId)
     {
-        $select = " SELECT blog_id, count( comment_id ) AS no FROM  `comments` where blog_id=$postId GROUP BY blog_id ORDER BY no DESC";
+        $select = "SELECT blog_id, count( comment_id ) AS no FROM  `comments` where blog_id=$postId GROUP BY blog_id ORDER BY no DESC";
         return $this->returnResultAsAnArray($this->getDefaultAdapter()->fetchAll($select));
     }
 

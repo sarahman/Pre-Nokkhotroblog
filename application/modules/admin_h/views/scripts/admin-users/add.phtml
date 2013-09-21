@@ -1,0 +1,24 @@
+ <div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/admin-users">All Users</a></li>
+        
+        
+    </ul>
+</div><br><br>
+    <?php if (empty($this->errorMsg)) : ?>
+    <?php echo $this->flashMessenger() ?>
+    <?php else : ?>
+    <div class="alert-message error">
+        <a class="close" href="#">&times;</a>
+
+        <p><?php echo $this->errorMsg ?></p>
+    </div>
+    <?php endif ?>
+
+    <div class="row-fluid">
+
+        <div class="span12">
+            <?php echo $this->adminForm; ?>
+        </div>
+    </div>
+

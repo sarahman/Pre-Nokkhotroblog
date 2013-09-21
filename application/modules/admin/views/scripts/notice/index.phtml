@@ -3,14 +3,12 @@
         <li><a href="/admin/notice">All Notice</a></li>
         <li><a href="/admin/notice/show-pandingcomment">All Pending Comment</a></li>
         <li><a href="/admin/notice/show-allcomment">All Publish Comment</a></li>
-
     </ul>
 </div>
-<br/><br/>
+<br /><br />
 
 <div class="row-fluid content-header">
     <h1>Latest Notices</h1>
-
     <div class="header-buttons">
         <a class="btn btn-success" href="/admin/notice/add">New Notice</a>
     </div>
@@ -31,7 +29,7 @@
 
     <tbody>
 
-    <?php if (!empty($this->getAll)) : ?>
+    <?php if (empty($this->display)) : ?>
 
     <tr>
         <td class="report-no-data" colspan="5">No Notice has been found.</td>
@@ -52,7 +50,7 @@
 
         </tr>
 
-            <?php endforeach; endif ?>
+        <?php endforeach; endif ?>
 
     </tbody>
 

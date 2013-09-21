@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Dao Model
+ *
  * @category        Model
  * @package         Admin
  * @author          Mohammad Zafar Iqbal <zafarmba10104014@gmail.com>
@@ -27,6 +28,7 @@ class Admin_Model_Dao_DiscussionComment extends Speed_Model_Dao_Abstract
         if (empty ($id)) {
             return false;
         }
+
         return parent::delete("{$this->_primaryKey} = '{$id}'");
     }
 
@@ -46,11 +48,26 @@ class Admin_Model_Dao_DiscussionComment extends Speed_Model_Dao_Abstract
         return $this->returnResultAsAnArray($this->fetchRow($select));
     }
 
-    public function getPublishStatus($discussionId)
+    public function getCommentByDiscussion($commentsId)
     {
-        $select = $this->select()
-            ->from($this->_name, array('is_published'))
-            ->where("discussion_comment_id =?", $discussionId);
-        return $this->returnResultAsAnArray($this->fetchRow($select));
+	  $select = $this->select()
+            ->from($this->_name)
+            ->setIntegrityCheck(false)
+            ->join('users', "{$this->_name}.create_by = users.user_id")
+	    ->where("{$this->_name}.status =?",0)
+            ->where("discussion_id=?", $commentsId)
+            ->order(array("{$this->_primaryKey} DESC"));
+
+        return $this->returnResultAsAnArray($this->fetchAll($select));
     }
+
+  public function getTrashStatus($discussionId)
+        {
+            $select = $this->select()
+                           ->from($this->_name,array('status'))
+                           ->where("discussion_comment_id =?", $discussionId);
+
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+
+        }
 }

@@ -1,6 +1,7 @@
 <?php
 /**
  * Episod Model
+ *
  * @category        Model
  * @package         Episod
  * @author          Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -32,6 +33,7 @@ class Admin_Model_Episod extends Speed_Model_Abstract
         if (empty($data) || empty($episodId)) {
             return false;
         }
+
         $data['update_date'] = date('Y-m-d H:i:s');
         $this->dao->modify($data, $episodId);
         return true;
@@ -66,6 +68,15 @@ class Admin_Model_Episod extends Speed_Model_Abstract
         if (empty($episodId)) {
             return false;
         }
+
         return $this->dao->getPublishStatus($episodId);
     }
+
+  public function getAllPublishEpisods()
+	{
+	return $this->dao->getAllPublishEpisods();
+
+	}
+
+
 }

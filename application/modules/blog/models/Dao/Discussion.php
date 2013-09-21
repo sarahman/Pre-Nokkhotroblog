@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Dao Model
+ *
  * @category        Model
  * @package         Blog
  * @author          Mohammad Zafar Iqbal <zafarmba10104014@gmail.com>
@@ -22,13 +23,15 @@ class Blog_Model_Dao_Discussion extends Speed_Model_Dao_Abstract
             ->order(array("{$this->_primaryKey}"));
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
-
-    public function getAllTrash()
+    
+    public function getAllTrash($userId)
     {
         $select = $this->select()
-            ->from($this->_name)
-            ->where("{$this->_name}.status =?", 'trash')
-            ->order(array("{$this->_primaryKey} DESC"));
+                       ->from($this->_name)
+                       ->where("{$this->_name}.status =?", 'trash')
+                       ->where("{$this->_name}.create_by =?", $userId)  
+                       ->order(array("{$this->_primaryKey} DESC"));
+
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 

@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Model
+ *
  * @category        Model
  * @package         Discussion
  * @author          Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -69,4 +70,46 @@ class Admin_Model_DiscussionComment extends Speed_Model_Abstract
         }
         return $this->dao->getPublishStatus($discussionId);
     }
+
+
+    public function getCommentByDiscussion($commentsId)
+    {
+        if (empty($commentsId)) {
+            return false;
+        }
+
+        return $this->dao->getCommentByDiscussion($commentsId);
+    }
+
+     public function setTrashStatus($data, $discussionId)		
+    {
+        if (empty($data) AND (empty($discussionId))) {		
+            return false;
+        }
+
+
+        $status = $this->getTrashStatus($discussionId);		
+
+        if ($status['status'] == 1) { 
+
+            $data['status'] = 0;
+        } else {
+            $data['status'] = 1;
+        }
+     
+        $this->dao->modify($data, $discussionId);		
+
+        return true;
+    }
+
+  public function getTrashStatus($discussionId)
+    {
+        if (empty($discussionId)) {
+            return false;
+        }
+
+        return $this->dao->getTrashStatus($discussionId);
+    }
+
+
 }

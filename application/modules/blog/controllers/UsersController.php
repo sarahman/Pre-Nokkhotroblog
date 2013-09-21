@@ -1,6 +1,7 @@
 <?php
 /**
  * Index Controller
+ *
  * @category        Controller
  * @package         User
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -50,6 +51,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
         if (empty($user)) {
             $this->redirectForFailure('/me', 'Your requested post was deleted.');
         }
+
         $blog = $blogModel->getDetailByPermalink($data['permalink']);
         if ($blog['create_by'] != $user['user_id']) {
             $this->redirectForFailure('/me', 'You are not permitted to edit this blog');
@@ -102,6 +104,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
             'blog_category_id' => $blogCategoryModel->getAll(),
             'status' => $blogstatus->getSelected()
         ));
+
         if ($this->_request->isPost()) {
             $data                = $this->_request->getParams();
             $data['description'] = stripslashes($this->_request->getParam('description'));
@@ -132,7 +135,6 @@ class Blog_UsersController extends Speed_Controller_ActionController
         $commentModel = new Blog_Model_BlogComment();
         $blog         = $blogModel->getDetailByPermalink($data['permalink']);
         $comments     = $commentModel->getCommentsByBlogId($blog['blog_id']);
-        $commentsForm = new User_Form_CommentsForm(array('blog_id' => $blog['blog_id'], 'action' => '/blog/users/comment'));
         if (empty($blog)) {
             $this->redirectForFailure("/live", "Post has been deleted.");
         }
@@ -192,16 +194,16 @@ class Blog_UsersController extends Speed_Controller_ActionController
 
     public function meAction()
     {
+		$this->validateUser();
         $this->_helper->layout->setLayout('userprofile');
         $userdetailModel = new Speed_Model_User();
         $authNamespace   = new Zend_Session_Namespace('userInformation');
         $userName        = $authNamespace->userData['username'];
         $userDetail      = $userdetailModel->getDetailByUserName($userName);
         if (empty($userDetail)) {
-            $this->redirectForFailure("/live", "User have been deleted.");
+            $this->redirectForFailure("/live", "You are not logged in.");
         }
         $this->view->userdetail = $userDetail;
-        $this->view->userDetail = $userDetail;
     }
 
     public function profileAction()
@@ -315,6 +317,7 @@ class Blog_UsersController extends Speed_Controller_ActionController
         if (empty($noticeId)) {
             $this->redirectForFailure("/live", "Post has been deleted.");
         }
+
         $authNamespace = new Zend_Session_Namespace('userInformation');
         $authNamespace->userData['user_id'];
         if ($this->_request->isPost()) {

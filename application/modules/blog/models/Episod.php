@@ -1,6 +1,7 @@
 <?php
 /**
  * Episod Model
+ *
  * @category        Model
  * @package         Episod
  * @author          Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -45,6 +46,7 @@ class Blog_Model_Episod extends Speed_Model_Abstract
         if (empty ($draftId)) {
             return false;
         }
+
         $record = $this->dao->getDetails($draftId);
         return $record;
     }
@@ -67,10 +69,10 @@ class Blog_Model_Episod extends Speed_Model_Abstract
         $record = $this->dao->getDetailEpisode($episodeId);
         return $record;
     }
-
-    public function getDraft()
+    
+    public function getDraft($userId)
     {
-        return $this->dao->getDraft();
+        return $this->dao->getDraft($userId);
     }
 
     public function setTrashStatus($data, $blogId)
@@ -78,6 +80,7 @@ class Blog_Model_Episod extends Speed_Model_Abstract
         if (empty($data) AND (empty($blogId))) {
             return false;
         }
+
         $data['last_modaretion_date'] = date('Y-m-d H:i:s');
         $data['permalink']            = $blogId;
         $status                       = $this->getTrashStatus($blogId);
@@ -98,8 +101,41 @@ class Blog_Model_Episod extends Speed_Model_Abstract
         return $this->dao->getTrashStatus($blogId);
     }
 
-    public function getAllTrash()
+
+public function getAllTrash($userId)
     {
-        return $this->dao->getAllTrash();
+        return $this->dao->getAllTrash($userId);
     }
+    
+    public function getEpisode($episodeId)
+    {
+        
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $data['create_by'] = $authNamespace->userData['user_id'];
+        
+        return $this->dao->getEpisodes($episodeId);
+    }
+
+    public function getDetaildraft($episodId)	// draft edit
+    {
+        if (empty ($episodId)) {		
+            return false;
+        }
+
+        $record = $this->dao->getDetaildraft($episodId);	
+
+        return $record;
+    }
+
+    public function getDetailForEpisod($episodeId)            // show detail episode
+    {
+        if (empty ($episodeId)) {		
+            return false;
+        }
+
+        $record = $this->dao->getDetailForEpisod($episodeId);	
+
+        return $record;
+    }
+    
 }

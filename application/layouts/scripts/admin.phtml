@@ -39,7 +39,15 @@
                 </p>
                 <?php endif ?>
 
-        </div>
+                    if (empty ($authNamespace->adminData['username'])): ?>
+                        <p class="pull-right">
+                            <a href="#">Login</a>
+                        </p>
+                    <?php else: ?>
+                        <p class="pull-right">
+                            Logged in as <a href="#"><?php echo $authNamespace->adminData['username'] ?></a> | <a href="/user/auth/logout">Logout</a>
+                        </p>
+                    <?php endif ?>
 
     </div>
 
@@ -65,8 +73,7 @@
 <footer class="footer">
     <p>&copy; <?php echo date('Y') ?> Portal</p>
 </footer>
-
-
+  
 </body>
 </html>
 

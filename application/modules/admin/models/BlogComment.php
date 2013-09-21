@@ -1,6 +1,7 @@
 <?php
 /**
  * Blog category Model
+ *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -31,6 +32,11 @@ class Admin_Model_BlogComment extends Speed_Model_Abstract
     public function getAllCommentTrash()
     {
         return $this->dao->getAllCommentTrash();
+    }
+
+    public function getAllComment()
+    {
+        return $this->dao->getAllComment();
     }
 
     public function getDetailForAdmin($blogId)
@@ -115,6 +121,39 @@ class Admin_Model_BlogComment extends Speed_Model_Abstract
         return true;
     }
 
+	public function delete($commentId = null)
+    		{
+        if (empty($commentId)) {
+            return false;
+        }
+
+        return $this->dao->remove($commentId);
+	 }
+
+	 
+        public function getDetail($commentId)
+    {
+        if (empty ($commentId)) {
+            return false;
+        }
+
+        $record = $this->dao->getDetail($commentId);
+
+        return $record;
+    }
+        
+ 
+  
+     public function modify($data = array(), $commentId = null)
+    {
+        if (empty($data) || empty($commentId)) {
+            return false;
+        }
+
+        $this->dao->modify($data, $commentId);
+        return true;
+    }
+
     // For Trash Sep22 MOHAMMAD ZAFAR IQBAL
     public function setTrashStatus($data, $blogId)
     {
@@ -139,5 +178,46 @@ class Admin_Model_BlogComment extends Speed_Model_Abstract
             return false;
         }
         return $this->dao->getTrashStatus($blogId);
+    }
+    public function getCommentByBlog($commentsId)
+    {
+        if (empty($commentsId)) {
+            return false;
+        }
+
+        return $this->dao->getCommentByBlog($commentsId);
+    }
+
+
+ public function setPendingStatus($data, $commentId)
+    {
+        if (empty($data) AND (empty($commentId))) {
+            return false;
+        }
+
+        //$data['last_modaretion_date'] = date('Y-m-d H:i:s');
+        //$data['permalink'] = $blogId;
+
+        $status = $this->getPendingStatus($commentId);
+
+        if ($status['status'] == 1) {
+
+            $data['status'] = 0;
+        } else {
+            $data['status'] = 1;
+        }
+
+        $this->dao->modify($data, $commentId);
+
+        return true;
+    }
+
+    public function getPendingStatus($commentId)
+    {
+        if (empty($commentId)) {
+            return false;
+        }
+
+        return $this->dao->getPendingStatus($commentId);
     }
 }

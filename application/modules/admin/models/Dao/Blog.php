@@ -1,6 +1,7 @@
 <?php
 /**
  * Blog Dao Model
+ *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -58,13 +59,18 @@ class Admin_Model_Dao_Blog extends Speed_Model_Dao_Abstract
         return empty($result) ? 0 : $result->total;
     }
 
-    public function getPublishStatus($blogId)
-    {
-        $select = $this->select()
-            ->from($this->_name, array('is_published'))
-            ->where("blog_id =?", $blogId);
-        return $this->returnResultAsAnArray($this->fetchRow($select));
-    }
+        public function getAllPostedBlog()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'pending')
+                           ->where("{$this->_name}.post_type =?",'blog')
+                           ->order(array("{$this->_primaryKey} DESC"));
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+        }
 
     // Stky
     public function getSkStatus($blogId)
@@ -168,32 +174,176 @@ class Admin_Model_Dao_Blog extends Speed_Model_Dao_Abstract
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-    public function getDetailForAdmin($blogId)
-    {
-        $select = $this->select()
-            ->from($this->_name)
-            ->setIntegrityCheck(false)
-            ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
-            ->join('users', "{$this->_name}.create_by = users.user_id")
-            ->where("{$this->_primaryKey} =?", $blogId);
-        return $this->returnResultAsAnArray($this->fetchRow($select));
-    }
+        public function getAllEpisodeTrash()
+    	{
+        //$select = $this->select()
+                     //->from($this->_name)
+                     //->where("blogs.post_type =?", 'episode')
+                     //->where("blogs.status =?", 'admin-trash');
 
-    public function getAllStickyBlog()
-    {
-        $select = $this->select()
-            ->from($this->_name)
-            ->where("{$this->_name}.status=?", 'publish')
-            ->where("{$this->_name}.sticky_on_home_page=?", 1)
-            ->order(array("{$this->_primaryKey} DESC"));
-        return $this->returnResultAsAnArray($this->fetchAll($select));
-    }
+        //return $this->returnResultAsAnArray($this->fetchAll($select));
+          $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           ->join('episode_name',"{$this->_name}.episode_id = episode_name.episode_id")
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'admin-trash')
+                           ->where("{$this->_name}.post_type =?",'episode')
+			   //->where("{$this->_name}.is_selected =?",1)
+                           ->order(array("{$this->_primaryKey} DESC"));
+			   	
+            return $this->returnResultAsAnArray($this->fetchAll($select));
 
-    public function getPublishSticky($stickyId)
-    {
-        $select = $this->select()
-            ->from($this->_name, array('sticky_on_home_page'))
-            ->where("blog_id =?", $stickyId);
-        return $this->returnResultAsAnArray($this->fetchRow($select));
-    }
+
+
+    	}
+
+    	public function getDetailForAdmin($blogId)
+        {
+                $select = $this->select()
+                    ->from($this->_name)
+                    ->setIntegrityCheck(false)
+                    ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                    ->join('users',"{$this->_name}.create_by = users.user_id")
+                    ->where("{$this->_primaryKey} =?", $blogId);
+
+                return $this->returnResultAsAnArray($this->fetchRow($select));
+        }
+public function getAllstickyBlog()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+			   ->setIntegrityCheck(false)
+		           ->join('users',"{$this->_name}.create_by = users.user_id")
+			   ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->where("{$this->_name}.status=?",'publish')
+			   ->where("{$this->_name}.sticky_on_home_page=?",1)
+			   
+                           ->order(array("{$this->_primaryKey} DESC"));
+
+
+
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+        public function getPublishSticky($stickyId)
+        {
+            $select = $this->select()
+                           ->from($this->_name,array('sticky_on_home_page'))
+                           ->where("blog_id =?", $stickyId);
+
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+
+        }
+
+  public function getPublishBlog()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'publish')
+                           ->where("{$this->_name}.post_type =?",'blog')
+                           //->order(array("{$this->_primaryKey} DESC"));
+			   ->order(array("blogs.blog_category_id DESC"));	
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+
+  public function getSelectedPosts()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           //->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'publish')
+                           //->where("{$this->_name}.post_type =?",'blog')
+			   ->where("{$this->_name}.is_selected =?",1)
+                           //->order(array("{$this->_primaryKey} DESC"));
+			   ->order(array("blogs.blog_category_id DESC"));	
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+
+  public function getMakeSelectedPosts()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'publish')
+
+                           ->order(array("{$this->_primaryKey} DESC"));
+	
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+  public function getAllTrash()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+                           ->setIntegrityCheck(false)
+                           ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->join('users',"{$this->_name}.create_by = users.user_id")
+                           ->where("{$this->_name}.status =?",'admin-trash')
+                           ->where("{$this->_name}.post_type =?",'blog')
+			   //->where("{$this->_name}.is_selected =?",1)
+                           //->order(array("{$this->_primaryKey} DESC"));
+			   ->order(array("blogs.blog_category_id DESC"));	
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+ public function getStickyStatus($blogId)
+        {
+            $select = $this->select()
+                           ->from($this->_name,array('sticky_on_home_page'))
+                           ->where("blog_id =?", $blogId);
+
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+
+        }
+ public function getAllHistry()
+        {
+            $select = $this->select()
+                           ->from($this->_name)
+			   ->setIntegrityCheck(false)
+		           ->join('users',"{$this->_name}.create_by = users.user_id")
+			   //->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                           ->where("{$this->_name}.status=?",'publish')
+			   ->where("{$this->_name}.sticky_on_home_page=?",2)
+                           ->order(array("{$this->_primaryKey} DESC"));
+
+
+
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+
+            public function getDetailForAdmin($blogId)
+        {
+            $select = $this->select()
+                ->from($this->_name)
+                ->setIntegrityCheck(false)
+                ->join('blog_categories', "blog_categories.blog_category_id = {$this->_name}.blog_category_id")
+                ->join('users', "{$this->_name}.create_by = users.user_id")
+                ->where("{$this->_primaryKey} =?", $blogId);
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+        }
+
+            public function getAllStickyBlog()
+        {
+            $select = $this->select()
+                ->from($this->_name)
+                ->where("{$this->_name}.status=?", 'publish')
+                ->where("{$this->_name}.sticky_on_home_page=?", 1)
+                ->order(array("{$this->_primaryKey} DESC"));
+            return $this->returnResultAsAnArray($this->fetchAll($select));
+        }
+
+            public function getPublishSticky($stickyId)
+        {
+            $select = $this->select()
+                ->from($this->_name, array('sticky_on_home_page'))
+                ->where("blog_id =?", $stickyId);
+            return $this->returnResultAsAnArray($this->fetchRow($select));
+        }
+
+
 }

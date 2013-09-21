@@ -1,6 +1,7 @@
 <?php
 /**
  * Blog Model
+ *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -139,7 +140,22 @@ class Blog_Model_Blog extends Speed_Model_Abstract
         }
         return $this->dao->getUserPosts($userId);
     }
+	public function getUserPostsTotal($userId)
+    {
+        if (empty($userId)) {
+            return false;
+        }
 
+        return $this->dao->getUserPostsTotal($userId);
+    }
+	public function getUserCommentsTotal($userId)
+    {
+        if (empty($userId)) {
+            return false;
+        }
+
+        return $this->dao->getUserCommentsTotal($userId);
+    }
     public function modify($data = array(), $blogId = null)
     {
         if (empty($data) || empty($blogId)) {
@@ -240,10 +256,10 @@ class Blog_Model_Blog extends Speed_Model_Abstract
     {
         return $this->dao->getTopBlogger();
     }
-
-    public function getBlogtrash()
-    {
-        return $this->dao->getBlogtrash();
+    
+    public function getBlogtrash($userId)
+	{
+	    return $this->dao->getBlogtrash($userId);
     }
 
     public function getDetailByCategoryId($id)

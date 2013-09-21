@@ -8,11 +8,10 @@
         <li><a href="/admin/comments">Comments</a></li>
     </ul>
 </div>
-<br/><br/>
+<br /><br />
 
 <div class="row-fluid content-header">
     <h1>Blog Groups</h1>
-
     <div class="header-buttons">
         <a class="btn btn-success" href="/admin/blog-groups/add">New Group</a>
     </div>
@@ -51,20 +50,17 @@
             <td class="centered"><?php echo ($display['blog_group_is_published'] == 1) ? "<a href='#' class='btn btn-success'>Yes</a>" : "<a href='#' class='btn btn-warning'>No</a>"; ?></a></td>
 
             <td>
-
                 <a href="/admin/blog-groups/blog-group-publish-status/id/<?php echo $display['blog_group_id'] ?>" <?php echo ($display['blog_group_is_published'] == 0) ? "class='btn btn-success'" : "class='btn btn-warning'" ?>><?php echo ($display['blog_group_is_published'] == 0) ? "Publish" : "Unpublish" ?></a>
                 <a href="/admin/blog-groups/edit/id/<?php echo $display['blog_group_id'] ?>"
                    class="btn btn-success">Edit</a> &nbsp;&nbsp;
                 <a href="/admin/blog-groups/delete/id/<?php echo $display['blog_group_id'] ?>"
                    class="btn btn-warning">Delete</a>
                 <a href="/admin/blog-groups/blog-group-posts/id/<?php echo $display['blog_group_id'] ?>"
-                   class="btn btn-success">Show</a></td>
+                   class="btn btn-success">Show</a>
             </td>
-
-
         </tr>
 
-            <?php endforeach; endif ?>
+        <?php endforeach; endif ?>
 
     </tbody>
 

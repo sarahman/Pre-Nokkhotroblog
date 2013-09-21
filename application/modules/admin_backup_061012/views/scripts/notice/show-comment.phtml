@@ -1,0 +1,50 @@
+<div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/notice">All Notice</a></li>
+        <li><a href="/admin/notice/show-pandingcomment">All Pending Comment</a></li>
+        <li><a href="/admin/notice/show-allcomment">All Publish Comment</a></li>
+    </ul>
+</div>
+<br /><br />
+<?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
+<?php if(!empty($this->comment)) {?>
+
+<div class="span12">
+
+    <div id="article-<?php echo $this->comment['comment_notice_id']; ?>">
+ 	  <h3><?php echo $this->comment['title']; ?></h3>
+          <hr />
+
+          <p>
+
+              <?php echo $this->comment['description']; ?>
+          </p>
+
+
+
+
+        <div class='meta'>
+            <p>Comments: </p>
+                        <?php echo $this->comment['comments']; ?>
+
+            <p>
+            <?php
+                  if (!empty ($authNamespace->adminData['username'])): ?>
+                      <p>
+                       <a href="/admin/notice/publish/id/<?php echo $this->comment['comment_notice_id'] ?>" <?php echo ($this->comment['is_published'] == 1) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->comment['is_published'] == 1) ? "Publish": "Unpublish" ?></a>
+                       <a href="/admin/notice/delete-comment/id/<?php echo $this->comment['comment_notice_id'] ?>" class="btn btn-danger">Delete</a>
+                      </p>
+            <?php endif ?>
+            </p>
+
+        </div>
+    </div>
+</div>
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+
+

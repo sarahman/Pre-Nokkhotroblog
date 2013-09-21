@@ -1,6 +1,7 @@
 <?php
 /**
  * Notice Model
+ *
  * @Notice          Model
  * @package         admin
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -32,6 +33,7 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty ($noticeId)) {
             return false;
         }
+
         $record = $this->dao->getDetailForAdmin($noticeId);
         return $record;
     }
@@ -41,6 +43,7 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty($data)) {
             return false;
         }
+
         $data['create_date'] = date('Y-m-d H:i:s');
         $authNamespace       = new Zend_Session_Namespace('adminInformation');
         $data['create_by']   = $authNamespace->adminData['admin_id'];
@@ -67,12 +70,15 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty($data) AND (empty($noticeId))) {
             return false;
         }
+
+
         $status = $this->getPublishStatus($noticeId);
         if ($status['is_valid'] == 1) {
             $data['is_valid'] = 0;
         } else {
             $data['is_valid'] = 1;
         }
+
         $this->dao->modify($data, $noticeId);
         return true;
     }
@@ -82,6 +88,7 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty($noticeId)) {
             return false;
         }
+
         return $this->dao->getPublishStatus($noticeId);
     }
 
@@ -95,12 +102,15 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty($data) AND (empty($noticeId))) {
             return false;
         }
+
+
         $status = $this->getActiveStatus($noticeId);
         if ($status['make_active'] == 1) {
             $data['make_active'] = 0;
         } else {
             $data['make_active'] = 1;
         }
+
         $this->dao->modify($data, $noticeId);
         return true;
     }
@@ -110,6 +120,92 @@ class Admin_Model_Notice extends Speed_Model_Abstract
         if (empty($noticeId)) {
             return false;
         }
+
         return $this->dao->getActiveStatus($noticeId);
     }
+
+public function getActiveNotic()
+    {
+
+        return $this->dao->getActiveNotic();
+    }
+public function getArcriveNotic()
+    {
+
+        return $this->dao->getArcriveNotic();
+    }
+
+   public function setUnActiveStatus($data, $noticeId)
+    {
+        if (empty($data) AND (empty($noticeId))) {
+            return false;
+        }
+
+
+        $status = $this->getUnActiveStatus($noticeId);
+
+        if ($status['make_active'] == 1) {
+
+            $data['make_active'] = 2;
+        } else {
+            $data['make_active'] = 1;
+        }
+
+        $this->dao->modify($data, $noticeId);
+
+        return true;
+    }
+
+public function getUnActiveStatus($noticeId)
+    {
+        if (empty($noticeId)) {
+            return false;
+        }
+
+        return $this->dao->getUnActiveStatus($noticeId);
+    }
+   public function setTrashStatus($data, $noticeId)
+    {
+        if (empty($data) AND (empty($noticeId))) {
+            return false;
+        }
+
+        $status = $this->getTrashStatus($noticeId);
+
+        if ($status['status'] == 1) {
+
+            $data['status'] = 0;
+        } else {
+            $data['status'] = 1;
+        }
+        $authNamespace = new Zend_Session_Namespace('adminInformation');
+        $data['update_by'] = $authNamespace->adminData['admin_id'];
+
+        $this->dao->modify($data, $noticeId);
+
+        return true;
+    }
+
+public function getTrashStatus($noticeId)
+    {
+        if (empty($noticeId)) {
+            return false;
+        }
+
+        return $this->dao->getTrashStatus($noticeId);
+    }
+
+public function getPandingNotic()
+    {
+
+        return $this->dao->getPandingNotic();
+    }
+public function getTrashNotic()
+    {
+
+        return $this->dao->getTrashNotic();
+    }
+
+
+
 }

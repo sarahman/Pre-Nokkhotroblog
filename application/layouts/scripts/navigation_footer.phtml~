@@ -1,9 +1,0 @@
-<ul class="nav nav-pills">
- 
-<?php if(!empty($this->pages)): ?>
-<?php foreach($this->pages as $pages): ?>
-      <li><a href="#"><?php echo $pages['page_name'] ?></a></li>
-<?php endforeach; endif; ?>
-
-</ul> 
-

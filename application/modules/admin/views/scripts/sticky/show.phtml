@@ -1,0 +1,46 @@
+<?php $authNamespace = new Zend_Session_Namespace('adminInformation'); ?>
+<?php if(!empty($this->blog)) { ?>
+
+
+<div class="span12">
+
+    <div id="article-<?php echo $this->blog['blog_id']; ?>">
+        <h2 class='page-header'><a
+            href="/admin/blogs/show/id/<?php echo $this->blog['blog_id']; ?>"><?php echo $this->blog['title']; ?></a>
+        </h2>
+
+        <p class="author">
+            Posted in <?php echo $this->blog['category_name'] ?> :: &nbsp; Posted By <cite><?php echo $this->blog['username'] ;?></cite> ::
+            <abbr class="published">Published &nbsp;<?php echo $this->blog['create_date']; ?></>
+        </p>
+
+
+        <div class='meta'>
+            <p>
+
+                <?php echo $this->blog['description']; ?>
+
+            </p>
+            <?php
+                  if (!empty ($authNamespace->adminData['username'])): ?>
+                      <p>
+
+                       <a href="/admin/admin-trashs/trash/id/<?php echo $this->blog['blog_id'] ?>" <?php echo ($this->blog['status'] == 'pending') ? "class='btn btn-warning'": "class='btn btn-warning'" ?>><?php echo ($this->blog['status'] == 'pending') ? "Trash": "Trash" ?></a>
+
+                       <a href="/admin/sticky/sticky/id/<?php echo $this->blog['blog_id'] ?>" <?php echo ($this->blog['sticky_on_home_page'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($this->blog['sticky_on_home_page'] == 0) ? "Sticky": "Cancel sticky" ?></a>
+
+                       
+                      </p>
+            <?php endif ?>
+
+        </div>
+    </div>
+
+<?php }else{ ?>
+
+<div class="span6">
+    <h3>No such post to show</h3>
+</div>
+<?php } ?>
+
+</div>

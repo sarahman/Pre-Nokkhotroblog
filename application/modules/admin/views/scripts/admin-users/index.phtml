@@ -1,6 +1,10 @@
+ <div class="subnav">
+    <ul class="nav nav-pills">
+        <li><a href="/admin/admin-users">All Users</a></li>
+    </ul>
+</div><br><br>
 <div class="row-fluid content-header">
     <h1>Admin Users</h1>
-
     <div class="header-buttons">
         <a class="btn btn-success" href="/admin/admin-users/add">New admin</a>
     </div>
@@ -26,7 +30,7 @@
 
     <tbody>
 
-    <?php if (!empty($this->getAll)) : ?>
+    <?php if (empty($this->display)) : ?>
 
     <tr>
         <td class="report-no-data" colspan="5">No User has been found.</td>
@@ -59,6 +63,3 @@
     </tbody>
 
 </table>
-
-
-</div>

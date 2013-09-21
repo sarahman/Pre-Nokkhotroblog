@@ -1,6 +1,7 @@
 <?php
 /**
  * Blog Dao Model
+ *
  * @category        Model
  * @package         blog
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -52,8 +53,9 @@ class Blog_Model_Dao_Blog extends Speed_Model_Dao_Abstract
         $select = "SELECT username, user_id, create_by,profile_picture, name, display_name, blog_id, COUNT( create_by ) AS no
 FROM  `blogs` 
 INNER JOIN  `users` ON blogs.create_by = users.user_id
+WHERE  `status` =  'publish'
 GROUP BY create_by
-ORDER BY no DESC 
+ORDER BY no DESC
 LIMIT 10";
         return $this->returnResultAsAnArray($this->getDefaultAdapter()->fetchAll(($select)));
     }
@@ -87,6 +89,22 @@ LIMIT 10";
             ->limit(15);
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
+    public function getUserPostsTotal($userId)
+    {
+        $select = $this->select()
+            ->from($this->_name, array('total' => new Zend_Db_Expr('count(*)')))
+            ->where('blogs.create_by =?', $userId);
+
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+    }
+    /*public function getUserCommentsTotal($userId)
+    {
+        $select = $this->select()
+                       ->from($this->comments, array('total' => new Zend_Db_Expr('count(*)')))
+                      ->where('comments.create_by =?', $userId);
+
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+      }*/
 
     public function getPublishStatus($blogId)
     {
@@ -183,13 +201,16 @@ LIMIT 10";
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 
-    public function getBlogtrash()
+    
+    public function getBlogtrash($userId)
     {
         $select = $this->select()
-            ->from($this->_name)
-            ->where("{$this->_name}.status =?", 'trash')
-            ->where("{$this->_name}.post_type =?", 'blog')
-            ->order(array("{$this->_primaryKey} DESC"));
+                       ->from($this->_name)
+                       ->where("{$this->_name}.status =?", 'trash')
+                       ->where("{$this->_name}.post_type =?", 'blog')
+                       ->where("{$this->_name}.create_by =?", $userId)  
+                       ->order(array("{$this->_primaryKey} DESC"));
+
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
 

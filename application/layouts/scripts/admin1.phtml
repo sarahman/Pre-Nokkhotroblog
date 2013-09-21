@@ -1,0 +1,85 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headScript() ?>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+
+<body >
+
+
+
+    
+        <div class="navbar navbar-fixed-top">
+
+            <div class="navbar-inner">
+
+                <div class="container-fluid">
+
+                    <a class="brand" href="/admin/index">Portal Admin Panel</a>
+
+                    <?php echo $this->render('admin_navigation.phtml') ?>
+
+                    <?php $authNamespace = new Zend_Session_Namespace('adminInformation');
+
+                    if (empty ($authNamespace->adminData['username'])): ?>
+                        <p class="pull-right">
+                            <a href="#">Login</a>
+                        </p>
+                    <?php else: ?>
+                        <p class="pull-right">
+                            Logged in as <a href="#"><?php echo $authNamespace->adminData['username'] ?></a> | <a href="/user/auth/logout">Logout</a>
+                        </p>
+                    <?php endif ?>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="container admin">
+            <div class="body-content">
+
+                <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>       
+                                            <?php echo $flashMessenger ?>
+
+                                        <?php endif; ?>
+
+                <?php echo $this->layout()->content ?>
+
+            </div>
+
+        </div>
+    
+
+    <footer class="footer">
+        <p>&copy; <?php echo date('Y') ?> Portal</p>
+    </footer>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    CKEDITOR.replace( 'description',
+    {
+    filebrowserBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Files',
+    filebrowserImageBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Images',
+    filebrowserFlashBrowseUrl:'<?=$this->baseUrl();?>/includes/ckfinder/ckfinder.html?Type=Flash',
+    filebrowserUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+    filebrowserImageUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+    filebrowserFlashUploadUrl:'<?=$this->baseUrl();?>/includes/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+    });
+
+
+</script>

@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Controller
+ *
  * Discussion   Controller
  * @package     Discussion
  * @author      Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -52,6 +53,7 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
                 $discussionEntry->populate($data);
             }
         }
+
         $this->view->DiscussionEntry = $discussionEntry;
     }
 
@@ -121,7 +123,14 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
         if (empty($discussion)) {
             $this->redirectForFailure("/blog/discussions", "Discussions has been deleted.");
         }
-        $this->view->discussion = $discussion;
+
+        $this->view->discussion = $discussion;	
+
+	//show comment 
+        $discussionIdtwo = $this->_request->getParam('id');
+        $discussioncommentModel = new Blog_Model_DiscussionComment(); 
+        $comment = $discussioncommentModel->getAll($discussionIdtwo);	
+        $this->view->comment = $comment;	
     }
 
     public function commentAction()
@@ -151,13 +160,15 @@ class Blog_DiscussionsController extends Speed_Controller_ActionController
     public function trashDiscussionAction()
     {
         $userdetailModel = new Speed_Model_User();
-        $authNamespace   = new Zend_Session_Namespace('userInformation');
-        $userName        = $authNamespace->userData['username'];
-        $userDetail      = $userdetailModel->getDetailByUserName($userName);
+
+        $authNamespace = new Zend_Session_Namespace('userInformation');
+        $userName = $authNamespace->userData['username'];
+        $userId = $authNamespace->userData['user_id'];         //add session to trash
+        $userDetail = $userdetailModel->getDetailByUserName($userName);
         $this->validateUser();
-        $this->_helper->layout->setLayout('userprofile');
-        $trashModel                  = new Blog_Model_Discussion();
-        $status                      = $trashModel->getAllTrash();
+        $this->_helper->layout->setLayout('userprofile');  
+        $trashModel = new Blog_Model_Discussion();
+        $status = $trashModel->getAllTrash($userId);
         $this->view->Discussiontrash = $status;
         $this->view->userDetail      = $userDetail;
     }

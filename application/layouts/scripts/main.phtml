@@ -80,7 +80,7 @@ echo $this->doctype()
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a href="/me" onClick="_gaq.push(['_trackEvent', 'UserProfile', 'click', 'My profile']);">প্রোফাইল</a></li>
+                        <li><a href="/me" onClick="_gaq.push(['_trackEvent', 'UserProfile', 'click', 'My profile']);">প্রোফাইল</a></li>
                         <li class="divider"></li>
                         <li><a href="/auth/logout">লগ আউট</a></li>
                       </ul>
@@ -112,9 +112,7 @@ echo $this->doctype()
         <div class="container">
 			<?php $flashMessenger = $this->flashMessenger();
                         if (!empty($flashMessenger)): ?>
-                            <div style="margin-bottom: 18px">
                             <?php echo $flashMessenger ?>
-                            </div>
 			<?php endif; ?>
             <div class="row">
                 <div class="span12">
@@ -152,14 +150,44 @@ echo $this->doctype()
                                         <div class="info span6" style="width: 360px; text-align: justify; padding:4px;">
 
                                             <a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-
+						<hr style="margin:0px;" />
+<div class="row">
+<div class="span1">
+<img src="/img/maleIcon.png" class="image-rounded" style="width:40px; height:40px;">
+</div>
+<div>
+<?php 
+                if(!empty($selectedBlog['display_name']))
+                {
+                echo $selectedBlog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($selectedBlog['name']))
+			{
+                    echo $selectedBlog['name']; 
+                    }
+                    else 
+                    {
+                        echo $selectedBlog['username'];
+                        
+                        }
+                       }
+                ?></strong><?php 
+						$CommentsModel = new Blog_Model_BlogComment();
+						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
+					?>
+<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp; <?php echo $date = $bn_date->ShowDate($selectedBlog['create_date']);?> &nbsp;
+</div></div><hr style="margin:0px;"/>
                                             <span class="cat"> 
                                                 <p>
                                               <?php $excerpt = new Speed_Utility_TextHelper(); ?>
 							 <?php
                                                           $content = $imageTag->removeImageTag($selectedBlog['description']);
                                                             ?>
-                                                            <?php echo strip_tags($excerpt->word_limiter($content, 30)); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a></p></span>
+                                                            <?php echo strip_tags($excerpt->word_limiter($content, 30)); ?><a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>">বিস্তারিত পড়ুন</a></p></span>
 
                                         </div>
                                     </div>
@@ -173,7 +201,37 @@ echo $this->doctype()
                                         </div>
                                         <div class="info span6">
 					<a href="/show/<?php echo $selectedBlog['username'] ?>/<?php echo $selectedBlog['permalink']; ?>"><?php echo $selectedBlog['title']; ?></a>
-
+<hr style="margin:0px;" />
+<div class="row">
+<div class="span1">
+<img src="/img/maleIcon.png" class="image-rounded" style="width:20px; height:20px;">
+</div>
+<div>
+<?php 
+                if(!empty($selectedBlog['display_name']))
+                {
+                echo $selectedBlog['display_name']; 
+ 		}
+		
+                else
+		{
+                    if(!empty($selectedBlog['name']))
+			{
+                    echo $selectedBlog['name']; 
+                    }
+                    else 
+                    {
+                        echo $selectedBlog['username'];
+                        
+                        }
+                       }
+                ?></strong><?php 
+						$CommentsModel = new Blog_Model_BlogComment();
+						$TotalComments = $CommentsModel->getCommentsByBlogId($selectedBlog['blog_id']);
+					?>
+<?php $bn_date = new Speed_Utility_DateTimeEnToBn(); ?>
+                              &nbsp; <?php echo $date = $bn_date->ShowDate($selectedBlog['create_date']);?> &nbsp;
+</div></div><hr style="margin:0px;"/>
                                             <span class="cat"> 
                                                 <p>
                                                     <?php $excerpt = new Speed_Utility_TextHelper(); ?>
@@ -209,16 +267,16 @@ echo $this->doctype()
                                                                 
                                 <p class="lead">
                                     <?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                                <?php echo $excerpt->word_limiter($notice['description'], 30); ?> .. <a class="btn-link" href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
+                                                                <?php echo $excerpt->word_limiter($notice['description'], 30); ?> .. <a class="btn-link" href="blog/users/show-notic/id/<?php echo $notice['notice_id'] ?>">বিস্তারিত পড়ুন &raquo;</a>
                                 </p>
                             </div>
-                            <div class="prettyprint"> <?php echo date('F jS Y', strtotime($notice['create_date'])); ?> &nbsp; &nbsp; &nbsp;<span class="pull-right"><?php
+                            <div class="prettyprint"> <?php echo $date = $bn_date->ShowDate($notice['create_date']); ?> &nbsp; &nbsp; &nbsp;<span class="pull-right"><?php
 
                                   if (empty ($authNamespace->userData['user_id'])): ?>
-                                     <a href="/user/auth/login">মন্তব্য </a>&raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a>
+                                     <a href="/user/auth/login">মন্তব্য </a>&raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a>
                                       <?php else: ?>
  <!---update---------------------------------------------------------->
-                                      <a href="/blog/users/add-noticcomment/id/<?php echo $notice['notice_id']; ?>">মন্তব্য</a> &raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a></span><?php endif ?></div><?php endforeach ?>
+                                      <a href="/blog/users/add-noticcomment/id/<?php echo $notice['notice_id']; ?>">মন্তব্য</a> &raquo; <a href="/blog/users/show-allnotic">সমস্ত নোটিশ</a></span><?php endif ?></div><?php endforeach ?>
                            
                             <!--Posts-->
 			<?php foreach ($this->stickyPost AS $stickyPost): ?>
@@ -237,14 +295,14 @@ echo $this->doctype()
                               ?>
 			<?php if(empty($img)):?>
 
-                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 30); ?><a class="btn-link" href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
+                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 30); ?><a class="btn-link" href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
 
                                     </p>
 			<?php else :?> 
 				<div class="thumbnail span2">
                                         <img src="<?php echo  $img; ?>" width="120px" height="80px">
                                     </div>
-                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
+                                    <p class="postdetailstab"><?php echo $excerpt->word_limiter($content, 50); ?><a href="/show/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">বিস্তারিত পড়ুন &raquo;</a> <br />
                                     </p>
 
 
@@ -252,15 +310,15 @@ echo $this->doctype()
 
                             </div>
 			
-                            <div class="prettyprint StickyPostFooter"> <?php echo date('F jS Y', strtotime($stickyPost['create_date'])); ?>&nbsp; &nbsp; &nbsp;<span class="pull-right">
+                            <div class="prettyprint StickyPostFooter"> <?php echo $date = $bn_date->ShowDate($stickyPost['create_date']); ?>&nbsp; &nbsp; &nbsp;<span class="pull-right">
 
                                       <a href="/comment/<?php echo $stickyPost['create_by'] ?>/<?php echo $stickyPost['permalink']; ?>">মন্তব্য </a>
- &raquo; <a href="blog/stickys/index">সমস্ত স্টিকি পোস্ট</a> </span></div><?php endforeach ?>
+ &raquo; <a href="blog/stickys/index">সমস্ত স্টিকি পোস্ট</a> </span></div><?php endforeach ?>
                         </div>
                         <!--end of article/notice-->
                         <div class="span2">
                             <ul class="nav nav-list">
-                                <li class="active label label-info">আকর্ষনীয় ফিচার</li>
+                                <li class="active label label-info">আকর্ষনীয় ফিচার</li>
 
                                 <li><a href="/episodes/index">ধারাবাহিক লেখা</a></li>
 
@@ -272,11 +330,11 @@ echo $this->doctype()
 
                                 <li><a href="#">লাইব্রেরী</a></li>
 
-                                <li><a href="#">মুক্ত আলোচনা</a></li>
+                                <li><a href="#">মুক্ত আলোচনা</a></li>
                                 <li><a href="#">দিনপঞ্জি</a></li>
                                 <li><a href="#">গ্রুপ</a></li>
                                 <li><a href="#">অভিধান</li>
-                                <li class="active"><a href="#">আরো অনেক &raquo;</a></li>
+                                <li class="active"><a href="#">আরো অনেক &raquo;</a></li>
 
                             </ul><br />
                             <img src="/img/letsraise.jpg" style="height:300px">
@@ -314,7 +372,8 @@ echo $this->doctype()
                                    <?php foreach ($this->recentComments as $comment): ?>
                                             <tr>
                                                 <td><?php $excerpt = new Speed_Utility_TextHelper(); ?>
-                                                    <a href="/show/<?php echo $comment['comment_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
+							<?php //print_r($comment);?>
+                                                    <a href="/show/<?php echo $comment['username'] ?>/<?php echo $comment['blog_id'] ?>"><?php echo $excerpt->word_limiter($comment['comments'], 5); ?></a>
                                                 </td>
 
                                             </tr>
@@ -329,7 +388,7 @@ echo $this->doctype()
 					  <div class="accordion-group">
 					    <div class="accordion-heading">
 					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-						সর্বোচ্চ পোস্টদাতা
+						সর্বোচ্চ পোস্টদাতা
 					      </a>
 					    </div>
 					    <div id="collapseOne" class="accordion-body collapse in">
@@ -359,7 +418,7 @@ echo $this->doctype()
 					  <div class="accordion-group">
 					    <div class="accordion-heading">
 					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-						সর্বোচ্চ মন্তব্যকারী
+						সর্বোচ্চ মন্তব্যকারী
 					      </a>
 					    </div>
 					    <div id="collapseTwo" class="accordion-body collapse">
@@ -389,7 +448,7 @@ echo $this->doctype()
 <div class="accordion-group">
 					    <div class="accordion-heading">
 					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-						অধিক আলোচিত
+						অধিক আলোচিত
 					      </a>
 					    </div>
 					    <div id="collapseThree" class="accordion-body collapse">
@@ -435,7 +494,7 @@ echo $this->doctype()
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th style="width: 150px; color:white; background-color:#336D7C;">পুরাতন পোস্ট</th>
+                                                <th style="width: 150px; color:white; background-color:#336D7C;">পুরাতন পোস্ট</th>
 
                                             </tr>
                                         </thead>
@@ -499,10 +558,10 @@ echo $this->doctype()
 <?php foreach($this->pages as $pages): ?>
       <a href="/page/<?php echo $pages['permalink'] ?>"><?php echo $pages['page_name'] ?></a>&nbsp; &raquo; 
 <?php endforeach; else:?>
-<a href="/feedback">Feedback</a> &nbsp; &raquo; 
+<a href="/feedback">মন্তব্য/পরামর্শ</a> &nbsp; &raquo; 
 <?php endif; ?>
  </p>
-     <br /><br />   <p>&copy; All rights reserved by <a href="<?php echo $this->baseUrl;?>">Nokkhotro Blog</a></p>
+     <br /><br />   <p>&copy; সর্বস্বত্ত্ব সংরক্ষিত <a href="<?php echo $this->baseUrl;?>">নক্ষত্র ব্লগ</a></p>
       </div>
     </footer> 
 <!-- popup sinupform -->
@@ -520,7 +579,7 @@ echo $this->doctype()
 
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+              <a href="#" class="btn" data-dismiss="modal" >বন্ধ করুন</a>
               
             </div>
           </div>
@@ -532,7 +591,7 @@ echo $this->doctype()
           <div id="mylogin" class="modal hide fade">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3>Login Form</h3>
+              <h3>প্রবেশ করুন</h3>
 
             </div>
             <div class="modal-body">
@@ -543,9 +602,9 @@ echo $this->doctype()
                     <?php echo $this->loginForm->getDisplayGroup('auth') ?>
 
                     <div style="padding: 10px 0 0 125px">
-                        <button type="submit" class="btn primary" style="margin-right: 10px">Login</button>
-                        <br /><br />Don't have an account ? <a data-toggle="modal" href="#myModal" data-dismiss="modal">sign up</a> <br />
-                        <a data-toggle="modal" href="#myforgot" data-dismiss="modal">Forget Password</a>
+                        <button type="submit" class="btn primary" style="margin-right: 10px">প্রবেশ করুন</button>
+                        <br /><br />নক্ষত্র ব্লগে যদি একাউন্ট না থাকে তবে <a data-toggle="modal" href="#myModal" data-dismiss="modal">নিবন্ধন করুন</a> <br />
+                        <a data-toggle="modal" href="#myforgot" data-dismiss="modal">পাসওয়ার্ড ভুলে গেছেন?</a>
                     </div>
 
                 </form>
@@ -555,7 +614,7 @@ echo $this->doctype()
 
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+              <a href="#" class="btn" data-dismiss="modal" >বন্ধ করুন</a>
               
             </div>
           </div>
@@ -565,7 +624,7 @@ echo $this->doctype()
           <div id="myforgot" class="modal hide fade">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3>Forget Password</h3>
+              <h3>পাসওয়ার্ড উদ্ধার</h3>
 
             </div>
             <div class="modal-body">
@@ -576,8 +635,8 @@ echo $this->doctype()
                     <?php echo $this->forgetPasswordForm->getDisplayGroup('auth') ?>
 
                     <div style="padding: 10px 0 0 125px">
-                        <button type="submit" class="btn primary" style="margin-right: 10px">Submit</button>
-                        <a data-toggle="modal" href="#mylogin" data-dismiss="modal">Login</a>
+                        <button type="submit" class="btn primary" style="margin-right: 10px">সাবমিট করুন</button>
+                        <a data-toggle="modal" href="#mylogin" data-dismiss="modal">প্রবেশ করুন</a>
                     </div>
 
                 </form>
@@ -587,7 +646,7 @@ echo $this->doctype()
 
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+              <a href="#" class="btn" data-dismiss="modal" >বন্ধ করুন</a>
               
             </div>
           </div>                

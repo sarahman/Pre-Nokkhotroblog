@@ -31,12 +31,12 @@ echo $this->doctype() ?>
                         ||
                         <a href="/auth/login">Login</a>
 
-                        <?php else: ?>
+                    <?php else: ?>
 
                         Welcome to <a
                             href="/profile/<?php echo $authNamespace->userData['username'] ?>"><?php echo$authNamespace->userData['username']?></a>
                         | <a href="/auth/logout">Logout</a>
-                        <?php endif ?></div>
+                    <?php endif ?></div>
 
 
             </div>
@@ -103,9 +103,9 @@ echo $this->doctype() ?>
 
 
                 <?php $flashMessenger = $this->flashMessenger();if (!empty($flashMessenger)): ?>
-                <div style="margin-bottom: 18px">
-                    <?php echo $flashMessenger ?>
-                </div>
+                    <div style="margin-bottom: 18px">
+                        <?php echo $flashMessenger ?>
+                    </div>
                 <?php endif; ?>
 
 
@@ -138,7 +138,7 @@ echo $this->doctype() ?>
 
 <div class="subnav bottombar">
     <?php echo $this->render('navigation_buttom.phtml') ?>
-</div>
+</div></div>
 
 
 </body>

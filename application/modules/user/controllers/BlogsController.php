@@ -79,10 +79,12 @@ class User_BlogsController extends Speed_Controller_ActionController
     public function addAction()
     {
         $this->validateUser();
+
         $blogCategoryModel = new Blog_Model_BlogCategory();
         $blogForm          = new Blog_Form_BlogEntry(array(
             'blog_category_id' => $blogCategoryModel->getAll()
         ));
+
         if ($this->_request->isPost()) {
             $data                = $this->_request->getParams();
             $data['description'] = stripslashes($this->_request->getParam('description'));

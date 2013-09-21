@@ -1,0 +1,234 @@
+ <div class="row-fluid content-header">
+<h2>Publish Content </h2>
+</div>   
+<br>
+<section id="tabs">
+
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Category wise Blog</a></li>
+            <li><a href="#profile" data-toggle="tab">Epsode</a></li>
+            <li><a href="#dropdown" data-toggle="tab">Discussion</a></li>
+            <li><a href="#novel" data-toggle="tab">Novel</a></li>
+            <li><a href="#book" data-toggle="tab">Books</a></li>
+            <li><a href="#group" data-toggle="tab">Group</a></li>
+              
+              
+            
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+		<table class="table table-striped table-bordered">
+
+        <thead>
+            <tr>
+                <th >Serial</th>
+                <th >Title</th>
+                <th >Category</th>
+                <th >Username</th>
+                <th >Posted Datedd</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php if (empty($this->allPostedBlogs)) : ?>
+
+            <tr><td class="report-no-data" colspan="5">No blog has been found.</td></tr>
+
+            <?php else: $count = 0; foreach($this->allPostedBlogs AS $blog) : ?>
+
+            <tr>
+                <td><?php echo ++$count ?></td>
+                <td><a href="/admin/blogs/show/id/<?php echo $blog['blog_id'] ?>"><?php echo $blog['title'] ?></a></td>
+                <td ><?php echo $blog['category_name']; ?></td>
+                <td><?php echo $blog['username']; ?></td>
+                <td><?php echo $blog['create_date']; ?></td>
+
+            </tr>
+
+            <?php endforeach; endif ?>
+
+        </tbody>
+
+    </table>
+            </div>
+
+
+
+            <div class="tab-pane fade" id="profile">
+            <table class="table table-striped table-bordered">
+    <thead>
+            <tr>
+                <th>Serial</th>
+                <th>Episode Name</th>
+                <th>Episode Number</th>
+                <th>Description</th>
+                <th>Create Date</th>
+
+
+              
+                
+                
+            </tr>
+     </thead>
+    <tbody>
+
+    <?php if (empty($this->episod)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No episode has been found.</td>
+    </tr>
+        <?php else: $count = 0;
+        foreach ($this->episod AS $episod) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+
+            <td><?php echo $episod['episode_name'] ?></td>                         
+            <td><a href="/admin/episods/show/id/<?php echo $episod['blog_id'] ?>"><?php echo $episod['episode_number'] ?></a></td>         
+             <td><?php echo $episod['description'] ?></td>
+            <td><?php echo $episod['create_date'] ?></td>
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+            </div>
+
+
+
+
+            <div class="tab-pane fade" id="dropdown">
+
+<table class="table table-striped table-bordered">
+    <thead>
+            <tr>
+                <th >Serial</th>
+                <th >title</th>
+                <th >Description</th>
+                <th>Valid day</th>
+		<th>Author</th>
+                <th >Create Date</th>
+
+            </tr>
+     </thead>
+    <tbody>
+
+    <?php if (empty($this->discussion)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No discussion has been found.</td>
+    </tr>
+        <?php else: $count = 0;
+        foreach ($this->discussion AS $discussion) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+
+            <td><a href="/admin/discussions/show/id/<?php echo $discussion['discussion_id'] ?>"><?php echo $discussion['title'] ?></a></td>
+            <td><?php echo $discussion['description'] ?></td>
+             <td><?php echo $discussion['valid_day'] ?></td>
+	     <td><?php echo $discussion['username'] ?></td>
+             <td><?php echo $discussion['create_date'] ?></td>
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="tab-pane fade" id="novel">
+novel
+            </div>
+
+
+
+
+
+            <div class="tab-pane fade" id="book">
+book
+            </div>
+
+
+
+
+            <div class="tab-pane fade" id="group">
+
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Blog group</th>
+        <th>Blog group type</th>
+        <th >Author</th>
+        <th>Create Date</th>
+      <th>&nbsp;</th>
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->groups)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No group has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->groups AS $groups) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+                 <td><?php echo $groups['blog_group'] ?></td>
+            <td><?php echo $groups['group_type'] ?></td>
+	     <td><?php echo $groups['username'] ?></td>
+            <td><?php echo $groups['create_date'] ?></td>
+
+            <td >
+
+                <a href="/admin/blog-groups/blog-group-publish-status/id/<?php echo $groups['blog_group_id'] ?>" <?php echo ($groups['blog_group_is_published'] == 0) ? "class='btn btn-success'": "class='btn btn-warning'" ?>><?php echo ($groups['blog_group_is_published'] == 0) ? "Publish": "Unpublish" ?></a>
+                <a href="/admin/blog-groups/edit/id/<?php echo $groups['blog_group_id'] ?>"
+                                 class="btn btn-success">Edit</a> &nbsp;&nbsp;
+            <a href="/admin/blog-groups/delete/id/<?php echo $groups['blog_group_id'] ?>"
+                                 class="btn btn-warning">Delete</a>
+
+            </td>
+
+
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+
+
+            </div>
+
+
+          </div>
+
+    </section>
+    </section>

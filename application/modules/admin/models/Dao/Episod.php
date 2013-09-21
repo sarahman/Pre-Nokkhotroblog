@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Dao Model
+ *
  * @category        Model
  * @package         Admin
  * @author          Mohammad Zafar Iqbal <zafarmba10104014@gmail.com>
@@ -25,12 +26,25 @@ class Admin_Model_Dao_Episod extends Speed_Model_Dao_Abstract
             ->order(array("{$this->_primaryKey} DESC"));
         return $this->returnResultAsAnArray($this->fetchAll($select));
     }
+    public function getAllPublishEpisods()
+    {
 
+        $select = $this->select()
+                       ->from($this->_name)
+		       ->setIntegrityCheck(false)
+			->join('episode_name',"{$this->_name}.episode_id = episode_name.episode_id")
+                        ->where("{$this->_name}.post_type ='episode'")
+                        ->where("{$this->_name}.status =?",'publish')
+                        ->order(array("{$this->_primaryKey} DESC"));
+        return $this->returnResultAsAnArray($this->fetchAll($select));
+    }
+    
     public function remove($id = null)
     {
         if (empty ($id)) {
             return false;
         }
+
         return parent::delete("{$this->_primaryKey} = '{$id}'");
     }
 

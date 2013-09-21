@@ -1,6 +1,7 @@
 <?php
 /**
  * Group Type Model
+ * 
  * @category        Model
  * @package         Group type
  * @author          Md. Sirajus Salayhin <salayhin@gmail.com>
@@ -98,4 +99,17 @@ class Admin_Model_BlogGroup extends Speed_Model_Abstract
         $this->dao->modify($data, $blogGroupId);
         return true;
     }
+
+ public function getPublishGroup()
+	{
+	return $this->dao->getPublishGroup();
+
+	}
+ public function getPandinghGroup()
+	{
+	return $this->dao->getPandinghGroup();
+
+	}
+
+
 }

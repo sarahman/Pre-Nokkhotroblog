@@ -1,0 +1,149 @@
+ <div class="row-fluid content-header">
+<h2>Selected Post </h2>
+</div>   
+<br><br>
+<section id="tabs">
+
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Currently Selected</a></li>
+            <li><a href="#profile" data-toggle="tab">Make Selected</a></li>
+
+              
+              
+            
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+       
+	<th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+     
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->selected)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No group has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->selected AS $selected) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+            <td>
+
+
+<?php 
+ 
+   if(!empty($selected['title']))
+                {
+		?>
+               <a href="/admin/blogs/show/id/<?php echo $selected['blog_id'] ?>"><?php echo $selected['title'] ?></a>
+ 		   <?php } else { ?>
+
+		<a href="/admin/episods/show/id/<?php echo $selected['blog_id'] ?>"><?php echo $selected['episode_number'] ?></a>
+
+		<?php
+               }
+ 		?>
+
+</td>
+	   
+            <td><?php echo $selected['description'] ?></td>
+	     <td><?php echo $selected['username'] ?></td>
+            <td><?php echo $selected['create_date'] ?></td>
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+            </div>
+
+
+
+            <div class="tab-pane fade" id="profile">
+<table class="table table-striped table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Srl</th>
+        <th>Title</th>
+       
+	<th>Description</th>
+        <th >Author</th>
+        <th>Create Date</th>
+     
+
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <?php if (empty($this->makeselected)) : ?>
+
+    <tr>
+        <td class="report-no-data" colspan="5">No Selected Post has been found.</td>
+    </tr>
+
+        <?php else: $count = 0;
+        foreach ($this->makeselected AS $makeselected) : ?>
+
+        <tr>
+            <td class="centered"><?php echo ++$count ?></td>
+            <td>
+
+
+<?php 
+ 
+   if(!empty($makeselected['title']))
+                {
+		?>
+               <a href="/admin/blogs/show/id/<?php echo $makeselected['blog_id'] ?>"><?php echo $makeselected['title'] ?></a>
+ 		   <?php } else { ?>
+
+		<a href="/admin/episods/show/id/<?php echo $makeselected['blog_id'] ?>"><?php echo $makeselected['episode_number'] ?></a>
+
+		<?php
+               }
+ 		?>
+
+</td>
+	   
+            <td><?php echo $makeselected['description'] ?></td>
+	     <td><?php echo $makeselected['username'] ?></td>
+            <td><?php echo $makeselected['create_date'] ?></td>
+
+        </tr>
+
+            <?php endforeach; endif ?>
+
+    </tbody>
+
+</table>
+            </div>
+
+
+
+
+          </div>
+
+    </section>

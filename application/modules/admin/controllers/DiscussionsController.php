@@ -1,6 +1,7 @@
 <?php
 /**
  * Discussion Controller
+ *
  * Discussion   Controller
  * @package     Discussion
  * @author      Mustafa Ahmed Khan <tamal_29@yahoo.com>
@@ -93,8 +94,31 @@ class Admin_DiscussionsController extends Speed_Controller_ActionController
         $authNamespace     = new Zend_Session_Namespace('adminInformation');
         $adminId           = $authNamespace->adminData['admin_id'];
         $data['update_by'] = $adminId;
-        $discussionModel   = new Admin_Model_Discussion();
-        $status            = $discussionModel->setPublishStatus($data, $discussionId);
+
+        $discussionModel = new Admin_Model_Discussion();                
+        $status = $discussionModel->setPublishStatus($data, $discussionId); 
+
+        if ($status) {
+            $this->redirectForSuccess("/admin/discussions/show/id/{$discussionId}", "Discussion status updated");
+        } else {
+            $this->redirectForFailure("/admin/discussions/show/id/{$discussionId}", "Something went wrong");
+        }
+
+    }
+ public function trashDiscussionAction()
+    {
+         $data = array();
+
+        $discussionId = $this->_request->getParam('id');
+
+        $authNamespace = new Zend_Session_Namespace('adminInformation');
+        $adminId = $authNamespace->adminData['admin_id'];
+
+        $data['update_by'] = $adminId;
+
+        $discussionModel = new Admin_Model_Discussion();                
+        $status = $discussionModel->setTrashStatus($data, $discussionId); 
+
         if ($status) {
             $this->redirectForSuccess("/admin/discussions/show/id/{$discussionId}", "Discussion status updated");
         } else {
